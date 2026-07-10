@@ -12,4 +12,20 @@ summary: A workflow describing how to cerate a service token
 :imagesdir: ../media/
 
 [.lead]
-Create a service access token that can be used by applications and scripts to make REST API calls to the NetApp Console (local deployment). 
+Create a service access token that can be used by applications and scripts to make REST API calls to the NetApp Console (local deployment). Service tokens are obtained using the OAuth 2.0 client credentials grant type with a client ID and client secret. 
+
+.Before you begin
+
+To create service access token, you need a service account. If you don't have a service account, you can use the steps for *client secret authentication* in link:https://docs.netapp.com/us-en/console-automation/platform/register_service.html[Register a service with the NetApp Console^].
+
+NOTE: Private key JWT authentication is not supported for service accounts in the Console (local deployment). Only client ID and client secret authentication is available. 
+
+The following credentials are required:
+
+* `client_id`
++
+The client ID assigned to the service account. 
+
+* `client_secret`
++
+The client secret generated for the service account. 

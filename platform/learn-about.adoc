@@ -13,3 +13,28 @@ summary: A workflow describing how to cerate a service token
 
 [.lead]
 NetApp Console (local deployment) is a self-hosted deployment option that lets you run the NetApp Console (local deployment) control plane in your on-premises environment. NetApp Console (local deployment) delivers unified storage management and automation capabilities such as provisioning, policy enforcement, drift detection, and remediation in an isolated deployment that keeps your data, metadata, and management traffic entirely within your own infrastructure. 
+
+.REST API design 
+
+The NetApp Console (local deployment) REST APIs are built on the same design, technology, and standards as the Console SaaS REST APIs. The core technologies include HTTP and JSON. 
+
+.API structure 
+
+The HTTP methods and request headers  used with the Console SaaS APIs apply equally to the Console (local deployment) APIs.  
+
+.Local authentication 
+
+Instead of using the Auth0 cloud service, each NetApp Console (local deployment) instance includes its own local identity provider. Authentication requests are directed to the local instance rather than an external cloud endpoint. 
+
+.On-premises access 
+
+All APIs are accessible through the IP address or fully qualified domain name (FQDN) of the NetApp Console local system. No external internet connectivity is required.  
+
+.Standard OAuth 2.0 and JWT 
+
+The local identity provider issues OAuth 2.0 access tokens formatted as JSON Web Tokens (JWT). All tokens are signed using the RS256 algorithm. 
+
+.Related information
+
+* link:https://docs.netapp.com/us-en/console-automation/platform/concepts.html[NetApp Console REST API concepts^]
+* link:https://docs.netapp.com/us-en/console-automation/platform/http_details.html[Supported HTTP methods for the NetApp Console REST APIs^]

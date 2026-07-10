@@ -13,3 +13,24 @@ summary: A workflow describing how to cerate a service token
 
 [.lead]
 The NetApp Console (local deployment) REST APIs are accessible through the IP address or fully qualified domain name (FQDN) of the host system. All API requests, including authentication, are directed to the local instance. 
+
+== Base URL 
+
+The base URL for all NetApp Console (local deployment) REST API requests uses the following format: 
+
+`\https://<host>/`
+
+Where `<host>` is either: 
+
+* The IP address of the system, for example: `\https://192.168.1.100`
+
+* A configured FQDN for the host, for example: `\https://ncl.example.com` 
+
+
+NOTE: FQDN-based access requires that a DNS record has been configured for the host. If no FQDN has been configured, use the IP address of the system. 
+
+== Authentication endpoint 
+
+In addition to the API base URL, a separate endpoint is used to obtain OAuth 2.0 access tokens. This authentication endpoint is also hosted on the NetApp Console (local deployment) instance. 
+
+`POST \https://<host>/oauth/token`
