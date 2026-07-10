@@ -22,6 +22,10 @@ Before obtaining a user access token, confirm that you have the following:
 
 * A valid local user account on the NetApp Console (local deployment) instance with the appropriate permissions for the REST API calls you plan to make. 
 
+== Create the user access token
+
+Learn about the HTTP methods, resource path, and input parameters you need to generate a user access token that you can use to authorize API requests.  
+
 .HTTP method and resource path
 
 The following table shows the HTTP method and resource path required in this API call.
@@ -109,4 +113,4 @@ The JSON output includes the access token and expiry as shown in the following e
 
 Include the token in the `Authorization` request header for REST API calls as needed, as shown in the following example:
 
-`Authorization: Bearer <USER_TOKEN>` 
+`Authorization: Bearer <access_token>` 

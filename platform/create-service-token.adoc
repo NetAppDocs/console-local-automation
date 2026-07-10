@@ -29,3 +29,99 @@ The client ID assigned to the service account.
 * `client_secret`
 +
 The client secret generated for the service account. 
+
+== Create the service access token
+
+Learn about the HTTP methods, resource path, and input parameters you need to generate a service access token that you can use to authorize API requests. 
+
+.HTTP method and resource path
+
+The following table shows the HTTP method and resource path required in this API call.
+
+[cols="2,2" options="header"]
+|===
+// header row
+|HTTP method
+| Resource path
+
+
+// first body row
+| POST
+| `\https://<host>/oauth/token ` 
+
+
+// table end
+|===
+
+.Curl example 
+
+[source,curl]
+----
+curl --request POST \
+  --url https://<host>/oauth/token \
+  --header 'content-type: application/json' \
+  --data '{
+  "client_id": “<client-id>",
+  "client_secret": “<client-secret>",
+  "grant_type": "client_credentials"
+}
+----
+
+.JSON input parameters 
+
+The table below shows the required input parameters. 
+
+[cols="2,2" options="header"]
+|===
+// header row
+| Parameter
+| Description
+
+// first body row
+| grant_type
+| Must be set to client_credentials
+
+| client_id
+| The client ID assigned to the service account on the NetApp Console (local deployment) instance.
+
+| client_secret
+| The client secret generated for the service account.
+
+// table end
+|===
+
+
+.JSON input example 
+The JSON input example includes the required input parameters.
+
+[source,json]
+----
+{
+    "grant_type": "client_credentials",
+    "client_id": "< client-id >",
+    "client_secret": "< client-secret >"
+}
+----
+
+.JSON output example
+
+The JSON output includes the access token and expiry as shown in the following example:  
+
+[source,json]
+----
+{
+
+ "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJPTkR0bHJUTElzaGU0eS04QVRtZUN0eDV0LWZOLUNYYVd3Vzh4bENRY25ZIn0.eyJleHAiOjE3ODM2NDE0NjUsImlhdCI6MTc4MzYxOTg2NSwianRpIjoib25ydHJvOjdhNTlkMGFlLWRiZDUtYWRhMy1jMTFiLTNkYzk1NDY1YjA5NyIsImlzcyI6Imh0dHBzOi8vMTAuMTkyLjEwLjkzL3JlYWxtcy9uZXRhcHAtcmVhbG0iLCJhdWQiOlsiaHR0cHM6Ly9hcGkuY2xvdWQubmV0YXBwLmNvbSIsImFjY291bnQiXSwic3ViIjoiYjY5ZTk4Y2YtNGM1MS00NjU1LThjMDAtMWM0M2VmNDdiYWU4IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoib2NjbWF1dGgiLCJzaWQiOiI0ZWY4ZGRmZi0xZGM2LWY5ODQtZDUwZC05MDViMzYxZjcxMjYiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHBzOi8vMTAuMTkyLjEwLjkzIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiZGVmYXVsdC1yb2xlcy1uZXRhcHAtcmVhbG0iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgY29uc29sZS1wbGF0Zm9ybTphY2Nlc3Mgc2VydmljZTpvY2NtYXV0aCBhdWRpdDp3cml0ZSBvcGVuaWQiLCJodHRwOi8vY2xvdWQubmV0YXBwLmNvbS9mdWxsX25hbWUiOiJUZXN0IiwibmFtZSI6IlRlc3QgVXNlciIsInByZWZlcnJlZF91c2VybmFtZSI6Im5jbHVzZXJ0ZXN0QG5ldGFwcC5jb20iLCJnaXZlbl9uYW1lIjoiVGVzdCIsImZhbWlseV9uYW1lIjoiVXNlciIsImh0dHA6Ly9jbG91ZC5uZXRhcHAuY29tL2VtYWlsIjoibmNsdXNlcnRlc3RAbmV0YXBwLmNvbSJ9.Rr3zkMjaZbODCFYIFQWgYFxIwnCGpmYJtvBHEPIaP85vMrrimZhJ84zVZwp3-v1U2B0-cW3lZmHbSX8C2vlMacKBi2T90uHf9pUE06OmcEZVge924jUH9dVv-R0-Typ8BjyyX2kCn97NjfSp05c5rKDnqd_bWZvE0-A2utHTTyx7bFK_v2IxLZeK-CvSFXP5PUoNC92SfXm9dmIP9MeW474n5Jg0JEbl0PtYWo9KNFwmh2TdB1DLcL3kt94yjRP6IuVRnpFM65qPN9vcjQDs-wTG4n4OmxUjFL-0pDjqL5IYo-KRcwsrmONQIJ3FPqCk7EWwvdPCaDRnkMiHFTF-TQ",
+
+ "expires_in": 21600,
+
+ "token_type": "Bearer"
+
+}
+----
+
+.After you finish
+
+Include the token in the `Authorization` request header for REST API calls as needed, as shown in the following example:
+
+`Authorization: Bearer <access_token>` 
