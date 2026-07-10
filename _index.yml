@@ -1,12 +1,24 @@
-indexpage:
-  title: replace with repository name
-  lead: single paragraph, shown on the page
-  summary: summary, used for search results
-  keywords: Unquoted comma-delimited list of keywords
+ndexpage:
+  title: NetApp Console (local deployment) API documentation
+  lead: NetApp Console (local deployment) is a self-hosted deployment option that lets you run the NetApp Console (local deployment) control plane in your on-premises environment.NetApp Console (local deployment) delivers the unified storage management and automation capabilities such as provisioning, policy enforcement, drift detection, and remediation in an isolated deployment that keeps your data, metadata, and management traffic entirely within your own infrastructure.  
+  summary: NetApp Console (local deployment) is a self-hosted deployment option that lets you run the NetApp Console (local deployment) control plane in your on-premises environment.NetApp Console (local deployment) delivers the unified storage management and automation capabilities such as provisioning, policy enforcement, drift detection, and remediation in an isolated deployment that keeps your data, metadata, and management traffic entirely within your own infrastructure.
+  keywords: automation, automating, bluexp, netapp, console, local
   tiles:
-    # one or more tile definitions for the page
-  - title: # short string (tile title)
-    links:
-      # one or more links on the tile
-      - title: # short string (link title)
-        url: # single file name or external URL
+    - title: Platform services
+      links:
+       - title: Backup and Recovery
+         url: /cbs/overview.html
+       - title: Identity and access management
+         url: /tenancyv4/overview.html
+    - title: More resources
+      links:
+        - title: NetApp Console solutions
+          url: https://www.netapp.com/cloud-services/
+        - title: NetApp Console automation hub
+          url: https://docs.netapp.com/us-en/netapp-automation/solutions/bac-overview.html
+        - title: ONTAP 9 documentation
+          url: https://docs.netapp.com/us-en/ontap/
+        - title: Additional resources
+          url: /support/additional_resources.html
+
+      

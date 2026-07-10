@@ -1,14 +1,28 @@
 settings:
-  name: "Product Name"
+  name: API
   internal:
-    pdf_enabled: true
-    lipi_enabled: true
+    pdf_enabled: false
+    api_enabled: true
+    api_standardize: false
+    api_preserve_adoc: true
   prod:
-    pdf_enabled: true
-    lipi_enabled: false
+    pdf_enabled: false
+    api_enabled: true
     harmony_enabled: false
-
-sidebar: 
+    api_standardize: false
+    api_preserve_adoc: true
+sidebar:
   entries:
-  - title: Legal notices
-    url: /legal-notices.html
+    - title: NetApp Console API docs
+      url: /index.html
+    - section: agentic
+    - section: alerts
+    - section: asset
+    - section: cbs
+    - section: tenancyv4
+    - section: storage-management
+    - title: Legal notices
+      url: /legal-notices.html
+product-family:
+  name: NetApp Console
+  repo: console-family

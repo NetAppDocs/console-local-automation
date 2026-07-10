@@ -1,0 +1,2894 @@
+openapi: 3.0.3
+components:
+    headers:
+        Location:
+            description: Location of the newly created resource
+            schema:
+                format: uri
+                type: string
+        X-Request-Id:
+            description: Unique identifier for the request
+            schema:
+                format: uuid
+                type: string
+    parameters:
+        config_id:
+            description: Unique identifier for the configuration instance.
+            example: default
+            in: path
+            name: config_id
+            required: true
+            schema:
+                default: default
+                type: string
+        continue:
+            description: Continuation token from a previous response to retrieve the next page.
+            in: query
+            name: continue
+            required: false
+            schema:
+                type: string
+        count:
+            description: Indicates if the total number of resources should be returned.
+            in: query
+            name: count
+            schema:
+                default: false
+                type: boolean
+        filter:
+            description: |-
+                Specifies which fields should be matched in order to return a resource when listing a collection.
+
+
+                Supported operators:
+                * eq - Equality
+                * lt/gt - Less than/greater than
+                * lte/gte - Less than or equal to/greater than or equal to
+
+
+                URL example: "filter=field%20eq%20%27value%27"
+
+
+                OpenAPI examples: "field eq 'value'"
+            in: query
+            name: filter
+            required: false
+            schema:
+                $ref: '#/components/schemas/query_filter'
+        include:
+            description: |-
+                Specifies which fields should be returned when listing a collection.
+                URL examples: "include=provider", "include=provider,models"
+            in: query
+            name: include
+            schema:
+                type: string
+        limit:
+            description: Specifies the maximum number of resources to return when listing a collection.
+            in: query
+            name: limit
+            schema:
+                default: 100
+                maximum: 1000
+                minimum: 1
+                type: integer
+        metadata:
+            description: |-
+                Indicates if the metadata should be returned in the response object.
+
+
+                URL examples: "metadata=true"
+
+                OpenAPI examples: "true"
+            in: query
+            name: metadata
+            schema:
+                $ref: '#/components/schemas/query_metadata'
+        order_by:
+            description: Indicates the sort order of resources when listing a collection.
+            in: query
+            name: orderBy
+            schema:
+                type: string
+        skip:
+            description: Specifies the number of resources to skip when listing a collection.
+            in: query
+            name: skip
+            schema:
+                default: 0
+                minimum: 0
+                type: integer
+        x-organization-id:
+            description: |-
+                Organization identifier for multi-tenant isolation.
+                When provided, configurations are scoped to this organization.
+            in: header
+            name: x-organization-id
+            required: false
+            schema:
+                example: 19efce0a-f344-4831-9686-6e7116e4fc3a
+                format: uuid
+                type: string
+    responses:
+        400BadRequest:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The supplied query parameters are invalid.
+                        status: "400"
+                        title: Invalid query parameters
+                        type: https://bluexp.netapp.io/problems/1
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Bad Request
+        401Unauthorized:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The request is missing the required bearer token.
+                        status: "401"
+                        title: Missing bearer token
+                        type: https://bluexp.netapp.io/problems/1
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Unauthorized
+        403Forbidden:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The requested operation isn't permitted.
+                        status: "403"
+                        title: Operation not permitted
+                        type: https://bluexp.netapp.io/problems/11
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Forbidden
+        404NotFound:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The collection specified in the request URI wasn't found.
+                        status: "404"
+                        title: Collection not found
+                        type: https://bluexp.netapp.io/problems/2
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Not Found
+        409Conflict:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The request body JSON contains a field that conflicts with an idempotent value.
+                        status: "409"
+                        title: JSON resource conflict
+                        type: https://bluexp.netapp.io/problems/10
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Conflict
+        413RequestEntityTooLarge:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The request entity is too large.
+                        status: "413"
+                        title: Request entity too large
+                        type: https://bluexp.netapp.io/problems/17
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Request Entity Too Large
+        429TooManyRequests:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: Too many requests have been made. Please retry later.
+                        status: "429"
+                        title: Too many requests
+                        type: https://bluexp.netapp.io/problems/1
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Too Many Requests
+        503ServiceNotReady:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The service is not ready to handle requests.
+                        status: "503"
+                        title: Service not ready
+                        type: https://bluexp.netapp.io/problems/15
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Service Not Ready
+    schemas:
+        config_1.0_get_response_body:
+            additionalProperties: false
+            properties:
+                adminAddr:
+                    default: 0.0.0.0:15000
+                    description: Admin address for the AgentGateway
+                    example: 0.0.0.0:15000
+                    type: string
+                baseUrl:
+                    description: Base URL for the provider API
+                    example: https://api.openai.com
+                    format: uri
+                    type: string
+                extraHeaders:
+                    additionalProperties:
+                        type: string
+                    description: Additional HTTP headers to send with requests
+                    example:
+                        X-Custom-Header: value
+                    type: object
+                extraParams:
+                    additionalProperties:
+                        type: string
+                    description: Provider-specific additional parameters
+                    example:
+                        user: username
+                    type: object
+                id:
+                    description: Unique identifier for the configuration.
+                    example: 550e8400-e29b-41d4-a716-446655440000
+                    format: uuid
+                    type: string
+                llmHealthState:
+                    description: |-
+                        Health state of the LLM provider connection.
+                        Defined values are:
+                        * "true" - LLM provider connection is healthy and working
+                        * "false" - LLM provider connection is unhealthy or failed
+                    enum:
+                        - "true"
+                        - "false"
+                    example: "true"
+                    type: string
+                metadata:
+                    $ref: '#/components/schemas/type_bxp_metadata'
+                models:
+                    description: List of configured models. Multiple models enable load balancing.
+                    example:
+                        - gpt-4o
+                        - gpt-4o-mini
+                    items:
+                        type: string
+                    minItems: 1
+                    type: array
+                organizationId:
+                    description: |-
+                        Organization identifier associated with this configuration.
+                        Set from the x-organization-id request header during creation.
+                    example: 19efce0a-f344-4831-9686-6e7116e4fc3a
+                    format: uuid
+                    type: string
+                port:
+                    default: 8080
+                    description: Gateway port
+                    example: 8080
+                    maximum: 65535
+                    minimum: 1
+                    type: integer
+                provider:
+                    description: |-
+                        LLM provider name.
+                        Defined values are:
+                        * "openai" - OpenAI API
+                        * "azure" - Azure OpenAI Service
+                        * "anthropic" - Anthropic Claude API
+                        * "commonOpenAI" - Generic OpenAI-compatible API (custom/self-hosted LLM proxies)
+                        * "bedrock" - AWS Bedrock
+                        * "vertexai" - Google Vertex AI
+                        * "gemini" - Google Gemini
+                    enum:
+                        - openai
+                        - azure
+                        - anthropic
+                        - commonOpenAI
+                        - bedrock
+                        - vertexai
+                        - gemini
+                    example: openai
+                    type: string
+                rawConfig:
+                    additionalProperties: true
+                    description: Raw AgentGateway YAML configuration as JSON
+                    type: object
+                sslVerify:
+                    default: true
+                    description: Indicates whether to verify SSL certificates.
+                    example: true
+                    type: boolean
+                state:
+                    description: |-
+                        Current state of the configuration lifecycle.
+                        Defined values are:
+                        * "DRAFT" - Configuration is in draft mode, not yet applied
+                        * "TESTING" - Configuration is being tested and validated
+                        * "SUCCESSFUL" - Configuration has been successfully applied and verified
+                        * "UNSUCCESSFUL" - Configuration application or validation failed
+                    enum:
+                        - DRAFT
+                        - TESTING
+                        - SUCCESSFUL
+                        - UNSUCCESSFUL
+                    example: SUCCESSFUL
+                    type: string
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.config"
+                    enum:
+                        - application/vnd.netapp.bxp.config
+                    example: application/vnd.netapp.bxp.config
+                    type: string
+                version:
+                    description: |-
+                        Version of the configuration format.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+            required:
+                - type
+                - version
+                - id
+                - provider
+                - models
+                - state
+            type: object
+        config_1.0_list_response_body:
+            additionalProperties: false
+            properties:
+                count:
+                    description: Total number of configuration items in the list
+                    example: 2
+                    minimum: 0
+                    type: integer
+                items:
+                    description: Array of configuration objects
+                    example:
+                        - id: 550e8400-e29b-41d4-a716-446655440000
+                          models:
+                            - gpt-4o
+                          provider: openai
+                          state: SUCCESSFUL
+                          type: application/vnd.netapp.bxp.config
+                          version: "1.0"
+                        - id: 550e8400-e29b-41d4-a716-446655440001
+                          models:
+                            - claude-3-5-sonnet-20241022
+                          provider: anthropic
+                          state: DRAFT
+                          type: application/vnd.netapp.bxp.config
+                          version: "1.0"
+                    items:
+                        $ref: '#/components/schemas/config_1.0_get_response_body'
+                    type: array
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.configs"
+                    enum:
+                        - application/vnd.netapp.bxp.configs
+                    example: application/vnd.netapp.bxp.configs
+                    type: string
+                version:
+                    description: |-
+                        Version of the list format.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+            required:
+                - type
+                - version
+                - items
+            type: object
+        config_1.0_patch_request_body:
+            additionalProperties: false
+            description: Partial configuration update where only provided fields are updated
+            properties:
+                adminAddr:
+                    description: Admin address for the AgentGateway
+                    type: string
+                anthropic:
+                    $ref: '#/components/schemas/provider_credentials_anthropic_config'
+                azure:
+                    $ref: '#/components/schemas/provider_credentials_azure_config'
+                bedrock:
+                    $ref: '#/components/schemas/provider_credentials_bedrock_config'
+                commonOpenAI:
+                    $ref: '#/components/schemas/provider_credentials_commonOpenAI_config'
+                extraHeaders:
+                    additionalProperties:
+                        type: string
+                    description: Additional HTTP headers
+                    type: object
+                extraParams:
+                    additionalProperties:
+                        type: string
+                    description: Provider-specific additional parameters
+                    type: object
+                gemini:
+                    $ref: '#/components/schemas/provider_credentials_gemini_config'
+                models:
+                    description: List of models to configure
+                    items:
+                        maxLength: 254
+                        minLength: 1
+                        type: string
+                    minItems: 1
+                    type: array
+                openai:
+                    $ref: '#/components/schemas/provider_credentials_openai_config'
+                port:
+                    description: Gateway port
+                    maximum: 65535
+                    minimum: 1
+                    type: integer
+                requestsPerMinute:
+                    description: The rate limit - maximum requests per minute (0 = unlimited).
+                    minimum: 0
+                    type: integer
+                sslVerify:
+                    description: Indicates whether to verify SSL certificates.
+                    type: boolean
+                stateDesired:
+                    description: |-
+                        Desired state for the configuration lifecycle transition.
+                        Use this field to request a state change for the configuration.
+                        Defined values are:
+                        * "DRAFT" - Move configuration to draft mode
+                        * "TESTING" - Request configuration testing/validation
+                        * "SUCCESSFUL" - Mark configuration as having been successfully applied
+                        * "UNSUCCESSFUL" - Mark configuration as having failed
+                    enum:
+                        - DRAFT
+                        - TESTING
+                        - SUCCESSFUL
+                        - UNSUCCESSFUL
+                    example: TESTING
+                    type: string
+                tokensPerMinute:
+                    description: The rate limit - maximum tokens per minute (0 = unlimited).
+                    minimum: 0
+                    type: integer
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.config"
+                    enum:
+                        - application/vnd.netapp.bxp.config
+                    example: application/vnd.netapp.bxp.config
+                    type: string
+                version:
+                    description: |-
+                        Version of the configuration format.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+                vertexai:
+                    $ref: '#/components/schemas/provider_credentials_vertexai_config'
+            type: object
+        config_1.0_patch_response_body:
+            additionalProperties: false
+            properties:
+                configVersion:
+                    description: Version of the applied configuration
+                    example: "1.0"
+                    type: string
+                message:
+                    description: Success message
+                    example: Configuration updated successfully. AgentGateway will automatically apply changes.
+                    type: string
+                timestamp:
+                    description: Timestamp of the operation
+                    example: "2025-01-16T10:30:00Z"
+                    format: date-time
+                    type: string
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.config"
+                    enum:
+                        - application/vnd.netapp.bxp.config
+                    example: application/vnd.netapp.bxp.config
+                    type: string
+                version:
+                    description: |-
+                        Version of the configuration format.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+            required:
+                - type
+                - version
+                - message
+            type: object
+        config_1.0_post_request_body:
+            additionalProperties: false
+            description: Configuration creation request, specifies provider credentials and models.
+            properties:
+                adminAddr:
+                    default: 0.0.0.0:15000
+                    description: Admin address for the AgentGateway
+                    example: 0.0.0.0:15000
+                    type: string
+                anthropic:
+                    $ref: '#/components/schemas/provider_credentials_anthropic_config'
+                azure:
+                    $ref: '#/components/schemas/provider_credentials_azure_config'
+                bedrock:
+                    $ref: '#/components/schemas/provider_credentials_bedrock_config'
+                commonOpenAI:
+                    $ref: '#/components/schemas/provider_credentials_commonOpenAI_config'
+                extraHeaders:
+                    additionalProperties:
+                        type: string
+                    description: Additional HTTP headers to send with requests
+                    example:
+                        X-Custom-Header: value
+                    type: object
+                extraParams:
+                    additionalProperties:
+                        type: string
+                    description: |-
+                        Provider-specific additional parameters.
+
+                        For Azure:
+                        * deploymentName - Azure deployment name
+                        * apiVersion - Azure API version
+
+                        For commonOpenAI:
+                        * user - Username for custom LLM proxies
+                    example:
+                        user: username
+                    type: object
+                gemini:
+                    $ref: '#/components/schemas/provider_credentials_gemini_config'
+                metadata:
+                    $ref: '#/components/schemas/type_bxp_metadata'
+                models:
+                    description: |-
+                        List of models to configure. Multiple models enable load balancing.
+
+                        Defined values are:
+                        * Minimum items: 1
+                        * Each model must be a valid model identifier for the selected provider
+                    example:
+                        - gpt-4o
+                        - gpt-4o-mini
+                    items:
+                        maxLength: 254
+                        minLength: 1
+                        type: string
+                    minItems: 1
+                    type: array
+                openai:
+                    $ref: '#/components/schemas/provider_credentials_openai_config'
+                organizationId:
+                    description: |-
+                        Organization identifier for multi-tenant isolation.
+                        Typically set from the x-organization-id request header.
+                    example: 19efce0a-f344-4831-9686-6e7116e4fc3a
+                    format: uuid
+                    type: string
+                port:
+                    default: 8080
+                    description: Gateway port
+                    example: 8080
+                    maximum: 65535
+                    minimum: 1
+                    type: integer
+                requestsPerMinute:
+                    description: The rate limit - maximum requests per minute (0 = unlimited).
+                    minimum: 0
+                    type: integer
+                sslVerify:
+                    default: true
+                    description: Indicates whether to verify SSL certificates.
+                    type: boolean
+                tokensPerMinute:
+                    description: The rate limit - maximum tokens per minute (0 = unlimited).
+                    minimum: 0
+                    type: integer
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.config"
+                    enum:
+                        - application/vnd.netapp.bxp.config
+                    example: application/vnd.netapp.bxp.config
+                    type: string
+                version:
+                    description: |-
+                        Version of the configuration format.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+                vertexai:
+                    $ref: '#/components/schemas/provider_credentials_vertexai_config'
+            required:
+                - type
+                - version
+                - models
+            type: object
+        config_1.0_post_response_body:
+            additionalProperties: false
+            properties:
+                configVersion:
+                    description: Version of the applied configuration
+                    example: "1.0"
+                    type: string
+                id:
+                    description: Unique identifier of the created configuration
+                    example: 550e8400-e29b-41d4-a716-446655440000
+                    format: uuid
+                    type: string
+                message:
+                    description: Success message
+                    example: Configuration created successfully. AgentGateway will automatically apply changes.
+                    type: string
+                metadata:
+                    $ref: '#/components/schemas/type_bxp_metadata'
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.config"
+                    enum:
+                        - application/vnd.netapp.bxp.config
+                    example: application/vnd.netapp.bxp.config
+                    type: string
+                version:
+                    description: |-
+                        Version of the configuration format.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+            required:
+                - type
+                - version
+                - id
+                - message
+            type: object
+        config_state_enum:
+            description: |-
+                Configuration lifecycle state.
+                Defined values are:
+                * "DRAFT" - Configuration is in draft mode, not yet applied
+                * "TESTING" - Configuration is being tested and validated
+                * "SUCCESSFUL" - Configuration has been successfully applied and verified
+                * "UNSUCCESSFUL" - Configuration application or validation failed
+            enum:
+                - DRAFT
+                - TESTING
+                - SUCCESSFUL
+                - UNSUCCESSFUL
+            example: SUCCESSFUL
+            type: string
+        error_response:
+            additionalProperties: false
+            properties:
+                code:
+                    description: Machine-readable error code for programmatic handling
+                    enum:
+                        - INVALID_REQUEST
+                        - UNAUTHORIZED
+                        - FORBIDDEN
+                        - NOT_FOUND
+                        - CONFLICT
+                        - INTERNAL_ERROR
+                        - VALIDATION_ERROR
+                    example: INVALID_REQUEST
+                    type: string
+                details:
+                    additionalProperties: true
+                    description: Additional error details
+                    type: object
+                error:
+                    description: Human-readable error message
+                    example: 'Invalid request: provider is required'
+                    type: string
+                requestId:
+                    description: Unique identifier for the request (for debugging)
+                    format: uuid
+                    type: string
+                timestamp:
+                    description: Timestamp when the error occurred
+                    format: date-time
+                    type: string
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.error"
+                    enum:
+                        - application/vnd.netapp.bxp.error
+                    example: application/vnd.netapp.bxp.error
+                    type: string
+                version:
+                    description: |-
+                        Version of the resource.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+            required:
+                - type
+                - version
+                - error
+            type: object
+        health_1.0_get_response_body:
+            additionalProperties: false
+            properties:
+                details:
+                    description: Additional health check details
+                    properties:
+                        agentgatewayConnected:
+                            description: Indicates whether the AgentGateway is reachable.
+                            example: true
+                            type: boolean
+                        configLoaded:
+                            description: Indicates whether the configuration is loaded.
+                            example: true
+                            type: boolean
+                    type: object
+                service:
+                    description: Name of the service
+                    example: agentgateway-config-manager
+                    type: string
+                serviceVersion:
+                    description: Version of the service
+                    example: 2.0.0
+                    type: string
+                status:
+                    description: |-
+                        Health status of the service.
+                        Defined values are:
+                        * "healthy" - Service is operational
+                        * "unhealthy" - Service has issues
+                        * "degraded" - Service is partially operational
+                    enum:
+                        - healthy
+                        - unhealthy
+                        - degraded
+                    example: healthy
+                    type: string
+                timestamp:
+                    description: Timestamp of the health check
+                    example: "2025-01-16T10:30:00Z"
+                    format: date-time
+                    type: string
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.health"
+                    enum:
+                        - application/vnd.netapp.bxp.health
+                    example: application/vnd.netapp.bxp.health
+                    type: string
+                version:
+                    description: |-
+                        Version of the resource.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+            required:
+                - type
+                - version
+                - status
+                - service
+            type: object
+        provider_credentials_anthropic_config:
+            additionalProperties: false
+            description: Anthropic Claude provider-specific configuration
+            properties:
+                anthropicVersion:
+                    description: Anthropic API version header
+                    example: "2023-06-01"
+                    type: string
+                apiKey:
+                    description: Anthropic API key
+                    example: sk-ant-your-anthropic-key
+                    type: string
+                baseUrl:
+                    description: Base URL for Anthropic API (optional)
+                    example: https://api.anthropic.com
+                    format: uri
+                    type: string
+            required:
+                - apiKey
+            type: object
+        provider_credentials_azure_config:
+            additionalProperties: false
+            description: Azure OpenAI Service provider-specific configuration
+            properties:
+                apiKey:
+                    description: Azure OpenAI API key
+                    example: your-azure-api-key
+                    type: string
+                apiVersion:
+                    description: Azure OpenAI API version
+                    example: 2024-02-15-preview
+                    type: string
+                baseUrl:
+                    description: Azure OpenAI endpoint URL
+                    example: https://your-resource.openai.azure.com
+                    format: uri
+                    type: string
+                deploymentName:
+                    description: Azure OpenAI deployment name
+                    example: gpt-4-deployment
+                    type: string
+            required:
+                - apiKey
+                - baseUrl
+            type: object
+        provider_credentials_bedrock_config:
+            additionalProperties: false
+            description: AWS Bedrock provider-specific configuration
+            properties:
+                awsAccessKeyId:
+                    description: AWS access key ID
+                    example: AKIAIOSFODNN7EXAMPLE
+                    type: string
+                awsRegion:
+                    description: AWS region for Bedrock
+                    example: us-east-1
+                    type: string
+                awsSecretAccessKey:
+                    description: AWS secret access key
+                    example: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+                    type: string
+                awsSessionToken:
+                    description: AWS session token (optional, for temporary credentials)
+                    type: string
+                baseUrl:
+                    description: Base URL for AWS Bedrock
+                    example: https://api.bedrock.com
+                    format: uri
+                    type: string
+            required:
+                - awsAccessKeyId
+                - awsSecretAccessKey
+            type: object
+        provider_credentials_commonOpenAI_config:
+            additionalProperties: false
+            description: Generic OpenAI-compatible API configuration (for custom/self-hosted LLM proxies)
+            properties:
+                apiKey:
+                    description: API key for the OpenAI-compatible service
+                    example: sk-your-api-key
+                    type: string
+                baseUrl:
+                    description: Base URL for the OpenAI-compatible API
+                    example: https://llm-proxy-api.ai.openeng.netapp.com
+                    format: uri
+                    type: string
+                extraHeaders:
+                    additionalProperties:
+                        type: string
+                    description: Additional headers to include in requests
+                    type: object
+                extraParams:
+                    additionalProperties:
+                        type: string
+                    description: Additional parameters to include in requests
+                    type: object
+            required:
+                - baseUrl
+            type: object
+        provider_credentials_gemini_config:
+            additionalProperties: false
+            description: Google Gemini provider-specific configuration
+            properties:
+                apiKey:
+                    description: Google Gemini API key
+                    example: your-gemini-api-key
+                    type: string
+                baseUrl:
+                    description: Base URL for Gemini API (optional)
+                    example: https://generativelanguage.googleapis.com
+                    format: uri
+                    type: string
+            required:
+                - apiKey
+            type: object
+        provider_credentials_openai_config:
+            additionalProperties: false
+            description: OpenAI provider-specific configuration
+            properties:
+                apiKey:
+                    description: OpenAI API key
+                    example: sk-your-openai-api-key
+                    type: string
+                baseUrl:
+                    description: Base URL for OpenAI API (optional, defaults to https://api.openai.com)
+                    example: https://api.openai.com
+                    format: uri
+                    type: string
+                organizationId:
+                    description: OpenAI organization ID (optional)
+                    example: org-xxxxx
+                    type: string
+            required:
+                - apiKey
+            type: object
+        provider_credentials_request_body:
+            additionalProperties: false
+            description: |-
+                Provider credentials for authenticating with the LLM provider's API.
+                Use the provider-specific configuration object (openai, azure, anthropic, etc.)
+                based on the provider type.
+            properties:
+                anthropic:
+                    $ref: '#/components/schemas/provider_credentials_anthropic_config'
+                azure:
+                    $ref: '#/components/schemas/provider_credentials_azure_config'
+                bedrock:
+                    $ref: '#/components/schemas/provider_credentials_bedrock_config'
+                commonOpenAI:
+                    $ref: '#/components/schemas/provider_credentials_commonOpenAI_config'
+                gemini:
+                    $ref: '#/components/schemas/provider_credentials_gemini_config'
+                openai:
+                    $ref: '#/components/schemas/provider_credentials_openai_config'
+                sslVerify:
+                    default: true
+                    description: |-
+                        Whether to verify SSL/TLS certificates when connecting to the
+                        provider's API endpoint. Set to false only for development or
+                        self-signed certificate environments.
+                    example: true
+                    type: boolean
+                vertexai:
+                    $ref: '#/components/schemas/provider_credentials_vertexai_config'
+            type: object
+        provider_credentials_vertexai_config:
+            additionalProperties: false
+            description: Google Vertex AI provider-specific configuration
+            properties:
+                accessToken:
+                    description: Google Cloud access token
+                    example: ya29.your-access-token
+                    type: string
+                baseUrl:
+                    description: Base URL for vertexAI
+                    example: https://us-central1-aiplatform.googleapis.com
+                    format: uri
+                    type: string
+                credentialsJson:
+                    description: Google Cloud service account credentials JSON
+                    type: string
+                location:
+                    description: Google Cloud region/location
+                    example: us-central1
+                    type: string
+                projectId:
+                    description: Google Cloud project ID
+                    example: my-gcp-project
+                    type: string
+            required:
+                - projectId
+            type: object
+        provider_enum:
+            description: |-
+                LLM provider identifier.
+                Defined values are:
+                * "openai" - OpenAI API
+                * "azure" - Azure OpenAI Service
+                * "anthropic" - Anthropic Claude API
+                * "commonOpenAI" - Generic OpenAI-compatible API
+                * "bedrock" - AWS Bedrock
+                * "vertexai" - Google Vertex AI
+                * "gemini" - Google Gemini
+            enum:
+                - openai
+                - azure
+                - anthropic
+                - commonOpenAI
+                - bedrock
+                - vertexai
+                - gemini
+            example: openai
+            type: string
+        providerModel_1.0_get_response_body:
+            additionalProperties: false
+            properties:
+                modelType:
+                    description: |-
+                        Type or category of the model.
+                        Defined values are:
+                        * "chat" - Chat completion models
+                        * "completion" - Text completion models
+                        * "embedding" - Embedding models
+                        * "image" - Image generation models
+                        * "audio" - Audio transcription/generation models
+                        * "multimodal" - Models supporting multiple input/output types
+                    enum:
+                        - chat
+                        - completion
+                        - embedding
+                        - image
+                        - audio
+                        - multimodal
+                    example: chat
+                    type: string
+                name:
+                    description: Name or identifier of the model as returned by the provider's API.
+                    example: gpt-4o
+                    type: string
+                provider:
+                    description: |-
+                        Name of the LLM provider.
+                        Defined values are:
+                        * "openai" - OpenAI API
+                        * "azure" - Azure OpenAI Service
+                        * "anthropic" - Anthropic Claude API
+                        * "bedrock" - AWS Bedrock
+                        * "vertexai" - Google Vertex AI
+                        * "gemini" - Google Gemini
+                        * "commonOpenAI" - Generic OpenAI-compatible API
+                    enum:
+                        - openai
+                        - azure
+                        - anthropic
+                        - bedrock
+                        - vertexai
+                        - gemini
+                        - commonOpenAI
+                    example: openai
+                    type: string
+                supported:
+                    description: |-
+                        JSON string that indicates if the model is supported by the Agentic Platform.
+                        Defined values are:
+                        * true
+                        * false
+                    example: true
+                    maxLength: 5
+                    minLength: 4
+                    type: string
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.providerModel"
+                    enum:
+                        - application/vnd.netapp.bxp.providerModel
+                    example: application/vnd.netapp.bxp.providerModel
+                    type: string
+                version:
+                    description: |-
+                        Version of the resource.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+            required:
+                - type
+                - version
+                - name
+                - provider
+            type: object
+        providerModel_1.0_list_response_body:
+            additionalProperties: false
+            properties:
+                count:
+                    description: Number of items in the current response.
+                    example: 10
+                    minimum: 0
+                    type: integer
+                items:
+                    description: Array of provider model resources.
+                    items:
+                        $ref: '#/components/schemas/providerModel_1.0_get_response_body'
+                    type: array
+                type:
+                    description: |-
+                        Media type of the resource collection.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.providerModels"
+                    enum:
+                        - application/vnd.netapp.bxp.providerModels
+                    example: application/vnd.netapp.bxp.providerModels
+                    type: string
+                version:
+                    description: |-
+                        Version of the resource.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+            required:
+                - type
+                - version
+                - items
+            type: object
+        query_config_filter:
+            description: |
+                Format of the configuration filter query parameter. Supports the comparison operators
+                `eq`, `ne`, `in`, with optional logical chaining using `and` or `or` between expressions.
+            pattern: ^(\(*\s*[0-9a-zA-Z_]+\s+(eq|ne|in)\s+'([0-9a-zA-Z.,_:-]+)' \s*\)*)(\s+(and|or)\s+\(*\s*[0-9a-zA-Z_]+\s+ (eq|ne|in)\s+'([0-9a-zA-Z.,_:-]+)'\s*\)*)*$
+            type: string
+        query_continue:
+            description: Format of the continue query parameter.
+            pattern: ^([A-Za-z0-9+/]{4})*(([A-Za-z0-9+/]{2})==|([A-Za-z0-9+/]{3})=)?$
+            type: string
+            x-common: true
+        query_count:
+            description: Format of the count query parameter.
+            pattern: ^true$
+            type: string
+            x-common: true
+        query_filter:
+            description: Format of the filter query parameter.
+            pattern: ^(([0-9a-zA-Z]+(\[\*\])?)((\.[0-9a-zA-Z]+(\[\*\])?)+)? (eq|lt|gt|lte|gte|in) '([0-9a-zA-Z.,-_:@ {}\"])+')(,(\1))*$
+            type: string
+            x-common: true
+        query_include:
+            description: Format of the include query parameter.
+            pattern: ^([0-9a-zA-Z]+)(,[0-9a-zA-Z]+)*$
+            type: string
+            x-common: true
+        query_limit:
+            description: Format of the limit query parameter.
+            pattern: ^([1-9][0-9]*)$
+            type: string
+            x-common: true
+        query_metadata:
+            description: Format of the metadata query parameter.
+            pattern: ^(true|false)$
+            type: string
+        query_order_by:
+            description: Format of the order_by query parameter.
+            pattern: ^(([0-9a-zA-Z]+)( desc)?)$
+            type: string
+            x-common: true
+        query_skip:
+            description: Format of the skip query parameter.
+            pattern: ^([1-9][0-9]*)$
+            type: string
+            x-common: true
+        supportedModel_1.0_get_response_body:
+            additionalProperties: false
+            properties:
+                contextWindow:
+                    description: Maximum context window size, in tokens.
+                    example: 128000
+                    minimum: 1
+                    type: integer
+                description:
+                    description: |-
+                        Human-readable description of the model.
+                        Defined values are:
+                        * Minimum length: 1
+                        * Maximum length: 1024
+                    example: OpenAI GPT-4o multimodal model with vision and audio capabilities
+                    maxLength: 1024
+                    minLength: 1
+                    type: string
+                id:
+                    description: |-
+                        Globally unique identifier of the model.
+                        Defined values are:
+                        * Conforms to the UUIDv4 Schema
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    format: uuid
+                    type: string
+                isEnabled:
+                    description: Indicates whether this model is currently enabled for use.
+                    example: true
+                    type: boolean
+                maxOutputTokens:
+                    description: Maximum number of output tokens the model can generate.
+                    example: 16384
+                    minimum: 1
+                    type: integer
+                metadata:
+                    $ref: '#/components/schemas/type_bxp_metadata'
+                    description: |-
+                        Client and service-specified metadata associated with the resource.
+                        Defined values are:
+                        * Conforms to the NetApp Console Metadata Schema
+                        If not specified on create, a metadata object is created with no labels.
+                        If not specified on update, the metadata object's labels, creationTimestamp and createdBy, are preserved without modification.
+                    type: object
+                modelType:
+                    description: |-
+                        The type or category of the model.
+                        Defined values are:
+                        * "chat" - Chat completion models
+                        * "completion" - Text completion models
+                        * "embedding" - Embedding models
+                        * "image" - Image generation models
+                        * "audio" - Audio transcription/generation models
+                        * "multimodal" - Models supporting multiple input/output types
+                    enum:
+                        - chat
+                        - completion
+                        - embedding
+                        - image
+                        - audio
+                        - multimodal
+                    example: chat
+                    type: string
+                name:
+                    description: |-
+                        Name of the LLM model.
+                        Defined values are:
+                        * Minimum length: 1
+                        * Maximum length: 254
+                    example: gpt-4o
+                    maxLength: 254
+                    minLength: 1
+                    type: string
+                provider:
+                    description: |-
+                        The LLM provider that offers this model.
+                        Defined values are:
+                        * "openai" - OpenAI API
+                        * "azure" - Azure OpenAI Service
+                        * "anthropic" - Anthropic Claude API
+                        * "bedrock" - AWS Bedrock
+                        * "vertexai" - Google Vertex AI
+                        * "gemini" - Google Gemini
+                        * "commonOpenAI" - Generic OpenAI-compatible API
+                    enum:
+                        - openai
+                        - azure
+                        - anthropic
+                        - bedrock
+                        - vertexai
+                        - gemini
+                        - commonOpenAI
+                    example: openai
+                    type: string
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.supportedModel"
+                    enum:
+                        - application/vnd.netapp.bxp.supportedModel
+                    example: application/vnd.netapp.bxp.supportedModel
+                    type: string
+                version:
+                    description: |-
+                        Version of the resource.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+            required:
+                - type
+                - version
+                - id
+                - name
+            type: object
+        supportedModel_1.0_list_response_body:
+            additionalProperties: false
+            properties:
+                count:
+                    description: Total number of models matching the query.
+                    example: 10
+                    type: integer
+                items:
+                    items:
+                        $ref: '#/components/schemas/supportedModel_1.0_get_response_body'
+                    type: array
+                    uniqueItems: true
+                metadata:
+                    $ref: '#/components/schemas/type_bxp_metadata_list'
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.supportedModels"
+                    enum:
+                        - application/vnd.netapp.bxp.supportedModels
+                    example: application/vnd.netapp.bxp.supportedModels
+                    type: string
+                version:
+                    description: |-
+                        Version of the resource.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+            required:
+                - type
+                - version
+                - items
+            type: object
+        supportedProvider_1.0_get_response_body:
+            additionalProperties: false
+            properties:
+                description:
+                    description: Human-readable description of the supported provider.
+                    example: OpenAI API - Access to GPT models including GPT-4, GPT-4o, and GPT-3.5
+                    type: string
+                id:
+                    description: |-
+                        Globally unique identifier of the supported provider.
+                        Defined values are:
+                        * Conforms to the UUIDv4 Schema
+                    example: 550e8400-e29b-41d4-a716-446655440000
+                    format: uuid
+                    type: string
+                isConfigured:
+                    description: Indicates whether this supported provider has been configured with credentials.
+                    example: false
+                    type: boolean
+                isEnabled:
+                    description: Indicates whether this supported provider is currently enabled for use.
+                    example: true
+                    type: boolean
+                metadata:
+                    $ref: '#/components/schemas/type_bxp_metadata'
+                    description: Client and service-specified metadata associated with the resource.
+                    type: object
+                name:
+                    description: |-
+                        Name of the LLM supported provider.
+                        Defined values are:
+                        * "openai" - OpenAI API
+                        * "azure" - Azure OpenAI Service
+                        * "anthropic" - Anthropic Claude API
+                        * "bedrock" - AWS Bedrock
+                        * "vertexai" - Google Vertex AI
+                        * "gemini" - Google Gemini
+                        * "commonOpenAI" - Generic OpenAI-compatible API
+                    example: openai
+                    type: string
+                supportedModelTypes:
+                    description: List of model types supported by this supported provider.
+                    example:
+                        - chat
+                        - completion
+                        - embedding
+                        - image
+                        - audio
+                    items:
+                        enum:
+                            - chat
+                            - completion
+                            - embedding
+                            - image
+                            - audio
+                            - multimodal
+                        type: string
+                    type: array
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.supportedProvider"
+                    enum:
+                        - application/vnd.netapp.bxp.supportedProvider
+                    example: application/vnd.netapp.bxp.supportedProvider
+                    type: string
+                version:
+                    description: |-
+                        Version of the resource.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+            required:
+                - type
+                - version
+                - id
+                - name
+            type: object
+        supportedProvider_1.0_list_response_body:
+            additionalProperties: false
+            properties:
+                items:
+                    description: Array of supported provider resources.
+                    items:
+                        $ref: '#/components/schemas/supportedProvider_1.0_get_response_body'
+                    type: array
+                type:
+                    description: |-
+                        Media type of the resource collection.
+                        Defined values are:
+                        * "application/vnd.netapp.bxp.supportedProviders"
+                    enum:
+                        - application/vnd.netapp.bxp.supportedProviders
+                    example: application/vnd.netapp.bxp.supportedProviders
+                    type: string
+                version:
+                    description: |-
+                        Version of the resource.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+            required:
+                - type
+                - version
+                - items
+            type: object
+        type_bxp_api_relative_uri:
+            description: String describing a relative URI.
+            pattern: ^(\/([-0-9a-zA-Z])+)+$
+            type: string
+            x-common: true
+        type_bxp_identifier:
+            description: |-
+                JSON string containing a Resource ID.
+                Defined values are: * Conforms to the UUIDv4 Schema
+            example: 666a3f38-d4fa-5b62-a391-a69029758d32
+            format: uuid
+            type: string
+            x-common: true
+        type_bxp_invalid_reason:
+            properties:
+                details:
+                    description: |
+                        The description of the invalid reasons. The possible values are:
+                        1. CERT_NOT_YET_VALID: The certificate is not yet valid.
+                        2. CERT_HOST_MISMATCH: The host name does not match the CN or subject alt name.
+                        3. CERT_WEAK_ENCRYPTION_KEY_SIZE: The certificate has weak encryption key size.
+                        4. CERT_CHAIN_BROKEN: The certificate chain is broken.
+                        5. CERT_INVALID_SIGNATURE: The certificate has an invalid signature.
+                        6. OTHER: Any other invalid reason.
+                    example: Host name is not matching with CN or subject alt name
+                    type: string
+                error:
+                    description: The error enum value for the invalid certificate.
+                    enum:
+                        - CERT_NOT_YET_VALID
+                        - CERT_HOST_MISMATCH
+                        - CERT_WEAK_ENCRYPTION_KEY_SIZE
+                        - CERT_CHAIN_BROKEN
+                        - CERT_INVALID_SIGNATURE
+                        - OTHER
+                    example: CERT_HOST_MISMATCH
+                    type: string
+            type: object
+            x-common: true
+        type_bxp_label:
+            description: Name/value pair.
+            example:
+                name: secure
+                value: "true"
+            properties:
+                name:
+                    description: Name of the label.
+                    type: string
+                value:
+                    description: Value of the label.
+                    type: string
+            required:
+                - name
+                - value
+            type: object
+            x-common: true
+        type_bxp_labels:
+            description: JSON Array of Name/value pairs.
+            example:
+                - name: secure
+                  value: "true"
+            items:
+                $ref: '#/components/schemas/type_bxp_label'
+            type: array
+            uniqueItems: true
+            x-common: true
+        type_bxp_link:
+            description: Link relationship
+            properties:
+                hints:
+                    properties:
+                        accept-post:
+                            description: Provides details about which media types are accepted when creating a resource.
+                            type: object
+                        accept-put:
+                            description: Indicates details about what media types are accepted when updating a resource.
+                            type: object
+                        allow:
+                            description: |-
+                                An array of methods that can be used to interact with the link target.
+
+                                Defined values for collections:
+
+                                "POST" - Indicates if new resources can be created in the collection.
+                                Defined values for resources:
+
+                                "PUT" - Indicates if the resource can be modified
+                                "DELETE" - Indicates if the resource can be deleted
+                            items:
+                                enum:
+                                    - POST
+                                    - GET
+                                    - PUT
+                                    - DELETE
+                                type: string
+                            type: array
+                        permissions:
+                            description: List of the permissions required to use the link.
+                            items:
+                                pattern: ^([a-z]([a-zA-Z])*)(-[a-z]([a-zA-Z])*){1,2}$
+                                type: string
+                            type: array
+                        status:
+                            description: |-
+                                Indicates if the target of the link is deprecated.
+
+                                Defined values are:
+
+                                "deprecated"
+                            enum:
+                                - deprecated
+                            type: string
+                    type: object
+                href:
+                    $ref: '#/components/schemas/type_bxp_api_relative_uri'
+                    description: |-
+                        The link.
+
+                        Minimum length: 0
+                        Maximum length: 1023
+                rel:
+                    description: The type of relationship for the link. Values are defined in the IANA Link Relationships registry, or an extension relationship type as specified in section 2.1.2 of RFC 8288.
+                    enum:
+                        - self
+                        - canonical
+                        - collection
+                        - up
+                        - related
+                        - service-doc
+                        - service-desc
+                    type: string
+                targetSchema:
+                    description: |-
+                        Link to a JSON schema that can be used to validate the target of the link (response body).
+
+                        The preferred format is a $ref link to an external schema.
+
+                        This field is optional and should only be included when there is a known schema for the target of the href.
+
+                        See https://json-schema.org/draft/2019-09/json-schema-hypermedia.html#rfc.section.9.2 for more details.
+                    type: object
+                title:
+                    description: |-
+                        Label of a link such that it can be used as a human-readable identifier (e.g., a menu entry).
+
+                        Minimum length: 0
+                        Maximum length: 1023
+                    maxLength: 1023
+                    minLength: 1
+                    type: string
+                type:
+                    description: |-
+                        The media type of the target of the href.
+
+                        This field is optional and should be included when there is a known media type for the target of the href.
+
+                        See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link for more details.
+                    pattern: ^((application\/vnd\.netapp(\.(([a-z])([a-zA-Z0-9]){0,30})){1,3})(-v(([0-9]){1,3}))?)$
+                    type: string
+            required:
+                - rel
+                - href
+            type: object
+            x-common: true
+        type_bxp_links:
+            description: Array of link relationships associated with the resource or ID.
+            items:
+                $ref: '#/components/schemas/type_bxp_link'
+            type: array
+            uniqueItems: true
+            x-common: true
+        type_bxp_metadata:
+            description: Metadata associated with the resource.
+            properties:
+                createdBy:
+                    description: UUID of the user who created the resource.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    format: uuid
+                    type: string
+                creationTimestamp:
+                    description: Resource creation date.
+                    example: "2022-10-06T20:58:16.305662Z"
+                    format: date-time
+                    type: string
+                labels:
+                    description: Array of name/value pairs representing additional information for the resource.
+                    items:
+                        $ref: '#/components/schemas/type_bxp_label'
+                    type: array
+                    uniqueItems: true
+                modificationTimestamp:
+                    description: Resource modification date.
+                    example: "2022-10-06T20:58:16.305662Z"
+                    format: date-time
+                    type: string
+                modifiedBy:
+                    description: UUID of the user who modified the resource.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    format: uuid
+                    type: string
+            type: object
+            x-common: true
+        type_bxp_metadata_list:
+            description: Metadata associated with a list of resources.
+            properties:
+                count:
+                    type: number
+                createdBy:
+                    description: UUID of the user who created the resource.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    format: uuid
+                    type: string
+                creationTimestamp:
+                    description: Resource creation date.
+                    example: "2022-10-06T20:58:16.305662Z"
+                    format: date-time
+                    type: string
+                labels:
+                    description: Array of name/value pairs representing additional information for the resource.
+                    items:
+                        $ref: '#/components/schemas/type_bxp_label'
+                    type: array
+                    uniqueItems: true
+                modificationTimestamp:
+                    description: Resource modification date.
+                    example: "2022-10-06T20:58:16.305662Z"
+                    format: date-time
+                    type: string
+                modifiedBy:
+                    description: UUID of the user who modified the resource.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    format: uuid
+                    type: string
+            type: object
+            x-common: true
+        type_bxp_metadata_update:
+            description: Metadata associated to an updated resource.
+            properties:
+                createdBy:
+                    description: UUID of the user who created the resource.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    format: uuid
+                    type: string
+                creationTimestamp:
+                    description: Resource creation date.
+                    example: "2022-10-06T20:58:16.305662Z"
+                    format: date-time
+                    type: string
+                labels:
+                    description: Array of name/value pairs representing additional information for the resource.
+                    items:
+                        $ref: '#/components/schemas/type_bxp_label'
+                    type: array
+                    uniqueItems: true
+                modificationTimestamp:
+                    description: Resource modification date.
+                    example: "2022-10-06T20:58:16.305662Z"
+                    format: date-time
+                    type: string
+                modifiedBy:
+                    description: UUID of the user who modified the resource.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    format: uuid
+                    type: string
+            type: object
+            x-common: true
+        type_bxp_problem_detail:
+            additionalProperties: true
+            description: Represents a problem detail returned by an API in case of error.
+            properties:
+                correlationId:
+                    description: Internal UUID representing the request or trace ID related.
+                    format: uuid
+                    type: string
+                detail:
+                    description: Details about the problem.
+                    enum:
+                        - The resource specified in the request URI wasn't found.
+                    type: string
+                invalidParams:
+                    description: List of invalid parameters.
+                    items:
+                        properties:
+                            name:
+                                description: Name of the invalid parameter.
+                                type: string
+                            reason:
+                                description: Reason why the parameter is invalid.
+                                type: string
+                        required:
+                            - name
+                            - reason
+                        type: object
+                    minItems: 1
+                    type: array
+                    uniqueItems: true
+                status:
+                    description: HTTP error code related to the problem.
+                    enum:
+                        - "404"
+                    type: string
+                title:
+                    description: Title description of the problem.
+                    enum:
+                        - Resource not found
+                    type: string
+                type:
+                    description: Content-type of the object.
+                    enum:
+                        - https://bluexp.netapp.io/problems/1
+                    type: string
+            required:
+                - type
+                - title
+                - description
+                - status
+            type: object
+            x-common: true
+        type_bxp_state_details:
+            description: Array of all possible states and their detailed description.
+            items:
+                properties:
+                    detail:
+                        description: Detailed description for the state.
+                        maxLength: 511
+                        minLength: 1
+                        type: string
+                    title:
+                        description: Name of the state.
+                        maxLength: 40
+                        minLength: 1
+                        type: string
+                    type:
+                        description: Represents a state detail.
+                        type: string
+                required:
+                    - type
+                    - title
+                    - detail
+                type: object
+            minItems: 0
+            type: array
+            uniqueItems: true
+            x-common: true
+        type_bxp_state_transitions:
+            description: Array representing the state machine associated with the object.
+            items:
+                properties:
+                    from:
+                        type: string
+                    to:
+                        items:
+                            type: string
+                        minItems: 0
+                        type: array
+                        uniqueItems: true
+                required:
+                    - from
+                    - to
+                type: object
+            minItems: 0
+            type: array
+            uniqueItems: true
+            x-common: true
+        type_dns_1123:
+            description: Represents a Domain Name as defined in RFC 1123.
+            maxLength: 63
+            minLength: 1
+            pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+            type: string
+            x-common: true
+        type_json:
+            description: JSON Representation.
+            type: object
+            x-common: true
+        type_json_schema:
+            description: Represents a JSON Schema.
+            properties:
+                $schema:
+                    enum:
+                        - http://json-schema.org/draft-07/schema#
+                    type: string
+                additionalProperties:
+                    enum:
+                        - false
+                    type: boolean
+                properties:
+                    type: object
+                required:
+                    items:
+                        type: string
+                    type: array
+                    uniqueItems: true
+                type:
+                    enum:
+                        - object
+                    type: string
+            required:
+                - $schema
+                - type
+                - properties
+                - additionalProperties
+                - required
+            type: object
+            x-common: true
+        type_metadata:
+            additionalProperties: false
+            description: Client and service-specified metadata associated with the resource.
+            properties:
+                createdBy:
+                    description: ID of the user who created the resource
+                    example: user-123
+                    type: string
+                creationTimestamp:
+                    description: Timestamp when the resource was created
+                    example: "2025-01-16T10:30:00Z"
+                    format: date-time
+                    type: string
+                labels:
+                    description: Labels associated with the resource
+                    items:
+                        additionalProperties:
+                            type: string
+                        type: object
+                    type: array
+                modificationTimestamp:
+                    description: Timestamp when the resource was last modified
+                    example: "2025-01-16T10:30:00Z"
+                    format: date-time
+                    type: string
+                modifiedBy:
+                    description: ID of the user who last modified the resource
+                    example: user-123
+                    type: string
+            type: object
+        type_swver:
+            description: Represents a software version in the format Major.Minor.Patch .
+            pattern: ^([0-9]+)\.([0-9]+)\.([0-9]+)(\-[a-zA-Z0-9-]+)*$
+            type: string
+            x-common: true
+    securitySchemes:
+        bxp_api_token:
+            in: header
+            name: X-API-BXP
+            type: apiKey
+        bxp_bearer_auth:
+            scheme: bearer
+            type: http
+info:
+    description: |-
+        The Agentic Platform configuration manager API provides REST endpoints for managing LLM configurations. This API is only available in NetApp Console local deployments.
+
+        The Agentic Platform supports multiple LLM providers including OpenAI, Azure OpenAI,
+        Anthropic, AWS Bedrock, Google Vertex AI, Google Gemini and any OpenAI-compatible
+        provider.
+
+        Key features:
+        <ul>
+        <li>Dynamic configuration management with automatic hot reload</li>
+        <li>Support for multiple LLM providers</li>
+        <li>Rate limiting (requests per minute, tokens per minute)</li>
+        <li>SSL verification settings, including custom CA certificates</li>
+        <li>Model validation and authorization rules</li>
+        <li>Configuration state lifecycle (DRAFT, TESTING, SUCCESSFUL, UNSUCCESSFUL)</li>
+        </ul>
+
+        The following components are defined within the Agentic Platform configuration manager:
+        <ul>
+        <li>configuration</li>
+        <li>supported provider</li>
+        <li>supported model</li>
+        <li>provider model</li>
+        <li>health</li>
+        </ul>
+
+        **Note**: Before using the API reference documentation, review the
+        [Get started](https://docs.netapp.com/us-en/bluexp-automation/platform/overview.html) section for the
+        Console APIs. For more information about the security tokens and identifiers you'll need when using the API, review the
+        [Common workflows and tasks](https://docs.netapp.com/us-en/bluexp-automation/platform/get_identifiers.html) section.
+
+        ---
+
+        ## REST implementation
+
+        ### HTTP methods
+
+        | Method | Description                                 |
+        |--------|---------------------------------------------|
+        | POST   | Create an object instance                   |
+        | GET    | Retrieve an object instance or collection   |
+        | PATCH  | Update an existing object                   |
+        | DELETE | Remove an existing object                   |
+
+        ### Request headers
+
+        | Request Header | Description                                                                                |
+        |----------------|--------------------------------------------------------------------------------------------|
+        | Authorization  | This header contains a bearer token used to access the Console server.                     |
+        | Content-Type   | This representation header is used to indicate the original media type of the resource.    |
+        | Accept         | The server automatically returns content in JSON format if Accept header is not specified. |
+
+        ### Query parameters
+
+        You can use query parameters with endpoints in the following components:
+
+        | Component          | Query Parameter                                |
+        |--------------------|------------------------------------------------|
+        | Configuration      | include, count, limit, skip, orderBy, continue |
+        | Supported provider | include, count, limit, skip, orderBy, continue |
+        | Supported model    | include, count, limit, skip, orderBy, continue |
+        | Provider model     | include, count, limit, skip, orderBy, continue |
+
+        ### Response headers
+
+        This API uses the standard HTTP response headers common with all Console APIs. See
+        [REST implementation](https://docs.netapp.com/us-en/bluexp-automation/platform/http_details.html) for more information.
+
+        ### HTTP status codes
+
+        | HTTP Status Code | Description                                                                                                       |
+        |------------------|-------------------------------------------------------------------------------------------------------------------|
+        | 200              | OK: Returned for successful operation completion                                                                  |
+        | 201              | Created: The resource was created successfully.                                                                   |
+        | 204              | The operation was completed successfully and the server did not send a response message.                          |
+        | 400              | Bad Request: Returned if the input is malformed and could not be parsed                                           |
+        | 401              | Unauthorized: Returned if user authentication failed or the token has expired                                     |
+        | 403              | Forbidden: Returned for authorization errors depending on the resource and token.                                 |
+        | 404              | Not Found: The requested resource could not be found.                                                             |
+        | 409              | Conflict: The operation failed because another operation is already in progress.                                  |
+        | 5xx              | An unexpected error occurred within the Console server which has prevented it from fulfilling the request.        |
+
+        ## Error handling
+
+        There are three processes involved with error handling and processing:
+        * The error is logged for supportability
+        * The error is also returned to the caller for any specific handling
+        * The database connection is rolled back
+    license:
+        name: NetApp Console License
+    termsOfService: https://www.netapp.com/media/10784-cloud-data-services-terms.pdf
+    title: Agentic Platform configuration manager API
+    version: "2.0"
+paths:
+    /configs:
+        get:
+            description: Retrieves a list of all Agentic Platform configurations.
+            parameters:
+                - $ref: '#/components/parameters/limit'
+                - $ref: '#/components/parameters/count'
+                - $ref: '#/components/parameters/x-organization-id'
+                - description: |-
+                    Specifies which fields should be matched in order to return a resource when listing configurations.
+
+
+                    Supported operators:
+                    * eq - Equality
+                    * ne - Not equal
+                    * in - Membership in a list
+
+
+                    Expressions can be chained with `and` or `or` to build complex filters.
+                    Parentheses can be used for grouping and precedence control.
+
+
+                    Filterable fields: provider, state, id
+
+
+                    URL example: "filter=provider%20eq%20%27openai%27%20and%20state%20eq%20%27SUCCESSFUL%27"
+
+                    URL example: "filter=state%20ne%20%27DRAFT%27"
+
+                    URL example: "filter=provider%20in%20%28%27openai%27%2C%27anthropic%27%29"
+
+                    OpenAPI examples: "provider eq 'openai' and state eq 'SUCCESSFUL'", "state ne 'DRAFT'"
+                  in: query
+                  name: filter
+                  required: false
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.configs+json:
+                            example:
+                                count: 2
+                                items:
+                                    - id: 550e8400-e29b-41d4-a716-446655440000
+                                      llmHealthState: "true"
+                                      models:
+                                        - gpt-4o
+                                        - gpt-4o-mini
+                                      provider: openai
+                                      state: SUCCESSFUL
+                                      type: application/vnd.netapp.bxp.config
+                                      version: "1.0"
+                                    - id: 550e8400-e29b-41d4-a716-446655440001
+                                      models:
+                                        - claude-3-5-sonnet-20241022
+                                      provider: anthropic
+                                      state: DRAFT
+                                      type: application/vnd.netapp.bxp.config
+                                      version: "1.0"
+                                type: application/vnd.netapp.bxp.configs
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/config_1.0_list_response_body'
+                    description: Returns a list of configurations in the JSON response body.
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+            summary: List all configurations
+            tags:
+                - Configuration
+            x-permission: agenticplatform:config-read
+            x-persistence: true
+            x-scope: private,public,documentation,ncl
+        post:
+            description: |
+                Creates a new configuration in the Agentic Platform.
+                The AgentGateway automatically hot reloads the new configuration.
+
+                Supports multiple models per provider for load balancing.
+                Provider-specific credentials should be provided using the corresponding provider object.
+            parameters:
+                - $ref: '#/components/parameters/x-organization-id'
+            requestBody:
+                content:
+                    application/vnd.netapp.bxp.config+json:
+                        examples:
+                            anthropicConfig:
+                                summary: Create Anthropic configuration
+                                value:
+                                    anthropic:
+                                        apiKey: sk-ant-your-key
+                                        baseUrl: https://api.anthropic.com
+                                    models:
+                                        - claude-3-5-sonnet-20241022
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            azureConfig:
+                                summary: Create Azure OpenAI configuration
+                                value:
+                                    azure:
+                                        apiKey: your-azure-api-key
+                                        baseUrl: https://your-resource.openai.azure.com
+                                    models:
+                                        - gpt-4o
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            bedrockConfig:
+                                summary: Create AWS Bedrock configuration
+                                value:
+                                    bedrock:
+                                        accessKeyId: AKIAIOSFODNN7EXAMPLE
+                                        region: us-east-1
+                                        secretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+                                    models:
+                                        - anthropic.claude-3-sonnet-20240229-v1:0
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            openaiConfig:
+                                summary: Create OpenAI configuration
+                                value:
+                                    models:
+                                        - gpt-4o
+                                        - gpt-4o-mini
+                                    openai:
+                                        apiKey: sk-your-api-key-here
+                                        baseUrl: https://api.openai.com
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                        schema:
+                            $ref: '#/components/schemas/config_1.0_post_request_body'
+                description: Indicates the required values for the configuration that is to be created.
+                required: true
+            responses:
+                "201":
+                    content:
+                        application/vnd.netapp.bxp.config+json:
+                            example:
+                                configVersion: "1.0"
+                                id: 550e8400-e29b-41d4-a716-446655440000
+                                message: Configuration created successfully. AgentGateway will automatically apply changes.
+                                metadata:
+                                    creationTimestamp: "2025-01-16T10:30:00Z"
+                                type: application/vnd.netapp.bxp.config
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/config_1.0_post_response_body'
+                    description: Returns the newly created configuration in the JSON response body.
+                    headers:
+                        Location:
+                            description: Location of the newly created configuration resource.
+                            schema:
+                                format: uri
+                                type: string
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "409":
+                    $ref: '#/components/responses/409Conflict'
+            summary: Create new configuration
+            tags:
+                - Configuration
+            x-permission: agenticplatform:config-create
+            x-persistence: true
+            x-scope: private,public,documentation,ncl
+    /configs/{config_id}:
+        delete:
+            description: |
+                Deletes the specified AgentGateway configuration.
+                The AgentGateway automatically reloads with the default settings.
+            parameters:
+                - $ref: '#/components/parameters/config_id'
+            responses:
+                "204":
+                    description: Configuration deleted successfully. No content returned.
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "500":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Internal Server Error.
+            summary: Delete configuration
+            tags:
+                - Configuration
+            x-permission: agenticplatform:config-delete
+            x-persistence: true
+            x-scope: private,public,documentation,ncl
+        get:
+            description: Retrieves a specific AgentGateway configuration using the configuration ID.
+            parameters:
+                - $ref: '#/components/parameters/config_id'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.config+json:
+                            example:
+                                baseUrl: https://api.openai.com
+                                id: 550e8400-e29b-41d4-a716-446655440000
+                                llmHealthState: "true"
+                                metadata:
+                                    creationTimestamp: "2025-01-16T10:30:00Z"
+                                    labels: []
+                                    modificationTimestamp: "2025-01-16T10:30:00Z"
+                                models:
+                                    - gpt-4o
+                                    - gpt-4o-mini
+                                port: 8080
+                                provider: openai
+                                sslVerify: true
+                                state: SUCCESSFUL
+                                type: application/vnd.netapp.bxp.config
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/config_1.0_get_response_body'
+                    description: Returns the configuration in the JSON response body.
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Get configuration by ID
+            tags:
+                - Configuration
+            x-permission: agenticplatform:config-read
+            x-persistence: true
+            x-scope: private,public,documentation,ncl
+        patch:
+            description: |
+                Partially updates the configuration. Only the provided fields are updated.
+                This is useful for updating specific settings without replacing the entire configuration.
+                The AgentGateway automatically hot reloads the updated configuration.
+
+                Provider-specific credentials can be updated using the corresponding provider object.
+            parameters:
+                - $ref: '#/components/parameters/config_id'
+            requestBody:
+                content:
+                    application/vnd.netapp.bxp.config+json:
+                        examples:
+                            switchToAnotherProvider:
+                                summary: Switch to a different provider
+                                value:
+                                    anthropic:
+                                        apiKey: sk-ant-your-key
+                                        baseUrl: https://api.anthropic.com
+                                    models:
+                                        - claude-3-5-sonnet-20241022
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            testConfiguration:
+                                summary: Test the provided configuration
+                                value:
+                                    stateDesired: TESTING
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            updateAnthropicCredentials:
+                                summary: Update Anthropic credentials
+                                value:
+                                    anthropic:
+                                        apiKey: sk-ant-new-key
+                                        baseUrl: https://api.anthropic.com
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            updateAzureCredentials:
+                                summary: Update Azure credentials
+                                value:
+                                    azure:
+                                        apiKey: your-new-azure-api-key
+                                        baseUrl: https://your-resource.openai.azure.com
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            updateBedrockCredentials:
+                                summary: Update AWS Bedrock credentials
+                                value:
+                                    bedrock:
+                                        accessKeyId: AKIAIOSFODNN7EXAMPLE
+                                        region: us-east-1
+                                        secretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            updateModels:
+                                summary: Update only models list
+                                value:
+                                    models:
+                                        - gpt-4o
+                                        - gpt-4o-mini
+                                        - gpt-4-turbo
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            updateOpenAICredentials:
+                                summary: Update OpenAI credentials
+                                value:
+                                    openai:
+                                        apiKey: sk-new-api-key
+                                        baseUrl: https://api.openai.com
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            updateRateLimits:
+                                summary: Update rate limits
+                                value:
+                                    requestsPerMinute: 120
+                                    tokensPerMinute: 200000
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                        schema:
+                            $ref: '#/components/schemas/config_1.0_patch_request_body'
+                description: Replaces the specified attributes in the request body with the values provided.
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.config+json:
+                            example:
+                                configVersion: "1.0"
+                                message: Configuration updated successfully. AgentGateway will automatically apply changes.
+                                type: application/vnd.netapp.bxp.config
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/config_1.0_patch_response_body'
+                    description: Configuration updated successfully.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Partially update configuration
+            tags:
+                - Configuration
+            x-permission: agenticplatform:config-modify
+            x-persistence: true
+            x-scope: private,public,documentation,ncl
+    /configs/{config_id}/providerModels:
+        get:
+            description: |-
+                Returns a list of all models available from the LLM provider associated
+                with the specified saved configuration.
+
+                This endpoint looks up the configuration by `config_id`, retrieves the
+                stored provider credentials (API key, base URL, provider type, etc.) and
+                queries the provider's API directly to discover available models.
+
+                No request body is required — all credentials are resolved from the saved
+                configuration record.
+
+                The response contains basic model information including name, provider,
+                and model type.
+            parameters:
+                - $ref: '#/components/parameters/config_id'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.providerModels+json:
+                            example:
+                                count: 3
+                                items:
+                                    - modelType: chat
+                                      name: gpt-4o
+                                      provider: openai
+                                      supported: "true"
+                                      type: application/vnd.netapp.bxp.providerModel
+                                      version: "1.0"
+                                    - modelType: chat
+                                      name: gpt-4o-mini
+                                      provider: openai
+                                      supported: "true"
+                                      type: application/vnd.netapp.bxp.providerModel
+                                      version: "1.0"
+                                    - modelType: embedding
+                                      name: text-embedding-3-large
+                                      provider: openai
+                                      supported: "false"
+                                      type: application/vnd.netapp.bxp.providerModel
+                                      version: "1.0"
+                                type: application/vnd.netapp.bxp.providerModels
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/providerModel_1.0_list_response_body'
+                    description: Successfully retrieved the list of models from the provider.
+                "400":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Bad Request - Invalid config_id or configuration data.
+                "401":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Unauthorized - Authentication required or invalid provider credentials.
+                "403":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Forbidden - Insufficient permissions.
+                "404":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Not Found - No configuration exists with the given config_id.
+                "500":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Internal Server Error.
+                "502":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Bad Gateway - Failed to connect to the provider's API.
+            summary: List models available from a saved configuration's LLM provider
+            tags:
+                - Provider Models
+            x-permission: agenticplatform:model-read
+            x-persistence: false
+            x-scope: private,public,documentation,ncl
+    /health:
+        get:
+            description: Returns the health status of the configuration manager service.
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.health+json:
+                            example:
+                                service: agentgateway-config-manager
+                                serviceVersion: 1.0.0
+                                status: healthy
+                                timestamp: "2025-01-16T10:30:00Z"
+                                type: application/vnd.netapp.bxp.health
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/health_1.0_get_response_body'
+                    description: Returns the health status of the configuration manager service in the JSON response body. It provides information about agent gateway connectivity and whether the configuration is loaded.
+            summary: Health check endpoint
+            tags:
+                - Health
+            x-permission: agenticplatform:health-read
+            x-persistence: false
+            x-scope: private,public,documentation,ncl
+    /providerModels:
+        post:
+            description: |-
+                Returns a list of all models available from the specified LLM provider.
+                This endpoint queries the provider's API directly using the provided
+                credentials to discover available models.
+                
+                The request body requires provider credentials to authenticate with
+                the provider's API. Use the provider-specific configuration object
+                (openai, azure, anthropic, and so on) based on the provider type.
+                
+                The response contains basic model information including name, provider,
+                and model type.
+            requestBody:
+                content:
+                    application/json:
+                        examples:
+                            anthropic:
+                                summary: Anthropic credentials
+                                value:
+                                    anthropic:
+                                        anthropicVersion: "2023-06-01"
+                                        apiKey: sk-ant-your-anthropic-key
+                                        baseUrl: https://api.anthropic.com
+                                    sslVerify: true
+                            azure:
+                                summary: Azure OpenAI credentials
+                                value:
+                                    azure:
+                                        apiKey: your-azure-api-key
+                                        apiVersion: 2024-02-15-preview
+                                        baseUrl: https://your-resource.openai.azure.com
+                                        deploymentName: gpt-4-deployment
+                                    sslVerify: true
+                            bedrock:
+                                summary: AWS Bedrock credentials
+                                value:
+                                    bedrock:
+                                        awsAccessKeyId: AKIAIOSFODNN7EXAMPLE
+                                        awsRegion: us-east-1
+                                        awsSecretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+                                        baseUrl: https://api.bedrock.com
+                                    sslVerify: true
+                            commonOpenAI:
+                                summary: Generic OpenAI-compatible API credentials
+                                value:
+                                    commonOpenAI:
+                                        apiKey: sk-your-api-key
+                                        baseUrl: https://llm-proxy-api.ai.openeng.netapp.com
+                                        extraHeaders:
+                                            X-Custom-Header: value
+                                    sslVerify: false
+                            gemini:
+                                summary: Google Gemini credentials
+                                value:
+                                    gemini:
+                                        apiKey: your-gemini-api-key
+                                        baseUrl: https://generativelanguage.googleapis.com
+                                    sslVerify: true
+                            openai:
+                                summary: OpenAI credentials
+                                value:
+                                    openai:
+                                        apiKey: sk-your-openai-api-key
+                                        baseUrl: https://api.openai.com
+                                        organizationId: org-xxxxx
+                                    sslVerify: true
+                            vertexai:
+                                summary: Google Vertex AI credentials
+                                value:
+                                    sslVerify: true
+                                    vertexai:
+                                        accessToken: ya29.your-access-token
+                                        baseUrl: https://us-central1-aiplatform.googleapis.com
+                                        location: us-central1
+                                        projectId: my-gcp-project
+                        schema:
+                            $ref: '#/components/schemas/provider_credentials_request_body'
+                description: Provider credentials required to fetch models from the LLM provider's API.
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.providerModels+json:
+                            schema:
+                                $ref: '#/components/schemas/providerModel_1.0_list_response_body'
+                    description: Successfully retrieved the list of models from the provider.
+                "400":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Bad Request - Invalid request body.
+                "401":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Unauthorized - Authentication required or invalid provider credentials.
+                "403":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Forbidden - Insufficient permissions.
+                "500":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Internal Server Error.
+                "502":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Bad Gateway - Failed to connect to the provider's API.
+            summary: List models available from an LLM provider
+            tags:
+                - Provider Models
+            x-permission: agenticplatform:model-read
+            x-persistence: false
+            x-scope: private,public,documentation,ncl
+    /supportedModels:
+        get:
+            description: |-
+                Returns a list of all available LLM models that can be used with the Agentic Platform.
+
+                Supports filtering by provider, modelType, and other fields.
+                Supports pagination using skip and limit parameters.
+            parameters:
+                - description: |-
+                    Specifies which fields should be matched in order to return a resource when listing supported models.
+
+
+                    Supported operators:
+                    * eq - Equality
+                    * ne - Not equal
+                    * lt/gt - Less than or greater than
+                    * lte/gte - Less than or equal to or greater than or equal to
+                    * in - Membership in a list
+
+
+                    Expressions can be chained with `and` or `or` to build complex filters.
+                    Parentheses can be used for grouping and precedence control.
+
+
+                    Filterable fields: provider, modelType, name, contextWindow, maxOutputTokens, and isEnabled
+
+
+                    URL example: "filter=provider%20eq%20%27openai%27"
+
+                    URL example: "filter=modelType%20eq%20%27chat%27%20and%20provider%20eq%20%27anthropic%27"
+
+                    URL example: "filter=contextWindow%20gte%20128000"
+
+                    OpenAPI examples: "provider eq 'openai'", "modelType eq 'chat' and provider eq 'anthropic'"
+                  in: query
+                  name: filter
+                  required: false
+                  schema:
+                    type: string
+                - $ref: '#/components/parameters/skip'
+                - $ref: '#/components/parameters/limit'
+                - $ref: '#/components/parameters/order_by'
+                - $ref: '#/components/parameters/count'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.supportedModels+json:
+                            schema:
+                                $ref: '#/components/schemas/supportedModel_1.0_list_response_body'
+                    description: Successfully retrieved the list of models.
+                "400":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Bad Request - Invalid query parameters.
+                "401":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Unauthorized - Authentication required.
+                "403":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Forbidden - Insufficient permissions.
+                "500":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Internal Server Error.
+            summary: List all available LLM models supported by agentic platform
+            tags:
+                - Supported Models
+            x-permission: model-read
+            x-persistence: false
+            x-scope: private,public,documentation,ncl
+    /supportedModels/{supported_model_id}:
+        get:
+            description: Returns detailed information about a specific LLM model, identified by its unique ID.
+            parameters:
+                - description: |-
+                    Unique identifier of the model or the model name.
+                    Defined values are:
+                    * Conforms to the UUIDv4 Schema
+                  example: 666a3f38-d4fa-5b62-a391-a69029758d32 or Claude 3 Opus
+                  in: path
+                  name: supported_model_id
+                  required: true
+                  schema:
+                    format: uuid
+                    type: string
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.supportedModel+json:
+                            schema:
+                                $ref: '#/components/schemas/supportedModel_1.0_get_response_body'
+                    description: Successfully retrieved the model.
+                "400":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Bad Request - Invalid model ID format.
+                "401":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Unauthorized - Authentication required.
+                "403":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Forbidden - Insufficient permissions.
+                "404":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Not Found - Model does not exist.
+                "500":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Internal Server Error.
+            summary: Get a specific LLM model by ID
+            tags:
+                - Supported Models
+            x-permission: model-read
+            x-persistence: false
+            x-scope: private,public,documentation,ncl
+    /supportedProviders:
+        get:
+            description: |-
+                Returns a list of all available LLM supported providers that can be configured
+                and used with the Agentic platform.
+
+                Supports filtering by providerType, isEnabled, and isConfigured.
+                Supports pagination using skip and limit parameters.
+            parameters:
+                - description: |-
+                    Specifies which fields should be matched in order to return a resource when listing supported providers.
+
+
+                    Supported operators:
+                    * eq - Equality
+                    * ne - Not equal
+                    * in - Membership in a list
+
+
+                    Expressions can be chained with `and` or `or` to build complex filters.
+                    Parentheses can be used for grouping and precedence control.
+
+
+                    Filterable fields are name, isEnabled, and isConfigured.
+
+
+                    URL example: "filter=isEnabled%20eq%20true"
+
+                    URL example: "filter=name%20eq%20%27openai%27%20or%20name%20eq%20%27anthropic%27"
+
+                    URL example: "filter=isConfigured%20eq%20false%20and%20isEnabled%20eq%20true"
+
+                    OpenAPI examples: "isEnabled eq true", "name in ('openai','anthropic')"
+                  in: query
+                  name: filter
+                  required: false
+                  schema:
+                    type: string
+                - $ref: '#/components/parameters/count'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.supportedProviders+json:
+                            schema:
+                                $ref: '#/components/schemas/supportedProvider_1.0_list_response_body'
+                    description: Successfully retrieved the list of supported providers.
+                "400":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Bad Request - Invalid query parameters.
+                "401":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Unauthorized - Authentication required.
+                "403":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Forbidden - Insufficient permissions.
+                "500":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Internal Server Error.
+            summary: List all available LLM supported providers
+            tags:
+                - Supported Providers
+            x-permission: agenticplatform:supportedProvider-read
+            x-persistence: false
+            x-scope: private,public,documentation,ncl
+    /supportedProviders/{supported_provider_id}:
+        get:
+            description: Returns detailed information about a specific LLM supported provider, identified by its unique ID.
+            parameters:
+                - description: Unique identifier of the supported provider or provider name.
+                  example: 550e8400-e29b-41d4-a716-446655440000 or openai
+                  in: path
+                  name: supported_provider_id
+                  required: true
+                  schema:
+                    format: uuid
+                    type: string
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.supportedProvider+json:
+                            schema:
+                                $ref: '#/components/schemas/supportedProvider_1.0_get_response_body'
+                    description: Successfully retrieved the supported provider.
+                "400":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Bad Request - Invalid supported provider ID format.
+                "401":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Unauthorized - Authentication required.
+                "403":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Forbidden - Insufficient permissions.
+                "404":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Not Found - Supported provider does not exist.
+                "500":
+                    content:
+                        application/vnd.netapp.bxp.problem+json:
+                            schema:
+                                $ref: '#/components/schemas/type_bxp_problem_detail'
+                    description: Internal Server Error.
+            summary: Get a specific LLM supported provider by ID
+            tags:
+                - Supported Providers
+            x-permission: agenticplatform:supportedProvider-read
+            x-persistence: false
+            x-scope: private,public,documentation,ncl
+security:
+    - bxp_bearer_auth: []
+servers:
+    - url: '{{.Server}}'
+tags:
+    - description: |-
+        The health endpoints support liveness and readiness probes for monitoring the Config Manager service status.
+
+        You can perform the following actions using the health endpoints:
+        <ul>
+        <li>Check service health</li>
+        </ul>
+      name: Health
+    - description: |-
+        The supported provider endpoints expose the catalog of LLM providers (OpenAI, Azure OpenAI, Anthropic, AWS Bedrock, Google Vertex AI, Google Gemini and OpenAI-compatible providers) that the Agentic Platform can be configured to use.
+
+        You can perform the following actions using the supported provider endpoints:
+        <ul>
+        <li>List supported providers</li>
+        <li>Retrieve a supported provider</li>
+        </ul>
+      name: Supported Providers
+    - description: |-
+        The configuration endpoints enable you to manage the active LLM configuration consumed by the Agentic Platform, including provider credentials, base URL, rate limits, SSL verification settings and the configuration state lifecycle (DRAFT, TESTING, SUCCESSFUL, UNSUCCESSFUL).
+
+        You can perform the following actions using the configuration endpoints:
+        <ul>
+        <li>List configurations</li>
+        <li>Create a configuration</li>
+        <li>Retrieve a configuration</li>
+        <li>Update a configuration</li>
+        <li>Delete a configuration</li>
+        </ul>
+      name: Configuration
+    - description: |-
+        The supported model endpoints expose the curated allow-list of LLM models that the Agentic Platform has validated for the currently configured provider.
+
+        You can perform the following actions using the supported model endpoints:
+        <ul>
+        <li>List supported models</li>
+        <li>Retrieve a supported model</li>
+        </ul>
+      name: Supported Models
+    - description: |-
+        The provider model endpoints query an LLM provider's own API to discover the models it exposes. Credentials may be supplied directly in the request body (for testing) or resolved from a saved configuration by `config_id`.
+
+        You can perform the following actions using the provider model endpoints:
+        <ul>
+        <li>List models for ad-hoc provider credentials</li>
+        <li>List models for a saved configuration</li>
+        </ul>
+      name: Provider Models

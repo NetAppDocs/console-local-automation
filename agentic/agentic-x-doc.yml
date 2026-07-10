@@ -1,0 +1,117 @@
+---
+overview: Agentic Platform configuration manager API in NetApp Console (local deployment)
+permalink: overview.html
+paths:
+  "/configs":
+    get:
+      x-doc:
+        title: List all Agentic Platform configurations in NetApp Console (local deployment)
+        category: Configuration
+        filename: get-configs.html
+        sidebar_title: List all configurations
+        subcategory: 
+        explorer: false
+    post:
+      x-doc:
+        title: Create a new Agentic Platform configuration in NetApp Console (local deployment)
+        category: Configuration
+        filename: post-configs.html
+        sidebar_title: Create a new configuration
+        subcategory: 
+        explorer: false
+  "/configs/{config_id}":
+    delete:
+      x-doc:
+        title: Delete an Agentic Platform configuration in NetApp Console (local deployment)
+        category: Configuration
+        filename: delete-configs-.html
+        sidebar_title: Delete a configuration
+        subcategory: 
+        explorer: false
+    get:
+      x-doc:
+        title: Retrieve an Agentic Platform configuration in NetApp Console (local deployment)
+        category: Configuration
+        filename: get-configs-.html
+        sidebar_title: Retrieve a configuration 
+        subcategory: 
+        explorer: false
+    patch:
+      x-doc:
+        title: Partially update an Agentic Platform configuration in NetApp Console (local deployment)
+        category: Configuration
+        filename: patch-configs-.html
+        sidebar_title: Partially update configuration
+        subcategory: 
+        explorer: false
+  "/health":
+    get:
+      x-doc:
+        title: Retrieve the configuration manager health status in NetApp Console (local deployment)
+        category: Health
+        filename: get-health.html
+        sidebar_title: Retrieve the configuration manager health status
+        subcategory: 
+        explorer: false
+  "/providerModels":
+    post:
+      x-doc:
+        title: List all models available from the specified LLM provider in NetApp Console (local deployment)
+        category: Provider models
+        filename: post-providermodels.html
+        sidebar_title: List models available from an LLM provider
+        subcategory: 
+        explorer: false
+  "/supportedModels":
+    get:
+      x-doc:
+        title: List all available LLM models supported by the Agentic Platform in NetApp Console (local deployment)
+        category: Supported models
+        filename: get-supportedmodels.html
+        sidebar_title: List all supported LLM models 
+        subcategory: 
+        explorer: false
+  "/supportedModels/{supported_model_id}":
+    get:
+      x-doc:
+        title: Retrieve an LLM model in NetApp Console (local deployment)
+        category: Supported models
+        filename: get-supportedmodels-.html
+        sidebar_title: Retrieve an LLM model
+        subcategory: 
+        explorer: false
+  "/supportedProviders":
+    get:
+      x-doc:
+        title: List all available LLM supported providers in NetApp Console (local deployment)
+        category: Supported providers
+        filename: get-supportedproviders.html
+        sidebar_title: List all available LLM supported providers
+        subcategory: 
+        explorer: false
+  "/supportedProviders/{supported_provider_id}":
+    get:
+      x-doc:
+        title: Retrieve an LLM supported provider in NetApp Console (local deployment)
+        category: Supported providers
+        filename: get-supportedproviders-.html
+        sidebar_title: Retrieve an LLM supported provider
+        subcategory: 
+        explorer: false
+categories:
+- id: health
+  title: "(documentation) Agentic Platform Config Manager API health endpoints"
+  permalink: health_endpoints.html
+- id: supported providers
+  title: "(documentation) Agentic Platform Config Manager API supported providers
+    endpoints"
+  permalink: supported_providers_endpoints.html
+- id: configuration
+  title: "(documentation) Agentic Platform Config Manager API configuration endpoints"
+  permalink: configuration_endpoints.html
+- id: supported models
+  title: "(documentation) Agentic Platform Config Manager API supported models endpoints"
+  permalink: supported_models_endpoints.html
+- id: provider models
+  title: "(documentation) Agentic Platform Config Manager API provider models endpoints"
+  permalink: provider_models_endpoints.html
