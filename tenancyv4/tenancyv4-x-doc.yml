@@ -1,4 +1,4 @@
----
+﻿---
 overview: Identity and access management REST API
 permalink: overview.html
 paths:
@@ -49,7 +49,7 @@ paths:
   "/folders":
     get:
       x-doc:
-        title: List all folders
+        title: List all folders in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-folders.html
         subcategory: 
@@ -57,7 +57,7 @@ paths:
         sidebar_title: List all folders
     post:
       x-doc:
-        title: Create a new folder
+        title: Create a new folder in NetApp Console (local deployment)
         category: Hierarchy
         filename: post-folders.html
         subcategory: 
@@ -66,7 +66,7 @@ paths:
   "/folders/{folder_id}":
     delete:
       x-doc:
-        title: Delete a folder
+        title: Delete a folder in NetApp Console (local deployment)
         category: Hierarchy
         filename: delete-folders-.html
         subcategory: 
@@ -74,7 +74,7 @@ paths:
         sidebar_title: Delete a folder
     get:
       x-doc:
-        title: Retrieve a folder
+        title: Retrieve a folder in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-folders-.html
         subcategory: 
@@ -82,7 +82,7 @@ paths:
         sidebar_title: Retrieve a folder
     patch:
       x-doc:
-        title: Update a folder partially
+        title: Update a folder partially in NetApp Console (local deployment)
         category: Hierarchy
         filename: patch-folders-.html
         subcategory: 
@@ -90,7 +90,7 @@ paths:
         sidebar_title: Update a folder partially
     put:
       x-doc:
-        title: Update a folder
+        title: Update a folder in NetApp Console (local deployment)
         category: Hierarchy
         filename: put-folders-.html
         subcategory: 
@@ -99,7 +99,7 @@ paths:
   "/folders/{folder_id}/folders":
     get:
       x-doc:
-        title: List all folders under a parent folder
+        title: List all folders under a parent folder in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-folders-folders.html
         subcategory: 
@@ -107,7 +107,7 @@ paths:
         sidebar_title: List all folders under a parent folder
     post:
       x-doc:
-        title: Create a child folder under a parent folder
+        title: Create a child folder under a parent folder in NetApp Console (local deployment)
         category: Hierarchy
         filename: post-folders-folders.html
         subcategory: 
@@ -116,7 +116,7 @@ paths:
   "/folders/{folder_id}/folders/{childfolder_id}":
     delete:
       x-doc:
-        title: Remove a child folder from a parent folder
+        title: Remove a child folder from a parent folder in NetApp Console (local deployment)
         category: Hierarchy
         filename: delete-folders-folders-.html
         subcategory: 
@@ -124,7 +124,7 @@ paths:
         sidebar_title: Remove a child folder from a parent folder
     get:
       x-doc:
-        title: Retrieve a child folder under a parent folder
+        title: Retrieve a child folder under a parent folder in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-folders-folders-.html
         subcategory: 
@@ -133,7 +133,7 @@ paths:
   "/folders/{folder_id}/projects":
     get:
       x-doc:
-        title: List all projects under a folder
+        title: List all projects under a folder in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-folders-projects.html
         subcategory: 
@@ -141,7 +141,7 @@ paths:
         sidebar_title: List all projects under a folder
     post:
       x-doc:
-        title: Create a new project under a folder
+        title: Create a new project under a folder in NetApp Console (local deployment)
         category: Hierarchy
         filename: post-folders-projects.html
         subcategory: 
@@ -150,7 +150,7 @@ paths:
   "/folders/{folder_id}/projects/{project_id}":
     delete:
       x-doc:
-        title: Remove a project from a folder
+        title: Remove a project from a folder in NetApp Console (local deployment)
         category: Hierarchy
         filename: delete-folders-projects-.html
         subcategory: 
@@ -158,7 +158,7 @@ paths:
         sidebar_title: Remove a project from a folder
     get:
       x-doc:
-        title: Retrieve a project under a folder
+        title: Retrieve a project under a folder in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-folders-projects-.html
         subcategory: 
@@ -166,7 +166,7 @@ paths:
         sidebar_title: Retrieve a project under a folder
     patch:
       x-doc:
-        title: Update a project under a folder partially
+        title: Update a project under a folder partially in NetApp Console (local deployment)
         category: Hierarchy
         filename: patch-folders-projects-.html
         subcategory: 
@@ -174,7 +174,7 @@ paths:
         sidebar_title: Update a project under a folder partially
     put:
       x-doc:
-        title: Modify a project under a folder
+        title: Modify a project under a folder in NetApp Console (local deployment)
         category: Hierarchy
         filename: put-folders-projects-.html
         subcategory: 
@@ -183,14 +183,14 @@ paths:
   "/folders/{folder_id}/resourcegroups":
     get:
       x-doc:
-        title: List all resource groups in the folder
+        title: List all resource groups in the folder in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-folders-resourcegroups.html
         subcategory: 
         explorer: false
     post:
       x-doc:
-        title: Add resource groups to a folder
+        title: Add resource groups to a folder in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: post-folders-resourcegroups.html
         subcategory: 
@@ -198,14 +198,14 @@ paths:
   "/folders/{folder_id}/resourcegroups/{resourcegroup_id}":
     delete:
       x-doc:
-        title: Remove a resource group from a folder
+        title: Remove a resource group from a folder in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: delete-folders-resourcegroups-.html
         subcategory: 
         explorer: false
     get:
       x-doc:
-        title: Retrieve a resource group in a folder
+        title: Retrieve a resource group in a folder in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-folders-resourcegroups-.html
         subcategory: 
@@ -213,7 +213,7 @@ paths:
   "/folders/{folder_id}/resources":
     get:
       x-doc:
-        title: List all resources under a folder
+        title: List all resources under a folder in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-folders-resources.html
         subcategory: 
@@ -221,7 +221,7 @@ paths:
         sidebar_title: List all resources under a folder
     post:
       x-doc:
-        title: Add resources to a folder
+        title: Add resources to a folder in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: post-folders-resources.html
         subcategory: 
@@ -230,7 +230,7 @@ paths:
   "/folders/{folder_id}/resources/{resource_id}":
     delete:
       x-doc:
-        title: Remove a resource from a folder
+        title: Remove a resource from a folder in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: delete-folders-resources-.html
         subcategory: 
@@ -238,7 +238,7 @@ paths:
         sidebar_title: Remove a resource from a folder
     get:
       x-doc:
-        title: Retrieve a resource under a folder
+        title: Retrieve a resource under a folder in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-folders-resources-.html
         subcategory: 
@@ -247,14 +247,14 @@ paths:
   "/folders/{folder_id}/usergroups":
     get:
       x-doc:
-        title: List all user groups in a folder
+        title: List all user groups in a folder in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-folders-usergroups.html
         subcategory: 
         explorer: false
     post:
       x-doc:
-        title: Add user groups to a folder
+        title: Add user groups to a folder in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-folders-usergroups.html
         subcategory: 
@@ -262,14 +262,14 @@ paths:
   "/folders/{folder_id}/usergroups/{usergroup_id}":
     delete:
       x-doc:
-        title: Remove a user group from a folder
+        title: Remove a user group from a folder in NetApp Console (local deployment)
         category: User and usergroup
         filename: delete-folders-usergroups-.html
         subcategory: 
         explorer: false
     get:
       x-doc:
-        title: Retrieve a user group in a folder
+        title: Retrieve a user group in a folder in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-folders-usergroups-.html
         subcategory: 
@@ -277,7 +277,7 @@ paths:
   "/folders/{folder_id}/users":
     get:
       x-doc:
-        title: List all users for a folder
+        title: List all users for a folder in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-folders-users.html
         subcategory: 
@@ -285,7 +285,7 @@ paths:
         sidebar_title: List all users for a folder
     post:
       x-doc:
-        title: Add users to a folder
+        title: Add users to a folder in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-folders-users.html
         subcategory: 
@@ -294,7 +294,7 @@ paths:
   "/folders/{folder_id}/users/{user_id}":
     delete:
       x-doc:
-        title: Remove a user from a folder
+        title: Remove a user from a folder in NetApp Console (local deployment)
         category: User and usergroup
         filename: delete-folders-users-.html
         subcategory: 
@@ -302,7 +302,7 @@ paths:
         sidebar_title: Remove a user from a folder
     get:
       x-doc:
-        title: Retrieve a user associated with a folder
+        title: Retrieve a user associated with a folder in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-folders-users-.html
         subcategory: 
@@ -311,7 +311,7 @@ paths:
   "/organizations":
     get:
       x-doc:
-        title: List all organizations
+        title: List all organizations in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-organizations.html
         subcategory: 
@@ -319,7 +319,7 @@ paths:
         sidebar_title: List all organizations
     post:
       x-doc:
-        title: Create a new organization
+        title: Create a new organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: post-organizations.html
         subcategory: 
@@ -328,14 +328,14 @@ paths:
   "/organizations/{organization_id}":
     delete:
       x-doc:
-        title: Delete an organization
+        title: Delete an organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: delete-organizations-.html
         subcategory: 
         explorer: false
     get:
       x-doc:
-        title: Retrieve an organization
+        title: Retrieve an organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-organizations-.html
         subcategory: 
@@ -343,7 +343,7 @@ paths:
         sidebar_title: Retrieve an organization
     patch:
       x-doc:
-        title: Update an organization partially
+        title: Update an organization partially in NetApp Console (local deployment)
         category: Hierarchy
         filename: patch-organizations-.html
         subcategory: 
@@ -351,7 +351,7 @@ paths:
         sidebar_title: Update an organization partially
     put:
       x-doc:
-        title: Modify an organization
+        title: Modify an organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: put-organizations-.html
         subcategory: 
@@ -360,7 +360,7 @@ paths:
   "/organizations/{organization_id}/folders":
     get:
       x-doc:
-        title: List all folders under an organization
+        title: List all folders under an organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-organizations-folders.html
         subcategory: 
@@ -368,7 +368,7 @@ paths:
         sidebar_title: List all folders under an organization
     post:
       x-doc:
-        title: Create a new folder under an organization
+        title: Create a new folder under an organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: post-organizations-folders.html
         subcategory: 
@@ -377,7 +377,7 @@ paths:
   "/organizations/{organization_id}/folders/{folder_id}":
     delete:
       x-doc:
-        title: Remove a folder from an organization
+        title: Remove a folder from an organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: delete-organizations-folders-.html
         subcategory: 
@@ -385,7 +385,7 @@ paths:
         sidebar_title: Remove a folder from an organization
     get:
       x-doc:
-        title: Retrieve a folder under an organization
+        title: Retrieve a folder under an organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-organizations-folders-.html
         subcategory: 
@@ -393,7 +393,7 @@ paths:
         sidebar_title: Retrieve a folder under an organization
     patch:
       x-doc:
-        title: Update a folder under an organization partially
+        title: Update a folder under an organization partially in NetApp Console (local deployment)
         category: Hierarchy
         filename: patch-organizations-folders-.html
         subcategory: 
@@ -401,7 +401,7 @@ paths:
         sidebar_title: Update a folder under an organization partially
     put:
       x-doc:
-        title: Update a folder under an organization
+        title: Update a folder under an organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: put-organizations-folders-.html
         subcategory: 
@@ -441,7 +441,7 @@ paths:
   "/organizations/{organization_id}/projects":
     get:
       x-doc:
-        title: List all projects under an organization
+        title: List all projects under an organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-organizations-projects.html
         subcategory: 
@@ -449,7 +449,7 @@ paths:
         sidebar_title: List all projects under an organization
     post:
       x-doc:
-        title: Create a new project under an organization
+        title: Create a new project under an organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: post-organizations-projects.html
         subcategory: 
@@ -458,7 +458,7 @@ paths:
   "/organizations/{organization_id}/projects/{project_id}":
     delete:
       x-doc:
-        title: Remove a project from an organization
+        title: Remove a project from an organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: delete-organizations-projects-.html
         subcategory: 
@@ -466,7 +466,7 @@ paths:
         sidebar_title: Remove a project from an organization
     get:
       x-doc:
-        title: Retrieve a project under an organization
+        title: Retrieve a project under an organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-organizations-projects-.html
         subcategory: 
@@ -474,7 +474,7 @@ paths:
         sidebar_title: Retrieve a project under an organization
     patch:
       x-doc:
-        title: Update a project under an organization partially
+        title: Update a project under an organization partially in NetApp Console (local deployment)
         category: Hierarchy
         filename: patch-organizations-projects-.html
         subcategory: 
@@ -482,7 +482,7 @@ paths:
         sidebar_title: Update a project under an organization partially
     put:
       x-doc:
-        title: Modify a project under an organization
+        title: Modify a project under an organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: put-organizations-projects-.html
         subcategory: 
@@ -491,7 +491,7 @@ paths:
   "/organizations/{organization_id}/resourcegroups":
     get:
       x-doc:
-        title: List all resource groups under an organization
+        title: List all resource groups under an organization in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-organizations-resourcegroups.html
         subcategory: 
@@ -499,7 +499,7 @@ paths:
         sidebar_title: List all resource groups under an organization
     post:
       x-doc:
-        title: Add resource groups to an organization
+        title: Add resource groups to an organization in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: post-organizations-resourcegroups.html
         subcategory: 
@@ -508,7 +508,7 @@ paths:
   "/organizations/{organization_id}/resourcegroups/{resourcegroup_id}":
     delete:
       x-doc:
-        title: Remove a resource group from an organization
+        title: Remove a resource group from an organization in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: delete-organizations-resourcegroups-.html
         subcategory: 
@@ -516,7 +516,7 @@ paths:
         sidebar_title: Remove a resource group from an organization
     get:
       x-doc:
-        title: Retrieve a resource group under an organization
+        title: Retrieve a resource group under an organization in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-organizations-resourcegroups-.html
         subcategory: 
@@ -525,7 +525,7 @@ paths:
   "/organizations/{organization_id}/resources":
     get:
       x-doc:
-        title: List all resources under an organization
+        title: List all resources under an organization in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-organizations-resources.html
         subcategory: 
@@ -533,7 +533,7 @@ paths:
         sidebar_title: List all resources under an organization
     post:
       x-doc:
-        title: Add resources to an organization
+        title: Add resources to an organization in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: post-organizations-resources.html
         subcategory: 
@@ -542,7 +542,7 @@ paths:
   "/organizations/{organization_id}/resources/{resource_id}":
     delete:
       x-doc:
-        title: Remove a resource from an organization
+        title: Remove a resource from an organization in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: delete-organizations-resources-.html
         subcategory: 
@@ -550,7 +550,7 @@ paths:
         sidebar_title: Remove a resource from an organization
     get:
       x-doc:
-        title: Retrieve a resource under an organization
+        title: Retrieve a resource under an organization in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-organizations-resources-.html
         subcategory: 
@@ -559,7 +559,7 @@ paths:
   "/organizations/{organization_id}/roles/{role_id}/users":
     post:
       x-doc:
-        title: Associate users in an organization with a role
+        title: Associate users in an organization with a role in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-organizations-roles-users.html
         subcategory: 
@@ -568,14 +568,14 @@ paths:
   "/organizations/{organization_id}/serviceAccounts":
     get:
       x-doc:
-        title: List all users
+        title: List all users in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-organizations-serviceaccounts.html
         subcategory: 
         explorer: false
     post:
       x-doc:
-        title: Create a new service account
+        title: Create a new service account in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-organizations-serviceaccounts.html
         subcategory: 
@@ -584,7 +584,7 @@ paths:
   "/organizations/{organization_id}/serviceAccounts/{serviceaccount_id}":
     delete:
       x-doc:
-        title: Delete a service account
+        title: Delete a service account in NetApp Console (local deployment)
         category: User and usergroup
         filename: delete-organizations-serviceaccounts-.html
         subcategory: 
@@ -592,7 +592,7 @@ paths:
         sidebar_title: Delete a service account
     get:
       x-doc:
-        title: Retrieve a service account
+        title: Retrieve a service account in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-organizations-serviceaccounts-.html
         subcategory: 
@@ -600,7 +600,7 @@ paths:
         sidebar_title: Retrieve a service account
     patch:
       x-doc:
-        title: Update a service account partially
+        title: Update a service account partially in NetApp Console (local deployment)
         category: User and usergroup
         filename: patch-organizations-serviceaccounts-.html
         subcategory: 
@@ -608,7 +608,7 @@ paths:
         sidebar_title: Update a service account partially
     put:
       x-doc:
-        title: Modify a service account
+        title: Modify a service account in NetApp Console (local deployment)
         category: User and usergroup
         filename: put-organizations-serviceaccounts-.html
         subcategory: 
@@ -617,7 +617,7 @@ paths:
   "/organizations/{organization_id}/serviceAccounts/{serviceaccount_id}/clientSecret":
     post:
       x-doc:
-        title: Create a new client secret for a service account
+        title: Create a new client secret for a service account in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-organizations-serviceaccounts-clientsecret.html
         subcategory: 
@@ -626,7 +626,7 @@ paths:
   "/organizations/{organization_id}/usergroups":
     get:
       x-doc:
-        title: List all user groups under an organization
+        title: List all user groups under an organization in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-organizations-usergroups.html
         subcategory: 
@@ -634,7 +634,7 @@ paths:
         sidebar_title: List all user groups under an organization
     post:
       x-doc:
-        title: Add user groups to an organization
+        title: Add user groups to an organization in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-organizations-usergroups.html
         subcategory: 
@@ -643,7 +643,7 @@ paths:
   "/organizations/{organization_id}/usergroups/{usergroup_id}":
     delete:
       x-doc:
-        title: Remove a user group from an organization
+        title: Remove a user group from an organization in NetApp Console (local deployment)
         category: User and usergroup
         filename: delete-organizations-usergroups-.html
         subcategory: 
@@ -651,7 +651,7 @@ paths:
         sidebar_title: Remove a user group from an organization
     get:
       x-doc:
-        title: Retrieve a user group under an organization
+        title: Retrieve a user group under an organization in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-organizations-usergroups-.html
         subcategory: 
@@ -660,7 +660,7 @@ paths:
   "/organizations/{organization_id}/users":
     get:
       x-doc:
-        title: List all users under an organization
+        title: List all users under an organization in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-organizations-users.html
         subcategory: 
@@ -668,7 +668,7 @@ paths:
         sidebar_title: List all users under an organization
     post:
       x-doc:
-        title: Add users to an organization
+        title: Add users to an organization in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-organizations-users.html
         subcategory: 
@@ -677,7 +677,7 @@ paths:
   "/organizations/{organization_id}/users/{user_id}":
     delete:
       x-doc:
-        title: Remove a user from an organization
+        title: Remove a user from an organization in NetApp Console (local deployment)
         category: User and usergroup
         filename: delete-organizations-users-.html
         subcategory: 
@@ -685,7 +685,7 @@ paths:
         sidebar_title: Remove a user from an organization
     get:
       x-doc:
-        title: Retrieve a user under an organization
+        title: Retrieve a user under an organization in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-organizations-users-.html
         subcategory: 
@@ -693,7 +693,7 @@ paths:
         sidebar_title: Retrieve a user under an organization
     patch:
       x-doc:
-        title: Modify a user
+        title: Modify a user in NetApp Console (local deployment)
         category: User and Usergroup
         filename: patch-organizations-users-.html
         subcategory: 
@@ -751,7 +751,7 @@ paths:
   "/partnershiptypes":
     get:
       x-doc:
-        title: List all partnership types
+        title: List all partnership types in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-partnershiptypes.html
         subcategory: 
@@ -759,7 +759,7 @@ paths:
         sidebar_title: List all partnership types
     post:
       x-doc:
-        title: Create a new partnership type
+        title: Create a new partnership type in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: post-partnershiptypes.html
         subcategory: 
@@ -767,14 +767,14 @@ paths:
   "/partnershiptypes/{partnershiptype_id}":
     delete:
       x-doc:
-        title: Delete a partnership type
+        title: Delete a partnership type in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: delete-partnershiptypes-.html
         subcategory: 
         explorer: false
     get:
       x-doc:
-        title: Retrieve a partnership type
+        title: Retrieve a partnership type in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-partnershiptypes-.html
         subcategory: 
@@ -782,14 +782,14 @@ paths:
         sidebar_title: Retrieve a partnership type
     patch:
       x-doc:
-        title: Update a partnership type partially
+        title: Update a partnership type partially in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: patch-partnershiptypes-.html
         subcategory: 
         explorer: false
     put:
       x-doc:
-        title: Update a partnership type
+        title: Update a partnership type in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: put-partnershiptypes-.html
         subcategory: 
@@ -797,7 +797,7 @@ paths:
   "/permissions":
     get:
       x-doc:
-        title: List all permissions
+        title: List all permissions in NetApp Console (local deployment)
         category: Permission
         filename: get-permissions.html
         subcategory: 
@@ -805,7 +805,7 @@ paths:
         sidebar_title: List all permissions
     post:
       x-doc:
-        title: Create a new permission
+        title: Create a new permission in NetApp Console (local deployment)
         category: Permission
         filename: post-permissions.html
         subcategory: 
@@ -813,14 +813,14 @@ paths:
   "/permissions/{permission_id}":
     delete:
       x-doc:
-        title: Delete a permission
+        title: Delete a permission in NetApp Console (local deployment)
         category: Permission
         filename: delete-permissions-.html
         subcategory: 
         explorer: false
     get:
       x-doc:
-        title: Retrieve a permission
+        title: Retrieve a permission in NetApp Console (local deployment)
         category: Permission
         filename: get-permissions-.html
         subcategory: 
@@ -828,14 +828,14 @@ paths:
         sidebar_title: Retrieve a permission
     patch:
       x-doc:
-        title: Update a permission partially
+        title: Update a permission partially in NetApp Console (local deployment)
         category: Permission
         filename: patch-permissions-.html
         subcategory: 
         explorer: false
     put:
       x-doc:
-        title: Modify a permission
+        title: Modify a permission in NetApp Console (local deployment)
         category: Permission
         filename: put-permissions-.html
         subcategory: 
@@ -851,7 +851,7 @@ paths:
   "/projects":
     get:
       x-doc:
-        title: List all projects
+        title: List all projects in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-projects.html
         subcategory: 
@@ -859,7 +859,7 @@ paths:
         sidebar_title: List all projects
     post:
       x-doc:
-        title: Create a new project
+        title: Create a new project in NetApp Console (local deployment)
         category: Hierarchy
         filename: post-projects.html
         subcategory: 
@@ -868,7 +868,7 @@ paths:
   "/projects/{project_id}":
     delete:
       x-doc:
-        title: Delete a project
+        title: Delete a project in NetApp Console (local deployment)
         category: Hierarchy
         filename: delete-projects-.html
         subcategory: 
@@ -876,7 +876,7 @@ paths:
         sidebar_title: Delete a project
     get:
       x-doc:
-        title: Retrieve a project
+        title: Retrieve a project in NetApp Console (local deployment)
         category: Hierarchy
         filename: get-projects-.html
         subcategory: 
@@ -884,7 +884,7 @@ paths:
         sidebar_title: Retrieve a project
     patch:
       x-doc:
-        title: Update a project partially
+        title: Update a project partially in NetApp Console (local deployment)
         category: Hierarchy
         filename: patch-projects-.html
         subcategory: 
@@ -892,7 +892,7 @@ paths:
         sidebar_title: Update a project partially
     put:
       x-doc:
-        title: Modify a project
+        title: Modify a project in NetApp Console (local deployment)
         category: Hierarchy
         filename: put-projects-.html
         subcategory: 
@@ -901,14 +901,14 @@ paths:
   "/projects/{project_id}/resourcegroups":
     get:
       x-doc:
-        title: List all resource groups under a project
+        title: List all resource groups under a project in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-projects-resourcegroups.html
         subcategory: 
         explorer: false
     post:
       x-doc:
-        title: Add resource groups to a project
+        title: Add resource groups to a project in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: post-projects-resourcegroups.html
         subcategory: 
@@ -916,14 +916,14 @@ paths:
   "/projects/{project_id}/resourcegroups/{resourcegroup_id}":
     delete:
       x-doc:
-        title: Remove a resource group from a project
+        title: Remove a resource group from a project in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: delete-projects-resourcegroups-.html
         subcategory: 
         explorer: false
     get:
       x-doc:
-        title: Retrieve a resource group under a project
+        title: Retrieve a resource group under a project in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-projects-resourcegroups-.html
         subcategory: 
@@ -931,7 +931,7 @@ paths:
   "/projects/{project_id}/resources":
     get:
       x-doc:
-        title: List all resources in a project
+        title: List all resources in a project in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-projects-resources.html
         subcategory: 
@@ -939,7 +939,7 @@ paths:
         sidebar_title: List all resources in a project
     post:
       x-doc:
-        title: Add resources to a project
+        title: Add resources to a project in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: post-projects-resources.html
         subcategory: 
@@ -948,7 +948,7 @@ paths:
   "/projects/{project_id}/resources/{resource_id}":
     delete:
       x-doc:
-        title: Remove a resource from a project
+        title: Remove a resource from a project in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: delete-projects-resources-.html
         subcategory: 
@@ -956,7 +956,7 @@ paths:
         sidebar_title: Remove a resource from a project
     get:
       x-doc:
-        title: Retrieve a resource in a project
+        title: Retrieve a resource in a project in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-projects-resources-.html
         subcategory: 
@@ -965,14 +965,14 @@ paths:
   "/projects/{project_id}/usergroups":
     get:
       x-doc:
-        title: List all user groups in the project
+        title: List all user groups in the project in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-projects-usergroups.html
         subcategory: 
         explorer: false
     post:
       x-doc:
-        title: Add user groups to a project
+        title: Add user groups to a project in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-projects-usergroups.html
         subcategory: 
@@ -980,14 +980,14 @@ paths:
   "/projects/{project_id}/usergroups/{usergroup_id}":
     delete:
       x-doc:
-        title: Remove a user group from a project
+        title: Remove a user group from a project in NetApp Console (local deployment)
         category: User and usergroup
         filename: delete-projects-usergroups-.html
         subcategory: 
         explorer: false
     get:
       x-doc:
-        title: Retrieve a user group under a project
+        title: Retrieve a user group under a project in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-projects-usergroups-.html
         subcategory: 
@@ -995,7 +995,7 @@ paths:
   "/projects/{project_id}/users":
     get:
       x-doc:
-        title: List all users for a project
+        title: List all users for a project in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-projects-users.html
         subcategory: 
@@ -1003,7 +1003,7 @@ paths:
         sidebar_title: List all users for a project
     post:
       x-doc:
-        title: Add users to a project
+        title: Add users to a project in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-projects-users.html
         subcategory: 
@@ -1012,7 +1012,7 @@ paths:
   "/projects/{project_id}/users/{user_id}":
     delete:
       x-doc:
-        title: Remove a user from a project
+        title: Remove a user from a project in NetApp Console (local deployment)
         category: User and usergroup
         filename: delete-projects-users-.html
         subcategory: 
@@ -1020,7 +1020,7 @@ paths:
         sidebar_title: Remove a user from a project
     get:
       x-doc:
-        title: Retrieve a user under a project
+        title: Retrieve a user under a project in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-projects-users-.html
         subcategory: 
@@ -1029,7 +1029,7 @@ paths:
   "/resourcegroups":
     get:
       x-doc:
-        title: List all resource groups
+        title: List all resource groups in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-resourcegroups.html
         subcategory: 
@@ -1037,7 +1037,7 @@ paths:
         sidebar_title: List all resource groups
     post:
       x-doc:
-        title: Create a new resource group
+        title: Create a new resource group in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: post-resourcegroups.html
         subcategory: 
@@ -1046,7 +1046,7 @@ paths:
   "/resourcegroups/{resourcegroup_id}":
     delete:
       x-doc:
-        title: Delete a resource group
+        title: Delete a resource group in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: delete-resourcegroups-.html
         subcategory: 
@@ -1054,7 +1054,7 @@ paths:
         sidebar_title: Delete a resource group
     get:
       x-doc:
-        title: Retrieve a resource group
+        title: Retrieve a resource group in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-resourcegroups-.html
         subcategory: 
@@ -1062,7 +1062,7 @@ paths:
         sidebar_title: Retrieve a resource group
     patch:
       x-doc:
-        title: Update a resource group
+        title: Update a resource group in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: patch-resourcegroups-.html
         subcategory: 
@@ -1070,7 +1070,7 @@ paths:
         sidebar_title: Update a resource group
     put:
       x-doc:
-        title: Modify a resource group
+        title: Modify a resource group in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: put-resourcegroups-.html
         subcategory: 
@@ -1087,7 +1087,7 @@ paths:
   "/resourcegroups/{resourcegroup_id}/resources":
     get:
       x-doc:
-        title: List all resources for a resource group
+        title: List all resources for a resource group in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-resourcegroups-resources.html
         subcategory: 
@@ -1095,7 +1095,7 @@ paths:
         sidebar_title: List all resources for a resource group
     post:
       x-doc:
-        title: Add resources to a resource group
+        title: Add resources to a resource group in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: post-resourcegroups-resources.html
         subcategory: 
@@ -1104,7 +1104,7 @@ paths:
   "/resourcegroups/{resourcegroup_id}/resources/{resource_id}":
     delete:
       x-doc:
-        title: Remove a resource from a resource group
+        title: Remove a resource from a resource group in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: delete-resourcegroups-resources-.html
         subcategory: 
@@ -1112,7 +1112,7 @@ paths:
         sidebar_title: Remove a resource from a resource group
     get:
       x-doc:
-        title: Retrieve a resource in a resource group
+        title: Retrieve a resource in a resource group in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-resourcegroups-resources-.html
         subcategory: 
@@ -1121,7 +1121,7 @@ paths:
   "/resources":
     get:
       x-doc:
-        title: List all resources
+        title: List all resources in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-resources.html
         subcategory: 
@@ -1129,7 +1129,7 @@ paths:
         sidebar_title: List all resources
     post:
       x-doc:
-        title: Create a new resource
+        title: Create a new resource in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: post-resources.html
         subcategory: 
@@ -1138,7 +1138,7 @@ paths:
   "/resources/{resource_id}":
     delete:
       x-doc:
-        title: Delete a resource
+        title: Delete a resource in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: delete-resources-.html
         subcategory: 
@@ -1146,7 +1146,7 @@ paths:
         sidebar_title: Delete a resource
     get:
       x-doc:
-        title: Retrieve a resource
+        title: Retrieve a resource in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-resources-.html
         subcategory: 
@@ -1154,7 +1154,7 @@ paths:
         sidebar_title: Retrieve a resource
     patch:
       x-doc:
-        title: Update a resource
+        title: Update a resource in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: patch-resources-.html
         subcategory: 
@@ -1162,7 +1162,7 @@ paths:
         sidebar_title: Update a resource
     put:
       x-doc:
-        title: Modify a resource
+        title: Modify a resource in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: put-resources-.html
         subcategory: 
@@ -1179,7 +1179,7 @@ paths:
   "/resources/{resource_id}/permissions":
     get:
       x-doc:
-        title: List all permissions for a resource
+        title: List all permissions for a resource in NetApp Console (local deployment)
         category: Permission
         filename: get-resources-permissions.html
         subcategory: 
@@ -1188,7 +1188,7 @@ paths:
   "/resources/{resource_id}/users":
     get:
       x-doc:
-        title: List all users with permissions for a resource
+        title: List all users with permissions for a resource in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-resources-users.html
         subcategory: 
@@ -1197,7 +1197,7 @@ paths:
   "/resources/{resource_id}/permissions/{permission_id}/users":
     get:
       x-doc:
-        title: List all users with a specific permission for a resource
+        title: List all users with a specific permission for a resource in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-resources-permissions-users.html
         subcategory: 
@@ -1206,14 +1206,14 @@ paths:
   "/resourcetypes":
     get:
       x-doc:
-        title: List all resource types
+        title: List all resource types in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-resourcetypes.html
         subcategory: 
         explorer: false
     post:
       x-doc:
-        title: Create a new resource type
+        title: Create a new resource type in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: post-resourcetypes.html
         subcategory: 
@@ -1221,7 +1221,7 @@ paths:
   "/resourcetypes/{resourcetype_id}":
     get:
       x-doc:
-        title: Retrieve a resource type
+        title: Retrieve a resource type in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-resourcetypes-.html
         subcategory: 
@@ -1229,7 +1229,7 @@ paths:
   "/roles":
     get:
       x-doc:
-        title: List all roles
+        title: List all roles in NetApp Console (local deployment)
         category: Role
         filename: get-roles.html
         subcategory: 
@@ -1237,7 +1237,7 @@ paths:
         sidebar_title: List all roles
     post:
       x-doc:
-        title: Create a new role
+        title: Create a new role in NetApp Console (local deployment)
         category: Role
         filename: post-roles.html
         subcategory: 
@@ -1245,14 +1245,14 @@ paths:
   "/roles/{role_id}":
     delete:
       x-doc:
-        title: Delete a role
+        title: Delete a role in NetApp Console (local deployment)
         category: Role
         filename: delete-roles-.html
         subcategory: 
         explorer: false
     get:
       x-doc:
-        title: Retrieve a role
+        title: Retrieve a role in NetApp Console (local deployment)
         category: Role
         filename: get-roles-.html
         subcategory: 
@@ -1260,14 +1260,14 @@ paths:
         sidebar_title: Retrieve a role
     patch:
       x-doc:
-        title: Update a role resource partially
+        title: Update a role resource partially in NetApp Console (local deployment)
         category: Role
         filename: patch-roles-.html
         subcategory: 
         explorer: false
     put:
       x-doc:
-        title: Modify a role resource
+        title: Modify a role resource in NetApp Console (local deployment)
         category: Role
         filename: put-roles-.html
         subcategory: 
@@ -1283,7 +1283,7 @@ paths:
   "/roles/{role_id}/permissions":
     get:
       x-doc:
-        title: List all permissions for a role
+        title: List all permissions for a role in NetApp Console (local deployment)
         category: Permission
         filename: get-roles-permissions.html
         subcategory: 
@@ -1291,7 +1291,7 @@ paths:
         sidebar_title: List all permissions for a role
     post:
       x-doc:
-        title: Add a list of permissions to a role
+        title: Add a list of permissions to a role in NetApp Console (local deployment)
         category: Permission
         filename: post-roles-permissions.html
         subcategory: 
@@ -1299,14 +1299,14 @@ paths:
   "/roles/{role_id}/permissions/{permission_id}":
     delete:
       x-doc:
-        title: Delete a permission for a role
+        title: Delete a permission for a role in NetApp Console (local deployment)
         category: Permission
         filename: delete-roles-permissions-.html
         subcategory: 
         explorer: false
     get:
       x-doc:
-        title: Retrieve a permission for a role
+        title: Retrieve a permission for a role in NetApp Console (local deployment)
         category: Permission
         filename: get-roles-permissions-.html
         subcategory: 
@@ -1315,14 +1315,14 @@ paths:
   "/tags":
     get:
       x-doc:
-        title: List all the tag resources
+        title: List all the tag resources in NetApp Console (local deployment)
         category: Tag
         filename: get-tags.html
         subcategory: 
         explorer: false
     post:
       x-doc:
-        title: Create a new tag resource
+        title: Create a new tag resource in NetApp Console (local deployment)
         category: Tag
         filename: post-tags.html
         subcategory: 
@@ -1330,28 +1330,28 @@ paths:
   "/tags/{tag_id}":
     delete:
       x-doc:
-        title: Delete a tag resource
+        title: Delete a tag resource in NetApp Console (local deployment)
         category: Tag
         filename: delete-tags-.html
         subcategory: 
         explorer: false
     get:
       x-doc:
-        title: Retrieve a tag resource
+        title: Retrieve a tag resource in NetApp Console (local deployment)
         category: Tag
         filename: get-tags-.html
         subcategory: 
         explorer: false
     patch:
       x-doc:
-        title: Update a tag resource partially
+        title: Update a tag resource partially in NetApp Console (local deployment)
         category: Tag
         filename: patch-tags-.html
         subcategory: 
         explorer: false
     put:
       x-doc:
-        title: Modify a tag resource
+        title: Modify a tag resource in NetApp Console (local deployment)
         category: Tag
         filename: put-tags-.html
         subcategory: 
@@ -1359,7 +1359,7 @@ paths:
   "/usergroups":
     get:
       x-doc:
-        title: List all user groups
+        title: List all user groups in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-usergroups.html
         subcategory: 
@@ -1367,7 +1367,7 @@ paths:
         sidebar_title: List all user groups
     post:
       x-doc:
-        title: Create a new user group
+        title: Create a new user group in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-usergroups.html
         subcategory: 
@@ -1376,7 +1376,7 @@ paths:
   "/usergroups/{usergroup_id}":
     delete:
       x-doc:
-        title: Delete a user group
+        title: Delete a user group in NetApp Console (local deployment)
         category: User and usergroup
         filename: delete-usergroups-.html
         subcategory: 
@@ -1384,7 +1384,7 @@ paths:
         sidebar_title: Delete a user group
     get:
       x-doc:
-        title: Retrieve a user group
+        title: Retrieve a user group in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-usergroups-.html
         subcategory: 
@@ -1392,7 +1392,7 @@ paths:
         sidebar_title: Retrieve a user group
     patch:
       x-doc:
-        title: Update a user group partially
+        title: Update a user group partially in NetApp Console (local deployment)
         category: User and usergroup
         filename: patch-usergroups-.html
         subcategory: 
@@ -1400,7 +1400,7 @@ paths:
         sidebar_title: Update a user group partially
     put:
       x-doc:
-        title: Modify a user group
+        title: Modify a user group in NetApp Console (local deployment)
         category: User and usergroup
         filename: put-usergroups-.html
         subcategory: 
@@ -1417,7 +1417,7 @@ paths:
   "/usergroups/{usergroup_id}/users":
     get:
       x-doc:
-        title: List all users for a user group
+        title: List all users for a user group in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-usergroups-users.html
         subcategory: 
@@ -1425,7 +1425,7 @@ paths:
         sidebar_title: List all users for a user group
     post:
       x-doc:
-        title: Add users to a user group
+        title: Add users to a user group in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-usergroups-users.html
         subcategory: 
@@ -1434,7 +1434,7 @@ paths:
   "/usergroups/{usergroup_id}/users/{user_id}":
     delete:
       x-doc:
-        title: Remove a user from a user group
+        title: Remove a user from a user group in NetApp Console (local deployment)
         category: User and usergroup
         filename: delete-usergroups-users-.html
         subcategory: 
@@ -1442,7 +1442,7 @@ paths:
         sidebar_title: Remove a user from a user group
     get:
       x-doc:
-        title: Retrieve a user in a user group
+        title: Retrieve a user in a user group in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-usergroups-users-.html
         subcategory: 
@@ -1451,7 +1451,7 @@ paths:
   "/users":
     get:
       x-doc:
-        title: List all users
+        title: List all users in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-users.html
         subcategory: 
@@ -1459,7 +1459,7 @@ paths:
         sidebar_title: List all users
     post:
       x-doc:
-        title: Create a new user
+        title: Create a new user in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-users.html
         subcategory: 
@@ -1468,7 +1468,7 @@ paths:
   "/users/{user_id}":
     delete:
       x-doc:
-        title: Delete a user
+        title: Delete a user in NetApp Console (local deployment)
         category: User and usergroup
         filename: delete-users-.html
         subcategory: 
@@ -1476,7 +1476,7 @@ paths:
         sidebar_title: Delete a user
     get:
       x-doc:
-        title: Retrieve a user
+        title: Retrieve a user in NetApp Console (local deployment)
         category: User and usergroup
         filename: get-users-.html
         subcategory: 
@@ -1484,7 +1484,7 @@ paths:
         sidebar_title: Retrieve a user
     patch:
       x-doc:
-        title: Update a user partially
+        title: Update a user partially in NetApp Console (local deployment)
         category: User and usergroup
         filename: patch-users-.html
         subcategory: 
@@ -1492,7 +1492,7 @@ paths:
         sidebar_title: Update a user partially
     put:
       x-doc:
-        title: Modify a user
+        title: Modify a user in NetApp Console (local deployment)
         category: User and usergroup
         filename: put-users-.html
         subcategory: 
@@ -1509,7 +1509,7 @@ paths:
   "/users/{user_id}/permissions":
     get:
       x-doc:
-        title: List all permissions for a user
+        title: List all permissions for a user in NetApp Console (local deployment)
         category: Permission
         filename: get-users-permissions.html
         subcategory: 
@@ -1518,7 +1518,7 @@ paths:
   "/users/{user_id}/permissions/{permission_id}/resources":
     get:
       x-doc:
-        title: List all resources for a user with a permission
+        title: List all resources for a user with a permission in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-users-permissions-resources.html
         subcategory: 
@@ -1527,7 +1527,7 @@ paths:
   "/users/{user_id}/resources":
     get:
       x-doc:
-        title: List all resources for a user
+        title: List all resources for a user in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-users-resources.html
         subcategory: 
@@ -1544,7 +1544,7 @@ paths:
   "/users/{user_id}/resources/{resource_id}":
     get:
       x-doc:
-        title: Check if a user has permission for a resource
+        title: Check if a user has permission for a resource in NetApp Console (local deployment)
         category: Resource and resourcegroup
         filename: get-users-resources-.html
         subcategory: 
@@ -1561,7 +1561,7 @@ paths:
   "/users/{user_id}/resources/{resource_id}/permissions":
     get:
       x-doc:
-        title: List all permissions a user has for a resource
+        title: List all permissions a user has for a resource in NetApp Console (local deployment)
         category: Permission
         filename: get-users-resources-permissions.html
         subcategory: 
@@ -1570,7 +1570,7 @@ paths:
   "/users/{user_id}/resources/{resource_id}/permissions/{permission_id}":
     get:
       x-doc:
-        title: Retrieve a permission on a resource for a user
+        title: Retrieve a permission on a resource for a user in NetApp Console (local deployment)
         category: Permission
         filename: get-users-resources-permissions-.html
         subcategory: 
@@ -1579,7 +1579,7 @@ paths:
   "/users/{user_id}/roles":
     get:
       x-doc:
-        title: List all the roles for a user
+        title: List all the roles for a user in NetApp Console (local deployment)
         category: Role
         filename: get-users-roles.html
         subcategory: 
@@ -1588,7 +1588,7 @@ paths:
   resources/{resource_id}/permissions/{permission_id}/users:
     get:
       x-doc:
-        title: List all users that have a permission for a resource
+        title: List all users that have a permission for a resource in NetApp Console (local deployment)
         category: User and usergroup
         filename: getresources-permissions-users.html
         subcategory: 
@@ -1596,7 +1596,7 @@ paths:
   "/folders/{folder_id}/roles/{role_id}/users":
     post:
       x-doc:
-        title: Associate a set of users for a folder with a role
+        title: Associate a set of users for a folder with a role in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-folders-roles-users.html
         subcategory: 
@@ -1604,7 +1604,7 @@ paths:
   "/folders/{folder_id}/roles/{role_id}/users/{user_id}":
     delete:
       x-doc:
-        title: Remove a user from a folder
+        title: Remove a user from a folder in NetApp Console (local deployment)
         category: User and usergroup
         filename: delete-folders-roles-users-.html
         subcategory: 
@@ -1613,7 +1613,7 @@ paths:
   "/organizations/{organization_id}/roles/{role_id}/users/{user_id}":
     delete:
       x-doc:
-        title: Remove a user from an organization
+        title: Remove a user from an organization in NetApp Console (local deployment)
         category: User and usergroup
         filename: delete-organizations-roles-users-.html
         subcategory: 
@@ -1622,7 +1622,7 @@ paths:
   "/projects/{project_id}/roles/{role_id}/users":
     post:
       x-doc:
-        title: Associate a set of users to a project with a role
+        title: Associate a set of users to a project with a role in NetApp Console (local deployment)
         category: User and usergroup
         filename: post-projects-roles-users.html
         subcategory: 
@@ -1630,7 +1630,7 @@ paths:
   "/projects/{project_id}/roles/{role_id}/users/{user_id}":
     delete:
       x-doc:
-        title: Remove a user from a project
+        title: Remove a user from a project in NetApp Console (local deployment)
         category: User and usergroup
         filename: delete-projects-roles-users-.html
         subcategory: 
@@ -1639,7 +1639,7 @@ paths:
   "/ui/organizations/{organization_id}/uihierarchy":
     get:
       x-doc:
-        title: Full organization hierarchy summary
+        title: Full organization hierarchy summary in NetApp Console (local deployment)
         category: UI
         filename: get-ui-organizations-uihierarchy.html
         subcategory: 
@@ -1647,7 +1647,7 @@ paths:
   "/ui/organizations/{organization_id}/uiresources":
     get:
       x-doc:
-        title: Lists scope/tags counts for a list of resources of an organization
+        title: Lists scope/tags counts for a list of resources of an organization in NetApp Console (local deployment)
         category: UI
         filename: get-ui-organizations-uiresources.html
         subcategory: 
@@ -1655,7 +1655,7 @@ paths:
   "/ui/organizations/{organization_id}/users/{user_id}/uipermissions":
     get:
       x-doc:
-        title: Lists permissions for user on all resources
+        title: Lists permissions for user on all resources in NetApp Console (local deployment)
         category: UI
         filename: get-ui-organizations-users-uipermissions.html
         subcategory: 
@@ -1663,7 +1663,7 @@ paths:
   "/ui/organizations/{organization_id}/users/{user_id}/uiroles":
     get:
       x-doc:
-        title: Lists roles for user on all hierarchy resources
+        title: Lists roles for user on all hierarchy resources in NetApp Console (local deployment)
         category: UI
         filename: get-ui-organizations-users-uiroles.html
         subcategory: 
@@ -1671,7 +1671,7 @@ paths:
   "/organizations/{organization_id}/organizations/{childorganization_id}":
     delete:
       x-doc:
-        title: Remove a child organization from a parent organization
+        title: Remove a child organization from a parent organization in NetApp Console (local deployment)
         category: Hierarchy
         filename: delete-organizations-organizations-.html
         subcategory: 
@@ -1680,7 +1680,7 @@ paths:
   "/folders/{folder_id}/roles/{role_id}/usergroups":
     post:
       x-doc:
-        title: Create a new user group in a folder
+        title: Create a new user group in a folder in NetApp Console (local deployment)
         category: User and Usergroup
         filename: post-folders-roles-usergroups.html
         subcategory: 
@@ -1689,7 +1689,7 @@ paths:
   "/organizations/{organization_id}/roles/{role_id}/usergroups":
     post:
       x-doc:
-        title: Create a new user group in an organization
+        title: Create a new user group in an organization in NetApp Console (local deployment)
         category: User and Usergroup
         filename: post-organizations-roles-usergroups.html
         subcategory: 
@@ -1698,7 +1698,7 @@ paths:
   "/organizations/{organization_id}/serviceaccounts/{serviceaccount_id}/publickeys":
     get:
       x-doc:
-        title: List all the public keys for a service account
+        title: List all the public keys for a service account in NetApp Console (local deployment)
         category: User and Usergroup
         filename: get-organizations-serviceaccounts-publickeys.html
         subcategory: 
@@ -1706,7 +1706,7 @@ paths:
         sidebar_title: List all the public keys for a service account
     post:
       x-doc:
-        title: Create a public key for a service account
+        title: Create a public key for a service account in NetApp Console (local deployment)
         category: User and Usergroup
         filename: post-organizations-serviceaccounts-publickeys.html
         subcategory: 
@@ -1715,7 +1715,7 @@ paths:
   "/organizations/{organization_id}/serviceaccounts/{serviceaccount_id}/publickeys/{publickey_id}":
     delete:
       x-doc:
-        title: Delete a public key for a service account
+        title: Delete a public key for a service account in NetApp Console (local deployment)
         category: User and Usergroup
         filename: delete-organizations-serviceaccounts-publickeys-.html
         subcategory: 
@@ -1723,7 +1723,7 @@ paths:
         sidebar_title: Delete a public key for a service account
     patch:
       x-doc:
-        title: Partially update a public key for a service account
+        title: Partially update a public key for a service account in NetApp Console (local deployment)
         category: User and Usergroup
         filename: patch-organizations-serviceaccounts-publickeys-.html
         subcategory: 
@@ -1766,7 +1766,7 @@ paths:
   "/partnerships/{partnership_id}/grants/{grant_id}/resources":
     get:
       x-doc:
-        title: List all resources for a grant in a partnership
+        title: List all resources for a grant in a partnership in NetApp Console (local deployment)
         category: Resource and Resourcegroup
         filename: get-partnerships-grants-resources.html
         subcategory: 
@@ -1774,7 +1774,7 @@ paths:
         sidebar_title: List all resources for a grant in a partnership
     post:
       x-doc:
-        title: Add resources to a grant in a partnership
+        title: Add resources to a grant in a partnership in NetApp Console (local deployment)
         category: Resource and Resourcegroup
         filename: post-partnerships-grants-resources.html
         subcategory: 
@@ -1783,7 +1783,7 @@ paths:
   "/partnerships/{partnership_id}/grants/{grant_id}/resources/{resource_id}":
     delete:
       x-doc:
-        title: Remove a resource from a grant in a partnership
+        title: Remove a resource from a grant in a partnership in NetApp Console (local deployment)
         category: Resource and Resourcegroup
         filename: delete-partnerships-grants-resources-.html
         subcategory: 
@@ -1791,7 +1791,7 @@ paths:
         sidebar_title: Remove a resource from a grant in a partnership
     get:
       x-doc:
-        title: Retrieve a resource from a grant in a partnership
+        title: Retrieve a resource from a grant in a partnership in NetApp Console (local deployment)
         category: Resource and Resourcegroup
         filename: get-partnerships-grants-resources-.html
         subcategory: 
@@ -1800,7 +1800,7 @@ paths:
   "/partnerships/{partnership_id}/grants/{grant_id}/users":
     get:
       x-doc:
-        title: List all users for a grant in a partnership
+        title: List all users for a grant in a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: get-partnerships-grants-users.html
         subcategory: 
@@ -1808,7 +1808,7 @@ paths:
         sidebar_title: List all users for a grant in a partnership
     post:
       x-doc:
-        title: Add users to a grant in a partnership
+        title: Add users to a grant in a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: post-partnerships-grants-users.html
         subcategory: 
@@ -1817,7 +1817,7 @@ paths:
   "/partnerships/{partnership_id}/grants/{grant_id}/users/{user_id}":
     delete:
       x-doc:
-        title: Remove a user from a grant in a partnership
+        title: Remove a user from a grant in a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: delete-partnerships-grants-users-.html
         subcategory: 
@@ -1825,7 +1825,7 @@ paths:
         sidebar_title: Remove a user from a grant in a partnership
     get:
       x-doc:
-        title: Retrieve a user with a grant in a partnership
+        title: Retrieve a user with a grant in a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: get-partnerships-grants-users-.html
         subcategory: 
@@ -1834,7 +1834,7 @@ paths:
   "/partnerships/{partnership_id}/resourceadmins":
     get:
       x-doc:
-        title: List all users for a partnership
+        title: List all users for a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: get-partnerships-resourceadmins.html
         subcategory: 
@@ -1842,7 +1842,7 @@ paths:
         sidebar_title: List all users for a partnership
     post:
       x-doc:
-        title: Add users with the ResourceAdmin role to a partnership
+        title: Add users with the ResourceAdmin role to a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: post-partnerships-resourceadmins.html
         subcategory: 
@@ -1851,7 +1851,7 @@ paths:
   "/partnerships/{partnership_id}/resourceadmins/{user_id}":
     delete:
       x-doc:
-        title: Remove a user from a partnership ResourceAdmin group
+        title: Remove a user from a partnership ResourceAdmin group in NetApp Console (local deployment)
         category: User and Usergroup
         filename: delete-partnerships-resourceadmins-.html
         subcategory: 
@@ -1859,7 +1859,7 @@ paths:
         sidebar_title: Remove a user from a partnership ResourceAdmin group
     get:
       x-doc:
-        title: Retrieve a user in a partnership ResourceAdmin group
+        title: Retrieve a user in a partnership ResourceAdmin group in NetApp Console (local deployment)
         category: User and Usergroup
         filename: get-partnerships-resourceadmins-.html
         subcategory: 
@@ -1868,7 +1868,7 @@ paths:
   "/partnerships/{partnership_id}/useradmins":
     get:
       x-doc:
-        title: List all users with the UserAdmin role in a partnership
+        title: List all users with the UserAdmin role in a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: get-partnerships-useradmins.html
         subcategory: 
@@ -1876,7 +1876,7 @@ paths:
         sidebar_title: List all users with the UserAdmin role in a partnership
     post:
       x-doc:
-        title: Add users to the UserAdmin role in a partnership
+        title: Add users to the UserAdmin role in a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: post-partnerships-useradmins.html
         subcategory: 
@@ -1885,7 +1885,7 @@ paths:
   "/partnerships/{partnership_id}/useradmins/{user_id}":
     delete:
       x-doc:
-        title: Remove a user from the UserAdmin group in a partnership
+        title: Remove a user from the UserAdmin group in a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: delete-partnerships-useradmins-.html
         subcategory: 
@@ -1893,7 +1893,7 @@ paths:
         sidebar_title: Remove a user from the UserAdmin group in a partnership
     get:
       x-doc:
-        title: Retrieve a user in the UserAdmin group in a partnership
+        title: Retrieve a user in the UserAdmin group in a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: get-partnerships-useradmins-.html
         subcategory: 
@@ -1902,7 +1902,7 @@ paths:
   "/partnerships/{partnership_id}/users":
     get:
       x-doc:
-        title: List all users for a partnership
+        title: List all users for a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: get-partnerships-users.html
         subcategory: 
@@ -1910,7 +1910,7 @@ paths:
         sidebar_title: List all users for a partnership
     post:
       x-doc:
-        title: Add users to a partnership
+        title: Add users to a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: post-partnerships-users.html
         subcategory: 
@@ -1919,7 +1919,7 @@ paths:
   "/partnerships/{partnership_id}/users/{user_id}":
     delete:
       x-doc:
-        title: Remove a user from a partnership
+        title: Remove a user from a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: delete-partnerships-users-.html
         subcategory: 
@@ -1927,7 +1927,7 @@ paths:
         sidebar_title: Remove a user from a partnership
     get:
       x-doc:
-        title: Retrieve a user in a partnership
+        title: Retrieve a user in a partnership in NetApp Console (local deployment)
         category: User and Usergroup
         filename: get-partnerships-users-.html
         subcategory: 
@@ -1936,7 +1936,7 @@ paths:
   "/projects/{project_id}/roles/{role_id}/usergroups":
     post:
       x-doc:
-        title: Create a new user group in a project
+        title: Create a new user group in a project in NetApp Console (local deployment)
         category: User and Usergroup
         filename: post-projects-roles-usergroups.html
         subcategory: 
@@ -1945,7 +1945,7 @@ paths:
   "/resources/{resource_id}/permissions/{permission_id}/users/{user_id}":
     get:
       x-doc:
-        title: Retrieve a user with a permission for a resource
+        title: Retrieve a user with a permission for a resource in NetApp Console (local deployment)
         category: User and Usergroup
         filename: get-resources-permissions-users-.html
         subcategory: 
@@ -1954,7 +1954,7 @@ paths:
   "/users/{user_id}/partnerOrganizations":
     get:
       x-doc:
-        title: List all partnership organizations for the specified user
+        title: List all partnership organizations for the specified user in NetApp Console (local deployment)
         category: Resource and Resourcegroup
         filename: get-users-partnerorganizations.html
         subcategory: 
@@ -1963,7 +1963,7 @@ paths:
   "/users/{user_id}/permissions/{permission_id}/resources/{resource_id}":
     get:
       x-doc:
-        title: Retrieve a resource for a user with a permission
+        title: Retrieve a resource for a user with a permission in NetApp Console (local deployment)
         category: Resource and Resourcegroup
         filename: get-users-permissions-resources-.html
         subcategory: 
