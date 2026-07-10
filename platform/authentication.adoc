@@ -1,0 +1,15 @@
+---
+sidebar: sidebar
+permalink: platform/authentication.html
+keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
+summary: A workflow describing how to cerate a service token
+---
+= Learn about authentication and authorization in NetApp Console (local deployment)
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ../media/
+
+[.lead]
+You should be familiar with the basic authentication and authorization concepts before using the NetApp Console (local deployment) REST APIs. 

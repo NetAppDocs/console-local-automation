@@ -1,0 +1,15 @@
+---
+sidebar: sidebar
+permalink: platform/learn-about.html
+keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
+summary: A workflow describing how to cerate a service token
+---
+= Learn about the REST APIs for NetApp Console (local deployment)  
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ../media/
+
+[.lead]
+NetApp Console (local deployment) is a self-hosted deployment option that lets you run the NetApp Console (local deployment) control plane in your on-premises environment. NetApp Console (local deployment) delivers unified storage management and automation capabilities such as provisioning, policy enforcement, drift detection, and remediation in an isolated deployment that keeps your data, metadata, and management traffic entirely within your own infrastructure. 

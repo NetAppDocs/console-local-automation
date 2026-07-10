@@ -13,8 +13,9 @@ settings:
     api_preserve_adoc: true
 sidebar:
   entries:
-    - title: NetApp Console API docs
+    - title: NetApp Console (local deployment) API docs
       url: /index.html
+    - section: platform
     - section: agentic
     - section: alerts
     - section: asset
