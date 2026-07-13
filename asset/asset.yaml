@@ -71,6 +71,14 @@ components:
             name: count
             schema:
                 $ref: '#/components/schemas/query_count'
+        eseriesarray_id:
+            description: World Wide Name (WWN) of the E-Series array, used as its globally unique identifier.
+            example: 600A0B80006306F400000000674A4DD5
+            in: path
+            name: eseriesarray_id
+            required: true
+            schema:
+                type: string
         filter:
             description: |-
                 Specifies which fields should be matched in order to return a resource when listing a collection.
@@ -402,7 +410,7 @@ components:
                         The personality of the ONTAP cluster that the aggregate belongs to, derived from the cluster's disaggregated and SAN-optimized configuration.
                         Defined values are:
                         * "UNIFIED_ONTAP" - A traditional unified ONTAP cluster (not disaggregated).
-                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array r2 cluster.
+                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array (ASA) r2 cluster.
                         * "AFX" - A disaggregated cluster that is not SAN-optimized.
                     enum:
                         - UNIFIED_ONTAP
@@ -568,7 +576,7 @@ components:
                     example: 35
                     type: number
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's systems.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -716,7 +724,7 @@ components:
         asset_1.0_get_response_body:
             properties:
                 agentId:
-                    description: Identifier for the connector agent.
+                    description: Identifier for the Console agent.
                     example: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
                     type: string
                 assetType:
@@ -743,7 +751,7 @@ components:
                     format: uuid
                     type: string
                 legacyAgentId:
-                    description: Legacy identifier for the connector agent.
+                    description: Legacy identifier for the Console agent.
                     example: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
                     type: string
                 metadata:
@@ -764,11 +772,11 @@ components:
                     format: uuid
                     type: string
                 resourceClass:
-                    description: The resource class of the working environment.
+                    description: The resource class of the system.
                     example: ON_PREM
                     type: string
                 resourceType:
-                    description: The resource type of the working environment.
+                    description: The resource type of the system.
                     example: ON_PREM
                     type: string
                 type:
@@ -790,7 +798,7 @@ components:
                     example: "1.0"
                     type: string
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -881,14 +889,13 @@ components:
         asset_1.0_time_range:
             description: |-
                 Time range for a query window. If omitted from the request body,
-                performs an instant query at the evaluation time. If provided,
-                performs a range query. Values may be absolute or relative to the
+                an instant query is performed at the evaluation time. If provided in the request body, a range query is performed. Values can be absolute or relative to the
                 evaluation time.
             properties:
                 end:
                     default: NOW
                     description: |-
-                        End of the query window. The value may be:
+                        End of the query window. The value can be:
                         - RFC 3339 timestamp (e.g. "2026-01-23T10:00:00Z"),
                         - "NOW",
                         - ISO 8601 duration interpreted as NOW minus the duration
@@ -898,7 +905,7 @@ components:
                     type: string
                 start:
                     description: |-
-                        Start of the query window. The value may be:
+                        Start of the query window. The value can be:
                         - RFC 3339 timestamp (e.g. "2026-01-23T10:00:00Z"),
                         - "NOW",
                         - ISO 8601 duration interpreted as NOW minus the duration
@@ -940,7 +947,7 @@ components:
                                             format: date-time
                                             type: string
                                         value:
-                                            description: Numeric value at the given timestamp.
+                                            description: Numeric value at the specified timestamp.
                                             example: 42.5
                                             format: double
                                             type: number
@@ -1027,6 +1034,10 @@ components:
                     description: Number of nodes in the cluster.
                     example: 2
                     type: number
+                ntpServerCount:
+                    description: Number of NTP servers configured for the cluster.
+                    example: 3
+                    type: number
                 ontapVersion:
                     description: Cluster version information. When the cluster has more than one node, the cluster version is equivalent to the lowest of generation, major, and minor versions on all nodes.
                     properties:
@@ -1057,7 +1068,7 @@ components:
                         The personality of the ONTAP cluster, derived from the cluster's disaggregated and SAN-optimized configuration.
                         Defined values are:
                         * "UNIFIED_ONTAP" - A traditional unified ONTAP cluster (not disaggregated).
-                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array r2 cluster.
+                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array (ASA) r2 cluster.
                         * "AFX" - A disaggregated cluster that is not SAN-optimized.
                     enum:
                         - UNIFIED_ONTAP
@@ -1068,6 +1079,10 @@ components:
                 security:
                     description: Security related information for the cluster.
                     properties:
+                        asupHttpsConfigured:
+                            description: Indicates whether or not HTTPS is configured for AutoSupport.
+                            example: true
+                            type: boolean
                         certificateExpiryStatus:
                             description: |-
                                 The expiration status of the admin SVM SSL certificate.
@@ -1088,16 +1103,78 @@ components:
                             example: "2024-12-31T23:59:59Z"
                             format: date-time
                             type: string
+                        clusterPeerEncryptionStatus:
+                            description: |-
+                                Indicates whether or not all cluster peer connections are encrypted.
+                                Defined values are:
+                                * "ENCRYPTED" - All cluster peer connections are encrypted.
+                                * "NOT_ENCRYPTED" - Some cluster peer connections are not encrypted.
+                                * "NOT_PEERED" - The cluster is not peered with any other clusters
+                            enum:
+                                - ENCRYPTED
+                                - NOT_ENCRYPTED
+                                - NOT_PEERED
+                            example: ENCRYPTED
+                            type: string
+                        compliancePercent:
+                            description: |-
+                                Percentage of security best practices that the cluster has configured, in the range [0, 100].
+                                A cluster is considered non-compliant if any of the following conditions are true:
+                                * FIPS mode is not enabled.
+                                * Telnet is enabled.
+                                * SSH is configured with insecure ciphers.
+                                * No login banner is configured at the cluster scope.
+                                * Cluster peer connections are not encrypted.
+                                * Less than three NTP servers are configured.
+                                * Remote audit log forwarding is not encrypted.
+                                * AutoSupport HTTPS transport is not configured.
+                                * The default admin user account is enabled.
+                                * Remote Shell (rsh) is enabled.
+                                * MD5 password hashing is used for any account.
+                            example: 90.9
+                            format: double
+                            maximum: 100
+                            minimum: 0
+                            type: number
+                        defaultAdminUserEnabled:
+                            description: Indicates whether the default admin user account is enabled.
+                            example: false
+                            type: boolean
                         fipsEnabled:
                             description: Indicates whether or not the software FIPS mode is enabled on the cluster.
+                            example: false
+                            type: boolean
+                        isMD5PasswordHashUsed:
+                            description: Indicates whether or not MD5 password hashing is used for any account on the cluster.
                             example: false
                             type: boolean
                         keyManagerConfigured:
                             description: Indicates whether or not a key manager is configured for the cluster.
                             example: true
                             type: boolean
+                        logForwardEncrypted:
+                            description: |-
+                                Indicates whether or not audit log forwarding is encrypted.
+                                Defined values are:
+                                * "ENCRYPTED" - Audit log forwarding is encrypted for all destinations.
+                                * "NOT_ENCRYPTED" - Audit log forwarding is not encrypted for some destinations.
+                                * "NOT_CONFIGURED" - Audit log forwarding is not configured.
+                            enum:
+                                - ENCRYPTED
+                                - NOT_ENCRYPTED
+                                - NOT_CONFIGURED
+                            example: ENCRYPTED
+                            type: string
+                        loginBannerConfigured:
+                            description: Indicates whether the login banner is configured.
+                            example: true
+                            type: boolean
                         rshEnabled:
                             description: Indicates whether or not security protocol rsh is enabled on the cluster.
+                            example: false
+                            type: boolean
+                        sshSecured:
+                            description: Indicates whether or not the admin SVM uses secure SSH ciphers.
                             example: false
                             type: boolean
                         telnetEnabled:
@@ -1143,7 +1220,7 @@ components:
                     example: 100
                     type: number
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -1304,8 +1381,117 @@ components:
                     format: date-time
                     type: string
             type: object
+        eseriesarray_1.0_get_response_body:
+            properties:
+                fleetIds:
+                    description: List of identifiers for the fleets that the E-Series array belongs to.
+                    example:
+                        - 1a2b3c4d-5678-90ab-cdef-1234567890ab
+                    items:
+                        type: string
+                    type: array
+                id:
+                    description: World Wide Name (WWN) of the E-Series array, used as its globally unique identifier.
+                    example: 600A0B80006306F400000000674A4DD5
+                    type: string
+                metadata:
+                    $ref: '#/components/schemas/common_1.0_inventory_metadata'
+                metrics:
+                    $ref: '#/components/schemas/eseriesarray_1.0_metrics'
+                name:
+                    description: Name of the E-Series array.
+                    example: eseries-array-01
+                    type: string
+                organizationId:
+                    description: Identifier for the organization that owns the E-Series array.
+                    example: 9b0ee210-70a0-4158-b025-0decde66e4de
+                    format: uuid
+                    type: string
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                          * "application/vnd.netapp.bxp.eseriesarray"
+                    enum:
+                        - application/vnd.netapp.bxp.eseriesarray
+                    example: application/vnd.netapp.bxp.eseriesarray
+                    type: string
+                version:
+                    description: |-
+                        Version of the resource.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+                workingEnvironmentId:
+                    description: Identifier for the asset's system.
+                    example: 46a775b8-0394-4941-8b2f-892cc319a291
+                    format: uuid
+                    type: string
+            type: object
+        eseriesarray_1.0_list_response_body:
+            properties:
+                count:
+                    description: Total number of resources in the collection that match the query.
+                    example: 1
+                    format: int64
+                    minimum: 0
+                    type: integer
+                items:
+                    items:
+                        $ref: '#/components/schemas/eseriesarray_1.0_get_response_body'
+                    type: array
+                    uniqueItems: true
+            required:
+                - items
+            type: object
+        eseriesarray_1.0_metrics:
+            description: Performance metrics for the E-Series array.
+            properties:
+                iops:
+                    description: IOPS metrics for the E-Series array.
+                    properties:
+                        total:
+                            description: The total rate of I/O operations observed on the array (read + write).
+                            example: 12540
+                            format: double
+                            type: number
+                    type: object
+                throughput:
+                    description: Throughput metrics for the E-Series array.
+                    properties:
+                        total:
+                            description: The total rate of throughput observed on the array (read + write), in bytes per second.
+                            example: 268435456
+                            format: double
+                            type: number
+                    type: object
+            type: object
+        eseriesarray_1.0_reference:
+            description: Reference to an E-Series array.
+            properties:
+                id:
+                    description: World Wide Name (WWN) of the E-Series array, used as its globally unique identifier.
+                    example: 600A0B80006306F400000000674A4DD5
+                    type: string
+                name:
+                    description: Name of the E-Series array.
+                    example: eseries-array-01
+                    type: string
+            type: object
+            x-tag: E-Series Array
         fleet_1.0_get_response_body:
             properties:
+                compliantSvmCount:
+                    description: Number of SVMs in the fleet that are 100% security compliant.
+                    example: 35
+                    type: number
+                compliantSystemCount:
+                    description: Number of systems in the fleet that are 100% security compliant.
+                    example: 6
+                    type: number
                 description:
                     description: Description for the fleet.
                     example: Fleet for staging.
@@ -1358,6 +1544,10 @@ components:
                             format: int64
                             type: integer
                     type: object
+                svmCount:
+                    description: Number of SVMs in the fleet.
+                    example: 5
+                    type: number
                 systemCount:
                     description: Number of systems in the fleet.
                     example: 5
@@ -1421,7 +1611,7 @@ components:
                         The personality of the ONTAP cluster that the LUN belongs to, derived from the cluster's disaggregated and SAN-optimized configuration.
                         Defined values are:
                         * "UNIFIED_ONTAP" - A traditional unified ONTAP cluster (not disaggregated).
-                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array r2 cluster.
+                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array (ASA) r2 cluster.
                         * "AFX" - A disaggregated cluster that is not SAN-optimized.
                     enum:
                         - UNIFIED_ONTAP
@@ -1441,6 +1631,17 @@ components:
                     description: Identifier of the LUN.
                     example: c08d213b-3c38-4c07-bde0-852ef821b815
                     format: uuid
+                    type: string
+                mapped:
+                    description: |-
+                        Indicates whether the LUN is mapped to an igroup.
+                        Defined values are:
+                        * "MAPPED" - The LUN is mapped to an igroup.
+                        * "UNMAPPED" - The LUN is not mapped to an igroup.
+                    enum:
+                        - MAPPED
+                        - UNMAPPED
+                    example: MAPPED
                     type: string
                 metadata:
                     $ref: '#/components/schemas/common_1.0_inventory_metadata'
@@ -1472,6 +1673,23 @@ components:
                     type: object
                 space:
                     $ref: '#/components/schemas/lun_1.0_space'
+                state:
+                    description: |-
+                        The state of the LUN.
+                        Defined values are:
+                        * "ONLINE" - The LUN is online and accessible.
+                        * "OFFLINE" - The LUN is offline and not accessible.
+                        * "FOREIGN_LUN_ERROR" - The LUN is in an error state due to a foreign LUN issue.
+                        * "NVFAIL" - The LUN is in an error state due to an NVRAM failure.
+                        * "SPACE_ERROR" - The LUN is in an error state due to insufficient space.
+                    enum:
+                        - ONLINE
+                        - OFFLINE
+                        - FOREIGN_LUN_ERROR
+                        - NVFAIL
+                        - SPACE_ERROR
+                    example: ONLINE
+                    type: string
                 storageClassId:
                     description: Identifier for the storage class associated with the LUN.
                     example: 5f4dcc3b-5aa7-4e2d-9c3a-8a9f1f0e6b7c
@@ -1500,7 +1718,7 @@ components:
                 volume:
                     $ref: '#/components/schemas/volume_1.0_reference'
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -1567,7 +1785,7 @@ components:
                         The personality of the ONTAP cluster that the LUN belongs to, derived from the cluster's disaggregated and SAN-optimized configuration.
                         Defined values are:
                         * "UNIFIED_ONTAP" - A traditional unified ONTAP cluster (not disaggregated).
-                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array r2 cluster.
+                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array (ASA) r2 cluster.
                         * "AFX" - A disaggregated cluster that is not SAN-optimized.
                     enum:
                         - UNIFIED_ONTAP
@@ -1579,6 +1797,17 @@ components:
                     description: Identifier of the LUN.
                     example: c08d213b-3c38-4c07-bde0-852ef821b815
                     format: uuid
+                    type: string
+                mapped:
+                    description: |-
+                        Indicates whether the LUN is mapped to an igroup.
+                        Defined values are:
+                        * "MAPPED" - The LUN is mapped to an igroup.
+                        * "UNMAPPED" - The LUN is not mapped to an igroup.
+                    enum:
+                        - MAPPED
+                        - UNMAPPED
+                    example: MAPPED
                     type: string
                 metrics:
                     $ref: '#/components/schemas/lun_1.0_metrics'
@@ -1603,6 +1832,23 @@ components:
                     type: object
                 space:
                     $ref: '#/components/schemas/lun_1.0_space'
+                state:
+                    description: |-
+                        The state of the LUN.
+                        Defined values are:
+                        * "ONLINE" - The LUN is online and accessible.
+                        * "OFFLINE" - The LUN is offline and not accessible.
+                        * "FOREIGN_LUN_ERROR" - The LUN is in an error state due to a foreign LUN issue.
+                        * "NVFAIL" - The LUN is in an error state due to an NVRAM failure.
+                        * "SPACE_ERROR" - The LUN is in an error state due to insufficient space.
+                    enum:
+                        - ONLINE
+                        - OFFLINE
+                        - FOREIGN_LUN_ERROR
+                        - NVFAIL
+                        - SPACE_ERROR
+                    example: ONLINE
+                    type: string
                 storageClassId:
                     description: Identifier for the storage class associated with the LUN.
                     example: 5f4dcc3b-5aa7-4e2d-9c3a-8a9f1f0e6b7c
@@ -1631,7 +1877,7 @@ components:
                 volume:
                     $ref: '#/components/schemas/volume_1.0_reference'
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -1674,7 +1920,7 @@ components:
                         The personality of the ONTAP cluster that the NVMe namespace belongs to, derived from the cluster's disaggregated and SAN-optimized configuration.
                         Defined values are:
                         * "UNIFIED_ONTAP" - A traditional unified ONTAP cluster (not disaggregated).
-                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array r2 cluster.
+                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array (ASA) r2 cluster.
                         * "AFX" - A disaggregated cluster that is not SAN-optimized.
                     enum:
                         - UNIFIED_ONTAP
@@ -1748,7 +1994,7 @@ components:
                 volume:
                     $ref: '#/components/schemas/volume_1.0_reference'
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -1883,7 +2129,7 @@ components:
                     example: "1.0"
                     type: string
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -1960,6 +2206,225 @@ components:
                             format: double
                             type: number
                     type: object
+            type: object
+        nfsshare_1.0_get_response_body:
+            properties:
+                accessProtocols:
+                    description: |-
+                        The access protocols allowed by the export policy rule.
+                        Defined values are:
+                        * "ANY" - All protocols are allowed.
+                        * "NFS" - All NFS versions are allowed.
+                        * "NFS3" - NFSv3 is allowed.
+                        * "NFS4" - NFSv4 is allowed.
+                        * "CIFS" - CIFS/SMB is allowed.
+                        * "FLEXCACHE" - FlexCache is allowed.
+                    example:
+                        - NFS3
+                        - NFS4
+                    items:
+                        enum:
+                            - ANY
+                            - NFS
+                            - NFS3
+                            - NFS4
+                            - CIFS
+                            - FLEXCACHE
+                        type: string
+                    type: array
+                    uniqueItems: true
+                clientMatch:
+                    description: |-
+                        The client match specification for the export policy rule.
+                        Specifies the clients to which the rule applies. Can be a hostname, IP address, IP subnet (CIDR), or netgroup name.
+                    example: 0.0.0.0/0
+                    type: string
+                cluster:
+                    $ref: '#/components/schemas/cluster_1.0_reference'
+                exportPolicy:
+                    description: The export policy associated with the NFS share.
+                    properties:
+                        name:
+                            description: The name of the export policy applied to the volume or qtree.
+                            example: default
+                            type: string
+                    type: object
+                id:
+                    description: Identifier of the NFS share.
+                    example: a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d
+                    format: uuid
+                    type: string
+                isActive:
+                    description: Indicates whether the volume is actively mounted at a junction path.
+                    example: true
+                    type: boolean
+                metadata:
+                    $ref: '#/components/schemas/common_1.0_inventory_metadata'
+                organizationId:
+                    description: Identifier for an organization.
+                    example: 16c07c0c-666b-4870-9363-764eef9e7160
+                    format: uuid
+                    type: string
+                path:
+                    description: |-
+                        The fully-qualified path in the owning SVM's namespace at which the volume is mounted (junction path).
+                        Path begins with '/' and does not end with '/'.
+                        Only present when the volume is actively mounted.
+                    example: /vol/volume-01
+                    type: string
+                qtree:
+                    description: The qtree associated with the NFS share.
+                    properties:
+                        id:
+                            description: The identifier for the qtree, unique within the qtree's volume.
+                            example: 1
+                            type: integer
+                        name:
+                            description: The name of the qtree.
+                            example: qtree-01
+                            type: string
+                    type: object
+                readOnlyAccess:
+                    description: |-
+                        Authentication flavors that govern read-only access.
+                        Defined values are:
+                        * "ANY" - All authentication flavors are allowed.
+                        * "NONE" - No authentication (anonymous access).
+                        * "NEVER" - Read-only access is denied.
+                        * "KRB5" - Kerberos V5 authentication.
+                        * "KRB5I" - Kerberos V5 with integrity checking.
+                        * "KRB5P" - Kerberos V5 with privacy (encryption).
+                        * "NTLM" - CIFS NTLM authentication.
+                        * "SYS" - AUTH_SYS (AUTH_UNIX) authentication.
+                    example:
+                        - SYS
+                    items:
+                        enum:
+                            - ANY
+                            - NONE
+                            - NEVER
+                            - KRB5
+                            - KRB5I
+                            - KRB5P
+                            - NTLM
+                            - SYS
+                        type: string
+                    type: array
+                    uniqueItems: true
+                readWriteAccess:
+                    description: |-
+                        Authentication flavors that govern read/write access.
+                        Defined values are:
+                        * "ANY" - All authentication flavors are allowed.
+                        * "NONE" - No authentication (anonymous access).
+                        * "NEVER" - Read/write access is denied.
+                        * "KRB5" - Kerberos V5 authentication.
+                        * "KRB5I" - Kerberos V5 with integrity checking.
+                        * "KRB5P" - Kerberos V5 with privacy (encryption).
+                        * "NTLM" - CIFS NTLM authentication.
+                        * "SYS" - AUTH_SYS (AUTH_UNIX) authentication.
+                    example:
+                        - SYS
+                    items:
+                        enum:
+                            - ANY
+                            - NONE
+                            - NEVER
+                            - KRB5
+                            - KRB5I
+                            - KRB5P
+                            - NTLM
+                            - SYS
+                        type: string
+                    type: array
+                    uniqueItems: true
+                ruleIndex:
+                    description: The index of the export policy rule. Rules are evaluated in order from lowest to highest index.
+                    example: 1
+                    type: integer
+                securityStyle:
+                    description: |-
+                        The security style of the volume or qtree.
+                        Defined values are:
+                        * "UNIX" - Unix-style security (POSIX permissions).
+                        * "NTFS" - NTFS/Windows-style security.
+                        * "MIXED" - Mixed-style security (both UNIX and NTFS).
+                        * "UNIFIED" - Unified-style security (unified UNIX, NFS and CIFS permissions).
+                    enum:
+                        - UNIX
+                        - NTFS
+                        - MIXED
+                        - UNIFIED
+                    example: UNIX
+                    type: string
+                svm:
+                    $ref: '#/components/schemas/svm_1.0_reference'
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                          * "application/vnd.netapp.bxp.nfsshare"
+                    enum:
+                        - application/vnd.netapp.bxp.nfsshare
+                    example: application/vnd.netapp.bxp.nfsshare
+                    type: string
+                unixPermissions:
+                    description: |-
+                        UNIX permissions on the volume, expressed as an octal string.
+                        Consists of 4 digits derived by adding bits 4 (read), 2 (write), and 1 (execute).
+                        The first digit selects set user ID (4), set group ID (2), and sticky (1) attributes.
+                        The second digit selects permissions for the owner; the third for the group; the fourth for others.
+                    example: "755"
+                    type: string
+                version:
+                    description: |-
+                        Version of the resource.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+                volume:
+                    $ref: '#/components/schemas/volume_1.0_reference'
+                volumeState:
+                    description: |-
+                        The state of the volume.
+                        Client access is supported only when the volume is online and mounted.
+                        Defined values are:
+                        * "ONLINE" - The volume is online and serving data.
+                        * "OFFLINE" - The volume is offline and not accessible.
+                        * "RESTRICTED" - The volume is in restricted state; some operations are allowed.
+                        * "MIXED" - Applies to FlexGroup volumes only; individual constituents are in different states.
+                        * "ERROR" - The volume is in an error state and cannot serve data.
+                    enum:
+                        - ONLINE
+                        - OFFLINE
+                        - RESTRICTED
+                        - MIXED
+                        - ERROR
+                    example: ONLINE
+                    type: string
+                workingEnvironmentId:
+                    description: Identifier for the asset's system.
+                    example: OnPremWorkingEnvironment-KxESQhek
+                    type: string
+            type: object
+        nfsshare_1.0_list_response_body:
+            properties:
+                count:
+                    description: Total number of resources in the collection that match the query.
+                    example: 2
+                    format: int64
+                    minimum: 0
+                    type: integer
+                items:
+                    items:
+                        $ref: '#/components/schemas/nfsshare_1.0_get_response_body'
+                    type: array
+                    uniqueItems: true
+            required:
+                - items
             type: object
         node_1.0_get_response_body:
             properties:
@@ -2076,7 +2541,7 @@ components:
                     example: 24
                     type: number
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -2242,7 +2707,7 @@ components:
                     example: "1.0"
                     type: string
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -2432,7 +2897,7 @@ components:
                     example: "1.0"
                     type: string
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -2555,7 +3020,7 @@ components:
                 volume:
                     $ref: '#/components/schemas/volume_1.0_reference'
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -2651,8 +3116,8 @@ components:
             properties:
                 agentId:
                     description: |-
-                        Identifier for the connector agent if the relationship has a connector. This field may
-                        be omitted if the relationship does not have a connector.
+                        Identifier for the Console agent if the relationship has a Console agent. This field can
+                        be omitted if the relationship does not have a Console agent.
                     example: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
                     type: string
                 data:
@@ -2671,8 +3136,8 @@ components:
                     type: string
                 legacyAgentId:
                     description: |-
-                        Legacy identifier for the connector agent. This field may
-                        be omitted if the relationship does not have a connector.
+                        Legacy identifier for the Console agent. This field can
+                        be omitted if the relationship does not have a Console agent.
                     example: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
                     type: string
                 metadata:
@@ -2824,7 +3289,7 @@ components:
                 volume:
                     $ref: '#/components/schemas/volume_1.0_reference'
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -2851,13 +3316,13 @@ components:
                     example: false
                     type: boolean
                 storageCapacity:
-                    description: "Storage capacity metrics for the ONTAP clusters. Only the top 3 clusters with highest `capacityUsedPercent` \nare returned sorted in descending order.\nEach item in the array represents a cluster's storage capacity metrics."
+                    description: "Storage capacity metrics for the ONTAP clusters. Only the top five clusters with the highest `capacityUsedPercent` \nare returned, sorted in descending order.\nEach item in the array represents a cluster's storage capacity metrics."
                     items:
                         $ref: '#/components/schemas/summary_1.0_storage_item'
                     type: array
                     uniqueItems: true
                 storagePerformance:
-                    description: "Storage performance metrics for the ONTAP clusters. Only the top 5 clusters with highest `headroomCpuCurrentUtilization` \nare returned sorted in descending order.\nEach item in the array represents a cluster's storage performance metrics."
+                    description: "Storage performance metrics for the ONTAP clusters. Only the top five clusters with the highest `headroomCpuCurrentUtilization` \nare returned, sorted in descending order.\nEach item in the array represents a cluster's storage performance metrics."
                     items:
                         $ref: '#/components/schemas/summary_1.0_storage_item'
                     type: array
@@ -2884,7 +3349,7 @@ components:
         summary_1.0_storage_item:
             properties:
                 agentId:
-                    description: Identifier for the connector agent.
+                    description: Identifier for the Console agent.
                     example: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
                     type: string
                 attributes:
@@ -2902,7 +3367,7 @@ components:
                     format: uuid
                     type: string
                 legacyAgentId:
-                    description: Legacy identifier for the connector agent.
+                    description: Legacy identifier for the Console agent.
                     example: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
                     type: string
                 metrics:
@@ -2916,15 +3381,15 @@ components:
                         capacityUsedPercent: 0.02
                     type: object
                 resourceClass:
-                    description: The resource class of the working environment.
+                    description: The resource class of the system.
                     example: ON_PREM
                     type: string
                 resourceType:
-                    description: The resource type of the working environment.
+                    description: The resource type of the system.
                     example: ON_PREM
                     type: string
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -3066,8 +3531,35 @@ components:
                 security:
                     description: Security related information for the SVM.
                     properties:
+                        auditLogEnabled:
+                            default: true
+                            description: Indicates whether or not audit logging is enabled on the SVM.
+                            example: true
+                            type: boolean
+                        compliancePercent:
+                            description: |-
+                                Percentage of security best practices that the SVM has configured, in the range [0, 100].
+                                An SVM is considered non-compliant if any of the following conditions are true:
+                                * CIFS or NFS is enabled but audit logging is disabled.
+                                * SSH is configured with insecure ciphers.
+                                * No login banner is set at the SVM scope.
+                            example: 66.7
+                            format: double
+                            maximum: 100
+                            minimum: 0
+                            type: number
                         keyManagerConfigured:
                             description: Indicates whether or not a key manager is configured for the SVM.
+                            example: true
+                            type: boolean
+                        loginBannerConfigured:
+                            default: true
+                            description: Indicates whether or not a login banner is configured for the SVM.
+                            example: true
+                            type: boolean
+                        sshSecured:
+                            default: true
+                            description: Indicates whether or not the SVM SSH configuration uses only secure ciphers.
                             example: true
                             type: boolean
                     type: object
@@ -3130,7 +3622,7 @@ components:
                     example: 20
                     type: number
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -3250,7 +3742,7 @@ components:
                     example: "1.0"
                     type: string
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: 4cca45b6-1e5a-4c15-b3a6-e29598de9d44
                     type: string
             type: object
@@ -3897,7 +4389,7 @@ components:
         volume_1.0_get_response_body:
             properties:
                 aggregates:
-                    description: List of aggregates that host the volume. Contains a single aggregate for FlexVols and the aggregates for each constituent volume for FlexGroups.
+                    description: List of aggregates that host the volume. Contains a single aggregate for FlexVol volumes and the aggregates for each constituent volume for FlexGroup volumes.
                     items:
                         $ref: '#/components/schemas/aggregate_1.0_reference'
                     type: array
@@ -3950,7 +4442,7 @@ components:
                         The personality of the ONTAP cluster that the volume belongs to, derived from the cluster's disaggregated and SAN-optimized configuration.
                         Defined values are:
                         * "UNIFIED_ONTAP" - A traditional unified ONTAP cluster (not disaggregated).
-                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array r2 cluster.
+                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array (ASA) r2 cluster.
                         * "AFX" - A disaggregated cluster that is not SAN-optimized.
                     enum:
                         - UNIFIED_ONTAP
@@ -4083,7 +4575,7 @@ components:
                             type: string
                     type: object
                 nodes:
-                    description: List of nodes that host the volume. Contains a single node for FlexVols and the nodes for each constituent volume for FlexGroups.
+                    description: List of nodes that host the volume. Contains a single node for FlexVol volumes and the nodes for each constituent volume for FlexGroup volumes.
                     items:
                         $ref: '#/components/schemas/node_1.0_reference'
                     type: array
@@ -4107,9 +4599,9 @@ components:
                             description: |-
                                 The SnapLock type of the volume.
                                 Defined values are:
-                                * "COMPLIANCE" - A SnapLock Compliance(SLC) volume provides the highest level of WORM protection and an administrator cannot destroy a SLC volume if it contains unexpired WORM files.
-                                * "ENTERPRISE" - An administrator can delete a SnapLock Enterprise(SLE) volume.
-                                * "NON_SNAPLOCK" - Indicates the volume is non-snaplock.
+                                * "COMPLIANCE" - A SnapLock Compliance (SLC) volume provides the highest level of WORM protection and an administrator cannot destroy a SLC volume if it contains unexpired WORM files.
+                                * "ENTERPRISE" - An administrator can delete a SnapLock Enterprise (SLE) volume.
+                                * "NON_SNAPLOCK" - Indicates that the volume is not a SnapLock volume.
                             enum:
                                 - COMPLIANCE
                                 - ENTERPRISE
@@ -4198,7 +4690,7 @@ components:
                     example: RW
                     type: string
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -4245,7 +4737,7 @@ components:
         volume_1.0_patch_item:
             properties:
                 aggregates:
-                    description: List of aggregates that host the volume. Contains a single aggregate for FlexVols and the aggregates for each constituent volume for FlexGroups.
+                    description: List of aggregates that host the volume. Contains a single aggregate for FlexVol volumes and the aggregates for each constituent volume for FlexGroup volumes.
                     items:
                         $ref: '#/components/schemas/aggregate_1.0_reference'
                     type: array
@@ -4298,7 +4790,7 @@ components:
                         The personality of the ONTAP cluster that the volume belongs to, derived from the cluster's disaggregated and SAN-optimized configuration.
                         Defined values are:
                         * "UNIFIED_ONTAP" - A traditional unified ONTAP cluster (not disaggregated).
-                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array r2 cluster.
+                        * "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array (ASA) r2 cluster.
                         * "AFX" - A disaggregated cluster that is not SAN-optimized.
                     enum:
                         - UNIFIED_ONTAP
@@ -4421,7 +4913,7 @@ components:
                             type: string
                     type: object
                 nodes:
-                    description: List of nodes that host the volume. Contains a single node for FlexVols and the nodes for each constituent volume for FlexGroups.
+                    description: List of nodes that host the volume. Contains a single node for FlexVol volumes and the nodes for each constituent volume for FlexGroup volumes.
                     items:
                         $ref: '#/components/schemas/node_1.0_reference'
                     type: array
@@ -4440,9 +4932,9 @@ components:
                             description: |-
                                 The SnapLock type of the volume.
                                 Defined values are:
-                                * "COMPLIANCE" - A SnapLock Compliance(SLC) volume provides the highest level of WORM protection and an administrator cannot destroy a SLC volume if it contains unexpired WORM files.
-                                * "ENTERPRISE" - An administrator can delete a SnapLock Enterprise(SLE) volume.
-                                * "NON_SNAPLOCK" - Indicates the volume is non-snaplock.
+                                * "COMPLIANCE" - A SnapLock Compliance (SLC) volume provides the highest level of WORM protection and an administrator cannot destroy a SLC volume if it contains unexpired WORM files.
+                                * "ENTERPRISE" - An administrator can delete a SnapLock Enterprise (SLE) volume.
+                                * "NON_SNAPLOCK" - Indicates that the volume is not a SnapLock volume.
                             enum:
                                 - COMPLIANCE
                                 - ENTERPRISE
@@ -4531,7 +5023,7 @@ components:
                     example: RW
                     type: string
                 workingEnvironmentId:
-                    description: Identifier for the asset's working environment.
+                    description: Identifier for the asset's system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
             type: object
@@ -4644,26 +5136,26 @@ components:
             properties:
                 agentId:
                     description: |-
-                        Identifier for the connector agent if the working environment has a connector. This field may
-                        be omitted if the working environment does not have a connector.
+                        Identifier for the Console agent if the system has a Console agent. This field can
+                        be omitted if the system does not have a Console agent.
                     example: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
                     type: string
                 data:
                     additionalProperties: true
-                    description: JSON object containing the working environment details retrieved from its owning service.
+                    description: JSON object containing the system details retrieved from its owning service.
                     example:
                         name: test-cluster-1
                         publicId: OnPremWorkingEnvironment-KxESQhek
                         workingEnvironmentType: ON_PREM
                     type: object
                 id:
-                    description: Identifier for the working environment.
+                    description: Identifier for the system.
                     example: OnPremWorkingEnvironment-KxESQhek
                     type: string
                 legacyAgentId:
                     description: |-
-                        Legacy identifier for the connector agent. This field may
-                        be omitted if the working environment does not have a connector.
+                        Legacy identifier for the Console agent. This field can
+                        be omitted if the system does not have a Console agent.
                     example: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
                     type: string
                 metadata:
@@ -4674,11 +5166,11 @@ components:
                     format: uuid
                     type: string
                 resourceClass:
-                    description: The resource class of the working environment.
+                    description: The resource class of the system.
                     example: ON_PREM
                     type: string
                 resourceType:
-                    description: The resource type of the working environment.
+                    description: The resource type of the system.
                     example: ON_PREM
                     type: string
                 type:
@@ -4725,169 +5217,101 @@ components:
             scheme: bearer
             type: http
 info:
-    description: The assets service provides configuration data and metrics about assets in BlueXP.
+    description: |-
+        The Assets service provides configuration data and metrics about assets monitored by the NetApp Console.
+
+        The following resources are defined within Assets:
+        <ul>
+        <li>aggregate</li>
+        <li>cluster</li>
+        <li>fleet</li>
+        <li>lun</li>
+        <li>namespace</li>
+        <li>network interface</li>
+        <li>node</li>
+        <li>port</li>
+        <li>QoS policy group</li>
+        <li>qtree</li>
+        <li>SMB share</li>
+        <li>SVM</li>
+        <li>volume</li>
+        </ul>
+
+        **Note**: Before using the API reference documentation, review the
+        [Get started](https://docs.netapp.com/us-en/bluexp-automation/platform/overview.html) section for the
+        Console APIs. For more information about the security tokens and identifiers you'll need when using the API, review the
+        [Common workflows and tasks](https://docs.netapp.com/us-en/bluexp-automation/platform/get_identifiers.html) section.
+
+        ---
+
+        ## REST implementation
+
+        ### HTTP methods
+
+        | Method | Description                                 |
+        |--------|---------------------------------------------|
+        | POST   | Create an object instance                   |
+        | GET    | Retrieve an object instance or collection   |
+        | PATCH  | Update an existing object                   |
+        | DELETE | Remove an existing object                   |
+
+        ### Request headers
+
+        | Request Header | Description                                                                                |
+        |----------------|--------------------------------------------------------------------------------------------|
+        | Authorization  | This header contains a bearer token used to access the Console server.                     |
+        | Content-Type   | This representation header is used to indicate the original media type of the resource.    |
+        | Accept         | The server automatically returns content in JSON format if Accept header is not specified. |
+
+        ### Query parameters
+
+        You can use query parameters with endpoints in the following resources:
+
+        | Resource           | Query Parameter                                    |
+        |--------------------|----------------------------------------------------|
+        | Aggregate          | count, filter, include, limit, metadata, orderBy, skip |
+        | Cluster            | count, filter, include, limit, metadata, orderBy, skip |
+        | Fleet              | count, filter, limit, orderBy, skip                    |
+        | LUN                | count, filter, include, limit, metadata, orderBy, skip |
+        | Namespace          | count, filter, include, limit, metadata, orderBy, skip |
+        | Network Interface  | count, filter, include, limit, metadata, orderBy, skip |
+        | Node               | count, filter, include, limit, metadata, orderBy, skip |
+        | Port               | count, filter, include, limit, metadata, orderBy, skip |
+        | QoS Policy Group   | count, filter, include, limit, metadata, orderBy, skip |
+        | Qtree              | count, filter, include, limit, metadata, orderBy, skip |
+        | SMB Share          | count, filter, include, limit, metadata, orderBy, skip |
+        | SVM                | count, filter, include, limit, metadata, orderBy, skip |
+        | Volume             | count, filter, include, limit, metadata, orderBy, skip |
+
+        ### Response headers
+
+        This API uses the standard HTTP response headers common with all Console APIs. See
+        [REST implementation](https://docs.netapp.com/us-en/bluexp-automation/platform/http_details.html) for more information.
+
+        ### HTTP status codes
+
+        | HTTP Status Code | Description                                                                                                       |
+        |------------------|-------------------------------------------------------------------------------------------------------------------|
+        | 200              | OK: Returned for successful operation completion                                                                  |
+        | 202              | Accepted: The request was accepted and is currently in process.                                                   |
+        | 204              | The operation was completed successfully and the server did not send a response message.                          |
+        | 400              | Bad Request: Returned if the input is malformed and could not be parsed                                           |
+        | 401              | Unauthorized: Returned if user authentication failed or the token has expired                                     |
+        | 403              | Forbidden: Returned for authorization errors depending on the resource and token.                                 |
+        | 409              | Conflict: The operation failed because another operation is already in progress.                                  |
+        | 5xx              | An unexpected error occurred within the Console server which has prevented it from fulfilling the request.        |
+
+        ## Error handling
+
+        There are three processes involved with error handling and processing:
+        * The error is logged for supportability
+        * The error is also returned to the caller for any specific handling
     license:
         name: NetApp Console License
     termsOfService: https://www.netapp.com/media/10784-cloud-data-services-terms.pdf
     title: (ncl) Assets API
     version: "1.0"
 paths:
-    /assets:
-        post:
-            description: Protobuf endpoint for creating or updating assets
-            requestBody:
-                content:
-                    application/json:
-                        schema:
-                            $ref: '#/components/schemas/asset_1.0_post_request_body'
-                description: Protobuf request body for creating or updating assets.
-                required: true
-            responses:
-                "204":
-                    description: Assets were successfully ingested.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-            summary: Creates or updates assets
-            tags:
-                - Asset
-            x-persistence: true
-            x-scope: private,public,ncl
-    /organizations/{organization_id}/agents/{agent_id}/workingenvironments:
-        get:
-            description: Lists all working environment details for the specified agent.
-            parameters:
-                - $ref: '#/components/parameters/metadata'
-            responses:
-                "200":
-                    content:
-                        application/vnd.netapp.bxp.workingenvironments+json:
-                            example:
-                                count: 2
-                                items:
-                                    - agentId: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
-                                      data:
-                                        name: test-cluster-1
-                                        ontapClusterProperties:
-                                            clusterName: test-cluster-1
-                                            ontapVersion: 9.16.1
-                                            serialNumber: 1234
-                                            systemId: 9999
-                                        publicId: OnPremWorkingEnvironment-KxESQhek
-                                        workingEnvironmentType: ON_PREM
-                                      id: OnPremWorkingEnvironment-KxESQhek
-                                      legacyAgentId: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
-                                      metadata:
-                                        createdBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                        creationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                        modificationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                        modifiedBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                      organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
-                                      resourceClass: ON_PREM
-                                      resourceType: ON_PREM
-                                      type: application/vnd.netapp.bxp.workingenvironment
-                                      upstreamStatusCode: 200
-                                      version: "1.0"
-                                    - agentId: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
-                                      data:
-                                        name: test-cvo-1
-                                        ontapClusterProperties:
-                                            clusterName: test-cvo-1
-                                            ontapVersion: 9.17.1
-                                            serialNumber: 9999
-                                            systemId: 8888
-                                        publicId: VsaWorkingEnvironment-KxESQhek
-                                        workingEnvironmentType: VSA
-                                      id: VsaWorkingEnvironment-KxESQhek
-                                      legacyAgentId: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
-                                      metadata:
-                                        createdBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                        creationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                        modificationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                        modifiedBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                      organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
-                                      resourceClass: VSA
-                                      resourceType: GCP
-                                      type: application/vnd.netapp.bxp.workingenvironment
-                                      upstreamStatusCode: 200
-                                      version: "1.0"
-                            schema:
-                                $ref: '#/components/schemas/workingenvironment_1.0_list_response_body'
-                    description: List of working environment details for the agent.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-            summary: List working environment details.
-            tags:
-                - Working Environment
-            x-permission: bxp:resource-read
-            x-persistence: true
-            x-scope: private,public,nco,ncl
-        parameters:
-            - $ref: '#/components/parameters/organization_id'
-            - $ref: '#/components/parameters/agent_id'
-    /organizations/{organization_id}/agents/{agent_id}/workingenvironments/{working_environment_id}:
-        get:
-            description: Retrieves the details of specified working environment.
-            parameters:
-                - $ref: '#/components/parameters/metadata'
-            responses:
-                "200":
-                    content:
-                        application/vnd.netapp.bxp.workingenvironment+json:
-                            examples:
-                                ONTAP On-premise:
-                                    value:
-                                        agentId: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
-                                        data:
-                                            name: test-cluster-1
-                                            ontapClusterProperties:
-                                                clusterName: test-cluster-1
-                                                ontapVersion: 9.16.1
-                                                serialNumber: 1234
-                                                systemId: 9999
-                                            publicId: OnPremWorkingEnvironment-KxESQhek
-                                            workingEnvironmentType: ON_PREM
-                                        id: OnPremWorkingEnvironment-KxESQhek
-                                        legacyAgentId: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
-                                        metadata:
-                                            createdBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                            creationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                            modificationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                            modifiedBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                        organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
-                                        resourceClass: ON_PREM
-                                        resourceType: ON_PREM
-                                        type: application/vnd.netapp.bxp.workingenvironment
-                                        upstreamStatusCode: 200
-                                        version: "1.0"
-                            schema:
-                                $ref: '#/components/schemas/workingenvironment_1.0_get_response_body'
-                    description: Returns the working environment details in the JSON response body.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-                "404":
-                    $ref: '#/components/responses/404NotFound'
-            summary: Retrieve working environment details.
-            tags:
-                - Working Environment
-            x-permission: bxp:resource-read
-            x-persistence: true
-            x-scope: private,public,nco,ncl
-        parameters:
-            - $ref: '#/components/parameters/organization_id'
-            - $ref: '#/components/parameters/agent_id'
-            - $ref: '#/components/parameters/working_environment_id'
     /organizations/{organization_id}/aggregates:
         get:
             description: Lists all aggregates in the specified organization.
@@ -5061,147 +5485,6 @@ paths:
             x-scope: private,public,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
-    /organizations/{organization_id}/assets:
-        get:
-            description: Lists all assets.
-            parameters:
-                - $ref: '#/components/parameters/filter'
-                - $ref: '#/components/parameters/skip'
-                - $ref: '#/components/parameters/include'
-                - $ref: '#/components/parameters/limit'
-                - $ref: '#/components/parameters/order_by'
-                - $ref: '#/components/parameters/count'
-                - $ref: '#/components/parameters/metadata'
-            responses:
-                "200":
-                    content:
-                        application/vnd.netapp.bxp.assets+json:
-                            example:
-                                count: 2
-                                items:
-                                    - agentId: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
-                                      assetType: ONTAP_CLUSTER
-                                      attributes:
-                                        clusterName: test-cluster-1
-                                        clusterUuid: 01a25f12-7828-434a-bed3-003430a802f4
-                                        ontapVersion: 9.16.1
-                                      id: 4336388b-2992-43af-81de-ba9284b7dc36
-                                      legacyAgentId: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
-                                      metadata:
-                                        createdBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                        creationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                        modificationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                        modifiedBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                      metrics:
-                                        capacityTotal: 9876543210
-                                        capacityUsed: 1234567890
-                                        capacityUsedPercent: 0.02
-                                      organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
-                                      resourceClass: ON_PREM
-                                      resourceType: ON_PREM
-                                      type: application/vnd.netapp.bxp.asset
-                                      version: "1.0"
-                                      workingEnvironmentId: OnPremWorkingEnvironment-KxESQhek
-                                    - agentId: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
-                                      assetType: ONTAP_CLUSTER
-                                      attributes:
-                                        clusterName: test-cluster-2
-                                        clusterUuid: 31188d0b-0300-4494-b085-7ea6ea582d36
-                                        ontapVersion: 9.12.1
-                                      id: fe59960c-ae45-4b4c-9998-b2a647b90cb0
-                                      legacyAgentId: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
-                                      metadata:
-                                        createdBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                        creationTimestamp: "2022-10-06T16:58:16.305662Z"
-                                        modificationTimestamp: "2022-10-06T16:58:16.305662Z"
-                                        modifiedBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                      metrics:
-                                        capacityTotal: 76543210
-                                        capacityUsed: 34567890
-                                        capacityUsedPercent: 0.04
-                                      organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
-                                      resourceClass: ON_PREM
-                                      resourceType: ON_PREM
-                                      type: application/vnd.netapp.bxp.asset
-                                      version: "1.0"
-                                      workingEnvironmentId: OnPremWorkingEnvironment-KxESQhek
-                            schema:
-                                $ref: '#/components/schemas/asset_1.0_list_response_body'
-                    description: List of assets.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-            summary: List assets.
-            tags:
-                - Asset
-            x-permission: bxp:asset-read
-            x-persistence: true
-            x-scope: private,public,nco,ncl
-        parameters:
-            - $ref: '#/components/parameters/organization_id'
-    /organizations/{organization_id}/assets/{asset_id}:
-        get:
-            description: Retrieves the specified asset.
-            parameters:
-                - $ref: '#/components/parameters/include'
-            responses:
-                "200":
-                    content:
-                        application/vnd.netapp.bxp.asset+json:
-                            example:
-                                agentId: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
-                                assetType: ONTAP_CLUSTER
-                                attributes:
-                                    clusterName: test-cluster-1
-                                    clusterUuid: 01a25f12-7828-434a-bed3-003430a802f4
-                                    ontapVersion: 9.16.1
-                                id: 4336388b-2992-43af-81de-ba9284b7dc36
-                                legacyAgentId: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
-                                metadata:
-                                    createdBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                    creationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                    modificationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                    modifiedBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                metrics:
-                                    capacityTotal: 9876543210
-                                    capacityUsed: 1234567890
-                                    capacityUsedPercent: 0.02
-                                organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
-                                resourceClass: ON_PREM
-                                resourceType: ON_PREM
-                                type: application/vnd.netapp.bxp.asset
-                                version: "1.0"
-                                workingEnvironmentId: OnPremWorkingEnvironment-KxESQhek
-                            schema:
-                                $ref: '#/components/schemas/asset_1.0_get_response_body'
-                    description: Returns the stored asset in the JSON response body.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-                "404":
-                    $ref: '#/components/responses/404NotFound'
-            summary: Retrieve an asset.
-            tags:
-                - Asset
-            x-permission: bxp:asset-read
-            x-persistence: true
-            x-scope: private,public,nco,ncl
-        parameters:
-            - $ref: '#/components/parameters/organization_id'
-            - description: ID of the asset.
-              example: 645eae30-ea32-4542-af58-1d9012fed81a
-              in: path
-              name: asset_id
-              required: true
-              schema:
-                format: uuid
-                type: string
     /organizations/{organization_id}/clusters:
         get:
             description: Lists all clusters in the specified organization.
@@ -5248,6 +5531,7 @@ paths:
                                         volumeEncryptionPercent: 30
                                       name: cluster-01
                                       nodeCount: 4
+                                      ntpServerCount: 3
                                       ontapVersion:
                                         full: 'NetApp Release 9.13.0: Sun Aug 06 18:20:57 UTC 2023'
                                         generation: 9
@@ -5256,11 +5540,17 @@ paths:
                                       organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
                                       personality: UNIFIED_ONTAP
                                       security:
+                                        asupHttpsConfigured: true
                                         certificateExpiryStatus: ACTIVE
                                         certificateExpiryTime: "2026-06-15T00:00:00Z"
+                                        compliancePercent: 100
                                         fipsEnabled: true
+                                        isMD5PasswordHashUsed: false
                                         keyManagerConfigured: true
+                                        logForwardEncrypted: ENCRYPTED
+                                        loginBannerConfigured: true
                                         rshEnabled: false
+                                        sshSecured: true
                                         telnetEnabled: false
                                       space:
                                         aggregate:
@@ -5311,6 +5601,7 @@ paths:
                                         volumeEncryptionPercent: 75
                                       name: cluster-02
                                       nodeCount: 2
+                                      ntpServerCount: 0
                                       ontapVersion:
                                         full: 'NetApp Release 9.14.1: Mon Nov 13 10:15:32 UTC 2023'
                                         generation: 9
@@ -5319,11 +5610,17 @@ paths:
                                       organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
                                       personality: ASA_R2
                                       security:
+                                        asupHttpsConfigured: false
                                         certificateExpiryStatus: EXPIRING
                                         certificateExpiryTime: "2026-06-15T00:00:00Z"
+                                        compliancePercent: 36.4
                                         fipsEnabled: false
+                                        isMD5PasswordHashUsed: true
                                         keyManagerConfigured: false
+                                        logForwardEncrypted: NOT_CONFIGURED
+                                        loginBannerConfigured: false
                                         rshEnabled: false
+                                        sshSecured: false
                                         telnetEnabled: false
                                       space:
                                         aggregate:
@@ -5382,7 +5679,9 @@ paths:
                             example:
                                 count: 2
                                 items:
-                                    - description: Fleet for production environment.
+                                    - compliantSvmCount: 35
+                                      compliantSystemCount: 6
+                                      description: Fleet for production environment.
                                       id: 7f2e8d4c-9b1a-4f5e-a3d6-2c8e5f7a9b4d
                                       metadata:
                                         modificationTimestamp: "2026-01-16T14:45:12.234567Z"
@@ -5396,11 +5695,14 @@ paths:
                                       space:
                                         available: 395136991232000
                                         size: 527765581332480
+                                      svmCount: 40
                                       systemCount: 8
                                       type: application/vnd.netapp.bxp.fleet
                                       version: "1.0"
                                       volumeCount: 3000
-                                    - description: Fleet for development environment.
+                                    - compliantSvmCount: 12
+                                      compliantSystemCount: 2
+                                      description: Fleet for development environment.
                                       id: 4e9c2f6a-8d5b-4c1e-a7f3-9b2e6d4c8a5f
                                       metadata:
                                         modificationTimestamp: "2026-01-16T14:47:38.891234Z"
@@ -5414,6 +5716,7 @@ paths:
                                       space:
                                         available: 158548396492800
                                         size: 263882790666240
+                                      svmCount: 15
                                       systemCount: 3
                                       type: application/vnd.netapp.bxp.fleet
                                       version: "1.0"
@@ -5437,7 +5740,7 @@ paths:
             - $ref: '#/components/parameters/organization_id'
     /organizations/{organization_id}/fleets/{fleet_id}/aggregates:
         get:
-            description: Lists all aggregates.
+            description: Lists all aggregates in a fleet.
             parameters:
                 - $ref: '#/components/parameters/count'
                 - $ref: '#/components/parameters/filter'
@@ -5655,6 +5958,7 @@ paths:
                                         volumeEncryptionPercent: 30
                                       name: cluster-01
                                       nodeCount: 4
+                                      ntpServerCount: 3
                                       ontapVersion:
                                         full: 'NetApp Release 9.13.0: Sun Aug 06 18:20:57 UTC 2023'
                                         generation: 9
@@ -5663,10 +5967,17 @@ paths:
                                       organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
                                       personality: UNIFIED_ONTAP
                                       security:
+                                        asupHttpsConfigured: true
                                         certificateExpiryStatus: ACTIVE
                                         certificateExpiryTime: "2026-06-15T00:00:00Z"
+                                        compliancePercent: 100
                                         fipsEnabled: true
+                                        isMD5PasswordHashUsed: false
+                                        keyManagerConfigured: true
+                                        logForwardEncrypted: ENCRYPTED
+                                        loginBannerConfigured: true
                                         rshEnabled: false
+                                        sshSecured: true
                                         telnetEnabled: false
                                       space:
                                         aggregate:
@@ -5717,6 +6028,7 @@ paths:
                                         volumeEncryptionPercent: 75
                                       name: cluster-02
                                       nodeCount: 2
+                                      ntpServerCount: 0
                                       ontapVersion:
                                         full: 'NetApp Release 9.14.1: Mon Nov 13 10:15:32 UTC 2023'
                                         generation: 9
@@ -5725,10 +6037,17 @@ paths:
                                       organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
                                       personality: ASA_R2
                                       security:
+                                        asupHttpsConfigured: false
                                         certificateExpiryStatus: EXPIRING
                                         certificateExpiryTime: "2026-06-15T00:00:00Z"
+                                        compliancePercent: 36.4
                                         fipsEnabled: false
+                                        isMD5PasswordHashUsed: true
+                                        keyManagerConfigured: false
+                                        logForwardEncrypted: NOT_CONFIGURED
+                                        loginBannerConfigured: false
                                         rshEnabled: false
+                                        sshSecured: false
                                         telnetEnabled: false
                                       space:
                                         aggregate:
@@ -5801,6 +6120,7 @@ paths:
                                         - 1a2b3c4d-5678-90ab-cdef-1234567890ab
                                         - 2b3c4d5e-6789-0abc-def1-234567890abc
                                       id: f8e9d2b4-1a5c-4f7e-9d3b-8c6a5e2f1b9d
+                                      mapped: MAPPED
                                       metadata:
                                         modificationTimestamp: "2026-01-16T14:32:48.789123Z"
                                       metrics:
@@ -5823,6 +6143,7 @@ paths:
                                         available: 824633720832
                                         size: 1374389534720
                                         used: 549755813888
+                                      state: ONLINE
                                       svm:
                                         id: 4a7b9e2c-8f5d-4c3a-b1e6-9d2f4c7a8e5b
                                         name: svm-01
@@ -5842,6 +6163,7 @@ paths:
                                       fleetIds:
                                         - 1a2b3c4d-5678-90ab-cdef-1234567890ab
                                       id: 6b8e1f9a-3c7d-4a2e-8f5b-1d4c7e9a6b2f
+                                      mapped: UNMAPPED
                                       metadata:
                                         modificationTimestamp: "2026-01-16T14:35:22.456789Z"
                                       metrics:
@@ -5864,6 +6186,7 @@ paths:
                                         available: 395136991232
                                         size: 859832668160
                                         used: 464695676928
+                                      state: OFFLINE
                                       storageClassId: 7a1b3c2d-4e5f-6a7b-8c9d-0e1f2a3b4c5d
                                       svm:
                                         id: 9c2e5f7a-4b8d-4f1c-a7e3-6d9f2c5e8a1b
@@ -5892,6 +6215,119 @@ paths:
         parameters:
             - $ref: '#/components/parameters/organization_id'
             - $ref: '#/components/parameters/fleet_id'
+    /organizations/{organization_id}/fleets/{fleet_id}/metricsql:
+        parameters:
+            - $ref: '#/components/parameters/organization_id'
+            - $ref: '#/components/parameters/fleet_id'
+        post:
+            description: Run a raw MetricsQL query against time series data for systems in the specified fleet.
+            requestBody:
+                content:
+                    application/vnd.netapp.bxp.metricsql+json:
+                        examples:
+                            aggregationQuery:
+                                summary: Sum of IOPS grouped by cluster
+                                value:
+                                    query: sum(iops_total) by (cluster)
+                                    timeRange:
+                                        end: NOW
+                                        start: PT30M
+                                        step: PT1M
+                            forecastQuery:
+                                summary: Predict future size_used using linear regression
+                                value:
+                                    query: predict_linear(size_used[7d], 86400)
+                            instantQuery:
+                                summary: Instant query — single metric at evaluation time
+                                value:
+                                    query: size_used
+                            rangeQueryAbsoluteTime:
+                                summary: Range query with absolute time range
+                                value:
+                                    query: iops_read + iops_write
+                                    timeRange:
+                                        end: "2026-01-23T11:00:00Z"
+                                        start: "2026-01-23T10:00:00Z"
+                                        step: PT5M
+                            rangeQueryRelativeTime:
+                                summary: Range query with relative time range
+                                value:
+                                    query: max_over_time(size_used[5m])
+                                    timeRange:
+                                        end: NOW
+                                        start: PT1H
+                                        step: PT5M
+                            topKQuery:
+                                summary: Top 5 volumes by average latency over a 5-minute window
+                                value:
+                                    query: topk(5, avg_over_time(volume_avg_latency[5m]))
+                                    timeRange:
+                                        end: NOW
+                                        start: PT1H
+                                        step: PT5M
+                        schema:
+                            $ref: '#/components/schemas/metricsql_1.0_post_request_body'
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.metricsql+json:
+                            examples:
+                                instantQueryResult:
+                                    summary: Instant query — one data point per series
+                                    value:
+                                        items:
+                                            - labels:
+                                                cluster: cluster-01
+                                                svm: svm-prod-1
+                                              points:
+                                                - timestamp: "2026-01-26T20:58:16.305662Z"
+                                                  value: 10.5
+                                            - labels:
+                                                cluster: cluster-01
+                                                svm: svm-prod-2
+                                              points:
+                                                - timestamp: "2026-01-26T20:58:16.305662Z"
+                                                  value: 8.3
+                                rangeQueryResult:
+                                    summary: Range query — multiple series with multiple data points
+                                    value:
+                                        items:
+                                            - labels:
+                                                cluster: cluster-01
+                                                svm: svm-prod-1
+                                              points:
+                                                - timestamp: "2026-01-26T20:58:16.305662Z"
+                                                  value: 10.5
+                                                - timestamp: "2026-01-26T20:57:16.305662Z"
+                                                  value: 11
+                                                - timestamp: "2026-01-26T20:56:16.305662Z"
+                                                  value: 12.2
+                                            - labels:
+                                                cluster: cluster-01
+                                                svm: svm-prod-2
+                                              points:
+                                                - timestamp: "2026-01-26T20:58:16.305662Z"
+                                                  value: 8.3
+                                                - timestamp: "2026-01-26T20:57:16.305662Z"
+                                                  value: 9.1
+                                                - timestamp: "2026-01-26T20:56:16.305662Z"
+                                                  value: 9.7
+                            schema:
+                                $ref: '#/components/schemas/asset_1.0_timeseries_response_body'
+                    description: OK
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+            summary: Run a MetricsQL query for systems in the specified fleet.
+            tags:
+                - Timeseries
+            x-permission: bxp:resource-read
+            x-persistence: false
+            x-scope: private,public,ncl
     /organizations/{organization_id}/fleets/{fleet_id}/namespaces:
         get:
             description: Lists all NVMe namespaces in the specified fleet.
@@ -6569,7 +7005,7 @@ paths:
             - $ref: '#/components/parameters/fleet_id'
     /organizations/{organization_id}/fleets/{fleet_id}/svms:
         get:
-            description: Lists all storage virtual machines in the specified fleet.
+            description: Lists all SVMs in the specified fleet.
             parameters:
                 - $ref: '#/components/parameters/count'
                 - $ref: '#/components/parameters/filter'
@@ -6622,7 +7058,11 @@ paths:
                                       s3:
                                         enabled: false
                                       security:
+                                        auditLogEnabled: true
+                                        compliancePercent: 100
                                         keyManagerConfigured: true
+                                        loginBannerConfigured: true
+                                        sshSecured: true
                                       space:
                                         afsTotal: 1099511627776
                                         available: 549755813888
@@ -6699,6 +7139,236 @@ paths:
         parameters:
             - $ref: '#/components/parameters/organization_id'
             - $ref: '#/components/parameters/fleet_id'
+    /organizations/{organization_id}/fleets/{fleet_id}/timeseries:
+        parameters:
+            - $ref: '#/components/parameters/organization_id'
+            - $ref: '#/components/parameters/fleet_id'
+        post:
+            description: Retrieve time series data for systems in a fleet.
+            requestBody:
+                content:
+                    application/vnd.netapp.bxp.timeseries+json:
+                        examples:
+                            avgOverTime:
+                                summary: Average IOPS over 10-minute window
+                                value:
+                                    singleMetric:
+                                        metric: iops_total
+                                        rollup:
+                                            function: AVG_OVER_TIME
+                                            window: PT10M
+                                    timeRange:
+                                        end: NOW
+                                        start: PT2H
+                                        step: PT10M
+                            countMetricByValueFilter:
+                                summary: Count series where value equals 0
+                                value:
+                                    singleMetric:
+                                        aggregation: COUNT
+                                        metric: cluster_new_status
+                                        valueFilter:
+                                            operator: EQ
+                                            threshold: 0
+                                    timeRange:
+                                        end: NOW
+                                        start: PT15M
+                                        step: PT60S
+                            countOverTime:
+                                summary: Count of samples over 1-hour window
+                                value:
+                                    singleMetric:
+                                        metric: cluster_health_score
+                                        rollup:
+                                            function: COUNT_OVER_TIME
+                                            window: PT1H
+                                    timeRange:
+                                        end: NOW
+                                        start: PT12H
+                                        step: PT1H
+                            maxOverTimeWithTopK:
+                                summary: Top 5 series by max value over window
+                                value:
+                                    singleMetric:
+                                        metric: volume_avg_latency
+                                        rollup:
+                                            function: MAX_OVER_TIME
+                                            window: PT5M
+                                        sort:
+                                            limit: 5
+                                            order: DESC
+                                    timeRange:
+                                        end: NOW
+                                        start: PT1H
+                                        step: PT5M
+                            metricWithFilters:
+                                summary: Single Metric with 2 filters using equals and regex
+                                value:
+                                    singleMetric:
+                                        filters:
+                                            - label: cluster
+                                              operator: EQUAL
+                                              values:
+                                                - cluster-01
+                                            - label: svm
+                                              operator: REGEX_MATCH
+                                              values:
+                                                - svm-prod-.*
+                                        metric: iops_read
+                                    timeRange:
+                                        end: "2026-01-23T11:00:00Z"
+                                        start: "2026-01-23T10:00:00Z"
+                                        step: PT5M
+                            metricWithForecast:
+                                summary: Single Metric with forecasting
+                                value:
+                                    singleMetric:
+                                        forecast:
+                                            horizon: PT1H
+                                            lookbackWindow: PT24H
+                                        metric: size_used
+                            metricWithForecastStep:
+                                summary: Single Metric with forecasting and step
+                                value:
+                                    singleMetric:
+                                        forecast:
+                                            horizon: P30D
+                                            lookbackWindow: P90D
+                                            step: P7D
+                                        metric: size_used
+                            metricWithGroupByAndAggregation:
+                                summary: Single Metric with group by and SUM aggregation
+                                value:
+                                    singleMetric:
+                                        aggregation: SUM
+                                        groupBy:
+                                            - cluster
+                                            - svm
+                                        metric: bytes_written
+                                    timeRange:
+                                        end: NOW
+                                        start: PT1H
+                                        step: PT5M
+                            metricWithTop5Sort:
+                                summary: Single Metric with top 5 using sort
+                                value:
+                                    singleMetric:
+                                        aggregation: SUM
+                                        groupBy:
+                                            - cluster
+                                        metric: size_used
+                                        sort:
+                                            limit: 5
+                                            order: DESC
+                                    timeRange:
+                                        end: NOW
+                                        start: PT30M
+                                        step: PT1M
+                            minOverTime:
+                                summary: Minimum latency over 5-minute window
+                                value:
+                                    singleMetric:
+                                        metric: volume_avg_latency
+                                        rollup:
+                                            function: MIN_OVER_TIME
+                                            window: PT5M
+                                    timeRange:
+                                        end: NOW
+                                        start: PT1H
+                                        step: PT5M
+                            singleMetricAbsoluteTimeRange:
+                                summary: Single Metric with Absolute Time Range
+                                value:
+                                    singleMetric:
+                                        metric: size_used
+                                    timeRange:
+                                        end: "2026-01-23T10:15:00Z"
+                                        start: "2026-01-23T10:00:00Z"
+                                        step: PT60S
+                            singleMetricRelativeTimeRange:
+                                summary: Single Metric with Relative Time Range
+                                value:
+                                    singleMetric:
+                                        metric: size_used
+                                    timeRange:
+                                        end: NOW
+                                        start: PT15M
+                                        step: PT60S
+                            sumOverTime:
+                                summary: Sum of bytes written over 15-minute window
+                                value:
+                                    singleMetric:
+                                        metric: bytes_written
+                                        rollup:
+                                            function: SUM_OVER_TIME
+                                            window: PT15M
+                                    timeRange:
+                                        end: NOW
+                                        start: PT24H
+                                        step: PT15M
+                        schema:
+                            $ref: '#/components/schemas/timeseries_1.0_post_request_body'
+                required: true
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.timeseries+json:
+                            examples:
+                                multipleSeriesInstantQuery:
+                                    summary: Multiple Series - Instant Query
+                                    value:
+                                        items:
+                                            - labels:
+                                                cluster: cluster-01
+                                                svm: svm-prod-1
+                                              points:
+                                                - timestamp: "2026-01-26T20:58:16.305662Z"
+                                                  value: 10.5
+                                            - labels:
+                                                cluster: cluster-01
+                                                svm: svm-prod-2
+                                              points:
+                                                - timestamp: "2026-01-26T20:58:16.305662Z"
+                                                  value: 8.3
+                                multipleSeriesRangeQuery:
+                                    summary: Multiple Series - Range Query
+                                    value:
+                                        items:
+                                            - labels:
+                                                cluster: cluster-01
+                                                svm: svm-prod-1
+                                              points:
+                                                - timestamp: "2026-01-26T20:58:16.305662Z"
+                                                  value: 10.5
+                                                - timestamp: "2026-01-26T20:57:16.305662Z"
+                                                  value: 11
+                                                - timestamp: "2026-01-26T20:56:16.305662Z"
+                                                  value: 12.2
+                                            - labels:
+                                                cluster: cluster-01
+                                                svm: svm-prod-2
+                                              points:
+                                                - timestamp: "2026-01-26T20:58:16.305662Z"
+                                                  value: 8.3
+                                                - timestamp: "2026-01-26T20:57:16.305662Z"
+                                                  value: 9.1
+                                                - timestamp: "2026-01-26T20:56:16.305662Z"
+                                                  value: 9.7
+                            schema:
+                                $ref: '#/components/schemas/asset_1.0_timeseries_response_body'
+                    description: OK
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+            summary: Retrieve time series data for systems in a fleet.
+            tags:
+                - Timeseries
+            x-permission: bxp:resource-read
+            x-persistence: false
+            x-scope: private,public,ncl
     /organizations/{organization_id}/fleets/{fleet_id}/volumes:
         get:
             description: Lists all volumes in the specified fleet.
@@ -6951,6 +7621,7 @@ paths:
                                         volumeEncryptionPercent: 30
                                       name: cluster-01
                                       nodeCount: 4
+                                      ntpServerCount: 3
                                       ontapVersion:
                                         full: 'NetApp Release 9.13.0: Sun Aug 06 18:20:57 UTC 2023'
                                         generation: 9
@@ -6959,10 +7630,17 @@ paths:
                                       organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
                                       personality: UNIFIED_ONTAP
                                       security:
+                                        asupHttpsConfigured: true
                                         certificateExpiryStatus: ACTIVE
                                         certificateExpiryTime: "2026-06-15T00:00:00Z"
+                                        compliancePercent: 100
                                         fipsEnabled: true
+                                        isMD5PasswordHashUsed: false
+                                        keyManagerConfigured: true
+                                        logForwardEncrypted: ENCRYPTED
+                                        loginBannerConfigured: true
                                         rshEnabled: false
+                                        sshSecured: true
                                         telnetEnabled: false
                                       space:
                                         aggregate:
@@ -7013,6 +7691,7 @@ paths:
                                         volumeEncryptionPercent: 75
                                       name: cluster-02
                                       nodeCount: 2
+                                      ntpServerCount: 0
                                       ontapVersion:
                                         full: 'NetApp Release 9.14.1: Mon Nov 13 10:15:32 UTC 2023'
                                         generation: 9
@@ -7021,10 +7700,17 @@ paths:
                                       organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
                                       personality: ASA_R2
                                       security:
+                                        asupHttpsConfigured: false
                                         certificateExpiryStatus: EXPIRING
                                         certificateExpiryTime: "2026-06-15T00:00:00Z"
+                                        compliancePercent: 36.4
                                         fipsEnabled: false
+                                        isMD5PasswordHashUsed: true
+                                        keyManagerConfigured: false
+                                        logForwardEncrypted: NOT_CONFIGURED
+                                        loginBannerConfigured: false
                                         rshEnabled: false
+                                        sshSecured: false
                                         telnetEnabled: false
                                       space:
                                         aggregate:
@@ -7097,6 +7783,7 @@ paths:
                                         - 1a2b3c4d-5678-90ab-cdef-1234567890ab
                                         - 2b3c4d5e-6789-0abc-def1-234567890abc
                                       id: f8e9d2b4-1a5c-4f7e-9d3b-8c6a5e2f1b9d
+                                      mapped: MAPPED
                                       metadata:
                                         modificationTimestamp: "2026-01-16T14:32:48.789123Z"
                                       metrics:
@@ -7119,6 +7806,7 @@ paths:
                                         available: 824633720832
                                         size: 1374389534720
                                         used: 549755813888
+                                      state: ONLINE
                                       storageClassId: 5f4dcc3b-5aa7-4e2d-9c3a-8a9f1f0e6b7c
                                       svm:
                                         id: 4a7b9e2c-8f5d-4c3a-b1e6-9d2f4c7a8e5b
@@ -7139,6 +7827,7 @@ paths:
                                       fleetIds:
                                         - 1a2b3c4d-5678-90ab-cdef-1234567890ab
                                       id: 6b8e1f9a-3c7d-4a2e-8f5b-1d4c7e9a6b2f
+                                      mapped: UNMAPPED
                                       metadata:
                                         modificationTimestamp: "2026-01-16T14:35:22.456789Z"
                                       metrics:
@@ -7161,6 +7850,7 @@ paths:
                                         available: 395136991232
                                         size: 859832668160
                                         used: 464695676928
+                                      state: OFFLINE
                                       svm:
                                         id: 9c2e5f7a-4b8d-4f1c-a7e3-6d9f2c5e8a1b
                                         name: svm-02
@@ -7189,13 +7879,13 @@ paths:
             - $ref: '#/components/parameters/organization_id'
         patch:
             description: |-
-                Create or update multiple luns for a given organization.
+                Create or update multiple LUNs for the specified organization.
 
-                If a lun already exists, it will be updated, otherwise a new lun will be created.
+                If a LUN already exists, it is updated, otherwise a new LUN is created.
 
-                To identify a lun for update, the following logic is applied:
-                - If the lun includes an `id` field, that lun will be updated.
-                - Otherwise, a unique lun is identified by the combination of `organizationId`, `workingEnvironmentId`, `cluster.name`, `svm.name`, `volume.name` and `name`.
+                To identify a LUN for update, the following logic is applied:
+                - If the LUN includes an `id` field, that LUN is updated.
+                - Otherwise, a unique LUN is identified by the combination of `organizationId`, `workingEnvironmentId`, `cluster.name`, `svm.name`, `volume.name` and `name`.
             requestBody:
                 content:
                     application/vnd.netapp.bxp.luns+json:
@@ -7230,7 +7920,7 @@ paths:
                                   workingEnvironmentId: OnPremWorkingEnvironment-KxESQhek
                         schema:
                             $ref: '#/components/schemas/lun_1.0_patch_request_body'
-                description: List of lun items to update.
+                description: List of LUN items to update.
                 required: true
             responses:
                 "204":
@@ -7251,7 +7941,7 @@ paths:
         parameters:
             - $ref: '#/components/parameters/organization_id'
         post:
-            description: Execute a raw MetricsQL query against time series data for systems in an organization.
+            description: Run a raw MetricsQL query against time series data for systems in an organization.
             requestBody:
                 content:
                     application/vnd.netapp.bxp.metricsql+json:
@@ -7353,7 +8043,7 @@ paths:
                     $ref: '#/components/responses/401Unauthorized'
                 "403":
                     $ref: '#/components/responses/403Forbidden'
-            summary: Execute a MetricsQL query for systems in an organization.
+            summary: Run a MetricsQL query for systems in an organization.
             tags:
                 - Timeseries
             x-permission: bxp:resource-read
@@ -7766,95 +8456,6 @@ paths:
             x-scope: private,public,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
-    /organizations/{organization_id}/projects/{project_id}/workingenvironments:
-        get:
-            description: Lists all working environment details.
-            parameters:
-                - $ref: '#/components/parameters/agent_id_filter'
-                - $ref: '#/components/parameters/metadata'
-            responses:
-                "200":
-                    content:
-                        application/vnd.netapp.bxp.workingenvironments+json:
-                            example:
-                                count: 3
-                                items:
-                                    - agentId: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
-                                      data:
-                                        name: test-cluster-1
-                                        ontapClusterProperties:
-                                            clusterName: test-cluster-1
-                                            ontapVersion: 9.16.1
-                                            serialNumber: 1234
-                                            systemId: 9999
-                                        publicId: OnPremWorkingEnvironment-KxESQhek
-                                        workingEnvironmentType: ON_PREM
-                                      id: OnPremWorkingEnvironment-KxESQhek
-                                      legacyAgentId: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
-                                      metadata:
-                                        createdBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                        creationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                        modificationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                        modifiedBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                      organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
-                                      resourceClass: ON_PREM
-                                      resourceType: ON_PREM
-                                      type: application/vnd.netapp.bxp.workingenvironment
-                                      upstreamStatusCode: 200
-                                      version: "1.0"
-                                    - agentId: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
-                                      data:
-                                        capacity:
-                                            free: 30286991265291
-                                            used: 3748341
-                                        name: StorageGRID Example
-                                        nodes: 5
-                                        serialNumber: "950138"
-                                      id: StorageGRID-SIMULATOR-11433
-                                      legacyAgentId: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
-                                      metadata:
-                                        createdBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                        creationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                        modificationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                        modifiedBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                      organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
-                                      resourceClass: STORAGE_SERVICES
-                                      resourceType: SG
-                                      type: application/vnd.netapp.bxp.workingenvironment
-                                      upstreamStatusCode: 200
-                                      version: "1.0"
-                                    - data:
-                                        count: 17
-                                      id: cloudStorage
-                                      metadata:
-                                        createdBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                        creationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                        modificationTimestamp: "2022-10-06T20:58:16.305662Z"
-                                        modifiedBy: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                      organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
-                                      resourceClass: CLOUD_STORAGE
-                                      resourceType: GCP
-                                      type: application/vnd.netapp.bxp.workingenvironment
-                                      upstreamStatusCode: 200
-                                      version: "1.0"
-                            schema:
-                                $ref: '#/components/schemas/workingenvironment_1.0_list_response_body'
-                    description: List of working environment details.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-            summary: List working environment details.
-            tags:
-                - Working Environment
-            x-permission: bxp:resource-read
-            x-persistence: true
-            x-scope: private,public,nco,ncl
-        parameters:
-            - $ref: '#/components/parameters/organization_id'
-            - $ref: '#/components/parameters/project_id'
     /organizations/{organization_id}/qospolicygroups:
         get:
             description: Lists all QoS policy groups in the specified organization.
@@ -8116,66 +8717,9 @@ paths:
             x-scope: private,public,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
-    /organizations/{organization_id}/summary:
-        get:
-            description: Retrieves the summary information.
-            responses:
-                "200":
-                    content:
-                        application/vnd.netapp.bxp.ontapsummary+json:
-                            example:
-                                missingAssets: false
-                                storageCapacity:
-                                    - agentId: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
-                                      attributes:
-                                        clusterName: test-cluster-1
-                                        clusterUuid: 2cdcefcd-03bd-4355-b86f-ace5ee719355
-                                        ontapVersion: 9.16.1
-                                      id: 4336388b-2992-43af-81de-ba9284b7dc36
-                                      legacyAgentId: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
-                                      metrics:
-                                        capacityAvailable: 1000000000
-                                        capacityTotal: 2000000000
-                                        capacityUsed: 1000000000
-                                        capacityUsedPercent: 50
-                                      resourceClass: ON_PREM
-                                      resourceType: ON_PREM
-                                      workingEnvironmentId: OnPremWorkingEnvironment-KxESQhek
-                                storagePerformance:
-                                    - agentId: 75fed73a-0904-4f9c-8c19-a51dbcf95abb
-                                      attributes:
-                                        clusterName: test-cluster-1
-                                        clusterUuid: 2cdcefcd-03bd-4355-b86f-ace5ee719355
-                                        ontapVersion: 9.16.1
-                                      id: 4336388b-2992-43af-81de-ba9284b7dc36
-                                      legacyAgentId: zceJRb1Z16WZzcKjLkitxHuCp5vTV0HEclients
-                                      metrics:
-                                        headroomCpuCurrentUtilization: 75.3
-                                      resourceClass: ON_PREM
-                                      resourceType: ON_PREM
-                                      workingEnvironmentId: OnPremWorkingEnvironment-KxESQhek
-                                type: application/vnd.netapp.bxp.summary
-                                version: "1.0"
-                            schema:
-                                $ref: '#/components/schemas/summary_1.0_get_response_body'
-                    description: Returns the summary information in the JSON response body.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-            summary: Retrieve summary information.
-            tags:
-                - Summary
-            x-permission: bxp:asset-read
-            x-persistence: true
-            x-scope: private,public,nco,ncl
-        parameters:
-            - $ref: '#/components/parameters/organization_id'
     /organizations/{organization_id}/svms:
         get:
-            description: Lists all storage virtual machines in the specified organization.
+            description: Lists all SVMs in the specified organization.
             parameters:
                 - $ref: '#/components/parameters/count'
                 - $ref: '#/components/parameters/filter'
@@ -8228,7 +8772,11 @@ paths:
                                       s3:
                                         enabled: false
                                       security:
+                                        auditLogEnabled: true
+                                        compliancePercent: 100
                                         keyManagerConfigured: true
+                                        loginBannerConfigured: true
+                                        sshSecured: true
                                       space:
                                         afsTotal: 1099511627776
                                         available: 549755813888
@@ -8740,9 +9288,9 @@ paths:
             - $ref: '#/components/parameters/organization_id'
         patch:
             description: |-
-                Create or update multiple volumes for a given organization.
+                Create or update multiple volumes for the specified organization.
 
-                If a volume already exists, it will be updated, otherwise a new volume will be created.
+                If a volume already exists, it is updated, otherwise a new volume is created.
 
                 To identify a volume for update, the following logic is applied:
                 - If the volume includes an `id` field, that volume will be updated.
@@ -8801,9 +9349,31 @@ security:
 servers:
     - url: '{{.Server}}'
 tags:
-    - description: The asset endpoints enable management of asset data.
-      name: Asset
-    - description: The summary endpoints provide aggregated data about assets.
-      name: Summary
-    - description: The working environment endpoints enable retrieving working environments.
-      name: Working Environment
+    - description: The aggregate endpoints enable retrieving aggregate information.
+      name: Aggregate
+    - description: The cluster endpoints enable retrieving cluster information.
+      name: Cluster
+    - description: The fleet endpoints enable retrieving fleet information.
+      name: Fleet
+    - description: The lun endpoints enable retrieving LUN information.
+      name: Lun
+    - description: The namespace endpoints enable retrieving namespace information.
+      name: Namespace
+    - description: The network interface endpoints enable retrieving network interface information.
+      name: Network Interface
+    - description: The node endpoints enable retrieving node information.
+      name: Node
+    - description: The port endpoints enable retrieving port information.
+      name: Port
+    - description: The QoS policy group endpoints enable retrieving QoS policy group information.
+      name: QoS Policy Group
+    - description: The qtree endpoints enable retrieving qtree information.
+      name: Qtree
+    - description: The SMB share endpoints enable retrieving SMB share information.
+      name: SMB Share
+    - description: The storage virtual machine endpoints enable retrieving SVM information.
+      name: Storage Virtual Machine
+    - description: The timeseries endpoints enable retrieving current and historical metrics for assets.
+      name: Timeseries
+    - description: The volume endpoints enable retrieving volume information.
+      name: Volume
