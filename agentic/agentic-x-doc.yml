@@ -105,6 +105,7 @@ paths:
         category: Provider models
         filename: get-configs-providermodels.html
         sidebar_title:  List models available from a LLM provider associated with a saved configuration 
+        explorer: false
         subcategory: 
 categories:
 - id: health

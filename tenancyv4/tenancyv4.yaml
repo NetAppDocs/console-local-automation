@@ -7897,7 +7897,7 @@ info:
         The actions available through the IAM REST API are a superset of what's available through the web UI.
 
         **Note**: Before using the API reference documentation, review the
-        [Get started](https://docs.netapp.com/us-en/cloud-manager-automation/platform/overview.html) section for the Console (local deployment) APIs. 
+        [Get started](https://docs.netapp.com/us-en/console-local-automation/platform/learn-about.html) section for the Console (local deployment) APIs. 
 
         ---
 
