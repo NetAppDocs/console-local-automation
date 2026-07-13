@@ -1901,10 +1901,10 @@ components:
             type: http
 info:
     description: |-
-        The Agentic Platform configuration manager API provides REST endpoints for managing LLM configurations. This API is only available in NetApp Console local deployments.
+        The Agentic Platform configuration manager API provides REST endpoints for managing Large Language Model (LLM) configurations. This API is only available in NetApp Console local deployments.
 
         The Agentic Platform supports multiple LLM providers including OpenAI, Azure OpenAI,
-        Anthropic, AWS Bedrock, Google Vertex AI, Google Gemini and any OpenAI-compatible
+        Anthropic, AWS Bedrock, Google Vertex AI, Google Gemini, and any OpenAI-compatible
         provider.
 
         Key features:
