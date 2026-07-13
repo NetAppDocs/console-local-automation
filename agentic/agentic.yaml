@@ -25,7 +25,6 @@ components:
             description: Continuation token from a previous response to retrieve the next page.
             in: query
             name: continue
-            required: false
             schema:
                 type: string
         count:
@@ -52,7 +51,6 @@ components:
                 OpenAPI examples: "field eq 'value'"
             in: query
             name: filter
-            required: false
             schema:
                 $ref: '#/components/schemas/query_filter'
         include:
@@ -104,7 +102,6 @@ components:
                 When provided, configurations are scoped to this organization.
             in: header
             name: x-organization-id
-            required: false
             schema:
                 example: 19efce0a-f344-4831-9686-6e7116e4fc3a
                 format: uuid
@@ -288,6 +285,17 @@ components:
                         - gemini
                     example: openai
                     type: string
+                proxyConfigured:
+                    description: |-
+                        Indicates whether a proxy is configured for this LLM backend.
+                        Defined values are:
+                        * "true"  - A proxy is configured and active for outbound LLM traffic
+                        * "false" - No proxy is configured; LLM traffic is routed directly
+                    enum:
+                        - "true"
+                        - "false"
+                    example: "false"
+                    type: string
                 rawConfig:
                     additionalProperties: true
                     description: Raw AgentGateway YAML configuration as JSON
@@ -431,6 +439,17 @@ components:
                     maximum: 65535
                     minimum: 1
                     type: integer
+                proxyConfigured:
+                    description: |-
+                        Indicates whether a proxy is configured for this LLM backend.
+                        Defined values are:
+                        * "true"  - A proxy is configured and active for outbound LLM traffic
+                        * "false" - No proxy is configured; LLM traffic is routed directly
+                    enum:
+                        - "true"
+                        - "false"
+                    example: "false"
+                    type: string
                 requestsPerMinute:
                     description: The rate limit - maximum requests per minute (0 = unlimited).
                     minimum: 0
@@ -945,7 +964,7 @@ components:
             additionalProperties: false
             description: |-
                 Provider credentials for authenticating with the LLM provider's API.
-                Use the provider-specific configuration object (openai, azure, anthropic, etc.)
+                Use the provider-specific configuration object (openai, azure, anthropic, and so on)
                 based on the provider type.
             properties:
                 anthropic:
@@ -1218,13 +1237,6 @@ components:
                     type: integer
                 metadata:
                     $ref: '#/components/schemas/type_bxp_metadata'
-                    description: |-
-                        Client and service-specified metadata associated with the resource.
-                        Defined values are:
-                        * Conforms to the NetApp Console Metadata Schema
-                        If not specified on create, a metadata object is created with no labels.
-                        If not specified on update, the metadata object's labels, creationTimestamp and createdBy, are preserved without modification.
-                    type: object
                 modelType:
                     description: |-
                         The type or category of the model.
@@ -1361,8 +1373,6 @@ components:
                     type: boolean
                 metadata:
                     $ref: '#/components/schemas/type_bxp_metadata'
-                    description: Client and service-specified metadata associated with the resource.
-                    type: object
                 name:
                     description: |-
                         Name of the LLM supported provider.
@@ -1564,11 +1574,6 @@ components:
                     type: object
                 href:
                     $ref: '#/components/schemas/type_bxp_api_relative_uri'
-                    description: |-
-                        The link.
-
-                        Minimum length: 0
-                        Maximum length: 1023
                 rel:
                     description: The type of relationship for the link. Values are defined in the IANA Link Relationships registry, or an extension relationship type as specified in section 2.1.2 of RFC 8288.
                     enum:
@@ -1789,7 +1794,6 @@ components:
                     - title
                     - detail
                 type: object
-            minItems: 0
             type: array
             uniqueItems: true
             x-common: true
@@ -1802,14 +1806,12 @@ components:
                     to:
                         items:
                             type: string
-                        minItems: 0
                         type: array
                         uniqueItems: true
                 required:
                     - from
                     - to
                 type: object
-            minItems: 0
             type: array
             uniqueItems: true
             x-common: true
@@ -1925,9 +1927,8 @@ info:
         </ul>
 
         **Note**: Before using the API reference documentation, review the
-        [Get started](https://docs.netapp.com/us-en/bluexp-automation/platform/overview.html) section for the
-        Console APIs. For more information about the security tokens and identifiers you'll need when using the API, review the
-        [Common workflows and tasks](https://docs.netapp.com/us-en/bluexp-automation/platform/get_identifiers.html) section.
+        [Get started](https://docs.netapp.com/us-en/console-local-automation/platform/learn-about.html) section for the
+        Console (local deployment) APIs.
 
         ---
 
@@ -1948,7 +1949,7 @@ info:
         |----------------|--------------------------------------------------------------------------------------------|
         | Authorization  | This header contains a bearer token used to access the Console server.                     |
         | Content-Type   | This representation header is used to indicate the original media type of the resource.    |
-        | Accept         | The server automatically returns content in JSON format if Accept header is not specified. |
+        | Accept         | The server automatically returns content in JSON format if the Accept header is not specified. |
 
         ### Query parameters
 
@@ -1989,7 +1990,7 @@ info:
     license:
         name: NetApp Console License
     termsOfService: https://www.netapp.com/media/10784-cloud-data-services-terms.pdf
-    title: Agentic Platform configuration manager API
+    title: (ncl) Agentic Platform configuration manager API
     version: "2.0"
 paths:
     /configs:
@@ -2025,7 +2026,6 @@ paths:
                     OpenAPI examples: "provider eq 'openai' and state eq 'SUCCESSFUL'", "state ne 'DRAFT'"
                   in: query
                   name: filter
-                  required: false
                   schema:
                     type: string
             responses:
@@ -2041,6 +2041,7 @@ paths:
                                         - gpt-4o
                                         - gpt-4o-mini
                                       provider: openai
+                                      proxyConfigured: "true"
                                       state: SUCCESSFUL
                                       type: application/vnd.netapp.bxp.config
                                       version: "1.0"
@@ -2048,6 +2049,7 @@ paths:
                                       models:
                                         - claude-3-5-sonnet-20241022
                                       provider: anthropic
+                                      proxyConfigured: "false"
                                       state: DRAFT
                                       type: application/vnd.netapp.bxp.config
                                       version: "1.0"
@@ -2209,6 +2211,7 @@ paths:
                                     - gpt-4o-mini
                                 port: 8080
                                 provider: openai
+                                proxyConfigured: "false"
                                 sslVerify: true
                                 state: SUCCESSFUL
                                 type: application/vnd.netapp.bxp.config
@@ -2241,6 +2244,18 @@ paths:
                 content:
                     application/vnd.netapp.bxp.config+json:
                         examples:
+                            disableProxy:
+                                summary: Mark proxy as not configured for this LLM backend
+                                value:
+                                    proxyConfigured: "false"
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            enableProxy:
+                                summary: Mark proxy as configured for this LLM backend
+                                value:
+                                    proxyConfigured: "true"
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
                             switchToAnotherProvider:
                                 summary: Switch to a different provider
                                 value:
@@ -2339,11 +2354,11 @@ paths:
     /configs/{config_id}/providerModels:
         get:
             description: |-
-                Returns a list of all models available from the LLM provider associated
+                Returns a list of all models available from the Large Language Model (LLM) provider associated
                 with the specified saved configuration.
 
-                This endpoint looks up the configuration by `config_id`, retrieves the
-                stored provider credentials (API key, base URL, provider type, etc.) and
+                This endpoint finds the configuration by using the `config_id`, retrieves the
+                stored provider credentials (API key, base URL, provider type, and so on) and
                 queries the provider's API directly to discover available models.
 
                 No request body is required — all credentials are resolved from the saved
@@ -2451,14 +2466,14 @@ paths:
     /providerModels:
         post:
             description: |-
-                Returns a list of all models available from the specified LLM provider.
+                Returns a list of all models available from the specified Large Language Model (LLM) provider.
                 This endpoint queries the provider's API directly using the provided
                 credentials to discover available models.
-                
+
                 The request body requires provider credentials to authenticate with
                 the provider's API. Use the provider-specific configuration object
                 (openai, azure, anthropic, and so on) based on the provider type.
-                
+
                 The response contains basic model information including name, provider,
                 and model type.
             requestBody:
@@ -2574,7 +2589,7 @@ paths:
     /supportedModels:
         get:
             description: |-
-                Returns a list of all available LLM models that can be used with the Agentic Platform.
+                Returns a list of all available Large Language Model (LLM) models that can be used with the Agentic Platform.
 
                 Supports filtering by provider, modelType, and other fields.
                 Supports pagination using skip and limit parameters.
@@ -2607,7 +2622,6 @@ paths:
                     OpenAPI examples: "provider eq 'openai'", "modelType eq 'chat' and provider eq 'anthropic'"
                   in: query
                   name: filter
-                  required: false
                   schema:
                     type: string
                 - $ref: '#/components/parameters/skip'
@@ -2653,7 +2667,7 @@ paths:
             x-scope: private,public,documentation,ncl
     /supportedModels/{supported_model_id}:
         get:
-            description: Returns detailed information about a specific LLM model, identified by its unique ID.
+            description: Returns detailed information about a specific Large Language Model (LLM) model, identified by its unique ID.
             parameters:
                 - description: |-
                     Unique identifier of the model or the model name.
@@ -2712,8 +2726,8 @@ paths:
     /supportedProviders:
         get:
             description: |-
-                Returns a list of all available LLM supported providers that can be configured
-                and used with the Agentic platform.
+                Returns a list of all available Large Language Model (LLM) supported providers that can be configured
+                and used with the Agentic Platform.
 
                 Supports filtering by providerType, isEnabled, and isConfigured.
                 Supports pagination using skip and limit parameters.
@@ -2744,7 +2758,6 @@ paths:
                     OpenAPI examples: "isEnabled eq true", "name in ('openai','anthropic')"
                   in: query
                   name: filter
-                  required: false
                   schema:
                     type: string
                 - $ref: '#/components/parameters/count'
@@ -2787,7 +2800,7 @@ paths:
             x-scope: private,public,documentation,ncl
     /supportedProviders/{supported_provider_id}:
         get:
-            description: Returns detailed information about a specific LLM supported provider, identified by its unique ID.
+            description: Returns detailed information about a specific Large Language Model (LLM) supported provider, identified by its unique ID.
             parameters:
                 - description: Unique identifier of the supported provider or provider name.
                   example: 550e8400-e29b-41d4-a716-446655440000 or openai
@@ -2846,7 +2859,7 @@ servers:
     - url: '{{.Server}}'
 tags:
     - description: |-
-        The health endpoints support liveness and readiness probes for monitoring the Config Manager service status.
+        The health endpoints enable you to monitor the health of the configuration manager service status.
 
         You can perform the following actions using the health endpoints:
         <ul>
@@ -2854,7 +2867,7 @@ tags:
         </ul>
       name: Health
     - description: |-
-        The supported provider endpoints expose the catalog of LLM providers (OpenAI, Azure OpenAI, Anthropic, AWS Bedrock, Google Vertex AI, Google Gemini and OpenAI-compatible providers) that the Agentic Platform can be configured to use.
+        The supported provider endpoints expose the catalog of Large Language Model (LLM) providers (OpenAI, Azure OpenAI, Anthropic, AWS Bedrock, Google Vertex AI, Google Gemini, and OpenAI-compatible providers) that the Agentic Platform can be configured to use.
 
         You can perform the following actions using the supported provider endpoints:
         <ul>
@@ -2863,7 +2876,7 @@ tags:
         </ul>
       name: Supported Providers
     - description: |-
-        The configuration endpoints enable you to manage the active LLM configuration consumed by the Agentic Platform, including provider credentials, base URL, rate limits, SSL verification settings and the configuration state lifecycle (DRAFT, TESTING, SUCCESSFUL, UNSUCCESSFUL).
+        The configuration endpoints enable you to manage the active Large Language Model (LLM) configuration consumed by the Agentic Platform, including provider credentials, base URL, rate limits, SSL verification settings, and the configuration state lifecycle (DRAFT, TESTING, SUCCESSFUL, UNSUCCESSFUL).
 
         You can perform the following actions using the configuration endpoints:
         <ul>
@@ -2884,7 +2897,7 @@ tags:
         </ul>
       name: Supported Models
     - description: |-
-        The provider model endpoints query an LLM provider's own API to discover the models it exposes. Credentials may be supplied directly in the request body (for testing) or resolved from a saved configuration by `config_id`.
+        The provider model endpoints query an LLM provider's own API to discover the models it exposes. Credentials can be supplied directly in the request body (for testing) or resolved from a saved configuration by `config_id`.
 
         You can perform the following actions using the provider model endpoints:
         <ul>
