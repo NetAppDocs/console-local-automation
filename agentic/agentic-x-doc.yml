@@ -98,6 +98,14 @@ paths:
         sidebar_title: Retrieve an LLM supported provider
         subcategory: 
         explorer: false
+  "/configs/{config_id}/providerModels":
+    get:
+      x-doc:
+        title: List models available from a LLM provider associated with a saved configuration in NetApp Console (local deployment)
+        category: Provider models
+        filename: get-configs-providermodels.html
+        sidebar_title:  List models available from a LLM provider associated with a saved configuration 
+        subcategory: 
 categories:
 - id: health
   title: Health endpoints in the Agentic Platform configuration manager REST API for NetApp Console (local deployment)
