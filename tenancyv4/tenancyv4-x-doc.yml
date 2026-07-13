@@ -10,6 +10,7 @@ paths:
         filename: get-bindings.html
         subcategory: 
         explorer: false
+        sidebar_title: List all bindings
     post:
       x-doc:
         title: Create a new binding
@@ -17,6 +18,7 @@ paths:
         filename: post-bindings.html
         subcategory: 
         explorer: false
+        sidebar_title: Create a new binding
   "/bindings/{binding_id}":
     delete:
       x-doc:
@@ -25,6 +27,7 @@ paths:
         filename: delete-bindings-.html
         subcategory: 
         explorer: false
+        sidebar_title: Delete a binding
     get:
       x-doc:
         title: Retrieve a binding
@@ -32,6 +35,7 @@ paths:
         filename: get-bindings-.html
         subcategory: 
         explorer: false
+        sidebar_title: Retrieve a binding
     patch:
       x-doc:
         title: Update a binding partially
@@ -39,6 +43,7 @@ paths:
         filename: patch-bindings-.html
         subcategory: 
         explorer: false
+        sidebar_title: Update a binding partially
     put:
       x-doc:
         title: Modify a binding
@@ -46,6 +51,7 @@ paths:
         filename: put-bindings-.html
         subcategory: 
         explorer: false
+        sidebar_title: Modify a binding
   "/folders":
     get:
       x-doc:
@@ -188,6 +194,7 @@ paths:
         filename: get-folders-resourcegroups.html
         subcategory: 
         explorer: false
+        sidebar_title: List all resource groups in the folder
     post:
       x-doc:
         title: Add resource groups to a folder in NetApp Console (local deployment)
@@ -195,6 +202,7 @@ paths:
         filename: post-folders-resourcegroups.html
         subcategory: 
         explorer: false
+        sidebar_title: Add resource groups to a folder
   "/folders/{folder_id}/resourcegroups/{resourcegroup_id}":
     delete:
       x-doc:
@@ -203,6 +211,7 @@ paths:
         filename: delete-folders-resourcegroups-.html
         subcategory: 
         explorer: false
+        sidebar_title: Remove a resource group from a folder
     get:
       x-doc:
         title: Retrieve a resource group in a folder in NetApp Console (local deployment)
@@ -210,6 +219,7 @@ paths:
         filename: get-folders-resourcegroups-.html
         subcategory: 
         explorer: false
+        sidebar_title: Retrieve a resource group in a folder
   "/folders/{folder_id}/resources":
     get:
       x-doc:
@@ -252,6 +262,7 @@ paths:
         filename: get-folders-usergroups.html
         subcategory: 
         explorer: false
+        sidebar_title: List all user groups in a folder
     post:
       x-doc:
         title: Add user groups to a folder in NetApp Console (local deployment)
@@ -259,6 +270,7 @@ paths:
         filename: post-folders-usergroups.html
         subcategory: 
         explorer: false
+        sidebar_title: Add user groups to a folder
   "/folders/{folder_id}/usergroups/{usergroup_id}":
     delete:
       x-doc:
@@ -267,6 +279,7 @@ paths:
         filename: delete-folders-usergroups-.html
         subcategory: 
         explorer: false
+        sidebar_title: Remove a user group from a folder
     get:
       x-doc:
         title: Retrieve a user group in a folder in NetApp Console (local deployment)
@@ -274,6 +287,7 @@ paths:
         filename: get-folders-usergroups-.html
         subcategory: 
         explorer: false
+        sidebar_title: Retrieve a user group in a folder
   "/folders/{folder_id}/users":
     get:
       x-doc:
@@ -333,6 +347,7 @@ paths:
         filename: delete-organizations-.html
         subcategory: 
         explorer: false
+        sidebar_title: Delete an organization
     get:
       x-doc:
         title: Retrieve an organization in NetApp Console (local deployment)
@@ -415,6 +430,7 @@ paths:
         filename: get-organizations-partnership-with.html
         subcategory: 
         explorer: false
+        sidebar_title: List all partner organizations
   "/organizations/{organization_id}/partnerships":
     get:
       x-doc:
@@ -423,6 +439,7 @@ paths:
         filename: get-organizations-partnerships.html
         subcategory: 
         explorer: false
+        sidebar_title: List all the partnership resources belonging to an organization
   "/organizations/{organization_id}/partnerships/{partnership_id}":
     delete:
       x-doc:
@@ -431,6 +448,7 @@ paths:
         filename: delete-organizations-partnerships-.html
         subcategory: 
         explorer: false
+        sidebar_title: Remove a partnership resource from the organization partnerships list
     get:
       x-doc:
         title: Retrieve a partnership resource from an organization
@@ -438,6 +456,7 @@ paths:
         filename: get-organizations-partnerships-.html
         subcategory: 
         explorer: false
+        sidebar_title: Retrieve a partnership resource from an organization
   "/organizations/{organization_id}/projects":
     get:
       x-doc:
@@ -573,6 +592,7 @@ paths:
         filename: get-organizations-serviceaccounts.html
         subcategory: 
         explorer: false
+        sidebar_title: List all users
     post:
       x-doc:
         title: Create a new service account in NetApp Console (local deployment)
@@ -748,6 +768,7 @@ paths:
         filename: put-partnerships-.html
         subcategory: 
         explorer: false
+        sidebar_title: Modify a partnership
   "/partnershiptypes":
     get:
       x-doc:
@@ -764,6 +785,7 @@ paths:
         filename: post-partnershiptypes.html
         subcategory: 
         explorer: false
+        sidebar_title: Create a new partnership type
   "/partnershiptypes/{partnershiptype_id}":
     delete:
       x-doc:
@@ -772,6 +794,7 @@ paths:
         filename: delete-partnershiptypes-.html
         subcategory: 
         explorer: false
+        sidebar_title: Delete a partnership type 
     get:
       x-doc:
         title: Retrieve a partnership type in NetApp Console (local deployment)
@@ -787,6 +810,7 @@ paths:
         filename: patch-partnershiptypes-.html
         subcategory: 
         explorer: false
+        sidebar_title: Update a partnership type partially
     put:
       x-doc:
         title: Update a partnership type in NetApp Console (local deployment)
@@ -794,6 +818,7 @@ paths:
         filename: put-partnershiptypes-.html
         subcategory: 
         explorer: false
+        sidebar_title: Update a partnership type
   "/permissions":
     get:
       x-doc:
@@ -810,6 +835,7 @@ paths:
         filename: post-permissions.html
         subcategory: 
         explorer: false
+        sidebar_title: Create a new permission
   "/permissions/{permission_id}":
     delete:
       x-doc:
@@ -818,6 +844,7 @@ paths:
         filename: delete-permissions-.html
         subcategory: 
         explorer: false
+        sidebar_title: Delete a permission
     get:
       x-doc:
         title: Retrieve a permission in NetApp Console (local deployment)
@@ -833,6 +860,7 @@ paths:
         filename: patch-permissions-.html
         subcategory: 
         explorer: false
+        sidebar_title: Update a permission partially
     put:
       x-doc:
         title: Modify a permission in NetApp Console (local deployment)
@@ -840,6 +868,7 @@ paths:
         filename: put-permissions-.html
         subcategory: 
         explorer: false
+        sidebar_title: Modify a permission
   "/permissions/{permission_id}/bindings":
     get:
       x-doc:
@@ -848,6 +877,7 @@ paths:
         filename: get-permissions-bindings.html
         subcategory: 
         explorer: false
+        sidebar_title: List all bindings for a permission
   "/projects":
     get:
       x-doc:
@@ -906,6 +936,7 @@ paths:
         filename: get-projects-resourcegroups.html
         subcategory: 
         explorer: false
+        sidebar_title: List all resource groups under a project
     post:
       x-doc:
         title: Add resource groups to a project in NetApp Console (local deployment)
@@ -913,6 +944,7 @@ paths:
         filename: post-projects-resourcegroups.html
         subcategory: 
         explorer: false
+        sidebar_title: Add resource groups to a project
   "/projects/{project_id}/resourcegroups/{resourcegroup_id}":
     delete:
       x-doc:
@@ -921,6 +953,7 @@ paths:
         filename: delete-projects-resourcegroups-.html
         subcategory: 
         explorer: false
+        sidebar_title: Remove a resource group from a project
     get:
       x-doc:
         title: Retrieve a resource group under a project in NetApp Console (local deployment)
@@ -928,6 +961,7 @@ paths:
         filename: get-projects-resourcegroups-.html
         subcategory: 
         explorer: false
+        sidebar_title: Retrieve a resource group under a project
   "/projects/{project_id}/resources":
     get:
       x-doc:
@@ -970,6 +1004,7 @@ paths:
         filename: get-projects-usergroups.html
         subcategory: 
         explorer: false
+        sidebar_title: List all user groups in the project
     post:
       x-doc:
         title: Add user groups to a project in NetApp Console (local deployment)
@@ -977,6 +1012,7 @@ paths:
         filename: post-projects-usergroups.html
         subcategory: 
         explorer: false
+        sidebar_title: Add user groups to a project
   "/projects/{project_id}/usergroups/{usergroup_id}":
     delete:
       x-doc:
@@ -985,6 +1021,7 @@ paths:
         filename: delete-projects-usergroups-.html
         subcategory: 
         explorer: false
+        sidebar_title: Remove a user group from a project
     get:
       x-doc:
         title: Retrieve a user group under a project in NetApp Console (local deployment)
@@ -992,6 +1029,7 @@ paths:
         filename: get-projects-usergroups-.html
         subcategory: 
         explorer: false
+        sidebar_title: Retrieve a user group under a project
   "/projects/{project_id}/users":
     get:
       x-doc:
@@ -1084,6 +1122,7 @@ paths:
         filename: get-resourcegroups-bindings.html
         subcategory: 
         explorer: false
+        sidebar_title: List all bindings for a resource group
   "/resourcegroups/{resourcegroup_id}/resources":
     get:
       x-doc:
@@ -1176,6 +1215,7 @@ paths:
         filename: get-resources-bindings.html
         subcategory: 
         explorer: false
+        sidebar_title: List all bindings for a resource
   "/resources/{resource_id}/permissions":
     get:
       x-doc:
@@ -1211,6 +1251,7 @@ paths:
         filename: get-resourcetypes.html
         subcategory: 
         explorer: false
+        sidebar_title: List all resource types
     post:
       x-doc:
         title: Create a new resource type in NetApp Console (local deployment)
@@ -1218,6 +1259,7 @@ paths:
         filename: post-resourcetypes.html
         subcategory: 
         explorer: false
+        sidebar_title: Create a new resource type
   "/resourcetypes/{resourcetype_id}":
     get:
       x-doc:
@@ -1226,6 +1268,7 @@ paths:
         filename: get-resourcetypes-.html
         subcategory: 
         explorer: false
+        sidebar_title: Retrieve a resource type
   "/roles":
     get:
       x-doc:
@@ -1242,6 +1285,7 @@ paths:
         filename: post-roles.html
         subcategory: 
         explorer: false
+        sidebar_title: Create a new role
   "/roles/{role_id}":
     delete:
       x-doc:
@@ -1250,6 +1294,7 @@ paths:
         filename: delete-roles-.html
         subcategory: 
         explorer: false
+        sidebar_title: Delete a role
     get:
       x-doc:
         title: Retrieve a role in NetApp Console (local deployment)
@@ -1265,6 +1310,7 @@ paths:
         filename: patch-roles-.html
         subcategory: 
         explorer: false
+        sidebar_title: Update a role resource partially
     put:
       x-doc:
         title: Modify a role resource in NetApp Console (local deployment)
@@ -1272,6 +1318,7 @@ paths:
         filename: put-roles-.html
         subcategory: 
         explorer: false
+        sidebar_title: Modify a role resource
   "/roles/{role_id}/bindings":
     get:
       x-doc:
@@ -1280,6 +1327,7 @@ paths:
         filename: get-roles-bindings.html
         subcategory: 
         explorer: false
+        sidebar_title: List all bindings for a role
   "/roles/{role_id}/permissions":
     get:
       x-doc:
@@ -1296,6 +1344,7 @@ paths:
         filename: post-roles-permissions.html
         subcategory: 
         explorer: false
+        sidebar_title: Add a list of permissions to a role
   "/roles/{role_id}/permissions/{permission_id}":
     delete:
       x-doc:
@@ -1304,6 +1353,7 @@ paths:
         filename: delete-roles-permissions-.html
         subcategory: 
         explorer: false
+        sidebar_title: Delete a permission for a role
     get:
       x-doc:
         title: Retrieve a permission for a role in NetApp Console (local deployment)
@@ -1320,6 +1370,7 @@ paths:
         filename: get-tags.html
         subcategory: 
         explorer: false
+        sidebar_title: List all the tag resources
     post:
       x-doc:
         title: Create a new tag resource in NetApp Console (local deployment)
@@ -1327,6 +1378,7 @@ paths:
         filename: post-tags.html
         subcategory: 
         explorer: false
+        sidebar_title: Create a new tag resource
   "/tags/{tag_id}":
     delete:
       x-doc:
@@ -1335,6 +1387,7 @@ paths:
         filename: delete-tags-.html
         subcategory: 
         explorer: false
+        sidebar_title: Delete a tag resource
     get:
       x-doc:
         title: Retrieve a tag resource in NetApp Console (local deployment)
@@ -1342,6 +1395,7 @@ paths:
         filename: get-tags-.html
         subcategory: 
         explorer: false
+        sidebar_title: Retrieve a tag resource
     patch:
       x-doc:
         title: Update a tag resource partially in NetApp Console (local deployment)
@@ -1349,6 +1403,7 @@ paths:
         filename: patch-tags-.html
         subcategory: 
         explorer: false
+        sidebar_title: Update a tag resource partially
     put:
       x-doc:
         title: Modify a tag resource in NetApp Console (local deployment)
@@ -1356,6 +1411,7 @@ paths:
         filename: put-tags-.html
         subcategory: 
         explorer: false
+        sidebar_title: Modify a tag resource
   "/usergroups":
     get:
       x-doc:
@@ -1414,6 +1470,7 @@ paths:
         filename: get-usergroups-bindings.html
         subcategory: 
         explorer: false
+        sidebar_title: List all bindings for a user group
   "/usergroups/{usergroup_id}/users":
     get:
       x-doc:
@@ -1506,6 +1563,7 @@ paths:
         filename: get-users-bindings.html
         subcategory: 
         explorer: false
+        sidebar_title: List all bindings for a user
   "/users/{user_id}/permissions":
     get:
       x-doc:
@@ -1593,6 +1651,7 @@ paths:
         filename: getresources-permissions-users.html
         subcategory: 
         explorer: false
+        sidebar_title: List all users that have a permission for a resource
   "/folders/{folder_id}/roles/{role_id}/users":
     post:
       x-doc:
@@ -1601,6 +1660,7 @@ paths:
         filename: post-folders-roles-users.html
         subcategory: 
         explorer: false
+        sidebar_title: Associate a set of users for a folder with a role
   "/folders/{folder_id}/roles/{role_id}/users/{user_id}":
     delete:
       x-doc:
@@ -1627,6 +1687,7 @@ paths:
         filename: post-projects-roles-users.html
         subcategory: 
         explorer: false
+        sidebar_title: Associate a set of users to a project with a role
   "/projects/{project_id}/roles/{role_id}/users/{user_id}":
     delete:
       x-doc:
@@ -1644,6 +1705,7 @@ paths:
         filename: get-ui-organizations-uihierarchy.html
         subcategory: 
         explorer: false
+        sidebar_title: Full organization hierarchy summary
   "/ui/organizations/{organization_id}/uiresources":
     get:
       x-doc:
@@ -1652,6 +1714,7 @@ paths:
         filename: get-ui-organizations-uiresources.html
         subcategory: 
         explorer: false
+        sidebar_title: Lists scope/tags counts for a list of resources of an organization
   "/ui/organizations/{organization_id}/users/{user_id}/uipermissions":
     get:
       x-doc:
@@ -1660,6 +1723,7 @@ paths:
         filename: get-ui-organizations-users-uipermissions.html
         subcategory: 
         explorer: false
+        sidebar_title: Lists permissions for user on all resources
   "/ui/organizations/{organization_id}/users/{user_id}/uiroles":
     get:
       x-doc:
@@ -1668,6 +1732,7 @@ paths:
         filename: get-ui-organizations-users-uiroles.html
         subcategory: 
         explorer: false
+        sidebar_title: Lists roles for user on all hierarchy resources
   "/organizations/{organization_id}/organizations/{childorganization_id}":
     delete:
       x-doc:
