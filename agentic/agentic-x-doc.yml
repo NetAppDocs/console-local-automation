@@ -100,18 +100,17 @@ paths:
         explorer: false
 categories:
 - id: health
-  title: "(documentation) Agentic Platform Config Manager API health endpoints"
+  title: Health endpoints in the Agentic Platform configuration manager REST API for NetApp Console (local deployment)
   permalink: health_endpoints.html
 - id: supported providers
-  title: "(documentation) Agentic Platform Config Manager API supported providers
-    endpoints"
+  title: Supported providers endpoints in the Agentic Platform configuration manager REST API for NetApp Console (local deployment)
   permalink: supported_providers_endpoints.html
 - id: configuration
-  title: "(documentation) Agentic Platform Config Manager API configuration endpoints"
+  title: Configuration endpoints in the Agentic Platform configuration manager REST API for NetApp Console (local deployment)
   permalink: configuration_endpoints.html
 - id: supported models
-  title: "(documentation) Agentic Platform Config Manager API supported models endpoints"
+  title: Supported models endpoints in the Agentic Platform configuration manager REST API for NetApp Console (local deployment)
   permalink: supported_models_endpoints.html
 - id: provider models
-  title: "(documentation) Agentic Platform Config Manager API provider models endpoints"
+  title: Provider models endpoints in the Agentic Platform configuration manager REST API for NetApp Console (local deployment)
   permalink: provider_models_endpoints.html

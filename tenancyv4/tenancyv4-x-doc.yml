@@ -2201,28 +2201,49 @@ paths:
         sidebar_title: Modify a fleet under an organization 
         subcategory: 
         explorer: false
+
+"/folders/{folder_id}/roles/{role_id}/usergroups/{usergroup_id}":
+    delete:
+      x-doc:
+        title: Remove a role associated with a user group from a folder in NetApp Console (local deployment)
+        category: User and usergroup
+        filename: delete-folders-roles-usergroups-.html
+        sidebar_title: Remove a role associated with a user group from a folder
+        subcategory: 
+  "/organizations/{organization_id}/roles/{role_id}/usergroups/{usergroup_id}":
+    delete:
+      x-doc:
+        title:  Remove a role associated with a user group from an organization in NetApp Console (local deployment)
+        category: User and usergroup
+        filename: delete-organizations-roles-usergroups-.html
+        sidebar_title: Remove a role associated with a user group from an organization
+        subcategory: 
+  "/projects/{project_id}/roles/{role_id}/usergroups/{usergroup_id}":
+    delete:
+      x-doc:
+        title: Remove a role associated with a user group from a project in NetApp Console (local deployment)
+        category: User and usergroup
+        filename: delete-projects-roles-usergroups-.html
+        sidebar_title: Remove a role associated with a user group from a project 
+        subcategory: 
 categories:
-- id: partnership
-  title: Partnership endpoints in the identity and access management REST API for
-    the NetApp Console
-  permalink: partnership_overview.html
 - id: resource and resourcegroup
   title: Resource and resourcegroup endpoints in the identity and access management
-    REST API for the NetApp Console
+    REST API for the NetApp Console (local deployment)
   permalink: resource_and_resourcegroup_overview.html
 - id: permission
   title: Permission endpoints in the identity and access management REST API for the
-    NetApp Console
+    NetApp Console (local deployment)
   permalink: permission_overview.html
 - id: role
   title: Role endpoints in the identity and access management REST API for the NetApp
-    Console
+    Console (local deployment)
   permalink: role_overview.html
 - id: hierarchy
   title: Hierarchy endpoints in the identity and access management REST API for the
-    NetApp Console
+    NetApp Console (local deployment)
   permalink: hierarchy_overview.html
 - id: user and usergroup
   title: User and usergroup endpoints in the identity and access management REST API
-    for the NetApp Console
+    for the NetApp Console (local deployment)
   permalink: user_and_usergroup_overview.html
