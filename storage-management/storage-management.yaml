@@ -155,7 +155,7 @@ components:
             schema:
                 $ref: '#/components/schemas/query_order_by'
         organizationIdPathParam:
-            description: Organization Id
+            description: Organization ID
             in: path
             name: organizationId
             required: true
@@ -193,7 +193,7 @@ components:
             schema:
                 $ref: '#/components/schemas/query_filter'
         workingEnvironmentIdPathParam:
-            description: Public ID of the working environment
+            description: Public ID of the working system
             in: path
             name: workingEnvironmentId
             required: true
@@ -7096,7 +7096,7 @@ components:
 info:
     title: Storage Management API
     description: |-
-        The NetApp Console Storage Management API enables you to discover and manage ONTAP storage systems through the Connector.
+        The NetApp Console storage management API enables you to discover and manage ONTAP storage systems through the Console agent.
 
         The storage management endpoints allow you to register systems, manage storage resources, and configure storage policies
         for your ONTAP clusters managed through the NetApp Console.
@@ -7107,6 +7107,47 @@ info:
         <li>storage management</li>
         <li>storage classes and policies</li>
         </ul>
+
+        **Note**: Before using the API reference documentation, review the
+        [Get started](https://docs.netapp.com/us-en/bluexp-automation/platform/overview.html) section for the
+        Console APIs. For more information about the security tokens and identifiers you'll need when using the API, review the
+        [Common workflows and tasks](https://docs.netapp.com/us-en/bluexp-automation/platform/get_identifiers.html) section.
+
+        ---
+
+        ## REST implementation
+
+        ### HTTP methods
+
+        | Method | Description                                 |
+        |--------|---------------------------------------------|
+        | POST   | Create an object instance                   |
+        | GET    | Retrieve an object instance or collection   |
+        | PATCH  | Update an existing object                   |
+        | DELETE | Remove an existing object                   |
+
+        ### Request headers
+
+        | Request Header | Description                                                                                |
+        |----------------|--------------------------------------------------------------------------------------------|
+        | Authorization  | This header contains a bearer token used to access the Console server.                     |
+        | Content-Type   | This representation header is used to indicate the original media type of the resource.    |
+        | Accept         | The server automatically returns content in JSON format if Accept header is not specified. |
+    
+
+        ### HTTP status codes
+
+        | HTTP Status Code | Description                                                                                                       |
+        |------------------|-------------------------------------------------------------------------------------------------------------------|
+        | 200              | OK: Returned for successful operation completion                                                                  |
+        | 201              | Created: The resource was created successfully.                                                                   |
+        | 204              | No Content: The operation was completed successfully and no response body was returned.                           |
+        | 400              | Bad Request: Returned if the input is malformed and could not be parsed                                           |
+        | 401              | Unauthorized: Returned if user authentication failed or the token has expired                                     |
+        | 403              | Forbidden: Returned for authorization errors depending on the resource and token.                                 |
+        | 404              | Not Found: The specified resource could not be found.                                                             |
+        | 503              | Service Unavailable: The service is not ready to handle the request.                                              |
+        
     termsOfService: https://www.netapp.com/media/10784-cloud-data-services-terms.pdf
     license:
         name: NetApp Console License
@@ -9177,80 +9218,7 @@ paths:
             tags:
                 - Storage Management
             x-scope: private,public,ncl
-    /v1/organizations/{organizationId}/workingenvironments:
-        get:
-            description: Lists all systems in the specified organization.
-            parameters:
-                - $ref: '#/components/parameters/organizationIdPathParam'
-                - description: |-
-                    Field based filter.
-                    Supported operators are:
-                    * eq - Equality
-                    * and - Logical AND
-                    * or - Logical OR
-                    * not - Logical NOT
-
-                    Supported filter fields:
-                    * name - Cluster name
-                    * ip - Cluster IP address
-                    * agentId - Agent identifier
-                    * organizationId - Organization identifier
-                    * type - System type
-                    * id - Storage device ID
-                    * workingEnvironmentId - System ID
-
-                    URL example: "filter=name%20eq%20%27Production%20Cluster%201%27"
-
-                    OpenAPI examples:
-                    * Single field: name eq 'Production Cluster 1'
-                    * Multiple conditions: name eq 'Production Cluster 1' and ip eq '10.10.10.100'
-                    * OR condition: name eq 'Production Cluster 1' or name eq 'DR Cluster'
-                    * NOT condition: not name eq 'Test Cluster'
-                  example: name eq 'Production Cluster 1'
-                  in: query
-                  name: filter
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    content:
-                        application/json:
-                            example:
-                                count: 2
-                                items:
-                                    - agentId: agent-12345678
-                                      credentialId: credential-abc123
-                                      id: 5fb96g75-6828-5673-c4gd-3d074g77bgb7
-                                      ip: 10.10.10.100
-                                      name: Production Cluster 1
-                                      organizationId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                                      type: ON_PREM
-                                      version: 9.14.1
-                                      workingEnvironmentId: OnPremWorkingEnvironment-3fa85f64-5717-4562-b3fc-2c963f66afa6
-                                    - agentId: agent-87654321
-                                      credentialId: credential-xyz789
-                                      id: 5fb96g75-6828-5673-c4gd-3d074g77bgb7
-                                      ip: 10.10.10.101
-                                      name: DR Cluster
-                                      organizationId: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-                                      type: ON_PREM
-                                      version: 9.14.1
-                                      workingEnvironmentId: OnPremWorkingEnvironment-4fb96g75-6828-5673-c4gd-3d074g77bgb7
-                            schema:
-                                $ref: '#/components/schemas/workingenvironment_1.0_list_response_body_summary'
-                    description: Returns the list of systems.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-                "404":
-                    $ref: '#/components/responses/404NotFound'
-            summary: List All Systems in an Organization
-            tags:
-                - System Discovery
-            x-scope: private,public,ncl
+    
     /v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}:
         delete:
             description: Removes the specified on-premises system from an organization.
@@ -9513,24 +9481,21 @@ servers:
 tags:
     - name: System Discovery
       description: |-
-        The system discovery endpoints enable you to register and manage ONTAP storage systems through the NetApp Console Connector.
+        The system discovery endpoints enable you to register and manage ONTAP storage systems through the Console agent.
 
         You can perform the following actions using the system discovery endpoints:
         <ul>
         <li>Discover a system</li>
-        <li>List all systems in an organization</li>
-        <li>Retrieve system details</li>
         <li>Update a system</li>
         <li>Delete a system</li>
         </ul>
     - name: Storage Management
       description: |-
         The storage management endpoints enable you to manage ONTAP cluster resources such as volumes and LUNs
-        on systems managed through the NetApp Console Connector.
+        on systems managed through the Console agent.
 
         You can perform the following actions using the storage management endpoints:
         <ul>
-        <li>Retrieve system details</li>
         <li>Create a new volume</li>
         <li>Create a new LUN</li>
         <li>Get system recommendations for storage placement</li>

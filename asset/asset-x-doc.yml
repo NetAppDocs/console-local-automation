@@ -1,4 +1,6 @@
 ---
+overview: Asset REST API for NetApp Console (local deployment)
+permalink: overview.html
 paths:
   "/organizations/{organization_id}/aggregates":
     get:

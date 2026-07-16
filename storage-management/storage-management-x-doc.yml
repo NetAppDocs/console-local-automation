@@ -1,4 +1,6 @@
 ---
+overview: Storage management REST API for NetApp Console (local deployment)
+permalink: overview.html
 paths:
   "/v1/organizations/{organizationId}/capacitypolicies":
     get:
@@ -242,11 +244,11 @@ paths:
         subcategory: 
 categories:
 - id: system discovery
-  title: Storage Management API system discovery endpoints
+  title: System discovery endpoints in the storage management REST API for NetApp Console (local deployment)
   permalink: system_discovery_endpoints.html
 - id: storage management
-  title: Storage Management API storage management endpoints
+  title: Storage management endpoints in the storage management REST API for NetApp Console (local deployment)
   permalink: storage_management_endpoints.html
 - id: storage classes and policies
-  title: Storage Management API storage classes and policies endpoints
+  title: Storage classes and policies endpoints in the storage management REST API for NetApp Console (local deployment)
   permalink: storage_classes_and_policies_endpoints.html

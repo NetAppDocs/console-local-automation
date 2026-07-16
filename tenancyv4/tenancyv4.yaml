@@ -7960,7 +7960,7 @@ info:
 paths:
     /fleets:
         get:
-            description: List of all fleets.
+            description: Lists all fleets.
             parameters:
                 - $ref: '#/components/parameters/filter'
                 - $ref: '#/components/parameters/skip'
