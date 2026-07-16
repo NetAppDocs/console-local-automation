@@ -5242,7 +5242,7 @@ info:
         <li>aggregate</li>
         <li>cluster</li>
         <li>fleet</li>
-        <li>lun</li>
+        <li>LUN</li>
         <li>namespace</li>
         <li>network interface</li>
         <li>node</li>
