@@ -98,8 +98,8 @@ The JSON input example includes the required input parameters.
 ----
 {
     "grant_type": "client_credentials",
-    "client_id": "< client-id >",
-    "client_secret": "< client-secret >"
+    "client_id": "<client-id>",
+    "client_secret": "<client-secret>"
 }
 ----
 
