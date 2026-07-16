@@ -10,6 +10,7 @@ paths:
         filename: get-v1-organizations-capacitypolicies.html
         sidebar_title: List all capacity policies in an organization
         subcategory: 
+        explorer: false
     post:
       x-doc:
         title: Create a new capacity policy in NetApp Console (local deployment)
@@ -17,6 +18,7 @@ paths:
         filename: post-v1-organizations-capacitypolicies.html
         sidebar_title: Create a new capacity policy
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/capacitypolicies/{capacityPolicyId}":
     delete:
       x-doc:
@@ -25,6 +27,7 @@ paths:
         filename: delete-v1-organizations-capacitypolicies-.html
         sidebar_title: Delete a capacity policy
         subcategory: 
+        explorer: false
     get:
       x-doc:
         title: Retrieve a capacity policy in NetApp Console (local deployment)
@@ -32,6 +35,7 @@ paths:
         filename: get-v1-organizations-capacitypolicies-.html
         sidebar_title: Retrieve a capacity policy 
         subcategory: 
+        explorer: false
     patch:
       x-doc:
         title: Update a capacity policy in NetApp Console (local deployment)
@@ -39,6 +43,7 @@ paths:
         filename: patch-v1-organizations-capacitypolicies-.html
         sidebar_title: Update a capacity policy
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/fleets/{fleetId}/workingenvironments":
     post:
       x-doc:
@@ -47,6 +52,7 @@ paths:
         filename: post-v1-organizations-fleets-workingenvironments.html
         sidebar_title: Discover and register a storage device
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/performancepolicies":
     get:
       x-doc:
@@ -55,6 +61,7 @@ paths:
         filename: get-v1-organizations-performancepolicies.html
         sidebar_title: List all performance policies
         subcategory: 
+        explorer: false
     post:
       x-doc:
         title: Create a new performance policy in NetApp Console (local deployment)
@@ -62,6 +69,7 @@ paths:
         filename: post-v1-organizations-performancepolicies.html
         sidebar_title: Create a new performance policy
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/performancepolicies/{performancePolicyId}":
     delete:
       x-doc:
@@ -70,6 +78,7 @@ paths:
         filename: delete-v1-organizations-performancepolicies-.html
         sidebar_title: Delete a performance policy
         subcategory: 
+        explorer: false
     get:
       x-doc:
         title: Retrieve a performance policy in NetApp Console (local deployment)
@@ -77,6 +86,7 @@ paths:
         filename: get-v1-organizations-performancepolicies-.html
         sidebar_title: Retrieve a performance policy
         subcategory: 
+        explorer: false
     patch:
       x-doc:
         title: Update an existing performance policy in NetApp Console (local deployment)
@@ -84,6 +94,7 @@ paths:
         filename: patch-v1-organizations-performancepolicies-.html
         sidebar_title: Update an existing performance policy
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/protectionpolicies":
     get:
       x-doc:
@@ -92,6 +103,7 @@ paths:
         filename: get-v1-organizations-protectionpolicies.html
         sidebar_title: List protection policies
         subcategory: 
+        explorer: false
     post:
       x-doc:
         title: Create a protection policy in NetApp Console (local deployment)
@@ -99,6 +111,7 @@ paths:
         filename: post-v1-organizations-protectionpolicies.html
         sidebar_title: Create a protection policy
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/protectionpolicies/{protectionPolicyId}":
     delete:
       x-doc:
@@ -107,6 +120,7 @@ paths:
         filename: delete-v1-organizations-protectionpolicies-.html
         sidebar_title: Delete a protection policy
         subcategory: 
+        explorer: false
     get:
       x-doc:
         title: Retrieve protection policy details in NetApp Console (local deployment)
@@ -114,6 +128,7 @@ paths:
         filename: get-v1-organizations-protectionpolicies-.html
         sidebar_title: Retrieve protection policy details 
         subcategory: 
+        explorer: false
     patch:
       x-doc:
         title: Update a protection policy in NetApp Console (local deployment)
@@ -121,6 +136,7 @@ paths:
         filename: patch-v1-organizations-protectionpolicies-.html
         sidebar_title: Update a protection policy
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/securitypolicies":
     get:
       x-doc:
@@ -129,6 +145,7 @@ paths:
         filename: get-v1-organizations-securitypolicies.html
         sidebar_title: List security policies
         subcategory: 
+        explorer: false
     post:
       x-doc:
         title: Create a security policy in NetApp Console (local deployment)
@@ -136,6 +153,7 @@ paths:
         filename: post-v1-organizations-securitypolicies.html
         sidebar_title: Create a security policy
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/securitypolicies/{securityPolicyId}":
     delete:
       x-doc:
@@ -144,6 +162,7 @@ paths:
         filename: delete-v1-organizations-securitypolicies-.html
         sidebar_title: Delete a security policy
         subcategory: 
+        explorer: false
     get:
       x-doc:
         title: Retrieve security policy details in NetApp Console (local deployment) 
@@ -151,6 +170,7 @@ paths:
         filename: get-v1-organizations-securitypolicies-.html
         sidebar_title: Retrieve security policy details 
         subcategory: 
+        explorer: false
     patch:
       x-doc:
         title: Update a security policy in NetApp Console (local deployment) 
@@ -158,6 +178,7 @@ paths:
         filename: patch-v1-organizations-securitypolicies-.html
         sidebar_title: Update a security policy
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/storageclasses":
     get:
       x-doc:
@@ -166,6 +187,7 @@ paths:
         filename: get-v1-organizations-storageclasses.html
         sidebar_title: List all storage classes
         subcategory: 
+        explorer: false
     post:
       x-doc:
         title: Create a new storage class in NetApp Console (local deployment) 
@@ -173,6 +195,7 @@ paths:
         filename: post-v1-organizations-storageclasses.html
         sidebar_title: Create a new storage class
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/storageclasses/{storageClassId}":
     delete:
       x-doc:
@@ -181,6 +204,7 @@ paths:
         filename: delete-v1-organizations-storageclasses-.html
         sidebar_title: Delete an existing storage class
         subcategory: 
+        explorer: false
     get:
       x-doc:
         title: Retrieve a storage class in NetApp Console (local deployment) 
@@ -188,6 +212,7 @@ paths:
         filename: get-v1-organizations-storageclasses-.html
         sidebar_title: Retrieve a storage class 
         subcategory: 
+        explorer: false
     patch:
       x-doc:
         title: Update an existing storage class in NetApp Console (local deployment)
@@ -195,6 +220,7 @@ paths:
         filename: patch-v1-organizations-storageclasses-.html
         sidebar_title: Update an existing storage class
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/systemrecommendations":
     post:
       x-doc:
@@ -203,6 +229,7 @@ paths:
         filename: post-v1-organizations-systemrecommendations.html
         sidebar_title: Retrieve system recommendations for storage placement
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/workingenvironments":
     get:
       x-doc:
@@ -211,6 +238,7 @@ paths:
         filename: get-v1-organizations-workingenvironments.html
         sidebar_title: Lists all systems in an organization
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}":
     delete:
       x-doc:
@@ -219,6 +247,7 @@ paths:
         filename: delete-v1-organizations-workingenvironments-.html
         sidebar_title: Delete a system
         subcategory: 
+        explorer: false
     patch:
       x-doc:
         title: Update a system in NetApp Console (local deployment)
@@ -226,6 +255,7 @@ paths:
         filename: patch-v1-organizations-workingenvironments-.html
         sidebar_title: Update a system
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}/luns":
     post:
       x-doc:
@@ -234,6 +264,7 @@ paths:
         filename: post-v1-organizations-workingenvironments-luns.html
         sidebar_title: Create a new LUN
         subcategory: 
+        explorer: false
   "/v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}/volumes":
     post:
       x-doc:
@@ -242,6 +273,7 @@ paths:
         filename: post-v1-organizations-workingenvironments-volumes.html
         sidebar_title: Create a new volume
         subcategory: 
+        explorer: false
 categories:
 - id: system discovery
   title: System discovery endpoints in the storage management REST API for NetApp Console (local deployment)

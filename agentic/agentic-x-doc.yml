@@ -1,5 +1,5 @@
 ---
-overview: Agentic Platform configuration manager API in NetApp Console (local deployment)
+overview: Agentic Platform configuration manager REST API in NetApp Console (local deployment)
 permalink: overview.html
 paths:
   "/configs":

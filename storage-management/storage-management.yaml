@@ -193,7 +193,7 @@ components:
             schema:
                 $ref: '#/components/schemas/query_filter'
         workingEnvironmentIdPathParam:
-            description: Public ID of the working system
+            description: Public ID of the system
             in: path
             name: workingEnvironmentId
             required: true
