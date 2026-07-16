@@ -7109,45 +7109,7 @@ info:
         </ul>
 
         **Note**: Before using the API reference documentation, review the
-        [Get started](https://docs.netapp.com/us-en/bluexp-automation/platform/overview.html) section for the
-        Console APIs. For more information about the security tokens and identifiers you'll need when using the API, review the
-        [Common workflows and tasks](https://docs.netapp.com/us-en/bluexp-automation/platform/get_identifiers.html) section.
-
-        ---
-
-        ## REST implementation
-
-        ### HTTP methods
-
-        | Method | Description                                 |
-        |--------|---------------------------------------------|
-        | POST   | Create an object instance                   |
-        | GET    | Retrieve an object instance or collection   |
-        | PATCH  | Update an existing object                   |
-        | DELETE | Remove an existing object                   |
-
-        ### Request headers
-
-        | Request Header | Description                                                                                |
-        |----------------|--------------------------------------------------------------------------------------------|
-        | Authorization  | This header contains a bearer token used to access the Console server.                     |
-        | Content-Type   | This representation header is used to indicate the original media type of the resource.    |
-        | Accept         | The server automatically returns content in JSON format if Accept header is not specified. |
-    
-
-        ### HTTP status codes
-
-        | HTTP Status Code | Description                                                                                                       |
-        |------------------|-------------------------------------------------------------------------------------------------------------------|
-        | 200              | OK: Returned for successful operation completion                                                                  |
-        | 201              | Created: The resource was created successfully.                                                                   |
-        | 204              | No Content: The operation was completed successfully and no response body was returned.                           |
-        | 400              | Bad Request: Returned if the input is malformed and could not be parsed                                           |
-        | 401              | Unauthorized: Returned if user authentication failed or the token has expired                                     |
-        | 403              | Forbidden: Returned for authorization errors depending on the resource and token.                                 |
-        | 404              | Not Found: The specified resource could not be found.                                                             |
-        | 503              | Service Unavailable: The service is not ready to handle the request.                                              |
-        
+        [Get started](https://docs.netapp.com/us-en/console-local-automation/platform/learn-about.html) section for the Console (local deployment) APIs.
     termsOfService: https://www.netapp.com/media/10784-cloud-data-services-terms.pdf
     license:
         name: NetApp Console License
