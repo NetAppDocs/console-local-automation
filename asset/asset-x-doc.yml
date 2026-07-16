@@ -10,6 +10,7 @@ paths:
         filename: get-organizations-aggregates.html
         sidebar_title: List aggregates in an organization
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/clusters":
     get:
       x-doc:
@@ -18,6 +19,7 @@ paths:
         filename: get-organizations-clusters.html
         sidebar_title: List clusters in an organization
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets":
     get:
       x-doc:
@@ -26,6 +28,7 @@ paths:
         filename: get-organizations-fleets.html
         sidebar_title: List fleets
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/aggregates":
     get:
       x-doc:
@@ -34,6 +37,7 @@ paths:
         filename: get-organizations-fleets-aggregates.html
         sidebar_title: List aggregates in a fleet
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/clusters":
     get:
       x-doc:
@@ -42,6 +46,7 @@ paths:
         filename: get-organizations-fleets-clusters.html
         sidebar_title: List clusters in a fleet
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/luns":
     get:
       x-doc:
@@ -50,6 +55,7 @@ paths:
         filename: get-organizations-fleets-luns.html
         sidebar_title: List LUNs
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/metricsql":
     post:
       x-doc:
@@ -58,6 +64,7 @@ paths:
         filename: post-organizations-fleets-metricsql.html
         sidebar_title: Run a MetricsQL query for systems in the specified fleet
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/namespaces":
     get:
       x-doc:
@@ -66,6 +73,7 @@ paths:
         filename: get-organizations-fleets-namespaces.html
         sidebar_title: List NVMe namespaces in a fleet
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/networkinterfaces":
     get:
       x-doc:
@@ -74,6 +82,7 @@ paths:
         filename: get-organizations-fleets-networkinterfaces.html
         sidebar_title: List interfaces in a fleet 
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/nodes":
     get:
       x-doc:
@@ -82,6 +91,7 @@ paths:
         filename: get-organizations-fleets-nodes.html
         sidebar_title: List nodes in a fleet 
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/ports":
     get:
       x-doc:
@@ -90,6 +100,7 @@ paths:
         filename: get-organizations-fleets-ports.html
         sidebar_title: List ports in a fleet
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/qospolicygroups":
     get:
       x-doc:
@@ -98,6 +109,7 @@ paths:
         filename: get-organizations-fleets-qospolicygroups.html
         sidebar_title: List QoS policy groups in a fleet
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/qtrees":
     get:
       x-doc:
@@ -106,6 +118,7 @@ paths:
         filename: get-organizations-fleets-qtrees.html
         sidebar_title: List qtrees in a fleet
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/smbshares":
     get:
       x-doc:
@@ -114,6 +127,7 @@ paths:
         filename: get-organizations-fleets-smbshares.html
         sidebar_title: List SMB shares in a fleet
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/svms":
     get:
       x-doc:
@@ -122,6 +136,7 @@ paths:
         filename: get-organizations-fleets-svms.html
         sidebar_title: List SVMs in a fleet
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/timeseries":
     post:
       x-doc:
@@ -130,6 +145,7 @@ paths:
         filename: post-organizations-fleets-timeseries.html
         sidebar_title: Retrieve time series data for systems in a fleet
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/volumes":
     get:
       x-doc:
@@ -138,6 +154,7 @@ paths:
         filename: get-organizations-fleets-volumes.html
         sidebar_title: List volumes in a fleet
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/folders/{folder_id}/clusters":
     get:
       x-doc:
@@ -146,6 +163,7 @@ paths:
         filename: get-organizations-folders-clusters.html
         sidebar_title: List clusters in a folder
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/luns":
     get:
       x-doc:
@@ -154,6 +172,7 @@ paths:
         filename: get-organizations-luns.html
         sidebar_title: List LUNs in an organization
         subcategory: 
+        explorer: false
     patch:
       x-doc:
         title: Create or update multiple LUNs for an organization in NetApp Console (local deployment)
@@ -161,6 +180,7 @@ paths:
         filename: patch-organizations-luns.html
         sidebar_title: Create or update multiple LUNs for an organization 
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/metricsql":
     post:
       x-doc:
@@ -169,6 +189,7 @@ paths:
         filename: post-organizations-metricsql.html
         sidebar_title: Run a MetricsQL query for systems in an organization
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/namespaces":
     get:
       x-doc:
@@ -177,6 +198,7 @@ paths:
         filename: get-organizations-namespaces.html
         sidebar_title: List NVMe namespaces in an organization
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/networkinterfaces":
     get:
       x-doc:
@@ -185,6 +207,7 @@ paths:
         filename: get-organizations-networkinterfaces.html
         sidebar_title: List interfaces in an organization
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/nodes":
     get:
       x-doc:
@@ -193,6 +216,7 @@ paths:
         filename: get-organizations-nodes.html
         sidebar_title: List nodes in an organization
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/ports":
     get:
       x-doc:
@@ -201,6 +225,7 @@ paths:
         filename: get-organizations-ports.html
         sidebar_title: List ports in an organization
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/qospolicygroups":
     get:
       x-doc:
@@ -209,6 +234,7 @@ paths:
         filename: get-organizations-qospolicygroups.html
         sidebar_title: List QoS policy groups in an organization
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/qtrees":
     get:
       x-doc:
@@ -217,6 +243,7 @@ paths:
         filename: get-organizations-qtrees.html
         sidebar_title: List qtrees in an organization
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/smbshares":
     get:
       x-doc:
@@ -225,6 +252,7 @@ paths:
         filename: get-organizations-smbshares.html
         sidebar_title: List SMB shares in an organization
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/svms":
     get:
       x-doc:
@@ -233,6 +261,7 @@ paths:
         filename: get-organizations-svms.html
         sidebar_title: List SVMs in an organization
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/timeseries":
     post:
       x-doc:
@@ -241,6 +270,7 @@ paths:
         filename: post-organizations-timeseries.html
         sidebar_title: Retrieve time series data for systems in an organization
         subcategory: 
+        explorer: false
   "/organizations/{organization_id}/volumes":
     get:
       x-doc:
@@ -249,6 +279,7 @@ paths:
         filename: get-organizations-volumes.html
         sidebar_title: List volumes in an organization
         subcategory: 
+        explorer: false
     patch:
       x-doc:
         title: Create or update multiple volumes for an organization in NetApp Console (local deployment)
@@ -256,6 +287,7 @@ paths:
         filename: patch-organizations-volumes.html
         sidebar_title: Create or update multiple volumes for an organization
         subcategory: 
+        explorer: false
 categories:
 - id: aggregate
   title: "Assets API aggregate endpoints"
