@@ -12,3 +12,61 @@ summary: A workflow describing how to cerate a service token
 :imagesdir: ../media/
 
 [.lead]
+Learn how to obtain the required authentication information and perform a REST API call in NetApp Console (local deployment). 
+
+== Step 1: Obtain the access tokens 
+
+You'll need an access token to use the NetApp Console (local deployment) REST APIs. The tokens need to be included with every API call.  
+
+* link:create-user-token.html[Create a user token] 
+
+* link:create-service-token.html[Create a service token] 
+
+== Step 2: Create the required request headers 
+
+You need to create several HTTP request headers and include them with each API call. The following table shows the request headers used by the NetApp Console (local deployment) REST APIs.
+
+[cols="2,2" options="header"]
+|===
+// header row
+| Request Header
+| Description
+
+
+| Authorization
+| This header contains a bearer token issued by the local identity provider.
+
+
+| Content-Type
+| This representation header is used to indicate the original media type of the resource.
+
+| Accept
+| The server automatically returns content in JSON format if the Accept header is not specified.
+
+
+// table end
+|===
+
+== Step 3: Issue a REST API call
+
+You can use curl or the programming language of your choice to issue a REST API call. The following example shows a curl request.
+
+.Curl example 
+
+The following example lists all the Fleets from the assets service: 
+
+[source,curl]
+----
+curl --request GET \
+ --url https://<host>/v1/services/assets/organizations/56165b52-0e2b-4f24-b92d-ffadd94a0fe1/fleets \
+ --header 'authorization: Bearer <access_token>’
+----
+
+
+
+
+
+
+
+
+
