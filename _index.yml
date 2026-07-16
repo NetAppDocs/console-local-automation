@@ -8,12 +8,8 @@ indexpage:
       links:
        - title: Agentic Platform
          url: /agentic/overview.html
-       - title: Alerts
-         url: /alerts/overview.html
        - title: Asset
          url: /asset/overview.html
-       - title: Backup and Recovery
-         url: /cbs/overview.html
        - title: Identity and access management
          url: /tenancyv4/overview.html
        - title: Storage management
