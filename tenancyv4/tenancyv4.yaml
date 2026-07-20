@@ -7899,7 +7899,7 @@ info:
         **Note**: Before using the API reference documentation, review the
         [Get started](https://docs.netapp.com/us-en/console-local-automation/platform/learn-about.html) section for the Console (local deployment) APIs. 
 
-        ---
+        
 
 
         ## Query parameters
@@ -8938,7 +8938,10 @@ paths:
                 type: string
     /folders/{folder_id}/projects:
         get:
-            description: Lists all projects under the specified folder. **Note:** In NetApp Console (local deployment) project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-folders-fleets.html). 
+            description: |-
+                Lists all projects under the specified folder. 
+
+                **Note**: In NetApp Console (local deployment) project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-folders-fleets.html). 
                          
             parameters:
                 - description: Folder ID.
