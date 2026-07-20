@@ -8938,7 +8938,8 @@ paths:
                 type: string
     /folders/{folder_id}/projects:
         get:
-            description: Lists all projects under the specified folder.
+            description: Lists all projects under the specified folder. **Note:** In NetApp Console (local deployment) project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-folders-fleets.html). 
+                         
             parameters:
                 - description: Folder ID.
                   example: 666a3f38-d4fa-5b62-a391-a69029758d32
