@@ -7886,41 +7886,23 @@ components:
             type: http
 info:
     description: |-
-        The NetApp Console identity and access management (IAM) service provides a centralized point for managing customer and partner information.
+        The NetApp Console (local deployment) identity and access management (IAM) service provides a centralized point for managing customer and partner information.
         IAM endpoints enable you to manage and control access to the Console resources.
+
+        **Caution**: In NetApp Console (local deployment), the term "project" is replaced with "fleet". Project API endpoints are deprecated and should only be used for legacy compliance. This reference documentation maps deprecated project API endpoints to the new fleet equivalent where applicable.
 
         If you're using the Console in standard mode, you no longer have a NetApp Console account. Instead, you have an organization in the Console that you manage using IAM.
 
         IAM uses predefined roles that include sets of permissions which are required to manage and view data. You can have multiple roles within the same organization or set of resources.
-        You should verify that you have the appropriate permissions when using IAM API endpoints. With the appropriate permissions, you can manage an organization hierarchy modeled as folders (subdivisions of an organization using criteria such as department or region) and projects (a workspace in the Console). After organizing your resources into folders and projects, you can grant granular access to resources by providing organization members with permissions to specific folders and projects.
-
-        The actions available through the IAM REST API are a superset of what's available through the web UI.
+        You should verify that you have the appropriate permissions when using IAM API endpoints. With the appropriate permissions, you can manage an organization hierarchy modeled as folders (subdivisions of an organization using criteria such as department or region) and fleets (a workspace in the Console). After organizing your resources into folders and fleets, you can grant granular access to resources by providing organization members with permissions to specific folders and fleets.
 
         **Note**: Before using the API reference documentation, review the
-        [Get started](https://docs.netapp.com/us-en/cloud-manager-automation/platform/overview.html) section for the Console APIs. For more information about the security tokens and identifiers you'll need when using the API, review the
-        [Common workflows and tasks](https://docs.netapp.com/us-en/cloud-manager-automation/platform/get_identifiers.html) section.
+        [Get started](https://docs.netapp.com/us-en/console-local-automation/platform/learn-about.html) section for the Console (local deployment) APIs. 
 
-        ---
+        
 
-        ## REST implementation
 
-        ### HTTP methods
-
-        | Method | Description                                                                               |
-        |--------|-------------------------------------------------------------------------------------------|
-        | POST   | Create an object instance                                                                 |
-        | GET    | Retrieve an object instance or collection                                                 |
-        | PATCH  | Update specific fields of an existing resource instance based on the supplied input values |
-        | PUT    | Update an existing resource instance based on the supplied input values                   |
-        | DELETE | Remove an existing object                                                                 |
-
-        ### Request headers
-
-        | Request Header | Description                           |
-        |----------------|---------------------------------------|
-        | Authorization  | Required. Contains a JWT access token |
-
-        ### Query parameters
+        ## Query parameters
 
         You can use query parameters with endpoints in the following components:
 
@@ -7930,29 +7912,7 @@ info:
         | Permission                 | filter, skip, include, orderBy, limit, count, continue, metadata, links |
         | Resource and resourcegroup | filter, skip, include, orderBy, limit, count, continue, metadata, links |
         | Role                       | filter, skip, include, orderBy, limit, count, continue, metadata, links |
-        | User and usergroup         | filter, skip, include, orderBy, limit, count, continue, metadata, links |
-
-        ### Response headers
-
-        This API uses the standard HTTP response headers common with all APIs in the Console. See
-        [REST implementation](https://docs.netapp.com/us-en/cloud-manager-automation/platform/http_details.html) for more information.
-
-        ### HTTP status codes
-
-        | HTTP Status Code | Description                                                                              |
-        |------------------|------------------------------------------------------------------------------------------|
-        | 200              | OK: Returned for successful operation completion                                         |
-        | 201              | The resource was successfully created.                                                   |
-        | 204              | The operation was completed successfully and the server did not send a response message. |
-        | 400              | Bad Request: Returned if the input is malformed and could not be parsed                  |
-        | 401              | Unauthorized: Returned if user authentication failed or the token has expired            |
-        | 403              | Forbidden: Returned for authorization errors depending on the resource and token         |
-
-        ## Error handling
-
-        The following processes are involved with error handling and processing:
-        * The error is logged for supportability
-        * The error is also returned to the caller for any specific handling
+        | User and usergroup         | filter, skip, include, orderBy, limit, count, continue, metadate, links |
     license:
         name: NetApp Console License
     termsOfService: https://www.netapp.com/media/10784-cloud-data-services-terms.pdf
@@ -7961,7 +7921,7 @@ info:
 paths:
     /fleets:
         get:
-            description: List of all fleets.
+            description: Lists all fleets.
             parameters:
                 - $ref: '#/components/parameters/filter'
                 - $ref: '#/components/parameters/skip'
@@ -8978,7 +8938,11 @@ paths:
                 type: string
     /folders/{folder_id}/projects:
         get:
-            description: Lists all projects under the specified folder.
+            description: |-
+                Lists all projects under the specified folder. 
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-folders-fleets.html). 
+                         
             parameters:
                 - description: Folder ID.
                   example: 666a3f38-d4fa-5b62-a391-a69029758d32
@@ -9027,7 +8991,10 @@ paths:
                 format: uuid
                 type: string
         post:
-            description: Creates a project under the specified folder.
+            description: |-
+               Creates a project under the specified folder.
+
+               **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/post-folders-fleets.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -9090,7 +9057,10 @@ paths:
             x-scope: documentation,public,nco,ncl
     /folders/{folder_id}/projects/{project_id}:
         delete:
-            description: Removes a project from the specified folder.
+            description: |-
+                Removes a project from the specified folder.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/delete-folders-fleets-.html). 
             responses:
                 "204":
                     description: Indicates if the project was removed from the folder.
@@ -9109,7 +9079,10 @@ paths:
             x-persistence: false
             x-scope: documentation,private,public,nco,ncl
         get:
-            description: Retrieves a project under the specified folder.
+            description: |-
+                Retrieves a project under the specified folder.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-folders-fleets-.html). 
             responses:
                 "200":
                     content:
@@ -9165,7 +9138,10 @@ paths:
                 format: uuid
                 type: string
         patch:
-            description: Updates a project under the specified folder with partial information.
+            description: |-
+                Updates a project under the specified folder with partial information.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/patch-folders-fleets-.html). 
             parameters:
                 - $ref: '#/components/parameters/filter'
             requestBody:
@@ -9201,7 +9177,10 @@ paths:
             x-private-path: /resources/{project_id}
             x-scope: documentation,private,public,nco,ncl
         put:
-            description: Replaces a project in the specified folder with new information.
+            description: |-
+                Replaces a project in the specified folder with new information.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/put-folders-fleets-.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -10801,7 +10780,10 @@ paths:
                 type: string
     /organizations/{organization_id}/projects:
         get:
-            description: Lists all projects under the specified organization.
+            description: |-
+                Lists all projects under the specified organization.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-organizations-fleets.html). 
             parameters:
                 - description: Folder ID.
                   example: 666a3f38-d4fa-5b62-a391-a69029758d32
@@ -10850,7 +10832,10 @@ paths:
                 format: uuid
                 type: string
         post:
-            description: Creates a new project under the specified organization.
+            description: |-
+                Creates a new project under the specified organization.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/post-organizations-fleets.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -10913,7 +10898,10 @@ paths:
             x-scope: documentation,public,nco,ncl
     /organizations/{organization_id}/projects/{project_id}:
         delete:
-            description: Removes a project from the specified organization.
+            description: |-
+                Removes a project from the specified organization.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/delete-organizations-fleets-.html). 
             responses:
                 "204":
                     description: Indicates if the project was removed from an organization.
@@ -10932,7 +10920,10 @@ paths:
             x-persistence: false
             x-scope: documentation,private,public,nco,ncl
         get:
-            description: Retrieves a project under the specified organization.
+            description: |-
+                Retrieves a project under the specified organization.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-organizations-fleets-.html). 
             parameters:
                 - $ref: '#/components/parameters/filter'
             responses:
@@ -10990,7 +10981,10 @@ paths:
                 format: uuid
                 type: string
         patch:
-            description: Updates a project under the specified organization with partial information.
+            description: |-
+                Updates a project under the specified organization with partial information.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/patch-organizations-fleets-.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -11024,7 +11018,10 @@ paths:
             x-private-path: /resources/{project_id}
             x-scope: documentation,private,public,nco,ncl
         put:
-            description: Replaces a project under the specified organization with new information.
+            description: |-
+                Replaces a project under the specified organization with new information.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/put-organizations-fleets-.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -12654,7 +12651,10 @@ paths:
             x-scope: documentation,public,nco,ncl
     /projects/{project_id}:
         delete:
-            description: Deletes the specified project.
+            description: |-
+                Deletes the specified project.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/delete-fleets-.html). 
             responses:
                 "204":
                     description: Indicates if the project was deleted.
@@ -12674,7 +12674,10 @@ paths:
             x-private-path: /resources/{project_id}
             x-scope: documentation,public,nco,ncl
         get:
-            description: Retrieves the specified project.
+            description: |-
+                Retrieves the specified project.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-fleets-.html). 
             parameters:
                 - $ref: '#/components/parameters/filter'
                 - $ref: '#/components/parameters/skip'
@@ -12730,7 +12733,10 @@ paths:
                 format: uuid
                 type: string
         patch:
-            description: Updates the specified project with partial information.
+            description: |-
+                Updates the specified project with partial information.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/patch-fleets-.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -12764,7 +12770,10 @@ paths:
             x-private-path: /resources/{project_id}
             x-scope: documentation,public,nco,ncl
         put:
-            description: Replaces the specified project with new information.
+            description: |-
+                Replaces the specified project with new information.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/put-fleets-.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -13373,7 +13382,10 @@ paths:
                 type: string
     /projects/{project_id}/users:
         get:
-            description: Lists all users in the specified project.
+            description: |-
+                Lists all users in the specified project.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-fleets-users.html). 
             parameters:
                 - $ref: '#/components/parameters/filter'
                 - $ref: '#/components/parameters/skip'
@@ -13412,7 +13424,10 @@ paths:
                 format: uuid
                 type: string
         post:
-            description: Adds users to the specified project.
+            description: |-
+                Adds users to the specified project.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/post-fleets-users.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.userbulk+json:
@@ -15575,51 +15590,6 @@ paths:
                 - User and Usergroup
             x-permission: bxp:user-modify
             x-persistence: true
-            x-scope: documentation,private,public,nco,ncl
-    /users/{user_id}/partnerOrganizations:
-        get:
-            description: Lists all partnership organizations for the specified user.
-            parameters:
-                - $ref: '#/components/parameters/filter'
-                - $ref: '#/components/parameters/skip'
-                - $ref: '#/components/parameters/include'
-                - $ref: '#/components/parameters/limit'
-                - $ref: '#/components/parameters/order_by'
-                - $ref: '#/components/parameters/count'
-                - $ref: '#/components/parameters/continue'
-            responses:
-                "200":
-                    content:
-                        application/vnd.netapp.bxp.resources+json:
-                            schema:
-                                $ref: '#/components/schemas/resource_1.0_list_response_body'
-                    description: List of partnership organizations for the specified user.
-                    headers:
-                        Location:
-                            description: Location of the collection.
-                            schema:
-                                format: uri
-                                type: string
-            summary: Lists all partnership organizations for the specified user.
-            tags:
-                - Resource and Resourcegroup
-                - Partnership
-            x-permission: bxp:resource-read
-            x-persistence: true
-            x-scope: documentation,private,public,nco,ncl
-        parameters:
-            - description: User ID.
-              example: 666a3f38-d4fa-5b62-a391-a69029758d32
-              in: path
-              name: user_id
-              required: true
-              schema:
-                format: uuid
-                type: string
-    /users/{user_id}/permissions:
-        get:
-            description: Lists all permissions for the specified user.
-            parameters:
                 - $ref: '#/components/parameters/filter'
                 - $ref: '#/components/parameters/skip'
                 - $ref: '#/components/parameters/include'
@@ -16116,8 +16086,6 @@ security:
 servers:
     - url: '{{.Server}}'
 tags:
-    - description: "The partnership endpoints enable collaboration between two organizations in the NetApp Console.\n\nA partnership represents an organization sharing resources (the source organization) with users of a different organization (the destination organization).  Partnership allows the source organization to grant permissions to users from the destination organization, enabling them to manage one or more organization's resources. Grants define the access (set of permissions) that a user from the destination organization has on a resource from the source organization.\n\nA partnership has multiple grants. A grant is defined by:\n<ul><li>A list of users from the destination organization</li>\n<li>A list of resources from the source organization</li>\n<li>A role applicable between these two groups which is referenced in the partnershipType.</li>    \n</ul>\n\nThe partnership type defines the possible roles that can be applied between users and resources. The current supported partnership types are Self-Service."
-      name: Partnership
     - description: |-
         The resource and resourcegroup endpoints enable management of NetApp Console identity and access management (IAM) ResourceTypes, resources, and resource groups.
 
