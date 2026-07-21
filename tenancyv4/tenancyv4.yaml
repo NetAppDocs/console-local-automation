@@ -7886,13 +7886,15 @@ components:
             type: http
 info:
     description: |-
-        The NetApp Console identity and access management (IAM) service provides a centralized point for managing customer and partner information.
+        The NetApp Console (local deployment) identity and access management (IAM) service provides a centralized point for managing customer and partner information.
         IAM endpoints enable you to manage and control access to the Console resources.
+
+        **Note**: In NetApp Console (local deployment), the term "project" is replaced with "fleet". Project API endpoints are still available for legacy compliance in existing deployments, however new deployments should use the fleet API endpoints instead.
 
         If you're using the Console in standard mode, you no longer have a NetApp Console account. Instead, you have an organization in the Console that you manage using IAM.
 
         IAM uses predefined roles that include sets of permissions which are required to manage and view data. You can have multiple roles within the same organization or set of resources.
-        You should verify that you have the appropriate permissions when using IAM API endpoints. With the appropriate permissions, you can manage an organization hierarchy modeled as folders (subdivisions of an organization using criteria such as department or region) and projects (a workspace in the Console). After organizing your resources into folders and projects, you can grant granular access to resources by providing organization members with permissions to specific folders and projects.
+        You should verify that you have the appropriate permissions when using IAM API endpoints. With the appropriate permissions, you can manage an organization hierarchy modeled as folders (subdivisions of an organization using criteria such as department or region) and fleets (a workspace in the Console). After organizing your resources into folders and fleets, you can grant granular access to resources by providing organization members with permissions to specific folders and projects.
 
         The actions available through the IAM REST API are a superset of what's available through the web UI.
 
