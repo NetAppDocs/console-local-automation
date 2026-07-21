@@ -293,41 +293,41 @@ categories:
   title: "Assets API aggregate endpoints"
   permalink: aggregate_endpoints.html
 - id: cluster
-  title: "(ncl) Assets API cluster endpoints"
+  title: "Assets API cluster endpoints"
   permalink: cluster_endpoints.html
 - id: fleet
-  title: "(ncl) Assets API fleet endpoints"
+  title: "Assets API fleet endpoints"
   permalink: fleet_endpoints.html
 - id: lun
-  title: "(ncl) Assets API lun endpoints"
+  title: "Assets API lun endpoints"
   permalink: lun_endpoints.html
 - id: namespace
-  title: "(ncl) Assets API namespace endpoints"
+  title: "Assets API namespace endpoints"
   permalink: namespace_endpoints.html
 - id: network interface
-  title: "(ncl) Assets API network interface endpoints"
+  title: "Assets API network interface endpoints"
   permalink: network_interface_endpoints.html
 - id: node
-  title: "(ncl) Assets API node endpoints"
+  title: "Assets API node endpoints"
   permalink: node_endpoints.html
 - id: port
-  title: "(ncl) Assets API port endpoints"
+  title: "Assets API port endpoints"
   permalink: port_endpoints.html
 - id: qos policy group
-  title: "(ncl) Assets API Qos policy group endpoints"
+  title: "Assets API Qos policy group endpoints"
   permalink: qos_policy_group_endpoints.html
 - id: qtree
-  title: "(ncl) Assets API qtree endpoints"
+  title: "Assets API qtree endpoints"
   permalink: qtree_endpoints.html
 - id: smb share
-  title: "(ncl) Assets API SMB share endpoints"
+  title: "Assets API SMB share endpoints"
   permalink: smb_share_endpoints.html
 - id: storage virtual machine
-  title: "(ncl) Assets API storage virtual machine endpoints"
+  title: "Assets API storage virtual machine endpoints"
   permalink: storage_virtual_machine_endpoints.html
 - id: timeseries
-  title: "(ncl) Assets API timeseries endpoints"
+  title: "Assets API timeseries endpoints"
   permalink: timeseries_endpoints.html
 - id: volume
-  title: "(ncl) Assets API volume endpoints"
+  title: "Assets API volume endpoints"
   permalink: volume_endpoints.html
