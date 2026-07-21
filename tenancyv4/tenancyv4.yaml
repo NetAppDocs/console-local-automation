@@ -7889,7 +7889,7 @@ info:
         The NetApp Console (local deployment) identity and access management (IAM) service provides a centralized point for managing customer and partner information.
         IAM endpoints enable you to manage and control access to the Console resources.
 
-        **CAUTION*: In NetApp Console (local deployment), the term "project" is replaced with "fleet". Project API endpoints are still available for legacy compliance but are deprecated and the fleet API endpoints are preferred in local deployments.
+        **CAUTION*: In NetApp Console (local deployment), the term "project" is replaced with "fleet". Project API endpoints are deprecated and should only be used for legacy compliance. This reference documentation maps deprecated project API endpoints to the new fleet equivalent where applicable.
 
         If you're using the Console in standard mode, you no longer have a NetApp Console account. Instead, you have an organization in the Console that you manage using IAM.
 
