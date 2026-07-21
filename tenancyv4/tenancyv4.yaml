@@ -12311,6 +12311,1017 @@ paths:
             x-permission: bxp:user-modify
             x-persistence: true
             x-scope: documentation,private,public,nco,ncl
+    /partnerships/{partnership_id}/grants/{grant_id}/resources:
+        get:
+            description: Lists all resources under the specified grant of a partnership.
+            parameters:
+                - $ref: '#/components/parameters/filter'
+                - $ref: '#/components/parameters/skip'
+                - $ref: '#/components/parameters/include'
+                - $ref: '#/components/parameters/limit'
+                - $ref: '#/components/parameters/order_by'
+                - $ref: '#/components/parameters/count'
+                - $ref: '#/components/parameters/continue'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.resources+json:
+                            schema:
+                                $ref: '#/components/schemas/resource_1.0_list_response_body'
+                    description: List of resources under the specified grant of a specific partnership.
+                    headers:
+                        Location:
+                            description: Location of the collection.
+                            schema:
+                                format: uri
+                                type: string
+            summary: List all resources under the specified grant of a specific partnership.
+            tags:
+                - Resource and Resourcegroup
+                - Partnership
+            x-permission: bxp:resource-read
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        parameters:
+            - description: Partnership ID.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: partnership_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+            - description: ID of the grant used to display users.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: grant_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+        post:
+            description: Adds resources to the specified grant of a partnership.
+            requestBody:
+                content:
+                    application/vnd.netapp.bxp.resourcebulk+json:
+                        example:
+                            resources:
+                                - a94ac68f-ea20-47aa-add8-8d41be0d8466
+                                - b04ac68f-da27-578a-cee8-9e45bq0d8466
+                            type: application/vnd.netapp.bxp.resourcebulk
+                            version: "1.0"
+                        schema:
+                            $ref: '#/components/schemas/resource_1.0_post_bulk_id_request_body'
+                description: Indicates the resources to add to the specified grant of a specific partnership.
+                required: true
+            responses:
+                "202":
+                    description: Indicates the resources request was accepted.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "409":
+                    $ref: '#/components/responses/409Conflict'
+            summary: Add resources to a folder
+            tags:
+                - Resource and Resourcegroup
+                - Partnership
+            x-permission: bxp:resource-create
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+    /partnerships/{partnership_id}/grants/{grant_id}/resources/{resource_id}:
+        delete:
+            description: Removes a resource from the specified grant of a partnership.
+            responses:
+                "204":
+                    description: Indicates if the resource was removed from the specified grant of a specific partnership.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Remove a resource from the specified grant of a specific partnership.
+            tags:
+                - Resource and Resourcegroup
+                - Partnership
+            x-permission: bxp:resource-delete
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        get:
+            description: Retrieves a resource under the specified grant of a partnership.
+            parameters:
+                - $ref: '#/components/parameters/filter'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.resource+json:
+                            example:
+                                description: Added a resource of resourceType volume
+                                id: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                metadata:
+                                    createdBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                    creationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                    labels: []
+                                    modificationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                    modifiedBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                name: volume-1
+                                rawId: cluster-1-volume-1
+                                resourceType: volume
+                                tags:
+                                    - internal:bxp:folderId: 777a3f38-d4fa-5b62-a391-a69029758d32
+                                type: application/vnd.netapp.bxp.resource
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/resource_1.0_get_response_body'
+                    description: Returns the stored resource in the JSON response body if it belongs to the specified grant of a specific partnership.
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Retrieve a resource under a folder
+            tags:
+                - Resource and Resourcegroup
+                - Partnership
+            x-permission: bxp:resource-read
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        parameters:
+            - description: Partnership ID.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: partnership_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+            - description: ID of the grant used to display users.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: grant_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+            - description: Resource ID.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: resource_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+    /partnerships/{partnership_id}/grants/{grant_id}/users:
+        get:
+            description: Lists all users in the specified grant for a partnership.
+            parameters:
+                - $ref: '#/components/parameters/filter'
+                - $ref: '#/components/parameters/skip'
+                - $ref: '#/components/parameters/include'
+                - $ref: '#/components/parameters/limit'
+                - $ref: '#/components/parameters/order_by'
+                - $ref: '#/components/parameters/count'
+                - $ref: '#/components/parameters/continue'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.users+json:
+                            schema:
+                                $ref: '#/components/schemas/user_1.0_list_response_body'
+                    description: Lists all users in the specified grant for a specific partnership.
+                    headers:
+                        Location:
+                            description: Location of the collection.
+                            schema:
+                                format: uri
+                                type: string
+            summary: List all users for a grant in a partnership
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-read,bxp:partnership-read
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        parameters:
+            - description: Partnership ID used to display users.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: partnership_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+            - description: Grant ID used to display users.
+              example: 118df263-44d0-4154-8daa-ff61cb471557
+              in: path
+              name: grant_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+        post:
+            description: Adds users to the specified grant in a partnership.
+            requestBody:
+                content:
+                    application/vnd.netapp.bxp.userbulk+json:
+                        example:
+                            description: Adding users to the ClusterManagement grant of Wipro partnership
+                            type: application/vnd.netapp.bxp.userbulk
+                            users:
+                                - aadId: a94ac68f-ea20-47aa-add8-8d41be0d8466
+                                - userId: f837c373-2ec4-47a8-b016-ba430ebce321
+                                - emailId: test@netapp.com
+                            version: "1.0"
+                        schema:
+                            $ref: '#/components/schemas/user_1.0_post_scope_object_bulk_id_request_body'
+                description: Indicates the users to be added.
+                required: true
+            responses:
+                "202":
+                    description: Indicates the users request was accepted.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "409":
+                    $ref: '#/components/responses/409Conflict'
+            summary: Add users to a specific grant in a specific partnership.
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-create,bxp:partnership-manage
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+    /partnerships/{partnership_id}/grants/{grant_id}/users/{user_id}:
+        delete:
+            description: Removes a user from the specified grant in a partnership.
+            responses:
+                "204":
+                    description: Indicates that the user was removed from the specified grant in a specific partnership.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Remove a specific user from the specified grant in a specific partnership
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-delete
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        get:
+            description: Retrieves a user in the specified grant in a partnership.
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.user+json:
+                            example:
+                                auth0Id: waad|KBX6WeLgdwlmGyte01rm6Mvc7J-vYwyXHLL5jjtRltM
+                                id: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                isServiceAccount: false
+                                metadata:
+                                    createdBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                    creationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                    labels: []
+                                    modificationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                    modifiedBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                name: user-1
+                                state: ACTIVE
+                                tags:
+                                    - internal:bxp:usergroupId: 777a3f38-d4fa-5b62-a391-a69029758d32
+                                type: application/vnd.netapp.bxp.user
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/user_1.0_get_response_body'
+                    description: Returns the stored user in the JSON response body if it belongs to the specified grant from a specific partnership.
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Retrieve a user in specified grant from a specific partnership
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-read,bxp:partnership-read
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        parameters:
+            - description: Partnership ID.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: partnership_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+            - description: User ID.
+              example: 118df263-44d0-4154-8daa-ff61cb471557
+              in: path
+              name: user_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+            - description: Grant ID used to display users.
+              example: 778f8579-a5b1-48ab-91c5-361acc2ee7fe
+              in: path
+              name: grant_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+    /partnerships/{partnership_id}/resourceadmins:
+        get:
+            description: Lists all users with the ResourceAdmin role in the specified partnership.
+            parameters:
+                - $ref: '#/components/parameters/filter'
+                - $ref: '#/components/parameters/skip'
+                - $ref: '#/components/parameters/include'
+                - $ref: '#/components/parameters/limit'
+                - $ref: '#/components/parameters/order_by'
+                - $ref: '#/components/parameters/count'
+                - $ref: '#/components/parameters/continue'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.users+json:
+                            schema:
+                                $ref: '#/components/schemas/user_1.0_list_response_body'
+                    description: List of all users for this partnership with the ResourceAdmin role.
+                    headers:
+                        Location:
+                            description: Location of the collection.
+                            schema:
+                                format: uri
+                                type: string
+            summary: List all users for a partnership
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-read,bxp:partnership-read
+            x-persistence: true
+            x-scope: documentation,public,nco,ncl,private
+        parameters:
+            - description: Partnership ID used to display users with the ResourceAdmin role.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: partnership_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+        post:
+            description: Adds users to the ResourceAdmin role in the specified partnership.
+            requestBody:
+                content:
+                    application/vnd.netapp.bxp.userbulk+json:
+                        example:
+                            description: Adding user to the partnership ResourceAdmin with Acme
+                            type: application/vnd.netapp.bxp.userbulk
+                            users:
+                                - userId: e837c373-2ec4-47a8-b016-ba430ebce321
+                                - auth0Id: auth0|5a09551d0d9ef535b823bd3f
+                                - emailId: test@netapp.com
+                            version: "1.0"
+                        schema:
+                            $ref: '#/components/schemas/user_1.0_post_scope_object_bulk_id_request_body'
+                description: Indicates the users to be added.
+                required: true
+            responses:
+                "202":
+                    description: Indicates the users request was accepted.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "409":
+                    $ref: '#/components/responses/409Conflict'
+            summary: Add users to a partnership ResourceAdmin Role.
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-create,bxp:partnership-manage
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+    /partnerships/{partnership_id}/resourceadmins/{user_id}:
+        delete:
+            description: Removes a user from the ResourceAdmin group in the specified partnership.
+            responses:
+                "204":
+                    description: Indicates that the user was removed from a partnership ResourceAdmin group.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Remove a specific user from a partnership ResourceAdmin group
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-delete
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        get:
+            description: Retrieves a user in the ResourceAdmin group of the specified partnership.
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.user+json:
+                            example:
+                                auth0Id: waad|KBX6WeLgdwlmGyte01rm6Mvc7J-vYwyXHLL5jjtRltM
+                                id: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                isServiceAccount: false
+                                metadata:
+                                    createdBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                    creationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                    labels: []
+                                    modificationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                    modifiedBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                name: user-1
+                                state: ACTIVE
+                                tags:
+                                    - internal:bxp:usergroupId: 777a3f38-d4fa-5b62-a391-a69029758d32
+                                type: application/vnd.netapp.bxp.user
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/user_1.0_get_response_body'
+                    description: Returns the stored user in the JSON response body if it belongs to the partnership ResourceAdmin group.
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Retrieve a user in a partnership ResourceAdmin group
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-read,bxp:partnership-read
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        parameters:
+            - description: Partnership ID.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: partnership_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+            - description: User ID.
+              example: 118df263-44d0-4154-8daa-ff61cb471557
+              in: path
+              name: user_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+    /partnerships/{partnership_id}/useradmins:
+        get:
+            description: Lists all users with the UserAdmin role in the specified partnership.
+            parameters:
+                - $ref: '#/components/parameters/filter'
+                - $ref: '#/components/parameters/skip'
+                - $ref: '#/components/parameters/include'
+                - $ref: '#/components/parameters/limit'
+                - $ref: '#/components/parameters/order_by'
+                - $ref: '#/components/parameters/count'
+                - $ref: '#/components/parameters/continue'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.users+json:
+                            schema:
+                                $ref: '#/components/schemas/user_1.0_list_response_body'
+                    description: List of all users for this partnership with the UserAdmin role.
+                    headers:
+                        Location:
+                            description: Location of the collection.
+                            schema:
+                                format: uri
+                                type: string
+            summary: List all users for a partnership
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-read,bxp:partnership-read
+            x-persistence: true
+            x-scope: documentation,public,nco,ncl,private
+        parameters:
+            - description: Partnership ID used to display users with the UserAdmin role.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: partnership_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+        post:
+            description: Adds users with the UserAdmin role to the specified partnership.
+            requestBody:
+                content:
+                    application/vnd.netapp.bxp.userbulk+json:
+                        example:
+                            description: Adding user to the partnership UserAdmin with Acme
+                            type: application/vnd.netapp.bxp.userbulk
+                            users:
+                                - userId: e837c373-2ec4-47a8-b016-ba430ebce321
+                                - auth0Id: auth0|5a09551d0d9ef535b823bd3f
+                                - emailId: test@netapp.com
+                            version: "1.0"
+                        schema:
+                            $ref: '#/components/schemas/user_1.0_post_scope_object_bulk_id_request_body'
+                description: Indicates the users to be added.
+                required: true
+            responses:
+                "202":
+                    description: Indicates the users request was accepted.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "409":
+                    $ref: '#/components/responses/409Conflict'
+            summary: Add users to a partnership UserAdmin Role.
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-create,bxp:partnership-manage
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+    /partnerships/{partnership_id}/useradmins/{user_id}:
+        delete:
+            description: Removes a user from the UserAdmin group of the specified partnership.
+            responses:
+                "204":
+                    description: Indicates that the user was removed from a partnership UserAdmin group.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Remove a specific user from a partnership UserAdmin group
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-delete
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        get:
+            description: Retrieves a user in the UserAdmin group in the specified partnership.
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.user+json:
+                            example:
+                                auth0Id: waad|KBX6WeLgdwlmGyte01rm6Mvc7J-vYwyXHLL5jjtRltM
+                                id: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                isServiceAccount: false
+                                metadata:
+                                    createdBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                    creationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                    labels: []
+                                    modificationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                    modifiedBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                name: user-1
+                                state: ACTIVE
+                                tags:
+                                    - internal:bxp:usergroupId: 777a3f38-d4fa-5b62-a391-a69029758d32
+                                type: application/vnd.netapp.bxp.user
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/user_1.0_get_response_body'
+                    description: Returns the stored user in the JSON response body if it belongs to the partnership UserAdmin group.
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Retrieve a user in a partnership UserAdmin group
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-read,bxp:partnership-read
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        parameters:
+            - description: Partnership ID.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: partnership_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+            - description: User ID.
+              example: 118df263-44d0-4154-8daa-ff61cb471557
+              in: path
+              name: user_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+    /partnerships/{partnership_id}/users:
+        get:
+            description: Lists all users in the specified partnership.
+            parameters:
+                - $ref: '#/components/parameters/filter'
+                - $ref: '#/components/parameters/skip'
+                - $ref: '#/components/parameters/include'
+                - $ref: '#/components/parameters/limit'
+                - $ref: '#/components/parameters/order_by'
+                - $ref: '#/components/parameters/count'
+                - $ref: '#/components/parameters/continue'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.users+json:
+                            schema:
+                                $ref: '#/components/schemas/user_1.0_list_response_body'
+                    description: List of all users for this partnership.
+                    headers:
+                        Location:
+                            description: Location of the collection.
+                            schema:
+                                format: uri
+                                type: string
+            summary: List all users for a partnership
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-read,bxp:partnership-read
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        parameters:
+            - description: Partnership ID used to display users.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: partnership_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+        post:
+            description: Adds users to the specified partnership.
+            requestBody:
+                content:
+                    application/vnd.netapp.bxp.userbulk+json:
+                        example:
+                            description: Adding user to the partnership with Acme
+                            type: application/vnd.netapp.bxp.userbulk
+                            users:
+                                - userId: e837c373-2ec4-47a8-b016-ba430ebce321
+                                - auth0Id: auth0|5a09551d0d9ef535b823bd3f
+                                - emailId: test@netapp.com
+                            version: "1.0"
+                        schema:
+                            $ref: '#/components/schemas/user_1.0_post_scope_object_bulk_id_request_body'
+                description: Indicates the users to be added.
+                required: true
+            responses:
+                "202":
+                    description: Indicates the users request was accepted.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "409":
+                    $ref: '#/components/responses/409Conflict'
+            summary: Add users to a partnership.
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-create,bxp:partnership-manage
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+    /partnerships/{partnership_id}/users/{user_id}:
+        delete:
+            description: Removes a user from the specified partnership.
+            responses:
+                "204":
+                    description: Indicates if the user was removed from a partnership.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Remove a specific user from a partnership
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-delete
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        get:
+            description: Retrieves a user in the specified partnership.
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.user+json:
+                            example:
+                                auth0Id: waad|KBX6WeLgdwlmGyte01rm6Mvc7J-vYwyXHLL5jjtRltM
+                                id: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                isServiceAccount: false
+                                metadata:
+                                    createdBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                    creationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                    labels: []
+                                    modificationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                    modifiedBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                name: user-1
+                                state: ACTIVE
+                                tags:
+                                    - internal:bxp:usergroupId: 777a3f38-d4fa-5b62-a391-a69029758d32
+                                type: application/vnd.netapp.bxp.user
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/user_1.0_get_response_body'
+                    description: Returns the stored user in the JSON response body if it belongs to the partnership.
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Retrieve a user in a partnership
+            tags:
+                - User and Usergroup
+                - Partnership
+            x-permission: bxp:user-read,bxp:partnership-read
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        parameters:
+            - description: Partnership ID.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: partnership_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+            - description: User ID.
+              example: 118df263-44d0-4154-8daa-ff61cb471557
+              in: path
+              name: user_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+    /partnershiptypes:
+        get:
+            description: Lists all partnership types.
+            parameters:
+                - $ref: '#/components/parameters/filter'
+                - $ref: '#/components/parameters/skip'
+                - $ref: '#/components/parameters/include'
+                - $ref: '#/components/parameters/limit'
+                - $ref: '#/components/parameters/order_by'
+                - $ref: '#/components/parameters/count'
+                - $ref: '#/components/parameters/continue'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.partnershiptypes+json:
+                            schema:
+                                $ref: '#/components/schemas/partnershiptype_1.0_list_response_body'
+                    description: List of all partnershiptypes.
+                    headers:
+                        Location:
+                            description: Location of the newly created resource.
+                            schema:
+                                format: uri
+                                type: string
+            summary: List of all the partnershiptype resources in the collection.
+            tags:
+                - Partnership
+            x-permission: bxp:partnershiptype-read
+            x-persistence: true
+            x-scope: private,public,nco,ncl,documentation
+        post:
+            description: Creates a new partnership type.
+            requestBody:
+                content:
+                    application/vnd.netapp.bxp.partnershiptype+json:
+                        example:
+                            allowOrganizationSwitch: true
+                            description: Added new partnershipType
+                            name: reseller
+                            roles:
+                                - 9e94cf09-8036-51e4-b579-bd30cb07b269
+                                - 09876f34-8036-51e4-b579-bd30cb07b465
+                            type: application/vnd.netapp.bxp.partnershiptype
+                            version: "1.0"
+                        schema:
+                            $ref: '#/components/schemas/partnershiptype_1.0_post_request_body'
+                description: Indicates the desired values for the partnershipType resource to be created.
+                required: true
+            responses:
+                "201":
+                    content:
+                        application/vnd.netapp.bxp.partnershiptype+json:
+                            example:
+                                allowOrganizationSwitch: true
+                                description: Added new partnershipType
+                                id: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                metadata:
+                                    createdBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                    creationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                    labels: []
+                                    modificationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                name: reseller
+                                roles:
+                                    - 9e94cf09-8036-51e4-b579-bd30cb07b269
+                                    - 09876f34-8036-51e4-b579-bd30cb07b465
+                                type: application/vnd.netapp.bxp.partnershiptype
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/partnershiptype_1.0_post_response_body'
+                    description: Returns the newly created partnershipType resource in the JSON response body.
+                    headers:
+                        Location:
+                            description: Location of the newly created resource.
+                            schema:
+                                format: uri
+                                type: string
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "409":
+                    $ref: '#/components/responses/409Conflict'
+            summary: Creates a new partnershiptype resource
+            tags:
+                - Partnership
+            x-permission: bxp:partnershiptype-create
+            x-persistence: true
+            x-scope: private,public,nco,ncl
+    /partnershiptypes/{partnershiptype_id}:
+        delete:
+            description: Deletes the specified partnership type.
+            responses:
+                "204":
+                    description: Indicates if the partnershipType resource was deleted.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Deletes a specific partnershiptype resource
+            tags:
+                - Partnership
+            x-permission: bxp:partnershiptype-delete
+            x-persistence: true
+            x-scope: private,public,nco,ncl
+        get:
+            description: Retrieves information about the specified partnership type.
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.partnershiptype+json:
+                            example:
+                                allowOrganizationSwitch: true
+                                description: Added new partnershipType
+                                id: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                metadata:
+                                    createdBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                    creationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                    labels: []
+                                    modificationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                    modifiedBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                name: reseller
+                                roles:
+                                    - 9e94cf09-8036-51e4-b579-bd30cb07b269
+                                    - 09876f34-8036-51e4-b579-bd30cb07b465
+                                type: application/vnd.netapp.bxp.partnershiptype
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/partnershiptype_1.0_get_response_body'
+                    description: Returns the stored partnershipType in the JSON response body.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Retrieves a specific partnershiptype resource
+            tags:
+                - Partnership
+            x-permission: bxp:partnershiptype-read
+            x-persistence: true
+            x-scope: private,public,nco,ncl,documentation
+        parameters:
+            - description: Partnership type ID.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: partnershiptype_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+        patch:
+            description: Updates a partnership type with partial information.
+            requestBody:
+                content:
+                    application/vnd.netapp.bxp.partnershiptype+json:
+                        example:
+                            allowOrganizationSwitch: true
+                            description: Managed Service Provider
+                            name: msp
+                            roles:
+                                - 9e94cf09-8036-51e4-b579-bd30cb07b269
+                                - 09876f34-8036-51e4-b579-bd30cb07b465
+                            type: application/vnd.netapp.bxp.partnershiptype
+                            version: "1.0"
+                        schema:
+                            $ref: '#/components/schemas/partnershiptype_1.0_patch_request_body'
+                description: Replaces the specified attributes in the request body with the values provided.
+                required: true
+            responses:
+                "204":
+                    description: Indicates if the partnershipType resource was updated.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "409":
+                    $ref: '#/components/responses/409Conflict'
+            summary: Partially updates a partnership type resource
+            tags:
+                - Partnership
+            x-permission: bxp:partnershiptype-modify
+            x-persistence: true
+            x-scope: private,public,nco,ncl
+        put:
+            description: Replaces the specified partnership type with new information.
+            requestBody:
+                content:
+                    application/vnd.netapp.bxp.partnershiptype+json:
+                        example:
+                            allowOrganizationSwitch: true
+                            description: Managed Service Provider
+                            name: msp
+                            roles:
+                                - 9e94cf09-8036-51e4-b579-bd30cb07b269
+                                - 09876f34-8036-51e4-b579-bd30cb07b465
+                            type: application/vnd.netapp.bxp.partnershiptype
+                            version: "1.0"
+                        schema:
+                            $ref: '#/components/schemas/partnershiptype_1.0_put_request_body'
+                description: Replaces the entire stored resource with the supplied JSON request body while preserving the key values that are not user-modifiable.
+                required: true
+            responses:
+                "204":
+                    description: Indicates if the partnershiptype resource was updated.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+                "409":
+                    $ref: '#/components/responses/409Conflict'
+            summary: Modifies a specific partnershiptype resource
+            tags:
+                - Partnership
+            x-permission: bxp:partnershiptype-modify
+            x-persistence: true
+            x-scope: private,public,nco,ncl
     /permissions:
         get:
             description: Lists all permissions.
@@ -15590,6 +16601,51 @@ paths:
                 - User and Usergroup
             x-permission: bxp:user-modify
             x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+    /users/{user_id}/partnerOrganizations:
+        get:
+            description: Lists all partnership organizations for the specified user.
+            parameters:
+                - $ref: '#/components/parameters/filter'
+                - $ref: '#/components/parameters/skip'
+                - $ref: '#/components/parameters/include'
+                - $ref: '#/components/parameters/limit'
+                - $ref: '#/components/parameters/order_by'
+                - $ref: '#/components/parameters/count'
+                - $ref: '#/components/parameters/continue'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.resources+json:
+                            schema:
+                                $ref: '#/components/schemas/resource_1.0_list_response_body'
+                    description: List of partnership organizations for the specified user.
+                    headers:
+                        Location:
+                            description: Location of the collection.
+                            schema:
+                                format: uri
+                                type: string
+            summary: Lists all partnership organizations for the specified user.
+            tags:
+                - Resource and Resourcegroup
+                - Partnership
+            x-permission: bxp:resource-read
+            x-persistence: true
+            x-scope: documentation,private,public,nco,ncl
+        parameters:
+            - description: User ID.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: user_id
+              required: true
+              schema:
+                format: uuid
+                type: string
+    /users/{user_id}/permissions:
+        get:
+            description: Lists all permissions for the specified user.
+            parameters:
                 - $ref: '#/components/parameters/filter'
                 - $ref: '#/components/parameters/skip'
                 - $ref: '#/components/parameters/include'
