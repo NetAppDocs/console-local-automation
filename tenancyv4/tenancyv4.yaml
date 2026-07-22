@@ -12556,7 +12556,10 @@ paths:
             x-scope: private,public,nco,ncl
     /projects:
         get:
-            description: Lists all projects.
+            description: |-
+               Lists all projects.
+
+               **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-fleets.html).  
             parameters:
                 - $ref: '#/components/parameters/filter'
                 - $ref: '#/components/parameters/skip'
@@ -12588,7 +12591,10 @@ paths:
             x-private-path: /resources
             x-scope: documentation,public,nco,ncl
         post:
-            description: Creates a new project.
+            description: |-
+                Creates a new project.
+
+                **Note**: In NetApp Console (local deployment), the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/post-fleets.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
