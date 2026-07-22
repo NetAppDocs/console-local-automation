@@ -16100,7 +16100,7 @@ tags:
 
         A resource group is a set of resources that you can manage as a group. In IAM, you can manage implicit resource groups and explicit resource groups. In an implicit resource group, resources belong to the same organization, project, or folder. In an explicit resource group, resources can belong to different elements of a resource hierarchy.
       name: Resource and Resourcegroup
-    - description: "The permission endpoints provide access to an internal collection of available permissions in NetApp Console identity and access management (IAM). Permissions are defined as a low-level string of characters that a user or service account can use to determine authorization.\n  \nA user can have permissions for the resources in the entire organization or in specific folders and projects. Permissions prevent or allow a user to perform specific actions at a specific level of the resource hierarchy."
+    - description: "The permission endpoints provide access to an internal collection of available permissions in NetApp Console identity and access management (IAM). Permissions are defined as a low-level string of characters that a user or service account can use to determine authorization.\n  \nA user can have permissions for the resources in the entire organization or in specific folders and fleets. Permissions prevent or allow a user to perform specific actions at a specific level of the resource hierarchy."
       name: Permission
     - description: "The role endpoints enable you to create and view roles, which are sets of permissions. \n\nIn NetApp Console identity and access management (IAM), you don't assign permissions directly to users in an organization. Instead, you assign each user a role. A role contains a set of permissions that enables a user to perform specific actions at a specific level of the resource hierarchy. Roles can represent actions or features, or the access level that user has for a particular service.\n\nIAM supports several predefined roles that you can assign to the users in your organization. Custom roles are not supported."
       name: Role
@@ -16121,5 +16121,5 @@ tags:
 
         In NetApp Console identity and access management (IAM), a user represents a human user, a service account, or an agent. For example, you can create a user that represents a Connector.
 
-        A user group is a set of users that you can manage as a group. In NetApp Console IAM, you can manage implicit user groups and explicit user groups. In an implicit user group, users belong to the same organization, project, or folder. In an explicit user group, users can belong to different elements of the resource hierarchy.
+        A user group is a set of users that you can manage as a group. In NetApp Console IAM, you can manage implicit user groups and explicit user groups. In an implicit user group, users belong to the same organization, fleet, or folder. In an explicit user group, users can belong to different elements of the resource hierarchy.
       name: User and Usergroup
