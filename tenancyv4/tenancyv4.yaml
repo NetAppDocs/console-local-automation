@@ -16111,7 +16111,8 @@ tags:
         <ul>
         <li>The organization is the top of the NetApp Console IAM hierarchy. Optionally, you can also have a child organization under a parent organization. An organization represents a purchaser of goods or services from NetApp.</li>
         <li>Folders are children of the organization or of another folder. Folders are optional in NetApp Console IAM and can represent a city, department, region, deployment environment, and so on.</li>
-        <li>Projects are children of the organization or of a folder. Projects represent a working space in NetApp Console that organization members can access to manage resources.</li>
+        <li>Fleets are children of the organization or of a folder. Fleets represent a working space in NetApp Console that organization members can access to manage resources.
+        **Caution**: In NetApp Console (local deployment), the term "project" is replaced with "fleet". Project API endpoints are deprecated and should only be used for legacy compliance. This reference documentation maps deprecated project API endpoints to the new fleet equivalent where applicable.</li>
         <li>Resources are associated with one or more folders or projects.</li>
         </ul>
       name: Hierarchy
