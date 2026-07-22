@@ -6183,7 +6183,7 @@ paths:
                     $ref: '#/components/responses/403Forbidden'
             summary: List LUNs.
             tags:
-                - Lun
+                - LUN
             x-permission: bxp:resource-read
             x-persistence: true
             x-scope: private,public,ncl
@@ -7854,7 +7854,7 @@ paths:
                     $ref: '#/components/responses/403Forbidden'
             summary: List LUNs in an organization.
             tags:
-                - Lun
+                - LUN
             x-permission: bxp:resource-read
             x-persistence: true
             x-scope: private,public,ncl
@@ -7916,7 +7916,7 @@ paths:
                     $ref: '#/components/responses/403Forbidden'
             summary: Create or update multiple luns for a given organization.
             tags:
-                - Lun
+                - LUN
             x-permission: bxp:resource-modify
             x-persistence: true
             x-scope: private,ncl
