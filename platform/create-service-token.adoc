@@ -16,7 +16,7 @@ Create a service access token that can be used by applications and scripts to ma
 
 .Before you begin
 
-To create service access token, you need a service account. If you don't have a service account, you can perform the following the steps for *client secret authentication* in your local deployment link:https://docs.netapp.com/us-en/console-automation/platform/register_service.html[Register a service with the NetApp Console^]. 
+To create service access token, you need a service account. If you don't have a service account, create one in your local deployment using the steps for *client secret authentication* in link:https://docs.netapp.com/us-en/console-automation/platform/register_service.html[Register a service with the NetApp Console^]. 
 
 NOTE: Private key JWT authentication is not supported for service accounts in the Console (local deployment). Only client ID and client secret authentication is available. 
 
