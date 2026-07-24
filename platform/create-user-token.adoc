@@ -86,7 +86,7 @@ The JSON input example includes the required input parameters.
 [source,json]
 ----
 {
-    "grant_type": "<password>",
+    "grant_type": "password",
     "username": "<username>",
     "password": "<password>"
 }
