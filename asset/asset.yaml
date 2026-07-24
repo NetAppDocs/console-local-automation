@@ -6980,7 +6980,7 @@ paths:
                     $ref: '#/components/responses/403Forbidden'
             summary: List storage virtual machines in a fleet.
             tags:
-                - Storage Virtual Machine
+                - Storage VM (SVM)
             x-permission: bxp:resource-read
             x-persistence: true
             x-scope: private,public,ncl
@@ -8634,7 +8634,7 @@ paths:
                     $ref: '#/components/responses/403Forbidden'
             summary: List storage virtual machines in an organization.
             tags:
-                - Storage Virtual Machine
+                - Storage VM (SVM)
             x-permission: bxp:resource-read
             x-persistence: true
             x-scope: private,public,ncl
