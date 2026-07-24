@@ -6980,7 +6980,7 @@ paths:
                     $ref: '#/components/responses/403Forbidden'
             summary: List storage virtual machines in a fleet.
             tags:
-                - Storage VM (SVM)
+                - Storage virtual machine
             x-permission: bxp:resource-read
             x-persistence: true
             x-scope: private,public,ncl
@@ -8634,7 +8634,7 @@ paths:
                     $ref: '#/components/responses/403Forbidden'
             summary: List storage virtual machines in an organization.
             tags:
-                - Storage VM (SVM)
+                - Storage virtual machine
             x-permission: bxp:resource-read
             x-persistence: true
             x-scope: private,public,ncl
@@ -9102,7 +9102,7 @@ tags:
     - description: The SMB share endpoints enable retrieving SMB share information.
       name: SMB Share
     - description: The storage virtual machine endpoints enable retrieving SVM information.
-      name: Storage VM (SVM)
+      name: Storage virtual machine
     - description: The timeseries endpoints enable retrieving current and historical metrics for assets.
       name: Timeseries
     - description: The volume endpoints enable retrieving volume information.
