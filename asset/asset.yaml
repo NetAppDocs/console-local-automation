@@ -422,18 +422,13 @@ components:
                     description: Number of disks in the aggregate.
                     example: 12
                     type: number
-                failedDiskCount:
-                    description: Number of broken disks currently belonging to this aggregate.
-                    example: 0
-                    type: integer
-                homeNode:
-                    $ref: '#/components/schemas/node_1.0_reference'
                 id:
                     description: Identifier of the aggregate.
                     example: c08d213b-3c38-4c07-bde0-852ef821b815
                     format: uuid
                     type: string
                 inactiveDataReporting:
+                    description: Inactive data reporting configuration for the aggregate.
                     properties:
                         enabled:
                             description: Specifies whether or not inactive data reporting is enabled on the aggregate.
@@ -454,51 +449,10 @@ components:
                     example: 9b0ee210-70a0-4158-b025-0decde66e4de
                     format: uuid
                     type: string
-                plexResyncPercentage:
-                    description: The percentage of plex resync completed when the aggregate is in a resyncing state. Null when the aggregate is not resyncing.
-                    example: 45.5
-                    format: double
-                    type: number
-                plexState:
-                    description: |-
-                        The state of the plex.
-                        Defined values are:
-                        * "NORMAL"
-                        * "RESYNCING"
-                        * "DEGRADED"
-                        * "FAILED"
-                        * "UNKNOWN"
-                    enum:
-                        - NORMAL
-                        - RESYNCING
-                        - DEGRADED
-                        - FAILED
-                        - UNKNOWN
-                    example: NORMAL
-                    type: string
                 raidGroupCount:
                     description: Number of RAID groups in the aggregate.
                     example: 2
                     type: number
-                raidStatus:
-                    description: |-
-                        The RAID status of the aggregate.
-                        Defined values are:
-                        * "NORMAL"
-                        * "DEGRADED"
-                        * "RESYNCING"
-                        * "RECONSTRUCT"
-                        * "CHECKING"
-                        * "UNKNOWN"
-                    enum:
-                        - NORMAL
-                        - DEGRADED
-                        - RESYNCING
-                        - RECONSTRUCT
-                        - CHECKING
-                        - UNKNOWN
-                    example: NORMAL
-                    type: string
                 security:
                     description: Security properties of the aggregate.
                     properties:
@@ -589,6 +543,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: Aggregates in the collection.
                     items:
                         $ref: '#/components/schemas/aggregate_1.0_get_response_body'
                     type: array
@@ -599,6 +554,7 @@ components:
         aggregate_1.0_metrics:
             properties:
                 iops:
+                    description: IOPS metrics for the aggregate.
                     properties:
                         total:
                             description: The rate of I/O operations observed at the storage object.
@@ -606,6 +562,7 @@ components:
                             type: number
                     type: object
                 latency:
+                    description: Latency metrics for the aggregate.
                     properties:
                         average:
                             description: The average round trip latency observed at the storage object, in microseconds.
@@ -623,6 +580,7 @@ components:
                     format: double
                     type: number
                 throughput:
+                    description: Throughput metrics for the aggregate.
                     properties:
                         total:
                             description: The rate of throughput observed at the storage object, in bytes per second.
@@ -647,6 +605,7 @@ components:
         aggregate_1.0_space:
             properties:
                 blockStorage:
+                    description: Capacity information for the aggregate's local block storage.
                     properties:
                         available:
                             description: Space available in bytes.
@@ -670,6 +629,7 @@ components:
                             type: number
                     type: object
                 cloudStorage:
+                    description: Capacity information for cloud storage attached to the aggregate.
                     properties:
                         cloudTargetCount:
                             description: Number of cloud tiers configured for the aggregate.
@@ -698,6 +658,7 @@ components:
                     format: double
                     type: number
                 snapshot:
+                    description: Snapshot reserve capacity information for the aggregate.
                     properties:
                         available:
                             description: Available space for snapshots in bytes.
@@ -811,6 +772,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: Assets in the collection.
                     items:
                         $ref: '#/components/schemas/asset_1.0_get_response_body'
                     type: array
@@ -1233,6 +1195,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: Clusters in the collection.
                     items:
                         $ref: '#/components/schemas/cluster_1.0_get_response_body'
                     type: array
@@ -1248,6 +1211,7 @@ components:
                     format: double
                     type: number
                 iops:
+                    description: IOPS metrics for the cluster.
                     properties:
                         total:
                             description: The rate of I/O operations observed on the cluster.
@@ -1255,6 +1219,7 @@ components:
                             type: number
                     type: object
                 latency:
+                    description: Latency metrics for the cluster.
                     properties:
                         max:
                             description: The maximum average node latency observed on the cluster, in microseconds.
@@ -1267,6 +1232,7 @@ components:
                     format: double
                     type: number
                 throughput:
+                    description: Throughput metrics for the cluster.
                     properties:
                         total:
                             description: The rate of throughput observed on the cluster, in bytes per second.
@@ -1329,6 +1295,7 @@ components:
                             type: number
                     type: object
                 cloudStorage:
+                    description: Capacity information for cloud storage attached to the cluster.
                     properties:
                         used:
                             description: Used space in the cloud stores, in bytes.
@@ -1440,6 +1407,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: E-Series arrays in the collection.
                     items:
                         $ref: '#/components/schemas/eseriesarray_1.0_get_response_body'
                     type: array
@@ -1507,6 +1475,7 @@ components:
                     description: Performance metrics for the fleet.
                     properties:
                         iops:
+                            description: IOPS metrics for the fleet.
                             properties:
                                 total:
                                     description: The rate of I/O operations observed at the storage fleet.
@@ -1514,6 +1483,7 @@ components:
                                     type: number
                             type: object
                         throughput:
+                            description: Throughput metrics for the fleet.
                             properties:
                                 total:
                                     description: The rate of throughput observed at the storage fleet in bytes per second.
@@ -1585,6 +1555,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: Fleets in the collection.
                     items:
                         $ref: '#/components/schemas/fleet_1.0_get_response_body'
                     type: array
@@ -1599,6 +1570,115 @@ components:
                     description: Name of the grid.
                     example: SG5712FP
                     type: string
+            type: object
+        gridnode_1.0_get_response_body:
+            properties:
+                grid:
+                    $ref: '#/components/schemas/grid_1.0_reference'
+                id:
+                    description: Identifier of the node.
+                    example: 60a9ffe4-7b9f-4ae9-9b4b-144014df9beb
+                    format: uuid
+                    type: string
+                metadata:
+                    $ref: '#/components/schemas/common_1.0_inventory_metadata'
+                metrics:
+                    $ref: '#/components/schemas/gridnode_1.0_metrics'
+                name:
+                    description: Node name.
+                    example: node-01
+                    type: string
+                nodeType:
+                    description: |-
+                        Type of StorageGRID node.
+                        Defined values are:
+                        * "ADMIN_NODE" - Provides management services such as system configuration, monitoring, and logging.
+                        * "STORAGE_NODE" - Stores object data and metadata.
+                        * "API_GATEWAY_NODE" - Provides a load-balancing interface that client applications can use to connect to StorageGRID.
+                    enum:
+                        - ADMIN_NODE
+                        - STORAGE_NODE
+                        - API_GATEWAY_NODE
+                    example: STORAGE_NODE
+                    type: string
+                organizationId:
+                    description: Identifier for an organization.
+                    example: 616cc6fb-feb8-4f01-bb0c-88f7fb022f6b
+                    format: uuid
+                    type: string
+                space:
+                    $ref: '#/components/schemas/gridnode_1.0_space'
+                type:
+                    description: |-
+                        Media type of the resource.
+                        Defined values are:
+                          * "application/vnd.netapp.bxp.gridnode"
+                    enum:
+                        - application/vnd.netapp.bxp.gridnode
+                    example: application/vnd.netapp.bxp.gridnode
+                    type: string
+                version:
+                    description: |-
+                        Version of the resource.
+                        Defined values are:
+                        * "1.0"
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+                workingEnvironmentId:
+                    description: Identifier for the asset's system.
+                    example: 4cca45b6-1e5a-4c15-b3a6-e29598de9d44
+                    format: uuid
+                    type: string
+            type: object
+        gridnode_1.0_list_response_body:
+            properties:
+                count:
+                    description: Total number of resources in the collection that match the query.
+                    example: 1
+                    format: int64
+                    minimum: 0
+                    type: integer
+                items:
+                    description: StorageGRID nodes in the collection.
+                    items:
+                        $ref: '#/components/schemas/gridnode_1.0_get_response_body'
+                    type: array
+                    uniqueItems: true
+            required:
+                - items
+            type: object
+        gridnode_1.0_metrics:
+            properties:
+                cpuUtilization:
+                    description: Percentage of available CPU time currently being used by this service. Indicates how busy the service is.
+                    example: 16.9
+                    format: double
+                    type: number
+            type: object
+        gridnode_1.0_space:
+            properties:
+                available:
+                    description: The total amount of object storage space remaining, in bytes, calculated by adding available space across all object stores on the Storage Node.
+                    example: 29017581326996
+                    format: int64
+                    type: integer
+                metadataAllowed:
+                    description: Total space, in bytes, on volume 0 of Storage Node that is allowed for object metadata. Always less than the space physically reserved, since some is required for database operations and future upgrades.
+                    example: 1319413953331
+                    format: int64
+                    type: integer
+                metadataUsed:
+                    description: Amount of object metadata on storage volume 0, in bytes.
+                    example: 2931315179
+                    format: int64
+                    type: integer
+                used:
+                    description: An estimate of the total size, in bytes, of replicated and erasure-coded object data on the Storage Node.
+                    example: 1956040068460
+                    format: int64
+                    type: integer
             type: object
         lun_1.0_get_response_body:
             properties:
@@ -1659,12 +1739,14 @@ components:
                     format: uuid
                     type: string
                 qosPolicy:
+                    description: QoS policy applied to the LUN.
                     properties:
                         name:
                             description: The name of the QoS policy group applied to the LUN.
                             type: string
                     type: object
                 qtree:
+                    description: Qtree that contains the LUN.
                     properties:
                         name:
                             description: The name of the qtree to which the LUN belongs.
@@ -1731,6 +1813,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: LUNs in the collection.
                     items:
                         $ref: '#/components/schemas/lun_1.0_get_response_body'
                     type: array
@@ -1741,6 +1824,7 @@ components:
         lun_1.0_metrics:
             properties:
                 iops:
+                    description: IOPS metrics for the LUN.
                     properties:
                         total:
                             description: The rate of I/O operations observed at the storage object.
@@ -1748,6 +1832,7 @@ components:
                             type: number
                     type: object
                 latency:
+                    description: Latency metrics for the LUN.
                     properties:
                         average:
                             description: The average round trip latency observed at the storage object in microseconds.
@@ -1755,6 +1840,7 @@ components:
                             type: number
                     type: object
                 throughput:
+                    description: Throughput metrics for the LUN.
                     properties:
                         total:
                             description: The rate of throughput observed at the storage object in bytes per second.
@@ -1818,12 +1904,14 @@ components:
                 node:
                     $ref: '#/components/schemas/node_1.0_reference'
                 qosPolicy:
+                    description: QoS policy applied to the LUN.
                     properties:
                         name:
                             description: The name of the QoS policy group applied to the LUN.
                             type: string
                     type: object
                 qtree:
+                    description: Qtree that contains the LUN.
                     properties:
                         name:
                             description: The name of the qtree to which the LUN belongs.
@@ -1960,6 +2048,7 @@ components:
                     example: ONLINE
                     type: string
                 subsystem:
+                    description: NVMe subsystem to which the namespace is mapped.
                     properties:
                         id:
                             description: Identifier of the NVMe subsystem to which the namespace is mapped.
@@ -2007,6 +2096,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: NVMe namespaces in the collection.
                     items:
                         $ref: '#/components/schemas/namespace_1.0_get_response_body'
                     type: array
@@ -2017,6 +2107,7 @@ components:
         namespace_1.0_metrics:
             properties:
                 iops:
+                    description: IOPS metrics for the NVMe namespace.
                     properties:
                         total:
                             description: The rate of I/O operations observed at the storage object.
@@ -2025,6 +2116,7 @@ components:
                             type: number
                     type: object
                 latency:
+                    description: Latency metrics for the NVMe namespace.
                     properties:
                         average:
                             description: The average round trip latency observed at the storage object in microseconds.
@@ -2033,6 +2125,7 @@ components:
                             type: number
                     type: object
                 throughput:
+                    description: Throughput metrics for the NVMe namespace.
                     properties:
                         total:
                             description: The rate of throughput observed at the storage object in bytes per second.
@@ -2095,17 +2188,19 @@ components:
                     description: |-
                         The role of the interface.
                         Defined values are:
+                        * "CLUSTER" - Cluster-scoped interface.
+                        * "CLUSTER_MGMT" - Cluster management interface.
                         * "DATA" - Data interface serving NFS, CIFS, iSCSI, FCP, NVMe, or S3 traffic.
+                        * "DCN" - Data compute network interface.
                         * "INTERCLUSTER" - Used for cross-cluster communication.
                         * "NODE_MGMT" - Node management interface.
-                        * "CLUSTER_MGMT" - Cluster management interface.
-                        * "CLUSTER" - Cluster-scoped interface.
                     enum:
+                        - CLUSTER
+                        - CLUSTER_MGMT
                         - DATA
+                        - DCN
                         - INTERCLUSTER
                         - NODE_MGMT
-                        - CLUSTER_MGMT
-                        - CLUSTER
                     example: DATA
                     type: string
                 svm:
@@ -2142,6 +2237,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: Network interfaces in the collection.
                     items:
                         $ref: '#/components/schemas/networkinterface_1.0_get_response_body'
                     type: array
@@ -2186,6 +2282,7 @@ components:
         networkinterface_1.0_metrics:
             properties:
                 iops:
+                    description: IOPS metrics for the network interface.
                     properties:
                         total:
                             description: The rate of I/O operations observed at the storage object.
@@ -2193,6 +2290,7 @@ components:
                             type: number
                     type: object
                 latency:
+                    description: Latency metrics for the network interface.
                     properties:
                         average:
                             description: The average round trip latency observed at the storage object, in microseconds.
@@ -2200,6 +2298,7 @@ components:
                             type: number
                     type: object
                 throughput:
+                    description: Throughput metrics for the network interface.
                     properties:
                         total:
                             description: The rate of throughput observed at the storage object, in bytes per second.
@@ -2207,230 +2306,12 @@ components:
                             type: number
                     type: object
             type: object
-        nfsshare_1.0_get_response_body:
-            properties:
-                accessProtocols:
-                    description: |-
-                        The access protocols allowed by the export policy rule.
-                        Defined values are:
-                        * "ANY" - All protocols are allowed.
-                        * "NFS" - All NFS versions are allowed.
-                        * "NFS3" - NFSv3 is allowed.
-                        * "NFS4" - NFSv4 is allowed.
-                        * "CIFS" - CIFS/SMB is allowed.
-                        * "FLEXCACHE" - FlexCache is allowed.
-                    example:
-                        - NFS3
-                        - NFS4
-                    items:
-                        enum:
-                            - ANY
-                            - NFS
-                            - NFS3
-                            - NFS4
-                            - CIFS
-                            - FLEXCACHE
-                        type: string
-                    type: array
-                    uniqueItems: true
-                clientMatch:
-                    description: |-
-                        The client match specification for the export policy rule.
-                        Specifies the clients to which the rule applies. Can be a hostname, IP address, IP subnet (CIDR), or netgroup name.
-                    example: 0.0.0.0/0
-                    type: string
-                cluster:
-                    $ref: '#/components/schemas/cluster_1.0_reference'
-                exportPolicy:
-                    description: The export policy associated with the NFS share.
-                    properties:
-                        name:
-                            description: The name of the export policy applied to the volume or qtree.
-                            example: default
-                            type: string
-                    type: object
-                id:
-                    description: Identifier of the NFS share.
-                    example: a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d
-                    format: uuid
-                    type: string
-                isActive:
-                    description: Indicates whether the volume is actively mounted at a junction path.
-                    example: true
-                    type: boolean
-                metadata:
-                    $ref: '#/components/schemas/common_1.0_inventory_metadata'
-                organizationId:
-                    description: Identifier for an organization.
-                    example: 16c07c0c-666b-4870-9363-764eef9e7160
-                    format: uuid
-                    type: string
-                path:
-                    description: |-
-                        The fully-qualified path in the owning SVM's namespace at which the volume is mounted (junction path).
-                        Path begins with '/' and does not end with '/'.
-                        Only present when the volume is actively mounted.
-                    example: /vol/volume-01
-                    type: string
-                qtree:
-                    description: The qtree associated with the NFS share.
-                    properties:
-                        id:
-                            description: The identifier for the qtree, unique within the qtree's volume.
-                            example: 1
-                            type: integer
-                        name:
-                            description: The name of the qtree.
-                            example: qtree-01
-                            type: string
-                    type: object
-                readOnlyAccess:
-                    description: |-
-                        Authentication flavors that govern read-only access.
-                        Defined values are:
-                        * "ANY" - All authentication flavors are allowed.
-                        * "NONE" - No authentication (anonymous access).
-                        * "NEVER" - Read-only access is denied.
-                        * "KRB5" - Kerberos V5 authentication.
-                        * "KRB5I" - Kerberos V5 with integrity checking.
-                        * "KRB5P" - Kerberos V5 with privacy (encryption).
-                        * "NTLM" - CIFS NTLM authentication.
-                        * "SYS" - AUTH_SYS (AUTH_UNIX) authentication.
-                    example:
-                        - SYS
-                    items:
-                        enum:
-                            - ANY
-                            - NONE
-                            - NEVER
-                            - KRB5
-                            - KRB5I
-                            - KRB5P
-                            - NTLM
-                            - SYS
-                        type: string
-                    type: array
-                    uniqueItems: true
-                readWriteAccess:
-                    description: |-
-                        Authentication flavors that govern read/write access.
-                        Defined values are:
-                        * "ANY" - All authentication flavors are allowed.
-                        * "NONE" - No authentication (anonymous access).
-                        * "NEVER" - Read/write access is denied.
-                        * "KRB5" - Kerberos V5 authentication.
-                        * "KRB5I" - Kerberos V5 with integrity checking.
-                        * "KRB5P" - Kerberos V5 with privacy (encryption).
-                        * "NTLM" - CIFS NTLM authentication.
-                        * "SYS" - AUTH_SYS (AUTH_UNIX) authentication.
-                    example:
-                        - SYS
-                    items:
-                        enum:
-                            - ANY
-                            - NONE
-                            - NEVER
-                            - KRB5
-                            - KRB5I
-                            - KRB5P
-                            - NTLM
-                            - SYS
-                        type: string
-                    type: array
-                    uniqueItems: true
-                ruleIndex:
-                    description: The index of the export policy rule. Rules are evaluated in order from lowest to highest index.
-                    example: 1
-                    type: integer
-                securityStyle:
-                    description: |-
-                        The security style of the volume or qtree.
-                        Defined values are:
-                        * "UNIX" - Unix-style security (POSIX permissions).
-                        * "NTFS" - NTFS/Windows-style security.
-                        * "MIXED" - Mixed-style security (both UNIX and NTFS).
-                        * "UNIFIED" - Unified-style security (unified UNIX, NFS and CIFS permissions).
-                    enum:
-                        - UNIX
-                        - NTFS
-                        - MIXED
-                        - UNIFIED
-                    example: UNIX
-                    type: string
-                svm:
-                    $ref: '#/components/schemas/svm_1.0_reference'
-                type:
-                    description: |-
-                        Media type of the resource.
-                        Defined values are:
-                          * "application/vnd.netapp.bxp.nfsshare"
-                    enum:
-                        - application/vnd.netapp.bxp.nfsshare
-                    example: application/vnd.netapp.bxp.nfsshare
-                    type: string
-                unixPermissions:
-                    description: |-
-                        UNIX permissions on the volume, expressed as an octal string.
-                        Consists of 4 digits derived by adding bits 4 (read), 2 (write), and 1 (execute).
-                        The first digit selects set user ID (4), set group ID (2), and sticky (1) attributes.
-                        The second digit selects permissions for the owner; the third for the group; the fourth for others.
-                    example: "755"
-                    type: string
-                version:
-                    description: |-
-                        Version of the resource.
-                        Defined values are:
-                        * "1.0"
-                    enum:
-                        - "1.0"
-                    example: "1.0"
-                    type: string
-                volume:
-                    $ref: '#/components/schemas/volume_1.0_reference'
-                volumeState:
-                    description: |-
-                        The state of the volume.
-                        Client access is supported only when the volume is online and mounted.
-                        Defined values are:
-                        * "ONLINE" - The volume is online and serving data.
-                        * "OFFLINE" - The volume is offline and not accessible.
-                        * "RESTRICTED" - The volume is in restricted state; some operations are allowed.
-                        * "MIXED" - Applies to FlexGroup volumes only; individual constituents are in different states.
-                        * "ERROR" - The volume is in an error state and cannot serve data.
-                    enum:
-                        - ONLINE
-                        - OFFLINE
-                        - RESTRICTED
-                        - MIXED
-                        - ERROR
-                    example: ONLINE
-                    type: string
-                workingEnvironmentId:
-                    description: Identifier for the asset's system.
-                    example: OnPremWorkingEnvironment-KxESQhek
-                    type: string
-            type: object
-        nfsshare_1.0_list_response_body:
-            properties:
-                count:
-                    description: Total number of resources in the collection that match the query.
-                    example: 2
-                    format: int64
-                    minimum: 0
-                    type: integer
-                items:
-                    items:
-                        $ref: '#/components/schemas/nfsshare_1.0_get_response_body'
-                    type: array
-                    uniqueItems: true
-            required:
-                - items
-            type: object
         node_1.0_get_response_body:
             properties:
                 cluster:
                     $ref: '#/components/schemas/cluster_1.0_reference'
                 ha:
+                    description: High-availability configuration for the node.
                     properties:
                         partner:
                             description: Name of HA partner node.
@@ -2554,6 +2435,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: Nodes in the collection.
                     items:
                         $ref: '#/components/schemas/node_1.0_get_response_body'
                     type: array
@@ -2572,6 +2454,7 @@ components:
                     format: double
                     type: number
                 iops:
+                    description: IOPS metrics for the node.
                     properties:
                         total:
                             description: The rate of I/O operations observed at the storage object.
@@ -2579,6 +2462,7 @@ components:
                             type: number
                     type: object
                 latency:
+                    description: Latency metrics for the node.
                     properties:
                         average:
                             description: The average round trip latency observed at the storage object in microseconds.
@@ -2590,6 +2474,7 @@ components:
                     format: double
                     type: number
                 throughput:
+                    description: Throughput metrics for the node.
                     properties:
                         total:
                             description: The rate of throughput observed at the storage object in bytes per second.
@@ -2614,6 +2499,7 @@ components:
         node_1.0_space:
             properties:
                 aggregate:
+                    description: Aggregate capacity information for the node.
                     properties:
                         available:
                             description: The available space in bytes.
@@ -2720,6 +2606,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: Ports in the collection.
                     items:
                         $ref: '#/components/schemas/port_1.0_get_response_body'
                     type: array
@@ -2730,6 +2617,7 @@ components:
         port_1.0_metrics:
             properties:
                 throughput:
+                    description: Throughput metrics observed at the port.
                     properties:
                         total:
                             description: The rate of throughput observed at the port in bytes per second.
@@ -2910,6 +2798,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: QoS policy groups in the collection.
                     items:
                         $ref: '#/components/schemas/qospolicygroup_1.0_get_response_body'
                     type: array
@@ -3033,6 +2922,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: Qtrees in the collection.
                     items:
                         $ref: '#/components/schemas/qtree_1.0_get_response_body'
                     type: array
@@ -3198,6 +3088,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: Relationships in the collection.
                     items:
                         $ref: '#/components/schemas/relationship_1.0_get_response_body'
                     type: array
@@ -3302,6 +3193,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: SMB shares in the collection.
                     items:
                         $ref: '#/components/schemas/smbshare_1.0_get_response_body'
                     type: array
@@ -3520,23 +3412,6 @@ components:
                     example: 9b0ee210-70a0-4158-b025-0decde66e4de
                     format: uuid
                     type: string
-                protection:
-                    description: Protection-related information for the SVM.
-                    properties:
-                        coveredVolumeCount:
-                            description: Count of data volumes in this SVM with SnapMirror and/or Snapshot protection.
-                            example: 15
-                            type: integer
-                        disasterRecoveryEnabled:
-                            description: Whether this SVM has an active storage VM disaster-recovery relationship.
-                            example: false
-                            type: boolean
-                        volumeCoveragePercent:
-                            description: Percentage of data volumes in this SVM that are protected (SnapMirror or Snapshot).
-                            example: 75
-                            format: double
-                            type: number
-                    type: object
                 s3:
                     description: S3 service configuration for the SVM.
                     properties:
@@ -3652,6 +3527,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: SVM resources in the collection.
                     items:
                         $ref: '#/components/schemas/svm_1.0_get_response_body'
                     type: array
@@ -3662,6 +3538,7 @@ components:
         svm_1.0_metrics:
             properties:
                 iops:
+                    description: IOPS metrics for volumes in the SVM.
                     properties:
                         total:
                             description: The rate of I/O operations observed for volumes on the SVM.
@@ -3669,6 +3546,7 @@ components:
                             type: number
                     type: object
                 latency:
+                    description: Latency metrics for volumes in the SVM.
                     properties:
                         average:
                             description: The average round trip latency observed for volumes on the SVM, in microseconds.
@@ -3676,6 +3554,7 @@ components:
                             type: number
                     type: object
                 throughput:
+                    description: Throughput metrics for volumes in the SVM.
                     properties:
                         total:
                             description: The rate of throughput observed for volumes on the SVM, in bytes per second.
@@ -3761,6 +3640,7 @@ components:
                 workingEnvironmentId:
                     description: Identifier for the asset's system.
                     example: 4cca45b6-1e5a-4c15-b3a6-e29598de9d44
+                    format: uuid
                     type: string
             type: object
         tenant_1.0_list_response_body:
@@ -3772,6 +3652,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: Tenant account resources in the collection.
                     items:
                         $ref: '#/components/schemas/tenant_1.0_get_response_body'
                     type: array
@@ -3809,6 +3690,7 @@ components:
         timeseries_1.0_post_request_body:
             properties:
                 singleMetric:
+                    description: Configuration for a query against a single metric.
                     properties:
                         aggregation:
                             description: Aggregation function applied to the series.
@@ -4579,8 +4461,10 @@ components:
                     example: volume-01
                     type: string
                 nas:
+                    description: NAS configuration of the volume.
                     properties:
                         exportPolicy:
+                            description: NFS export policy applied to the volume.
                             properties:
                                 name:
                                     description: The name of the export policy applied to the volume.
@@ -4602,12 +4486,14 @@ components:
                     format: uuid
                     type: string
                 qosPolicy:
+                    description: QoS policy group applied to the volume.
                     properties:
                         name:
                             description: The name of the QoS policy group applied to the volume.
                             type: string
                     type: object
                 snaplock:
+                    description: SnapLock configuration of the volume.
                     properties:
                         expiryTimestamp:
                             description: Expiry time of the volume.
@@ -4626,6 +4512,7 @@ components:
                             type: string
                     type: object
                 snapmirror:
+                    description: SnapMirror protection information for the volume.
                     properties:
                         isProtected:
                             description: Indicates whether a volume is a SnapMirror source volume, using SnapMirror to protect its data.
@@ -4658,6 +4545,7 @@ components:
                 svm:
                     $ref: '#/components/schemas/svm_1.0_reference'
                 tiering:
+                    description: Cloud tiering configuration of the volume.
                     properties:
                         policy:
                             description: |-
@@ -4720,6 +4608,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: Volume resources in the collection.
                     items:
                         $ref: '#/components/schemas/volume_1.0_get_response_body'
                     type: array
@@ -4730,6 +4619,7 @@ components:
         volume_1.0_metrics:
             properties:
                 iops:
+                    description: IOPS metrics for the volume.
                     properties:
                         total:
                             description: The rate of I/O operations observed at the storage object.
@@ -4737,6 +4627,7 @@ components:
                             type: number
                     type: object
                 latency:
+                    description: Latency metrics for the volume.
                     properties:
                         average:
                             description: The average round trip latency observed at the storage object, in microseconds.
@@ -4744,6 +4635,7 @@ components:
                             type: number
                     type: object
                 throughput:
+                    description: Throughput metrics for the volume.
                     properties:
                         total:
                             description: The rate of throughput observed at the storage object, in bytes per second.
@@ -4917,8 +4809,10 @@ components:
                     example: volume-01
                     type: string
                 nas:
+                    description: NAS configuration of the volume.
                     properties:
                         exportPolicy:
+                            description: NFS export policy applied to the volume.
                             properties:
                                 name:
                                     description: The name of the export policy applied to the volume.
@@ -4935,12 +4829,14 @@ components:
                         $ref: '#/components/schemas/node_1.0_reference'
                     type: array
                 qosPolicy:
+                    description: QoS policy group applied to the volume.
                     properties:
                         name:
                             description: The name of the QoS policy group applied to the volume.
                             type: string
                     type: object
                 snaplock:
+                    description: SnapLock configuration of the volume.
                     properties:
                         expiryTimestamp:
                             description: Expiry time of the volume.
@@ -4959,6 +4855,7 @@ components:
                             type: string
                     type: object
                 snapmirror:
+                    description: SnapMirror protection information for the volume.
                     properties:
                         isProtected:
                             description: Indicates whether a volume is a SnapMirror source volume, using SnapMirror to protect its data.
@@ -4991,6 +4888,7 @@ components:
                 svm:
                     $ref: '#/components/schemas/svm_1.0_reference'
                 tiering:
+                    description: Cloud tiering configuration of the volume.
                     properties:
                         policy:
                             description: |-
@@ -5085,6 +4983,7 @@ components:
                     format: double
                     type: number
                 inodes:
+                    description: File inode usage information for the volume.
                     properties:
                         filesTotal:
                             description: The maximum number of files (inodes) for user-visible data allowed on the volume.
@@ -5104,8 +5003,10 @@ components:
                     format: int64
                     type: integer
                 snapshot:
+                    description: Snapshot space usage information for the volume.
                     properties:
                         autodelete:
+                            description: Snapshot autodelete settings for the volume.
                             properties:
                                 enabled:
                                     description: Specifies whether snapshot autodelete is currently enabled on this volume.
@@ -5222,6 +5123,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: System resources in the collection.
                     items:
                         $ref: '#/components/schemas/workingenvironment_1.0_get_response_body'
                     type: array
@@ -5235,7 +5137,7 @@ components:
             type: http
 info:
     description: |-
-        The Assets service provides configuration data and metrics about assets monitored by the NetApp Console.
+        The Assets service provides configuration data and metrics about assets monitored by the NetApp Console (local deployment).
 
         The following resources are defined within Assets:
         <ul>
@@ -5250,7 +5152,7 @@ info:
         <li>QoS policy group</li>
         <li>qtree</li>
         <li>SMB share</li>
-        <li>SVM</li>
+        <li>Storage VM (SVM)</li>
         <li>volume</li>
         </ul>
 
@@ -5259,7 +5161,6 @@ info:
         Console (local deployment) APIs.
 
         ---
-
 
         ## Query parameters
 
@@ -5278,7 +5179,7 @@ info:
         | QoS Policy Group   | count, filter, include, limit, metadata, orderBy, skip |
         | Qtree              | count, filter, include, limit, metadata, orderBy, skip |
         | SMB Share          | count, filter, include, limit, metadata, orderBy, skip |
-        | SVM                | count, filter, include, limit, metadata, orderBy, skip |
+        | Storage VM (SVM)   | count, filter, include, limit, metadata, orderBy, skip |
         | Volume             | count, filter, include, limit, metadata, orderBy, skip |
 
     license:
@@ -5317,10 +5218,6 @@ paths:
                                         name: cluster-01
                                       clusterPersonality: UNIFIED_ONTAP
                                       diskCount: 12
-                                      failedDiskCount: 0
-                                      homeNode:
-                                        id: g3f4e5d6-7890-12cd-ef03-456789012cde
-                                        name: node-01
                                       id: c08d213b-3c38-4c07-bde0-852ef821b815
                                       inactiveDataReporting:
                                         enabled: true
@@ -5340,10 +5237,7 @@ paths:
                                         id: g3f4e5d6-7890-12cd-ef03-456789012cde
                                         name: node-01
                                       organizationId: a1b2c3d4-5678-90ab-cdef-1234567890ab
-                                      plexResyncPercentage: null
-                                      plexState: NORMAL
                                       raidGroupCount: 2
-                                      raidStatus: NORMAL
                                       security:
                                         driveProtectionEnabled: false
                                         isEncrypted: true
@@ -5386,10 +5280,6 @@ paths:
                                         name: cluster-01
                                       clusterPersonality: UNIFIED_ONTAP
                                       diskCount: 24
-                                      failedDiskCount: 0
-                                      homeNode:
-                                        id: h4g5f6e7-8901-23de-f014-567890123def
-                                        name: node-02
                                       id: d19e324c-4d4f-5d18-cef1-963fg932c926
                                       inactiveDataReporting:
                                         enabled: false
@@ -5409,10 +5299,7 @@ paths:
                                         id: h4g5f6e7-8901-23de-f014-567890123def
                                         name: node-02
                                       organizationId: a1b2c3d4-5678-90ab-cdef-1234567890ab
-                                      plexResyncPercentage: null
-                                      plexState: NORMAL
                                       raidGroupCount: 3
-                                      raidStatus: NORMAL
                                       security:
                                         driveProtectionEnabled: true
                                         isEncrypted: true
@@ -5743,10 +5630,6 @@ paths:
                                         name: cluster-01
                                       clusterPersonality: UNIFIED_ONTAP
                                       diskCount: 12
-                                      failedDiskCount: 0
-                                      homeNode:
-                                        id: g3f4e5d6-7890-12cd-ef03-456789012cde
-                                        name: node-01
                                       id: c08d213b-3c38-4c07-bde0-852ef821b815
                                       inactiveDataReporting:
                                         enabled: true
@@ -5766,10 +5649,7 @@ paths:
                                         id: g3f4e5d6-7890-12cd-ef03-456789012cde
                                         name: node-01
                                       organizationId: a1b2c3d4-5678-90ab-cdef-1234567890ab
-                                      plexResyncPercentage: null
-                                      plexState: NORMAL
                                       raidGroupCount: 2
-                                      raidStatus: NORMAL
                                       security:
                                         driveProtectionEnabled: false
                                         isEncrypted: true
@@ -5812,10 +5692,6 @@ paths:
                                         name: cluster-01
                                       clusterPersonality: UNIFIED_ONTAP
                                       diskCount: 24
-                                      failedDiskCount: 0
-                                      homeNode:
-                                        id: h4g5f6e7-8901-23de-f014-567890123def
-                                        name: node-02
                                       id: d19e324c-4d4f-5d18-cef1-963fg932c926
                                       inactiveDataReporting:
                                         enabled: false
@@ -5835,10 +5711,7 @@ paths:
                                         id: h4g5f6e7-8901-23de-f014-567890123def
                                         name: node-02
                                       organizationId: a1b2c3d4-5678-90ab-cdef-1234567890ab
-                                      plexResyncPercentage: null
-                                      plexState: NORMAL
                                       raidGroupCount: 3
-                                      raidStatus: NORMAL
                                       security:
                                         driveProtectionEnabled: true
                                         isEncrypted: true
@@ -6183,7 +6056,7 @@ paths:
                     $ref: '#/components/responses/403Forbidden'
             summary: List LUNs.
             tags:
-                - LUN
+                - Lun
             x-permission: bxp:resource-read
             x-persistence: true
             x-scope: private,public,ncl
@@ -7030,10 +6903,6 @@ paths:
                                         enabled: false
                                       operationalState: RUNNING
                                       organizationId: 16c07c0c-666b-4870-9363-764eef9e7160
-                                      protection:
-                                        coveredVolumeCount: 15
-                                        disasterRecoveryEnabled: false
-                                        volumeCoveragePercent: 75
                                       s3:
                                         enabled: false
                                       security:
@@ -7087,10 +6956,6 @@ paths:
                                         enabled: false
                                       operationalState: STOPPED
                                       organizationId: 16c07c0c-666b-4870-9363-764eef9e7160
-                                      protection:
-                                        coveredVolumeCount: 20
-                                        disasterRecoveryEnabled: true
-                                        volumeCoveragePercent: 100
                                       s3:
                                         enabled: false
                                       space:
@@ -7854,72 +7719,12 @@ paths:
                     $ref: '#/components/responses/403Forbidden'
             summary: List LUNs in an organization.
             tags:
-                - LUN
+                - Lun
             x-permission: bxp:resource-read
             x-persistence: true
             x-scope: private,public,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
-        patch:
-            description: |-
-                Creates or updates multiple LUNs for the specified organization.
-
-                If a LUN already exists, it is updated, otherwise a new LUN is created.
-
-                To identify a LUN for update, the following logic is applied:
-                - If the LUN includes an `id` field, that LUN is updated.
-                - Otherwise, a unique LUN is identified by the combination of `organizationId`, `workingEnvironmentId`, `cluster.name`, `svm.name`, `volume.name` and `name`.
-            requestBody:
-                content:
-                    application/vnd.netapp.bxp.luns+json:
-                        example:
-                            items:
-                                - cluster:
-                                    id: 4c8d2919-ac4c-4ea7-bf7c-24863d4da94b
-                                    name: cluster-01
-                                  id: 92c08026-35d2-45fe-8c1b-67b08d0c0322
-                                  name: lun-01
-                                  svm:
-                                    id: d1ddc65d-f7a2-4ca7-9847-5afd069a3dbe
-                                    name: svm-01
-                                  type: application/vnd.netapp.bxp.lun
-                                  version: "1.0"
-                                  volume:
-                                    id: 8e2f9d4c-6a5b-4f8e-a2d7-5c9e4f2a7b8d
-                                    name: volume-01
-                                  workingEnvironmentId: OnPremWorkingEnvironment-KxESQhek
-                                - cluster:
-                                    id: 7d8e9f0a-1b2c-3d4e-5f6a-7b8c9d0e1f2a
-                                    name: cluster-02
-                                  name: lun-02
-                                  svm:
-                                    id: 8e9f0a1b-2c3d-4e5f-6a7b-8c9d0e1f2a3b
-                                    name: svm-02
-                                  type: application/vnd.netapp.bxp.lun
-                                  version: "1.0"
-                                  volume:
-                                    id: 8e2f9d4c-6a5b-4f8e-a2d7-5c9e4f2a7b8d
-                                    name: volume-01
-                                  workingEnvironmentId: OnPremWorkingEnvironment-KxESQhek
-                        schema:
-                            $ref: '#/components/schemas/lun_1.0_patch_request_body'
-                description: List of LUN items to update.
-                required: true
-            responses:
-                "204":
-                    description: Luns were successfully created or updated.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-            summary: Create or update multiple luns for a given organization.
-            tags:
-                - LUN
-            x-permission: bxp:resource-modify
-            x-persistence: true
-            x-scope: private,ncl
     /organizations/{organization_id}/metricsql:
         parameters:
             - $ref: '#/components/parameters/organization_id'
@@ -8752,10 +8557,6 @@ paths:
                                         enabled: false
                                       operationalState: RUNNING
                                       organizationId: 16c07c0c-666b-4870-9363-764eef9e7160
-                                      protection:
-                                        coveredVolumeCount: 15
-                                        disasterRecoveryEnabled: false
-                                        volumeCoveragePercent: 75
                                       s3:
                                         enabled: false
                                       security:
@@ -8809,10 +8610,6 @@ paths:
                                         enabled: false
                                       operationalState: STOPPED
                                       organizationId: 16c07c0c-666b-4870-9363-764eef9e7160
-                                      protection:
-                                        coveredVolumeCount: 20
-                                        disasterRecoveryEnabled: true
-                                        volumeCoveragePercent: 100
                                       s3:
                                         enabled: false
                                       space:
@@ -9277,64 +9074,6 @@ paths:
             x-scope: private,public,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
-        patch:
-            description: |-
-                Creates or updates multiple volumes for the specified organization.
-
-                If a volume already exists, it is updated, otherwise a new volume is created.
-
-                To identify a volume for update, the following logic is applied:
-                - If the volume includes an `id` field, that volume will be updated.
-                - Otherwise, a unique volume is identified by the combination of `organizationId`, `workingEnvironmentId`, `cluster.name`, `svm.name`, and `name`.
-            requestBody:
-                content:
-                    application/vnd.netapp.bxp.volumes+json:
-                        example:
-                            items:
-                                - cluster:
-                                    id: 4c8d2919-ac4c-4ea7-bf7c-24863d4da94b
-                                    name: cluster-01
-                                  id: 92c08026-35d2-45fe-8c1b-67b08d0c0322
-                                  name: volume-01
-                                  organizationId: 16c07c0c-666b-4870-9363-764eef9e7160
-                                  state: ONLINE
-                                  svm:
-                                    id: d1ddc65d-f7a2-4ca7-9847-5afd069a3dbe
-                                    name: svm-01
-                                  type: application/vnd.netapp.bxp.volume
-                                  version: "1.0"
-                                  workingEnvironmentId: OnPremWorkingEnvironment-KxESQhek
-                                - cluster:
-                                    id: 7d8e9f0a-1b2c-3d4e-5f6a-7b8c9d0e1f2a
-                                    name: cluster-02
-                                  name: volume-02
-                                  organizationId: 16c07c0c-666b-4870-9363-764eef9e7160
-                                  state: ONLINE
-                                  svm:
-                                    id: 8e9f0a1b-2c3d-4e5f-6a7b-8c9d0e1f2a3b
-                                    name: svm-02
-                                  type: application/vnd.netapp.bxp.volume
-                                  version: "1.0"
-                                  workingEnvironmentId: OnPremWorkingEnvironment-KxESQhek
-                        schema:
-                            $ref: '#/components/schemas/volume_1.0_patch_request_body'
-                description: List of volume items to create or update.
-                required: true
-            responses:
-                "204":
-                    description: Volumes were successfully created or updated.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-            summary: Create or update multiple volumes for a given organization.
-            tags:
-                - Volume
-            x-permission: bxp:resource-modify
-            x-persistence: true
-            x-scope: private,ncl
 security:
     - bxp_bearer_auth: []
 servers:
