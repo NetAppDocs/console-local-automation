@@ -53,7 +53,7 @@ You can use curl or the programming language of your choice to issue a REST API 
 
 .Curl example 
 
-The following example lists all the Fleets from the assets service: 
+The following example lists all the fleets from the Assets service: 
 
 [source,curl]
 ----

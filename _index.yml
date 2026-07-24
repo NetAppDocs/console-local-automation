@@ -8,7 +8,7 @@ indexpage:
       links:
        - title: Agentic Platform
          url: /agentic/overview.html
-       - title: Asset
+       - title: Assets
          url: /asset/overview.html
        - title: Identity and access management
          url: /tenancyv4/overview.html
