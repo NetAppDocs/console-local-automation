@@ -9086,7 +9086,7 @@ tags:
     - description: The fleet endpoints enable retrieving fleet information.
       name: Fleet
     - description: The lun endpoints enable retrieving LUN information.
-      name: Lun
+      name: LUN
     - description: The namespace endpoints enable retrieving namespace information.
       name: Namespace
     - description: The network interface endpoints enable retrieving network interface information.
