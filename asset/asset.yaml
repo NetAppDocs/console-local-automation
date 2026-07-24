@@ -9102,7 +9102,7 @@ tags:
     - description: The SMB share endpoints enable retrieving SMB share information.
       name: SMB Share
     - description: The storage virtual machine endpoints enable retrieving SVM information.
-      name: Storage Virtual Machine
+      name: Storage VM (SVM)
     - description: The timeseries endpoints enable retrieving current and historical metrics for assets.
       name: Timeseries
     - description: The volume endpoints enable retrieving volume information.
