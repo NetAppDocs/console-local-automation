@@ -7126,8 +7126,8 @@ info:
         | Resource           | Query Parameter                                    |
         |--------------------|----------------------------------------------------|
         | storage classes and policies         | count, filter, include, limit, orderBy, skip |
-        | storage management            | count, filter, include, limit, orderBy, skip  |
-        | system discovery            | count, filter, include, limit, orderBy, skip                    |
+        | storage management            | Not applicable |
+        | system discovery            | Not applicable                  |
         
        
     termsOfService: https://www.netapp.com/media/10784-cloud-data-services-terms.pdf
