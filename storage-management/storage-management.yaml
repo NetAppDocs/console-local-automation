@@ -697,6 +697,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/capacity_policy_1.0_get_response_body'
                     type: array
@@ -975,6 +976,7 @@ components:
         certificate_1.0_list_response_body:
             properties:
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/certificate_1.0_get_response_body'
                     type: array
@@ -1614,6 +1616,7 @@ components:
         credential_1.0_get_list_response_body:
             properties:
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/credential_1.0_get_response_body'
                     type: array
@@ -2490,6 +2493,7 @@ components:
         flexcache_1.0_list_response_body:
             properties:
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/flexcache_1.0_get_response_body'
                     type: array
@@ -2620,6 +2624,7 @@ components:
             description: Array of JSON containing user details.
             properties:
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 users:
                     items:
@@ -2991,6 +2996,7 @@ components:
             description: Array of JSON containing MFA device details.
             properties:
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: integer
                 users:
                     items:
@@ -5712,6 +5718,7 @@ components:
             description: Link relationship
             properties:
                 hints:
+                    description: Provides details about how a link can be interacted with, such as allowed methods, required permissions, and accepted media types for create/update operations.
                     properties:
                         accept-post:
                             description: Provides details about which media types are accepted when creating a resource.
@@ -6589,6 +6596,7 @@ components:
                     minimum: 0
                     type: integer
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/volume_1.0_get_response_body'
                     type: array
