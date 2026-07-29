@@ -1319,6 +1319,7 @@ components:
                     example: 10
                     type: integer
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/supportedModel_1.0_get_response_body'
                     type: array
@@ -1529,6 +1530,7 @@ components:
             description: Link relationship
             properties:
                 hints:
+                    description: Provides details about how a link can be interacted with, such as allowed methods, required permissions, and accepted media types for create/update operations.
                     properties:
                         accept-post:
                             description: Provides details about which media types are accepted when creating a resource.
