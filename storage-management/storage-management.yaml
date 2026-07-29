@@ -7103,13 +7103,25 @@ info:
 
         The following components are defined within storage management:
         <ul>
-        <li>system discovery</li>
-        <li>storage management</li>
         <li>storage classes and policies</li>
+        <li>storage management</li>
+        <li>system discovery</li>
         </ul>
 
         **Note**: Before using the API reference documentation, review the
         [Get started](https://docs.netapp.com/us-en/console-local-automation/platform/learn-about.html) section for the Console (local deployment) APIs.
+
+        ## Query parameters
+
+        You can use query parameters with endpoints in the following resources:
+
+        | Resource           | Query Parameter                                    |
+        |--------------------|----------------------------------------------------|
+        | storage classes and policies         | count, filter, include, limit, orderBy, skip |
+        | storage management            | count, filter, include, limit, orderBy, skip  |
+        | system discovery            | count, filter, include, limit, orderBy, skip                    |
+        
+       
     termsOfService: https://www.netapp.com/media/10784-cloud-data-services-terms.pdf
     license:
         name: NetApp Console License
