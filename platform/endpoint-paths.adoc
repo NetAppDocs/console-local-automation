@@ -37,4 +37,4 @@ In addition to the API base URL, a separate endpoint is used to obtain OAuth 2.0
 
 .Related information
 
-* link:platform/authentication.html[Learn about authentication and authorization in NetApp Console (local deployment)]
+* link:authentication.html[Learn more about authentication and authorization in NetApp Console (local deployment)]
