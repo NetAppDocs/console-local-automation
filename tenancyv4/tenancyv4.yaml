@@ -241,6 +241,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -310,11 +311,14 @@ components:
         binding_1.0_list_response_body:
             properties:
                 continue:
+                    description: "Pagination cursor for resuming the list from the next page. Only returned when more results exist beyond the current page. Pass this value back as the 'continue' query parameter on the next request."
                     format: uuid
                     type: string
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/binding_1.0_get_response_body'
                     type: array
@@ -534,6 +538,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -712,6 +717,7 @@ components:
                     format: uuid
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -779,8 +785,10 @@ components:
         cache_1.0_list_response_body:
             properties:
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/cache_1.0_get_response_body'
                     type: array
@@ -872,6 +880,7 @@ components:
                     format: uuid
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -1036,6 +1045,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -1098,11 +1108,14 @@ components:
         grant_1.0_list_response_body:
             properties:
                 continue:
+                    description: "Pagination cursor for resuming the list from the next page. Only returned when more results exist beyond the current page. Pass this value back as the `continue` query parameter on the next request."
                     format: uuid
                     type: string
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/grant_1.0_get_response_body'
                     type: array
@@ -1239,6 +1252,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -1345,8 +1359,10 @@ components:
             additionalProperties: false
             properties:
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/hierarchycounts_1.0_get_response_body'
                     type: array
@@ -1637,6 +1653,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -1743,11 +1760,14 @@ components:
         partnership_1.0_list_response_body:
             properties:
                 continue:
+                    description: "Pagination cursor for resuming the list from the next page. Only returned when more results exist beyond the current page. Pass this value back as the `continue` query parameter on the next request."
                     format: uuid
                     type: string
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/partnership_1.0_get_response_body'
                     type: array
@@ -1919,6 +1939,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -2055,6 +2076,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -2112,11 +2134,14 @@ components:
         partnershiptype_1.0_list_response_body:
             properties:
                 continue:
+                    description: "Pagination cursor for resuming the list from the next page. Only returned when more results exist beyond the current page. Pass this value back as the `continue` query parameter on the next request."
                     format: uuid
                     type: string
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/partnershiptype_1.0_get_response_body'
                     type: array
@@ -2328,6 +2353,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -2499,6 +2525,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -2557,9 +2584,11 @@ components:
         permission_1.0_list_response_body:
             properties:
                 continue:
+                    description: "Pagination cursor for resuming the list from the next page. Only returned when more results exist beyond the current page. Pass this value back as the `continue` query parameter on the next request."
                     format: uuid
                     type: string
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
                     items:
@@ -2764,6 +2793,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -2971,6 +3001,7 @@ components:
                     format: uuid
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -3050,11 +3081,14 @@ components:
         resource_1.0_list_response_body:
             properties:
                 continue:
+                    description: "Pagination cursor for resuming the list from the next page. Only returned when more results exist beyond the current page. Pass this value back as the `continue` query parameter on the next request."
                     format: uuid
                     type: string
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/resource_1.0_get_response_body'
                     type: array
@@ -3322,6 +3356,7 @@ components:
                     format: uuid
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -3533,6 +3568,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -3590,11 +3626,14 @@ components:
         resourcegroup_1.0_list_response_body:
             properties:
                 continue:
+                    description: "Pagination cursor for resuming the list from the next page. Only returned when more results exist beyond the current page. Pass this value back as the `continue` query parameter on the next request."
                     format: uuid
                     type: string
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/resourcegroup_1.0_get_response_body'
                     type: array
@@ -3825,6 +3864,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -4004,8 +4044,10 @@ components:
             additionalProperties: false
             properties:
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/resourcescounts_1.0_get_response_body'
                     type: array
@@ -4078,6 +4120,7 @@ components:
                     minLength: 1
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -4134,11 +4177,14 @@ components:
         resourcetype_1.0_list_response_body:
             properties:
                 continue:
+                    description: "Pagination cursor for resuming the list from the next page. Only returned when more results exist beyond the current page. Pass this value back as the `continue` query parameter on the next request."
                     format: uuid
                     type: string
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/resourcetype_1.0_get_response_body'
                     type: array
@@ -4389,6 +4435,7 @@ components:
                     minLength: 1
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -4608,6 +4655,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -4680,11 +4728,14 @@ components:
         role_1.0_list_response_body:
             properties:
                 continue:
+                    description: "Pagination cursor for resuming the list from the next page. Only returned when more results exist beyond the current page. Pass this value back as the `continue` query parameter on the next request."
                     format: uuid
                     type: string
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/role_1.0_get_response_body'
                     type: array
@@ -4985,6 +5036,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -5251,9 +5303,11 @@ components:
         tag_1.0_list_response_body:
             properties:
                 continue:
+                    description: "Pagination cursor for resuming the list from the next page. Only returned when more results exist beyond the current page. Pass this value back as the `continue` query parameter on the next request."
                     format: uuid
                     type: string
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
                     items:
@@ -5626,6 +5680,7 @@ components:
             description: Link relationship
             properties:
                 hints:
+                    description: Provides details about how a link can be interacted with, such as allowed methods, required permissions, and accepted media types for create/update operations.
                     properties:
                         accept-post:
                             description: Provides details about which media types are accepted when creating a resource.
@@ -6002,6 +6057,7 @@ components:
                     format: uuid
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -6116,12 +6172,14 @@ components:
         user_1.0_list_response_body:
             properties:
                 continue:
+                    description: "Pagination cursor for resuming the list from the next page. Only returned when more results exist beyond the current page. Pass this value back as the `continue` query parameter on the next request."
                     format: uuid
                     type: string
                 count:
                     example: 1
                     type: integer
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/user_1.0_get_response_body'
                     type: array
@@ -6468,6 +6526,7 @@ components:
                     format: uuid
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -6714,6 +6773,7 @@ components:
                       version: "1.0"
             properties:
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/user_1.0_public_key_get_response_body'
                     type: array
@@ -7050,6 +7110,7 @@ components:
                     format: uuid
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -7203,6 +7264,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -7273,11 +7335,14 @@ components:
         usergroup_1.0_list_response_body:
             properties:
                 continue:
+                    description: "Pagination cursor for resuming the list from the next page. Only returned when more results exist beyond the current page. Pass this value back as the `continue` query parameter on the next request."
                     format: uuid
                     type: string
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/usergroup_1.0_get_response_body'
                     type: array
@@ -7541,6 +7606,7 @@ components:
                     example: "true"
                     type: string
                 links:
+                    description: Array of link relationships associated with the resource or collection.
                     items:
                         $ref: '#/components/schemas/type_bxp_link'
                     type: array
@@ -7777,8 +7843,10 @@ components:
         userpermissions_1.0_list_response_body:
             properties:
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/userpermissions_1.0_get_response_body'
                     type: array
@@ -7865,8 +7933,10 @@ components:
         userroles_1.0_list_response_body:
             properties:
                 count:
+                    description: Total number of resources matching the query, independent of pagination.
                     type: int
                 items:
+                    description: JSON array containing the resource objects returned for the current page of the collection.
                     items:
                         $ref: '#/components/schemas/userroles_1.0_get_response_body'
                     type: array
