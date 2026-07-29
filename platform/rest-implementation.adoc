@@ -18,6 +18,7 @@ Representational State Transfer (REST) is a style for creating distributed web a
 
 The following HTTP methods are used in NetApp Console (local deployment) REST APIs. Not all HTTP methods are available at each of the REST endpoints. For more information, see the reference documentation for the specific API you are using.
 
+[cols="1,3", options="header"]
 |===
 | Method | Description
 
@@ -41,6 +42,7 @@ The following HTTP methods are used in NetApp Console (local deployment) REST AP
 
 The following request headers are used in NetApp Console (local deployment) REST APIs.
 
+[cols="1,2", options="header"]
 |===
 | Request Header | Description
 
@@ -62,6 +64,7 @@ Refer to the individual API reference for the service you are using for informat
 
 The following table shows common HTTP response headers used in NetApp Console (local deployment) REST APIs.
 
+[cols="1,2", options="header"]
 |===
 | Response Header | Description
 
@@ -83,6 +86,7 @@ The following table shows common HTTP response headers used in NetApp Console (l
 
 The following HTTP status codes are returned in NetApp Console (local deployment) APIs. 
 
+[cols="1,3", options="header"]
 |===
 | HTTP Status Code | Description
 

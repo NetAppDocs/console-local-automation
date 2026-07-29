@@ -34,3 +34,7 @@ NOTE: FQDN-based access requires that a DNS record has been configured for the h
 In addition to the API base URL, a separate endpoint is used to obtain OAuth 2.0 access tokens. This authentication endpoint is also hosted on the NetApp Console (local deployment) instance. 
 
 `POST \https://<host>/oauth/token`
+
+.Related information
+
+* link:platform/authentication.html[Learn about authentication and authorization in NetApp Console (local deployment)]

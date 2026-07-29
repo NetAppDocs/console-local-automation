@@ -26,7 +26,7 @@ Each NetApp Console (local deployment) instance includes a local identity provid
 
 There are two types of access tokens you can use to authenticate REST API calls to the Console (local deployment). 
 
-[cols="2,2" options="header"]
+[cols="1,3", options="header"]
 |===
 // header row
 | Type
