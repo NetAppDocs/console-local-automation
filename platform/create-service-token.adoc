@@ -71,7 +71,7 @@ curl --request POST \
 
 The following table shows the required input parameters. 
 
-[cols="1,2", options="header"]
+[cols="1,3", options="header"]
 |===
 // header row
 | Parameter
