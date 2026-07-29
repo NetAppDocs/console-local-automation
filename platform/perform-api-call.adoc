@@ -4,7 +4,7 @@ permalink: platform/perform-api-call.html
 keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
 summary: A workflow describing how to cerate a service token
 ---
-= Perform an API call in NetApp Console (local deployment)  
+= Perform your first API call in NetApp Console (local deployment)  
 :hardbreaks:
 :nofooter:
 :icons: font
