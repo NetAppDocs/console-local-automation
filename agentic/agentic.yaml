@@ -1913,7 +1913,7 @@ info:
         <li>Dynamic configuration management with automatic hot reload</li>
         <li>Support for multiple LLM providers</li>
         <li>SSL verification settings, including custom CA certificates</li>
-        <li> Automatic stale Kubernetes (K8s) resource cleanup when provider changes</li>
+        <li> Automatic stale Kubernetes (K8s) resource cleanup when provider changes: </li>
         <li>Model validation and authorization rules</li>
         <li>Configuration state lifecycle (DRAFT, TESTING, SUCCESSFUL, UNSUCCESSFUL)</li>
         </ul>
@@ -2177,7 +2177,7 @@ paths:
             x-scope: private,public,documentation,ncl
         patch:
             description: |
-                Triggers the Kubernetes (K8s) resource creation. The PATCH endpoint orchestrates the full apply pipeline. A failed connection test sets state=UNSUCCESSFUL and does not apply K8s resources.
+                Triggers the Kubernetes (K8s) resource creation and applies the specified Agentic platform configuration. The PATCH endpoint orchestrates the full apply pipeline. A failed connection test sets state=UNSUCCESSFUL and does not apply K8s resources.
                 The AgentGateway automatically hot reloads the updated configuration.
 
                 Provider-specific credentials can be updated using the corresponding provider object. Changing the provider in a PATCH request automatically removes the previous provider's Kubernetes (K8s) resources.
