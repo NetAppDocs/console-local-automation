@@ -13,10 +13,10 @@ paths:
         explorer: false
     post:
       x-doc:
-        title: Create a new Agentic Platform configuration in NetApp Console (local deployment)
+        title: Create a new draft Agentic Platform configuration in NetApp Console (local deployment)
         category: Configuration
         filename: post-configs.html
-        sidebar_title: Create a new configuration
+        sidebar_title: Create a new draft configuration
         subcategory: 
         explorer: false
   "/configs/{config_id}":
@@ -38,10 +38,10 @@ paths:
         explorer: false
     patch:
       x-doc:
-        title: Partially update an Agentic Platform configuration in NetApp Console (local deployment)
+        title: Apply an Agentic Platform configuration in NetApp Console (local deployment)
         category: Configuration
         filename: patch-configs-.html
-        sidebar_title: Partially update configuration
+        sidebar_title: Apply a configuration
         subcategory: 
         explorer: false
   "/health":
