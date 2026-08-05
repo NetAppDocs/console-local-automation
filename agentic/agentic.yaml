@@ -1927,6 +1927,17 @@ info:
         **Note**: Before using the API reference documentation, review the
         [Get started](https://docs.netapp.com/us-en/console-local-automation/platform/learn-about.html) section for the
         Console (local deployment) APIs.
+
+        ## Supported models and providers
+
+        The initial catalog supports the following models and providers: `openai`, `commonOpenAI`, and `anthropic`. 
+        
+        Support for `azure`, `bedrock`, `vertexai`, and `gemini` can be configured but these providers are not yet listed in the catalog endpoint and must be added  after deployment.
+
+        ## Anthropic path rewrite
+
+        Clients using OpenAI-compatible SDKs (langchaingo, OpenAI Python SDK) can send a request to `/v1/chat/completions` and it will automatically be rewritten to `/v1/messages` at the gateway level.
+        
     license:
         name: NetApp Console License
     termsOfService: https://www.netapp.com/media/10784-cloud-data-services-terms.pdf
