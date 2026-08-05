@@ -199,13 +199,16 @@ components:
         config_1.0_get_response_body:
             additionalProperties: false
             properties:
+                apiKey:
+                    description: The stored provider API key, currently stored in plaintext in MongoDB.
+                    type: string
                 adminAddr:
                     default: 0.0.0.0:15000
                     description: Admin address for the AgentGateway
                     example: 0.0.0.0:15000
                     type: string
                 baseUrl:
-                    description: Base URL for the provider API
+                    description: Base URL for the provider API. The response baseUrl mirrors the baseUrl from the provider credential object used during creation.
                     example: https://api.openai.com
                     format: uri
                     type: string
@@ -287,7 +290,7 @@ components:
                     type: string
                 proxyConfigured:
                     description: |-
-                        Indicates whether a proxy is configured for this LLM backend.
+                        Indicates whether a proxy is configured for this LLM backend. This field reflects whether a cluster-level proxy is active. It is set automatically and should not be set by callers.
                         Defined values are:
                         * "true"  - A proxy is configured and active for outbound LLM traffic
                         * "false" - No proxy is configured; LLM traffic is routed directly
@@ -298,7 +301,7 @@ components:
                     type: string
                 rawConfig:
                     additionalProperties: true
-                    description: Raw AgentGateway YAML configuration as JSON
+                    description: Raw AgentGateway YAML configuration as JSON. Currently stores only the user identifier extracted from extraParams. Does not contain the full AgentGateway backend configuration.
                     type: object
                 sslVerify:
                     default: true
@@ -441,7 +444,7 @@ components:
                     type: integer
                 proxyConfigured:
                     description: |-
-                        Indicates whether a proxy is configured for this LLM backend.
+                        Indicates whether a proxy is configured for this LLM backend. This field reflects whether a cluster-level proxy is active. It is set automatically and should not be set by callers.
                         Defined values are:
                         * "true"  - A proxy is configured and active for outbound LLM traffic
                         * "false" - No proxy is configured; LLM traffic is routed directly
@@ -463,9 +466,10 @@ components:
                         Use this field to request a state change for the configuration.
                         Defined values are:
                         * "DRAFT" - Move configuration to draft mode
-                        * "TESTING" - Request configuration testing/validation
+                        * "TESTING" - Tests the LLM provider connection only. Does not create or modify agentgateway resources. The llmHealthState is updated to reflect the test result.
                         * "SUCCESSFUL" - Mark configuration as having been successfully applied
                         * "UNSUCCESSFUL" - Mark configuration as having failed
+                        *Note*:  Only TESTING has a distinct behavior. DRAFT, SUCCESSFUL, UNSUCCESSFUL in stateDesired have no special effect — the full apply pipeline runs.
                     enum:
                         - DRAFT
                         - TESTING
@@ -572,7 +576,7 @@ components:
                         * apiVersion - Azure API version
 
                         For commonOpenAI:
-                        * user - Username for custom LLM proxies
+                        * user - Username for custom LLM proxies. Special key. When set, the value is injected into every LLM request as the user identifier for tracking and abuse detection. For Anthropic providers, it is sent as "metadata.user_id".
                     example:
                         user: username
                     type: object
@@ -854,11 +858,11 @@ components:
                     example: your-azure-api-key
                     type: string
                 apiVersion:
-                    description: Azure OpenAI API version
+                    description: Azure OpenAI API version. When not specified, defaults to "2025-01-01-preview".
                     example: 2024-02-15-preview
                     type: string
                 baseUrl:
-                    description: Azure OpenAI endpoint URL
+                    description: Azure OpenAI endpoint URL (required for the Azure provider)
                     example: https://your-resource.openai.azure.com
                     format: uri
                     type: string
@@ -879,7 +883,7 @@ components:
                     example: AKIAIOSFODNN7EXAMPLE
                     type: string
                 awsRegion:
-                    description: AWS region for Bedrock
+                    description: AWS region for Bedrock. When not specified, defaults to us-east-1.
                     example: us-east-1
                     type: string
                 awsSecretAccessKey:
@@ -900,7 +904,7 @@ components:
             type: object
         provider_credentials_commonOpenAI_config:
             additionalProperties: false
-            description: Generic OpenAI-compatible API configuration (for custom/self-hosted LLM proxies)
+            description: Generic OpenAI-compatible API configuration (for custom/self-hosted LLM proxies)  Duplicate models with equivalent dot/dash notation are merged; the first occurrence is returned.
             properties:
                 apiKey:
                     description: API key for the OpenAI-compatible service
@@ -2179,10 +2183,10 @@ paths:
         patch:
             description: |
                 Partially updates the configuration. Only the provided fields are updated.
-                This is useful for updating specific settings without replacing the entire configuration.
+                This is useful for updating specific settings without replacing the entire configuration. 
                 The AgentGateway automatically hot reloads the updated configuration.
 
-                Provider-specific credentials can be updated using the corresponding provider object.
+                Provider-specific credentials can be updated using the corresponding provider object. Changing the provider in a PATCH request automatically removes the previous provider's Kubernetes (K8s) resources.
             parameters:
                 - $ref: '#/components/parameters/config_id'
             requestBody:
@@ -2304,7 +2308,9 @@ paths:
 
                 This endpoint finds the configuration by using the `config_id`, retrieves the
                 stored provider credentials (API key, base URL, provider type, and so on) and
-                queries the provider's API directly to discover available models.
+                queries the provider's API directly to discover available models.  
+
+                **Note:** For VertexAi, provide the accessToken field (OAuth2 bearer token). Alternatively, set credentialsJson with a GCP service account key JSON.
 
                 No request body is required — all credentials are resolved from the saved
                 configuration record.
@@ -2443,7 +2449,7 @@ paths:
                                         deploymentName: gpt-4-deployment
                                     sslVerify: true
                             bedrock:
-                                description: AWS Bedrock credentials
+                                description: AWS Bedrock credentials. For Bedrock, `awsAccessKeyId` and `awsSecretAccessKey` are required. The `awsRegion` value defaults to `us-east-1`. Optionally provide `awsSessionToken` for temporary credentials.
                                 value:
                                     bedrock:
                                         awsAccessKeyId: AKIAIOSFODNN7EXAMPLE
@@ -2452,7 +2458,7 @@ paths:
                                         baseUrl: https://api.bedrock.com
                                     sslVerify: true
                             commonOpenAI:
-                                description: Generic OpenAI-compatible API credentials
+                                description: Generic OpenAI-compatible API credentials. 
                                 value:
                                     commonOpenAI:
                                         apiKey: sk-your-api-key
