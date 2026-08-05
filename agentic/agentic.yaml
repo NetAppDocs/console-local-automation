@@ -1924,15 +1924,6 @@ info:
         <li>Configuration state lifecycle (DRAFT, TESTING, SUCCESSFUL, UNSUCCESSFUL)</li>
         </ul>
 
-        The following components are defined within the Agentic Platform configuration manager:
-        <ul>
-        <li>configuration</li>
-        <li>supported provider</li>
-        <li>supported model</li>
-        <li>provider model</li>
-        <li>health</li>
-        </ul>
-
         **Note**: Before using the API reference documentation, review the
         [Get started](https://docs.netapp.com/us-en/console-local-automation/platform/learn-about.html) section for the
         Console (local deployment) APIs.
