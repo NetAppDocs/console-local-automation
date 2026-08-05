@@ -469,7 +469,7 @@ components:
                         * "TESTING" - Tests the LLM provider connection only. Does not create or modify AgentGateway resources. The llmHealthState is updated to reflect the test result.
                         * "SUCCESSFUL" - Mark configuration as having been successfully applied
                         * "UNSUCCESSFUL" - Mark configuration as having failed
-                        
+
                         *Note*:  Only TESTING has a distinct behavior. DRAFT, SUCCESSFUL, UNSUCCESSFUL in stateDesired have no special effect — the full apply pipeline runs.
                     enum:
                         - DRAFT
@@ -2418,7 +2418,7 @@ paths:
                 the provider's API. Use the provider-specific configuration object
                 (openai, azure, anthropic, and so on) based on the provider type.
 
-                **Note:** For VertexAi, provide the accessToken field (OAuth2 bearer token). Alternatively, set credentialsJson with a GCP service account key JSON.
+                **Note:** For VertexAi, provide the `accessToken` field (OAuth2 bearer token). Alternatively, set `credentialsJson` with a Google Cloud service account key JSON.
 
                 The response contains basic model information including name, provider,
                 and model type.
