@@ -1914,7 +1914,12 @@ info:
         <li>Dynamic configuration management with automatic hot reload</li>
         <li>Support for multiple LLM providers</li>
         <li>SSL verification settings, including custom CA certificates</li>
-        <li> Automatic stale Kubernetes (K8s) resource cleanup when provider changes: </li>
+        <li> Automatic stale Kubernetes (K8s) resource cleanup when the provider changes. </li>
+        <li>Provider-compatibility field stripping: OpenAI-only fields are are automatically stripped for Anthropic backends.</li>
+        <li>Model-family temperature stripping: The `temperature` field is automatically stripped for Anthropic Claude Opus 4+ models and OpenAI GPT-5.5+ models (deprecated by the provider).</li>
+        <li>Anthropic path rewrite: `Any /v1/chat/completions` requests are transparently rewritten to /v1/messages for Anthropic backends at the HTTPRoute level</li>
+        <li>Per-request user identifier injection:  The `extraParams.user` field is injected into every LLM request as a BackendAI default. </li>
+        <li>Model deduplication: When listing models from a `commonOpenAI` provider, duplicate model IDs differing only in dot/dash notation are deduplicated.</li>
         <li>Model validation and authorization rules</li>
         <li>Configuration state lifecycle (DRAFT, TESTING, SUCCESSFUL, UNSUCCESSFUL)</li>
         </ul>
