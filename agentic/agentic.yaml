@@ -99,7 +99,7 @@ components:
         x-organization-id:
             description: |-
                 Organization identifier for multi-tenant isolation.
-                When provided, configurations are scoped to this organization. When x-organization-id is set, the AgentGateway HTTPRoute includes a header match on this value. Requests without the matching header bypass this configuration. The list endpoint filters by organization.
+                When provided, configurations are scoped to this organization. When `x-organization-id` is set, the AgentGateway HTTPRoute includes a header match on this value. Requests without the matching header bypass this configuration. The list endpoint filters by organization.
             in: header
             name: x-organization-id
             schema:
@@ -572,7 +572,7 @@ components:
                     description: |-
                         Additional parameters.
 
-                        * user - Username for custom LLM proxies. This is a special key that when set, the value is injected into every LLM request as the user identifier for tracking and abuse detection. For Anthropic providers, it is sent as "metadata.user_id".
+                        * user - Username for custom LLM proxies. When this special key is set, the value is injected into every LLM request as the user identifier for tracking and abuse detection. For Anthropic providers, it is sent as "metadata.user_id".
                     example:
                         user: username
                     type: object
