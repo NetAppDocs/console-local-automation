@@ -1905,16 +1905,16 @@ info:
     description: |-
         The Agentic Platform configuration manager API provides REST endpoints for managing Large Language Model (LLM) configurations. This API is only available in NetApp Console local deployments.
 
-        The Agentic Platform supports multiple LLM providers including OpenAI, Azure OpenAI,
-        Anthropic, AWS Bedrock, Google Vertex AI, Google Gemini, and any OpenAI-compatible
+        The Agentic Platform supports multiple LLM providers including OpenAI,
+        Anthropic, and any OpenAI-compatible
         provider.
 
         Key features:
         <ul>
         <li>Dynamic configuration management with automatic hot reload</li>
         <li>Support for multiple LLM providers</li>
-        <li>Rate limiting (requests per minute, tokens per minute)</li>
         <li>SSL verification settings, including custom CA certificates</li>
+        <li> Automatic stale Kubernetes (K8s) resource cleanup when provider changes</li>
         <li>Model validation and authorization rules</li>
         <li>Configuration state lifecycle (DRAFT, TESTING, SUCCESSFUL, UNSUCCESSFUL)</li>
         </ul>
@@ -1931,21 +1931,6 @@ info:
         **Note**: Before using the API reference documentation, review the
         [Get started](https://docs.netapp.com/us-en/console-local-automation/platform/learn-about.html) section for the
         Console (local deployment) APIs.
-
-        ---
-
-
-        ## Query parameters
-
-        You can use query parameters with endpoints in the following components:
-
-        | Component          | Query Parameter                                |
-        |--------------------|------------------------------------------------|
-        | Configuration      | include, count, limit, skip, orderBy, continue |
-        | Supported provider | include, count, limit, skip, orderBy, continue |
-        | Supported model    | include, count, limit, skip, orderBy, continue |
-        | Provider model     | include, count, limit, skip, orderBy, continue |
-
     license:
         name: NetApp Console License
     termsOfService: https://www.netapp.com/media/10784-cloud-data-services-terms.pdf
@@ -2028,12 +2013,13 @@ paths:
             x-persistence: true
             x-scope: private,public,documentation,ncl
         post:
-            description: |
-                Creates a new configuration in the Agentic Platform.
-                The AgentGateway automatically hot reloads the new configuration.
+            description: |-
+                Creates a configuration record in DRAFT state. No agentgateway resources are created. Use `PATCH /configs/{id}` to apply the configuration and trigger a hot reload.
 
                 Supports multiple models per provider for load balancing.
                 Provider-specific credentials should be provided using the corresponding provider object.
+
+                **Note**: You must provide one of the following values in the request body (https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/post-fleets-users.html). 
             parameters:
                 - $ref: '#/components/parameters/x-organization-id'
             requestBody:
@@ -2041,7 +2027,7 @@ paths:
                     application/vnd.netapp.bxp.config+json:
                         examples:
                             anthropicConfig:
-                                summary: Create Anthropic configuration
+                                description: Create Anthropic configuration
                                 value:
                                     anthropic:
                                         apiKey: sk-ant-your-key
@@ -2051,7 +2037,7 @@ paths:
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             azureConfig:
-                                summary: Create Azure OpenAI configuration
+                                description: Create Azure OpenAI configuration
                                 value:
                                     azure:
                                         apiKey: your-azure-api-key
@@ -2061,7 +2047,7 @@ paths:
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             bedrockConfig:
-                                summary: Create AWS Bedrock configuration
+                                description: Create AWS Bedrock configuration
                                 value:
                                     bedrock:
                                         accessKeyId: AKIAIOSFODNN7EXAMPLE
@@ -2072,7 +2058,7 @@ paths:
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             openaiConfig:
-                                summary: Create OpenAI configuration
+                                description: Create OpenAI configuration
                                 value:
                                     models:
                                         - gpt-4o
@@ -2204,19 +2190,19 @@ paths:
                     application/vnd.netapp.bxp.config+json:
                         examples:
                             disableProxy:
-                                summary: Mark proxy as not configured for this LLM backend
+                                description: Mark proxy as not configured for this LLM backend
                                 value:
                                     proxyConfigured: "false"
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             enableProxy:
-                                summary: Mark proxy as configured for this LLM backend
+                                description: Mark proxy as configured for this LLM backend
                                 value:
                                     proxyConfigured: "true"
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             switchToAnotherProvider:
-                                summary: Switch to a different provider
+                                description: Switch to a different provider
                                 value:
                                     anthropic:
                                         apiKey: sk-ant-your-key
@@ -2226,13 +2212,13 @@ paths:
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             testConfiguration:
-                                summary: Test the provided configuration
+                                description: Test the provided configuration
                                 value:
                                     stateDesired: TESTING
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             updateAnthropicCredentials:
-                                summary: Update Anthropic credentials
+                                description: Update Anthropic credentials
                                 value:
                                     anthropic:
                                         apiKey: sk-ant-new-key
@@ -2240,7 +2226,7 @@ paths:
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             updateAzureCredentials:
-                                summary: Update Azure credentials
+                                description: Update Azure credentials
                                 value:
                                     azure:
                                         apiKey: your-new-azure-api-key
@@ -2248,7 +2234,7 @@ paths:
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             updateBedrockCredentials:
-                                summary: Update AWS Bedrock credentials
+                                description: Update AWS Bedrock credentials
                                 value:
                                     bedrock:
                                         accessKeyId: AKIAIOSFODNN7EXAMPLE
@@ -2257,7 +2243,7 @@ paths:
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             updateModels:
-                                summary: Update only models list
+                                description: Update only models list
                                 value:
                                     models:
                                         - gpt-4o
@@ -2266,7 +2252,7 @@ paths:
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             updateOpenAICredentials:
-                                summary: Update OpenAI credentials
+                                description: Update OpenAI credentials
                                 value:
                                     openai:
                                         apiKey: sk-new-api-key
@@ -2274,7 +2260,7 @@ paths:
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             updateRateLimits:
-                                summary: Update rate limits
+                                description: Update rate limits
                                 value:
                                     requestsPerMinute: 120
                                     tokensPerMinute: 200000
@@ -2440,7 +2426,7 @@ paths:
                     application/json:
                         examples:
                             anthropic:
-                                summary: Anthropic credentials
+                                description: Anthropic credentials
                                 value:
                                     anthropic:
                                         anthropicVersion: "2023-06-01"
@@ -2448,7 +2434,7 @@ paths:
                                         baseUrl: https://api.anthropic.com
                                     sslVerify: true
                             azure:
-                                summary: Azure OpenAI credentials
+                                description: Azure OpenAI credentials
                                 value:
                                     azure:
                                         apiKey: your-azure-api-key
@@ -2457,7 +2443,7 @@ paths:
                                         deploymentName: gpt-4-deployment
                                     sslVerify: true
                             bedrock:
-                                summary: AWS Bedrock credentials
+                                description: AWS Bedrock credentials
                                 value:
                                     bedrock:
                                         awsAccessKeyId: AKIAIOSFODNN7EXAMPLE
@@ -2466,7 +2452,7 @@ paths:
                                         baseUrl: https://api.bedrock.com
                                     sslVerify: true
                             commonOpenAI:
-                                summary: Generic OpenAI-compatible API credentials
+                                description: Generic OpenAI-compatible API credentials
                                 value:
                                     commonOpenAI:
                                         apiKey: sk-your-api-key
@@ -2475,14 +2461,14 @@ paths:
                                             X-Custom-Header: value
                                     sslVerify: false
                             gemini:
-                                summary: Google Gemini credentials
+                                description: Google Gemini credentials
                                 value:
                                     gemini:
                                         apiKey: your-gemini-api-key
                                         baseUrl: https://generativelanguage.googleapis.com
                                     sslVerify: true
                             openai:
-                                summary: OpenAI credentials
+                                description: OpenAI credentials
                                 value:
                                     openai:
                                         apiKey: sk-your-openai-api-key
@@ -2490,7 +2476,7 @@ paths:
                                         organizationId: org-xxxxx
                                     sslVerify: true
                             vertexai:
-                                summary: Google Vertex AI credentials
+                                description: Google Vertex AI credentials
                                 value:
                                     sslVerify: true
                                     vertexai:
