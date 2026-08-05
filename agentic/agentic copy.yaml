@@ -61,6 +61,15 @@ components:
             name: include
             schema:
                 type: string
+        limit:
+            description: Specifies the maximum number of resources to return when listing a collection.
+            in: query
+            name: limit
+            schema:
+                default: 100
+                maximum: 1000
+                minimum: 1
+                type: integer
         metadata:
             description: |-
                 Indicates if the metadata should be returned in the response object.
@@ -73,6 +82,20 @@ components:
             name: metadata
             schema:
                 $ref: '#/components/schemas/query_metadata'
+        order_by:
+            description: Indicates the sort order of resources when listing a collection.
+            in: query
+            name: orderBy
+            schema:
+                type: string
+        skip:
+            description: Specifies the number of resources to skip when listing a collection.
+            in: query
+            name: skip
+            schema:
+                default: 0
+                minimum: 0
+                type: integer
         x-organization-id:
             description: |-
                 Organization identifier for multi-tenant isolation.
@@ -249,12 +272,20 @@ components:
                         LLM provider name.
                         Defined values are:
                         * "openai" - OpenAI API
+                        * "azure" - Azure OpenAI Service
                         * "anthropic" - Anthropic Claude API
                         * "commonOpenAI" - Generic OpenAI-compatible API (custom/self-hosted LLM proxies)
+                        * "bedrock" - AWS Bedrock
+                        * "vertexai" - Google Vertex AI
+                        * "gemini" - Google Gemini
                     enum:
                         - openai
+                        - azure
                         - anthropic
                         - commonOpenAI
+                        - bedrock
+                        - vertexai
+                        - gemini
                     example: openai
                     type: string
                 proxyConfigured:
@@ -378,6 +409,10 @@ components:
                     type: string
                 anthropic:
                     $ref: '#/components/schemas/provider_credentials_anthropic_config'
+                azure:
+                    $ref: '#/components/schemas/provider_credentials_azure_config'
+                bedrock:
+                    $ref: '#/components/schemas/provider_credentials_bedrock_config'
                 commonOpenAI:
                     $ref: '#/components/schemas/provider_credentials_commonOpenAI_config'
                 extraHeaders:
@@ -390,6 +425,8 @@ components:
                         type: string
                     description: Provider-specific additional parameters
                     type: object
+                gemini:
+                    $ref: '#/components/schemas/provider_credentials_gemini_config'
                 models:
                     description: List of models to configure
                     items:
@@ -463,6 +500,8 @@ components:
                         - "1.0"
                     example: "1.0"
                     type: string
+                vertexai:
+                    $ref: '#/components/schemas/provider_credentials_vertexai_config'
             type: object
         config_1.0_patch_response_body:
             additionalProperties: false
@@ -514,6 +553,10 @@ components:
                     type: string
                 anthropic:
                     $ref: '#/components/schemas/provider_credentials_anthropic_config'
+                azure:
+                    $ref: '#/components/schemas/provider_credentials_azure_config'
+                bedrock:
+                    $ref: '#/components/schemas/provider_credentials_bedrock_config'
                 commonOpenAI:
                     $ref: '#/components/schemas/provider_credentials_commonOpenAI_config'
                 extraHeaders:
@@ -533,6 +576,8 @@ components:
                     example:
                         user: username
                     type: object
+                gemini:
+                    $ref: '#/components/schemas/provider_credentials_gemini_config'
                 metadata:
                     $ref: '#/components/schemas/type_bxp_metadata'
                 models:
@@ -597,6 +642,8 @@ components:
                         - "1.0"
                     example: "1.0"
                     type: string
+                vertexai:
+                    $ref: '#/components/schemas/provider_credentials_vertexai_config'
             required:
                 - type
                 - version
@@ -798,6 +845,59 @@ components:
             required:
                 - apiKey
             type: object
+        provider_credentials_azure_config:
+            additionalProperties: false
+            description: Azure OpenAI Service provider-specific configuration
+            properties:
+                apiKey:
+                    description: Azure OpenAI API key
+                    example: your-azure-api-key
+                    type: string
+                apiVersion:
+                    description: Azure OpenAI API version. When not specified, defaults to `2025-01-01-preview`.
+                    example: 2024-02-15-preview
+                    type: string
+                baseUrl:
+                    description: Azure OpenAI endpoint URL (required for the Azure provider)
+                    example: https://your-resource.openai.azure.com
+                    format: uri
+                    type: string
+                deploymentName:
+                    description: Azure OpenAI deployment name
+                    example: gpt-4-deployment
+                    type: string
+            required:
+                - apiKey
+                - baseUrl
+            type: object
+        provider_credentials_bedrock_config:
+            additionalProperties: false
+            description: AWS Bedrock provider-specific configuration. For Bedrock, `awsAccessKeyId` and `awsSecretAccessKey` are required. The `awsRegion` value defaults to `us-east-1`. Optionally provide `awsSessionToken` for temporary credentials.
+            properties:
+                awsAccessKeyId:
+                    description: AWS access key ID
+                    example: AKIAIOSFODNN7EXAMPLE
+                    type: string
+                awsRegion:
+                    description: AWS region for Bedrock. When not specified, defaults to `us-east-1`.
+                    example: us-east-1
+                    type: string
+                awsSecretAccessKey:
+                    description: AWS secret access key
+                    example: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+                    type: string
+                awsSessionToken:
+                    description: AWS session token (optional, for temporary credentials)
+                    type: string
+                baseUrl:
+                    description: Base URL for AWS Bedrock
+                    example: https://api.bedrock.com
+                    format: uri
+                    type: string
+            required:
+                - awsAccessKeyId
+                - awsSecretAccessKey
+            type: object
         provider_credentials_commonOpenAI_config:
             additionalProperties: false
             description: Generic OpenAI-compatible API configuration (for custom/self-hosted LLM proxies).  Duplicate models with equivalent dot/dash notation are merged; the first occurrence is returned. `commonOpenAI` is an alias for the OpenAI provider with a custom baseUrl. Both map to the same AgentGateway backend type.
@@ -824,6 +924,22 @@ components:
             required:
                 - baseUrl
             type: object
+        provider_credentials_gemini_config:
+            additionalProperties: false
+            description: Google Gemini provider-specific configuration
+            properties:
+                apiKey:
+                    description: Google Gemini API key
+                    example: your-gemini-api-key
+                    type: string
+                baseUrl:
+                    description: Base URL for Gemini API (optional)
+                    example: https://generativelanguage.googleapis.com
+                    format: uri
+                    type: string
+            required:
+                - apiKey
+            type: object
         provider_credentials_openai_config:
             additionalProperties: false
             description: OpenAI provider-specific configuration
@@ -848,13 +964,19 @@ components:
             additionalProperties: false
             description: |-
                 Provider credentials for authenticating with the LLM provider's API.
-                Use the provider-specific configuration object (openai, anthropic, and so on)
+                Use the provider-specific configuration object (openai, azure, anthropic, and so on)
                 based on the provider type.
             properties:
                 anthropic:
                     $ref: '#/components/schemas/provider_credentials_anthropic_config'
+                azure:
+                    $ref: '#/components/schemas/provider_credentials_azure_config'
+                bedrock:
+                    $ref: '#/components/schemas/provider_credentials_bedrock_config'
                 commonOpenAI:
                     $ref: '#/components/schemas/provider_credentials_commonOpenAI_config'
+                gemini:
+                    $ref: '#/components/schemas/provider_credentials_gemini_config'
                 openai:
                     $ref: '#/components/schemas/provider_credentials_openai_config'
                 sslVerify:
@@ -865,18 +987,55 @@ components:
                         self-signed certificate environments.
                     example: true
                     type: boolean
+                vertexai:
+                    $ref: '#/components/schemas/provider_credentials_vertexai_config'
+            type: object
+        provider_credentials_vertexai_config:
+            additionalProperties: false
+            description: Google Vertex AI provider-specific configuration
+            properties:
+                accessToken:
+                    description: Google Cloud access token
+                    example: ya29.your-access-token
+                    type: string
+                baseUrl:
+                    description: Base URL for vertexAI
+                    example: https://us-central1-aiplatform.googleapis.com
+                    format: uri
+                    type: string
+                credentialsJson:
+                    description: Google Cloud service account credentials JSON. Alternative to `accessToken`.
+                    type: string
+                location:
+                    description: Google Cloud region or location.  When not specified, defaults to `us-central1`.
+                    example: us-central1
+                    type: string
+                projectId:
+                    description: Google Cloud project ID
+                    example: my-gcp-project
+                    type: string
+            required:
+                - projectId
             type: object
         provider_enum:
             description: |-
                 LLM provider identifier.
                 Defined values are:
                 * "openai" - OpenAI API
+                * "azure" - Azure OpenAI Service
                 * "anthropic" - Anthropic Claude API
                 * "commonOpenAI" - Generic OpenAI-compatible API
+                * "bedrock" - AWS Bedrock
+                * "vertexai" - Google Vertex AI
+                * "gemini" - Google Gemini
             enum:
                 - openai
+                - azure
                 - anthropic
                 - commonOpenAI
+                - bedrock
+                - vertexai
+                - gemini
             example: openai
             type: string
         providerModel_1.0_get_response_body:
@@ -910,11 +1069,19 @@ components:
                         Name of the LLM provider.
                         Defined values are:
                         * "openai" - OpenAI API
+                        * "azure" - Azure OpenAI Service
                         * "anthropic" - Anthropic Claude API
+                        * "bedrock" - AWS Bedrock
+                        * "vertexai" - Google Vertex AI
+                        * "gemini" - Google Gemini
                         * "commonOpenAI" - Generic OpenAI-compatible API
                     enum:
                         - openai
+                        - azure
                         - anthropic
+                        - bedrock
+                        - vertexai
+                        - gemini
                         - commonOpenAI
                     example: openai
                     type: string
@@ -1014,10 +1181,25 @@ components:
             pattern: ^([0-9a-zA-Z]+)(,[0-9a-zA-Z]+)*$
             type: string
             x-common: true
+        query_limit:
+            description: Format of the limit query parameter.
+            pattern: ^([1-9][0-9]*)$
+            type: string
+            x-common: true
         query_metadata:
             description: Format of the metadata query parameter.
             pattern: ^(true|false)$
             type: string
+        query_order_by:
+            description: Format of the order_by query parameter.
+            pattern: ^(([0-9a-zA-Z]+)( desc)?)$
+            type: string
+            x-common: true
+        query_skip:
+            description: Format of the skip query parameter.
+            pattern: ^([1-9][0-9]*)$
+            type: string
+            x-common: true
         supportedModel_1.0_get_response_body:
             additionalProperties: false
             properties:
@@ -1089,11 +1271,19 @@ components:
                         The LLM provider that offers this model.
                         Defined values are:
                         * "openai" - OpenAI API
+                        * "azure" - Azure OpenAI Service
                         * "anthropic" - Anthropic Claude API
+                        * "bedrock" - AWS Bedrock
+                        * "vertexai" - Google Vertex AI
+                        * "gemini" - Google Gemini
                         * "commonOpenAI" - Generic OpenAI-compatible API
                     enum:
                         - openai
+                        - azure
                         - anthropic
+                        - bedrock
+                        - vertexai
+                        - gemini
                         - commonOpenAI
                     example: openai
                     type: string
@@ -1189,7 +1379,11 @@ components:
                         Name of the LLM supported provider.
                         Defined values are:
                         * "openai" - OpenAI API
+                        * "azure" - Azure OpenAI Service
                         * "anthropic" - Anthropic Claude API
+                        * "bedrock" - AWS Bedrock
+                        * "vertexai" - Google Vertex AI
+                        * "gemini" - Google Gemini
                         * "commonOpenAI" - Generic OpenAI-compatible API
                     example: openai
                     type: string
@@ -1738,6 +1932,7 @@ info:
 
         The initial catalog supports the following models and providers: `openai`, `commonOpenAI`, and `anthropic`. 
         
+        Support for `azure`, `bedrock`, `vertexai`, and `gemini` can be configured but these providers are not yet listed in the catalog endpoint and must be added  after deployment.
 
         ## Anthropic path rewrite
 
@@ -1757,6 +1952,7 @@ paths:
         get:
             description: Retrieves a list of all Agentic Platform configurations.
             parameters:
+                - $ref: '#/components/parameters/limit'
                 - $ref: '#/components/parameters/count'
                 - $ref: '#/components/parameters/x-organization-id'
                 - description: |-
@@ -1834,7 +2030,7 @@ paths:
                 Only the first model in the models array is used. Multi-model load balancing is currently not supported.
                 Provider-specific credentials should be provided using the corresponding provider object.
 
-                **Note**: You must provide one of the following values in the request body depending on the provider you are using: `openai`, `anthropic`, `commonOpenAI`.
+                **Note**: You must provide one of the following values in the request body depending on the provider you are using: `openai`, `azure`, `anthropic`, `commonOpenAI`, `bedrock`, `vertexai`, `gemini`.
             parameters:
                 - $ref: '#/components/parameters/x-organization-id'
             requestBody:
@@ -1849,6 +2045,27 @@ paths:
                                         baseUrl: https://api.anthropic.com
                                     models:
                                         - claude-3-5-sonnet-20241022
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            azureConfig:
+                                description: Create Azure OpenAI configuration
+                                value:
+                                    azure:
+                                        apiKey: your-azure-api-key
+                                        baseUrl: https://your-resource.openai.azure.com
+                                    models:
+                                        - gpt-4o
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            bedrockConfig:
+                                description: Create AWS Bedrock configuration
+                                value:
+                                    bedrock:
+                                        accessKeyId: AKIAIOSFODNN7EXAMPLE
+                                        region: us-east-1
+                                        secretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+                                    models:
+                                        - anthropic.claude-3-sonnet-20240229-v1:0
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             openaiConfig:
@@ -2016,6 +2233,23 @@ paths:
                                     anthropic:
                                         apiKey: sk-ant-new-key
                                         baseUrl: https://api.anthropic.com
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            updateAzureCredentials:
+                                description: Update Azure credentials
+                                value:
+                                    azure:
+                                        apiKey: your-new-azure-api-key
+                                        baseUrl: https://your-resource.openai.azure.com
+                                    type: application/vnd.netapp.bxp.config
+                                    version: "1.0"
+                            updateBedrockCredentials:
+                                description: Update AWS Bedrock credentials
+                                value:
+                                    bedrock:
+                                        accessKeyId: AKIAIOSFODNN7EXAMPLE
+                                        region: us-east-1
+                                        secretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
                                     type: application/vnd.netapp.bxp.config
                                     version: "1.0"
                             updateModels:
@@ -2193,8 +2427,9 @@ paths:
 
                 The request body requires provider credentials to authenticate with
                 the provider's API. Use the provider-specific configuration object
-                (openai, anthropic, and so on) based on the provider type.
+                (openai, azure, anthropic, and so on) based on the provider type.
 
+                **Note:** For VertexAi, provide the `accessToken` field (OAuth2 bearer token). Alternatively, set `credentialsJson` with a Google Cloud service account key JSON.
 
                 The response contains basic model information including name, provider,
                 and model type.
@@ -2210,6 +2445,24 @@ paths:
                                         apiKey: sk-ant-your-anthropic-key
                                         baseUrl: https://api.anthropic.com
                                     sslVerify: true
+                            azure:
+                                description: Azure OpenAI credentials
+                                value:
+                                    azure:
+                                        apiKey: your-azure-api-key
+                                        apiVersion: 2024-02-15-preview
+                                        baseUrl: https://your-resource.openai.azure.com
+                                        deploymentName: gpt-4-deployment
+                                    sslVerify: true
+                            bedrock:
+                                description: AWS Bedrock credentials
+                                value:
+                                    bedrock:
+                                        awsAccessKeyId: AKIAIOSFODNN7EXAMPLE
+                                        awsRegion: us-east-1
+                                        awsSecretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+                                        baseUrl: https://api.bedrock.com
+                                    sslVerify: true
                             commonOpenAI:
                                 description: Generic OpenAI-compatible API credentials. 
                                 value:
@@ -2219,6 +2472,13 @@ paths:
                                         extraHeaders:
                                             X-Custom-Header: value
                                     sslVerify: false
+                            gemini:
+                                description: Google Gemini credentials
+                                value:
+                                    gemini:
+                                        apiKey: your-gemini-api-key
+                                        baseUrl: https://generativelanguage.googleapis.com
+                                    sslVerify: true
                             openai:
                                 description: OpenAI credentials
                                 value:
@@ -2227,6 +2487,15 @@ paths:
                                         baseUrl: https://api.openai.com
                                         organizationId: org-xxxxx
                                     sslVerify: true
+                            vertexai:
+                                description: Google Vertex AI credentials
+                                value:
+                                    sslVerify: true
+                                    vertexai:
+                                        accessToken: ya29.your-access-token
+                                        baseUrl: https://us-central1-aiplatform.googleapis.com
+                                        location: us-central1
+                                        projectId: my-gcp-project
                         schema:
                             $ref: '#/components/schemas/provider_credentials_request_body'
                 description: Provider credentials required to fetch models from the LLM provider's API.
@@ -2280,6 +2549,7 @@ paths:
                 Returns a list of all available Large Language Model (LLM) models that can be used with the Agentic Platform.
 
                 Supports filtering by provider, modelType, and other fields.
+                Supports pagination using skip and limit parameters.
             parameters:
                 - description: |-
                     Specifies which fields should be matched in order to return a resource when listing supported models.
@@ -2311,6 +2581,9 @@ paths:
                   name: filter
                   schema:
                     type: string
+                - $ref: '#/components/parameters/skip'
+                - $ref: '#/components/parameters/limit'
+                - $ref: '#/components/parameters/order_by'
                 - $ref: '#/components/parameters/count'
             responses:
                 "200":
@@ -2414,6 +2687,7 @@ paths:
                 and used with the Agentic Platform.
 
                 Supports filtering by providerType, isEnabled, and isConfigured.
+                Supports pagination using skip and limit parameters.
             parameters:
                 - description: |-
                     Specifies which fields should be matched in order to return a resource when listing supported providers.
@@ -2550,7 +2824,7 @@ tags:
         </ul>
       name: Health
     - description: |-
-        The supported provider endpoints expose the catalog of Large Language Model (LLM) providers (OpenAI, Anthropic, and OpenAI-compatible providers) that the Agentic Platform can be configured to use.
+        The supported provider endpoints expose the catalog of Large Language Model (LLM) providers (OpenAI, Azure OpenAI, Anthropic, AWS Bedrock, Google Vertex AI, Google Gemini, and OpenAI-compatible providers) that the Agentic Platform can be configured to use.
 
         You can perform the following actions using the supported provider endpoints:
         <ul>
