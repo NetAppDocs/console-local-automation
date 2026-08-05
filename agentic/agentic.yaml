@@ -1745,7 +1745,7 @@ info:
 
         ## Temperature stripping
 
-        For OpenAI models GPT-5.5 and later, the `temperature` field is automatically stripped from requests (`temperature` is deprecated by OpenAI for these model families).
+        For OpenAI models GPT-5.5 and later, the `temperature` field is automatically stripped from requests (`temperature` is deprecated by OpenAI for these model families). 
         
     license:
         name: NetApp Console License
