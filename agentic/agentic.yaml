@@ -1972,7 +1972,7 @@ paths:
             x-scope: private,public,documentation,ncl
         patch:
             description: |
-                Triggers the Kubernetes (K8s) resource creation and applies the specified Agentic platform configuration. The PATCH endpoint orchestrates the full apply pipeline. A failed connection test sets state=UNSUCCESSFUL and does not apply K8s resources.
+                Triggers the Kubernetes (K8s) resource creation and applies the specified Agentic platform configuration. The PATCH endpoint orchestrates the full apply pipeline. A failed connection test sets the state to unsuccessful and does not apply K8s resources.
                 The AgentGateway automatically hot reloads the updated configuration.
 
                 Provider-specific credentials can be updated using the corresponding provider object. Changing the provider in a PATCH request automatically removes the previous provider's Kubernetes (K8s) resources.
