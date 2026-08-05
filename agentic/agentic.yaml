@@ -2019,7 +2019,7 @@ paths:
                 Supports multiple models per provider for load balancing.
                 Provider-specific credentials should be provided using the corresponding provider object.
 
-                **Note**: You must provide one of the following values in the request body (https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/post-fleets-users.html). 
+                **Note**: You must provide one of the following values in the request body depending on the provider you are using: openai, azure, anthropic, commonOpenAI, bedrock, vertexai, gemini.
             parameters:
                 - $ref: '#/components/parameters/x-organization-id'
             requestBody:
