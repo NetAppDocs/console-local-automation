@@ -469,6 +469,7 @@ components:
                         * "TESTING" - Tests the LLM provider connection only. Does not create or modify AgentGateway resources. The llmHealthState is updated to reflect the test result.
                         * "SUCCESSFUL" - Mark configuration as having been successfully applied
                         * "UNSUCCESSFUL" - Mark configuration as having failed
+                        
                         *Note*:  Only TESTING has a distinct behavior. DRAFT, SUCCESSFUL, UNSUCCESSFUL in stateDesired have no special effect — the full apply pipeline runs.
                     enum:
                         - DRAFT
