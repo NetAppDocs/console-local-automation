@@ -99,7 +99,7 @@ components:
         x-organization-id:
             description: |-
                 Organization identifier for multi-tenant isolation.
-                When provided, configurations are scoped to this organization.
+                When provided, configurations are scoped to this organization. When x-organization-id is set, the AgentGateway HTTPRoute includes a header match on this value. Requests without the matching header bypass this configuration. The list endpoint filters by organization.
             in: header
             name: x-organization-id
             schema:
@@ -208,7 +208,7 @@ components:
                     example: 0.0.0.0:15000
                     type: string
                 baseUrl:
-                    description: Base URL for the provider API. The response baseUrl mirrors the baseUrl from the provider credential object used during creation.
+                    description: Base URL for the provider API. The response `baseUrl` mirrors the `baseUrl` from the provider credential object used during creation.
                     example: https://api.openai.com
                     format: uri
                     type: string
@@ -466,7 +466,7 @@ components:
                         Use this field to request a state change for the configuration.
                         Defined values are:
                         * "DRAFT" - Move configuration to draft mode
-                        * "TESTING" - Tests the LLM provider connection only. Does not create or modify agentgateway resources. The llmHealthState is updated to reflect the test result.
+                        * "TESTING" - Tests the LLM provider connection only. Does not create or modify AgentGateway resources. The llmHealthState is updated to reflect the test result.
                         * "SUCCESSFUL" - Mark configuration as having been successfully applied
                         * "UNSUCCESSFUL" - Mark configuration as having failed
                         *Note*:  Only TESTING has a distinct behavior. DRAFT, SUCCESSFUL, UNSUCCESSFUL in stateDesired have no special effect — the full apply pipeline runs.
@@ -569,14 +569,9 @@ components:
                     additionalProperties:
                         type: string
                     description: |-
-                        Provider-specific additional parameters.
+                        Additional parameters.
 
-                        For Azure:
-                        * deploymentName - Azure deployment name
-                        * apiVersion - Azure API version
-
-                        For commonOpenAI:
-                        * user - Username for custom LLM proxies. Special key. When set, the value is injected into every LLM request as the user identifier for tracking and abuse detection. For Anthropic providers, it is sent as "metadata.user_id".
+                        * user - Username for custom LLM proxies. This is a special key that when set, the value is injected into every LLM request as the user identifier for tracking and abuse detection. For Anthropic providers, it is sent as "metadata.user_id".
                     example:
                         user: username
                     type: object
@@ -834,7 +829,7 @@ components:
             description: Anthropic Claude provider-specific configuration
             properties:
                 anthropicVersion:
-                    description: Anthropic API version header
+                    description: Anthropic API version header. If not specified, defaults to `2023-06-01`.
                     example: "2023-06-01"
                     type: string
                 apiKey:
@@ -858,7 +853,7 @@ components:
                     example: your-azure-api-key
                     type: string
                 apiVersion:
-                    description: Azure OpenAI API version. When not specified, defaults to "2025-01-01-preview".
+                    description: Azure OpenAI API version. When not specified, defaults to `2025-01-01-preview`.
                     example: 2024-02-15-preview
                     type: string
                 baseUrl:
@@ -876,14 +871,14 @@ components:
             type: object
         provider_credentials_bedrock_config:
             additionalProperties: false
-            description: AWS Bedrock provider-specific configuration
+            description: AWS Bedrock provider-specific configuration. For Bedrock, `awsAccessKeyId` and `awsSecretAccessKey` are required. The `awsRegion` value defaults to `us-east-1`. Optionally provide `awsSessionToken` for temporary credentials.
             properties:
                 awsAccessKeyId:
                     description: AWS access key ID
                     example: AKIAIOSFODNN7EXAMPLE
                     type: string
                 awsRegion:
-                    description: AWS region for Bedrock. When not specified, defaults to us-east-1.
+                    description: AWS region for Bedrock. When not specified, defaults to `us-east-1`.
                     example: us-east-1
                     type: string
                 awsSecretAccessKey:
@@ -904,7 +899,7 @@ components:
             type: object
         provider_credentials_commonOpenAI_config:
             additionalProperties: false
-            description: Generic OpenAI-compatible API configuration (for custom/self-hosted LLM proxies)  Duplicate models with equivalent dot/dash notation are merged; the first occurrence is returned.
+            description: Generic OpenAI-compatible API configuration (for custom/self-hosted LLM proxies).  Duplicate models with equivalent dot/dash notation are merged; the first occurrence is returned. `commonOpenAI` is an alias for the OpenAI provider with a custom baseUrl. Both map to the same AgentGateway backend type.
             properties:
                 apiKey:
                     description: API key for the OpenAI-compatible service
@@ -1008,10 +1003,10 @@ components:
                     format: uri
                     type: string
                 credentialsJson:
-                    description: Google Cloud service account credentials JSON
+                    description: Google Cloud service account credentials JSON. Alternative to `accessToken`.
                     type: string
                 location:
-                    description: Google Cloud region/location
+                    description: Google Cloud region or location.  When not specified, defaults to `us-central1`.
                     example: us-central1
                     type: string
                 projectId:
@@ -2018,12 +2013,12 @@ paths:
             x-scope: private,public,documentation,ncl
         post:
             description: |-
-                Creates a configuration record in DRAFT state. No agentgateway resources are created. Use `PATCH /configs/{id}` to apply the configuration and trigger a hot reload.
+                Creates a configuration record in DRAFT state. No AgentGateway resources are created. Use `PATCH /configs/{id}` to apply the configuration and trigger a hot reload.
 
                 Only the first model in the models array is used. Multi-model load balancing is planned but not supported.
                 Provider-specific credentials should be provided using the corresponding provider object.
 
-                **Note**: You must provide one of the following values in the request body depending on the provider you are using: openai, azure, anthropic, commonOpenAI, bedrock, vertexai, gemini.
+                **Note**: You must provide one of the following values in the request body depending on the provider you are using: `openai`, `azure`, `anthropic`, `commonOpenAI`, `bedrock`, `vertexai`, `gemini`.
             parameters:
                 - $ref: '#/components/parameters/x-organization-id'
             requestBody:
@@ -2182,8 +2177,7 @@ paths:
             x-scope: private,public,documentation,ncl
         patch:
             description: |
-                Partially updates the configuration. Only the provided fields are updated.
-                This is useful for updating specific settings without replacing the entire configuration. 
+                Triggers the Kubernetes (K8s) resource creation. The PATCH endpoint orchestrates the full apply pipeline. A failed connection test sets state=UNSUCCESSFUL and does not apply K8s resources.
                 The AgentGateway automatically hot reloads the updated configuration.
 
                 Provider-specific credentials can be updated using the corresponding provider object. Changing the provider in a PATCH request automatically removes the previous provider's Kubernetes (K8s) resources.
@@ -2310,8 +2304,6 @@ paths:
                 stored provider credentials (API key, base URL, provider type, and so on) and
                 queries the provider's API directly to discover available models.  
 
-                **Note:** For VertexAi, provide the accessToken field (OAuth2 bearer token). Alternatively, set credentialsJson with a GCP service account key JSON.
-
                 No request body is required — all credentials are resolved from the saved
                 configuration record.
 
@@ -2425,6 +2417,8 @@ paths:
                 the provider's API. Use the provider-specific configuration object
                 (openai, azure, anthropic, and so on) based on the provider type.
 
+                **Note:** For VertexAi, provide the accessToken field (OAuth2 bearer token). Alternatively, set credentialsJson with a GCP service account key JSON.
+
                 The response contains basic model information including name, provider,
                 and model type.
             requestBody:
@@ -2449,7 +2443,7 @@ paths:
                                         deploymentName: gpt-4-deployment
                                     sslVerify: true
                             bedrock:
-                                description: AWS Bedrock credentials. For Bedrock, `awsAccessKeyId` and `awsSecretAccessKey` are required. The `awsRegion` value defaults to `us-east-1`. Optionally provide `awsSessionToken` for temporary credentials.
+                                description: AWS Bedrock credentials
                                 value:
                                     bedrock:
                                         awsAccessKeyId: AKIAIOSFODNN7EXAMPLE
