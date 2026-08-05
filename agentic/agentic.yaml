@@ -2020,7 +2020,7 @@ paths:
             description: |-
                 Creates a configuration record in DRAFT state. No agentgateway resources are created. Use `PATCH /configs/{id}` to apply the configuration and trigger a hot reload.
 
-                Supports multiple models per provider for load balancing.
+                Only the first model in the models array is used. Multi-model load balancing is planned but not supported.
                 Provider-specific credentials should be provided using the corresponding provider object.
 
                 **Note**: You must provide one of the following values in the request body depending on the provider you are using: openai, azure, anthropic, commonOpenAI, bedrock, vertexai, gemini.
