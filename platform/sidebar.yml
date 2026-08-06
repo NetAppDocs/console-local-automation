@@ -1,7 +1,7 @@
 section: platform
 title: Get started
 entries:
-  - title: Learn about the REST APIs for NetApp Console local deployment 
+  - title: Learn about the REST APIs for NetApp Console local deployment  
     url: /platform/learn-about.html
   - title: REST implementation
     url: /platform/rest-implementation.html
