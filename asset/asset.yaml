@@ -5137,7 +5137,7 @@ components:
             type: http
 info:
     description: |-
-        The Assets service provides configuration data and metrics about assets monitored by the NetApp Console (local deployment).
+        The Assets service provides configuration data and metrics about assets monitored by the NetApp Console local deployment.
 
         The following resources are defined within Assets:
         <ul>
@@ -5158,7 +5158,7 @@ info:
 
         **Note**: Before using the API reference documentation, review the
         [Get started](https://docs.netapp.com/us-en/console-local-automation/platform/learn-about.html) section for the
-        Console (local deployment) APIs.
+        Console local deployment APIs.
 
         ---
 

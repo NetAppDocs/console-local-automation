@@ -4,7 +4,7 @@ permalink: platform/authentication.html
 keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
 summary: A workflow describing how to cerate a service token
 ---
-= Learn about authentication and authorization in NetApp Console (local deployment)
+= Learn about authentication and authorization in NetApp Console local deployment
 :hardbreaks:
 :nofooter:
 :icons: font
@@ -12,19 +12,19 @@ summary: A workflow describing how to cerate a service token
 :imagesdir: ../media/
 
 [.lead]
-You should be familiar with the basic authentication and authorization concepts before using the NetApp Console (local deployment) REST APIs. 
+You should be familiar with the basic authentication and authorization concepts before using the NetApp Console local deployment REST APIs. 
 
 == OAuth 2.0 authorization framework 
 
-OAuth 2.0 (OAuth2) is an authorization framework that allows client applications to obtain limited access to protected resources at an HTTP service. The Console (local deployment) implements the OAuth 2.0 framework using a local identity provider embedded within each NetApp Console (local deployment) instance. 
+OAuth 2.0 (OAuth2) is an authorization framework that allows client applications to obtain limited access to protected resources at an HTTP service. The Console local deployment implements the OAuth 2.0 framework using a local identity provider embedded within each NetApp Console local deployment instance. 
 
 == Local identity provider 
 
-Each NetApp Console (local deployment) instance includes a local identity provider that issues and validates access tokens for both users and service accounts. Authentication is handled entirely on the local instance, no network connectivity to external cloud services is required to obtain or validate tokens. 
+Each NetApp Console local deployment instance includes a local identity provider that issues and validates access tokens for both users and service accounts. Authentication is handled entirely on the local instance, no network connectivity to external cloud services is required to obtain or validate tokens. 
 
 == Access tokens 
 
-There are two types of access tokens you can use to authenticate REST API calls to the Console (local deployment). 
+There are two types of access tokens you can use to authenticate REST API calls to the Console local deployment. 
 
 [cols="1,3", options="header"]
 |===
@@ -34,7 +34,7 @@ There are two types of access tokens you can use to authenticate REST API calls 
 
 // first body row
 | User token
-| A token identifying a local user. Used to access the Console (local deployment) APIs on behalf of a specific user. 
+| A token identifying a local user. Used to access the Console local deployment APIs on behalf of a specific user. 
 
 | Service token 
 | A token used by applications and scripts to perform REST API calls programmatically. Obtained using a service account's client ID and client secret through the OAuth 2.0 client credentials grant. 

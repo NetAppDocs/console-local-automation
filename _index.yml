@@ -1,7 +1,7 @@
 indexpage:
-  title: NetApp Console (local deployment) API documentation
-  lead: NetApp Console (local deployment) is a self-hosted deployment option that lets you run the NetApp Console (local deployment) control plane in your on-premises environment. NetApp Console (local deployment) delivers the unified storage management and automation capabilities such as provisioning, policy enforcement, drift detection, and remediation in an isolated deployment that keeps your data, metadata, and management traffic entirely within your own infrastructure.  
-  summary: NetApp Console (local deployment) is a self-hosted deployment option that lets you run the NetApp Console (local deployment) control plane in your on-premises environment. NetApp Console (local deployment) delivers the unified storage management and automation capabilities such as provisioning, policy enforcement, drift detection, and remediation in an isolated deployment that keeps your data, metadata, and management traffic entirely within your own infrastructure.
+  title: NetApp Console local deployment API documentation
+  lead: NetApp Console local deployment is a self-hosted deployment option that lets you run the NetApp Console local deployment control plane in your on-premises environment. NetApp Console local deployment delivers the unified storage management and automation capabilities such as provisioning, policy enforcement, drift detection, and remediation in an isolated deployment that keeps your data, metadata, and management traffic entirely within your own infrastructure.  
+  summary: NetApp Console local deployment is a self-hosted deployment option that lets you run the NetApp Console local deployment control plane in your on-premises environment. NetApp Console local deployment delivers the unified storage management and automation capabilities such as provisioning, policy enforcement, drift detection, and remediation in an isolated deployment that keeps your data, metadata, and management traffic entirely within your own infrastructure.
   keywords: automation, automating, bluexp, netapp, console, local, deployment
   tiles:
     - title: Platform services

@@ -5,15 +5,17 @@ settings:
     api_enabled: true
     api_standardize: false
     api_preserve_adoc: true
+    api_skip_overviews: true
   prod:
     pdf_enabled: false
     api_enabled: true
     harmony_enabled: false
     api_standardize: false
     api_preserve_adoc: true
+    api_skip_overviews: true
 sidebar:
   entries:
-    - title: NetApp Console (local deployment) API docs
+    - title: NetApp Console local deployment API docs
       url: /index.html
     - section: platform
     - section: agentic

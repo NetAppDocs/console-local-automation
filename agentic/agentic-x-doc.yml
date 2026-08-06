@@ -1,11 +1,11 @@
 ---
-overview: Agentic Platform configuration manager REST API in NetApp Console (local deployment)
+overview: Agentic Platform configuration manager REST API in NetApp Console local deployment
 permalink: overview.html
 paths:
   "/configs":
     get:
       x-doc:
-        title: List all Agentic Platform configurations in NetApp Console (local deployment)
+        title: List all Agentic Platform configurations in NetApp Console local deployment
         category: Configuration
         filename: get-configs.html
         sidebar_title: List all configurations
@@ -13,7 +13,7 @@ paths:
         explorer: false
     post:
       x-doc:
-        title: Create a new draft Agentic Platform configuration in NetApp Console (local deployment)
+        title: Create a new draft Agentic Platform configuration in NetApp Console local deployment
         category: Configuration
         filename: post-configs.html
         sidebar_title: Create a new draft configuration
@@ -22,7 +22,7 @@ paths:
   "/configs/{config_id}":
     delete:
       x-doc:
-        title: Delete an Agentic Platform configuration in NetApp Console (local deployment)
+        title: Delete an Agentic Platform configuration in NetApp Console local deployment
         category: Configuration
         filename: delete-configs-.html
         sidebar_title: Delete a configuration
@@ -30,7 +30,7 @@ paths:
         explorer: false
     get:
       x-doc:
-        title: Retrieve an Agentic Platform configuration in NetApp Console (local deployment)
+        title: Retrieve an Agentic Platform configuration in NetApp Console local deployment
         category: Configuration
         filename: get-configs-.html
         sidebar_title: Retrieve a configuration 
@@ -38,7 +38,7 @@ paths:
         explorer: false
     patch:
       x-doc:
-        title: Apply an Agentic Platform configuration in NetApp Console (local deployment)
+        title: Apply an Agentic Platform configuration in NetApp Console local deployment
         category: Configuration
         filename: patch-configs-.html
         sidebar_title: Apply a configuration
@@ -47,7 +47,7 @@ paths:
   "/health":
     get:
       x-doc:
-        title: Retrieve the configuration manager health status in NetApp Console (local deployment)
+        title: Retrieve the configuration manager health status in NetApp Console local deployment
         category: Health
         filename: get-health.html
         sidebar_title: Retrieve the configuration manager health status
@@ -56,7 +56,7 @@ paths:
   "/providerModels":
     post:
       x-doc:
-        title: List all models available from the specified LLM provider in NetApp Console (local deployment)
+        title: List all models available from the specified LLM provider in NetApp Console local deployment
         category: Provider models
         filename: post-providermodels.html
         sidebar_title: List models available from an LLM provider
@@ -65,7 +65,7 @@ paths:
   "/supportedModels":
     get:
       x-doc:
-        title: List all available LLM models supported by the Agentic Platform in NetApp Console (local deployment)
+        title: List all available LLM models supported by the Agentic Platform in NetApp Console local deployment
         category: Supported models
         filename: get-supportedmodels.html
         sidebar_title: List all supported LLM models 
@@ -74,7 +74,7 @@ paths:
   "/supportedModels/{supported_model_id}":
     get:
       x-doc:
-        title: Retrieve an LLM model in NetApp Console (local deployment)
+        title: Retrieve an LLM model in NetApp Console local deployment
         category: Supported models
         filename: get-supportedmodels-.html
         sidebar_title: Retrieve an LLM model
@@ -83,7 +83,7 @@ paths:
   "/supportedProviders":
     get:
       x-doc:
-        title: List all available LLM supported providers in NetApp Console (local deployment)
+        title: List all available LLM supported providers in NetApp Console local deployment
         category: Supported providers
         filename: get-supportedproviders.html
         sidebar_title: List all available LLM supported providers
@@ -92,7 +92,7 @@ paths:
   "/supportedProviders/{supported_provider_id}":
     get:
       x-doc:
-        title: Retrieve an LLM supported provider in NetApp Console (local deployment)
+        title: Retrieve an LLM supported provider in NetApp Console local deployment
         category: Supported providers
         filename: get-supportedproviders-.html
         sidebar_title: Retrieve an LLM supported provider
@@ -101,7 +101,7 @@ paths:
   "/configs/{config_id}/providerModels":
     get:
       x-doc:
-        title: List models available from a LLM provider associated with a saved configuration in NetApp Console (local deployment)
+        title: List models available from a LLM provider associated with a saved configuration in NetApp Console local deployment
         category: Provider models
         filename: get-configs-providermodels.html
         sidebar_title:  List models available from a LLM provider associated with a saved configuration 
@@ -109,17 +109,17 @@ paths:
         subcategory: 
 categories:
 - id: health
-  title: Health endpoints in the Agentic Platform configuration manager REST API for NetApp Console (local deployment)
+  title: Health endpoints in the Agentic Platform configuration manager REST API for NetApp Console local deployment
   permalink: health_endpoints.html
 - id: supported providers
-  title: Supported providers endpoints in the Agentic Platform configuration manager REST API for NetApp Console (local deployment)
+  title: Supported providers endpoints in the Agentic Platform configuration manager REST API for NetApp Console local deployment
   permalink: supported_providers_endpoints.html
 - id: configuration
-  title: Configuration endpoints in the Agentic Platform configuration manager REST API for NetApp Console (local deployment)
+  title: Configuration endpoints in the Agentic Platform configuration manager REST API for NetApp Console local deployment
   permalink: configuration_endpoints.html
 - id: supported models
-  title: Supported models endpoints in the Agentic Platform configuration manager REST API for NetApp Console (local deployment)
+  title: Supported models endpoints in the Agentic Platform configuration manager REST API for NetApp Console local deployment
   permalink: supported_models_endpoints.html
 - id: provider models
-  title: Provider models endpoints in the Agentic Platform configuration manager REST API for NetApp Console (local deployment)
+  title: Provider models endpoints in the Agentic Platform configuration manager REST API for NetApp Console local deployment
   permalink: provider_models_endpoints.html

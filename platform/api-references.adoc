@@ -1,0 +1,68 @@
+---
+sidebar: sidebar
+permalink: platform/api-reference.html
+keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
+summary: A workflow describing how to cerate a service token
+---
+= NetApp Console local deployment API reference documentation  
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ../media/
+
+[.lead]
+Learn about the NetApp Console local deployment API reference documentation. 
+
+== Agentic Platform configuration manager
+
+The Agentic Platform configuration manager API provides REST endpoints for managing Large Language Model (LLM) configurations. 
+
+Key features include:
+
+* Dynamic configuration management with automatic hot reload
+* Support for multiple LLM providers
+* SSL verification settings, including custom CA certificates
+* Automatic stale Kubernetes (K8s) resource cleanup when the provider changes
+* Provider-compatibility field stripping: OpenAI-only fields are automatically stripped for Anthropic backends
+* Model-family temperature stripping: The `temperature` field is automatically stripped for Anthropic Claude Opus 4+ models and OpenAI GPT-5.5+ models (deprecated by the provider)
+* Anthropic path rewrite: Any `/v1/chat/completions` requests are transparently rewritten to `/v1/messages` for Anthropic backends at the HTTPRoute level
+* Per-request user identifier injection: The `extraParams.user` field is injected into every LLM request as a BackendAI default
+* Model deduplication: When listing models from a `commonOpenAI` provider, duplicate model IDs differing only in dot/dash notation are deduplicated
+* Model validation and authorization rules
+* Configuration state lifecycle (DRAFT, TESTING, SUCCESSFUL, UNSUCCESSFUL)
+
+.Supported models and providers
+
+The initial catalog supports the following models and providers: `openai`, `commonOpenAI`, and `anthropic`. 
+        
+
+.Anthropic path rewrite
+
+Clients using OpenAI-compatible SDKs (langchaingo, OpenAI Python SDK) can send a request to `/v1/chat/completions` and it will automatically be rewritten to `/v1/messages` at the gateway level.
+
+.Temperature stripping
+
+For OpenAI models GPT-5.5 and later, the `temperature` field is automatically stripped from requests (`temperature` is deprecated by OpenAI for these model families). 
+
+link:../agentic/get-configs.html[Agentic Platform configuration manager REST API reference]
+
+== Asset
+
+You can use the Asset API service to obtain configuration data and metrics about the assets monitored by the Console local deployment.
+
+link:../asset/get-organizations-aggregates.html[Assets REST API reference]
+
+== Identity and access management
+
+The identity and access management (IAM) service provides a centralized point for managing customer and partner information. IAM endpoints enable you to manage and control access to the Console resources.
+
+CAUTION: In NetApp Console local deployment, the term "project" is replaced with "fleet". Project API endpoints are deprecated and should only be used for legacy compliance. This reference documentation maps deprecated project API endpoints to the new fleet equivalent 
+
+link:../tenancyv4/get-fleets.html[Identity and access management REST API reference]
+
+== Storage management
+
+The storage management endpoints allow you to register systems, manage storage resources, and configure storage policies for your ONTAP clusters managed through the NetApp Console.
+
+link:../storage-management/get-v1-organizations-capacitypolicies.html[Storage management REST API reference]

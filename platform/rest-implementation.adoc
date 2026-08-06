@@ -4,7 +4,7 @@ permalink: platform/rest-implementation.html
 keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
 summary: A workflow describing how to cerate a service token
 ---
-= REST implementation in NetApp Console (local deployment)  
+= REST implementation in NetApp Console local deployment  
 :hardbreaks:
 :nofooter:
 :icons: font
@@ -12,11 +12,11 @@ summary: A workflow describing how to cerate a service token
 :imagesdir: ../media/
 
 [.lead]
-Representational State Transfer (REST) is a style for creating distributed web applications. When applied to the design of a web services API, it establishes a set of technologies and best practices for exposing server-based resources and managing their states. Learn about the REST implementation common to NetApp Console (local deployment) APIs. 
+Representational State Transfer (REST) is a style for creating distributed web applications. When applied to the design of a web services API, it establishes a set of technologies and best practices for exposing server-based resources and managing their states. Learn about the REST implementation common to NetApp Console local deployment APIs. 
 
 == HTTP methods
 
-The following HTTP methods are used in NetApp Console (local deployment) REST APIs. Not all HTTP methods are available at each of the REST endpoints. For more information, see the reference documentation for the specific API you are using.
+The following HTTP methods are used in NetApp Console local deployment REST APIs. Not all HTTP methods are available at each of the REST endpoints. For more information, see the reference documentation for the specific API you are using.
 
 [cols="1,3", options="header"]
 |===
@@ -40,7 +40,7 @@ The following HTTP methods are used in NetApp Console (local deployment) REST AP
 
 == Request headers
 
-The following request headers are used in NetApp Console (local deployment) REST APIs.
+The following request headers are used in NetApp Console local deployment REST APIs.
 
 [cols="1,3", options="header"]
 |===
@@ -62,7 +62,7 @@ Refer to the individual API reference for the service you are using for informat
 
 == Response headers
 
-The following table shows common HTTP response headers used in NetApp Console (local deployment) REST APIs.
+The following table shows common HTTP response headers used in NetApp Console local deployment REST APIs.
 
 [cols="1,3", options="header"]
 |===
@@ -84,7 +84,7 @@ The following table shows common HTTP response headers used in NetApp Console (l
 
 == HTTP status codes
 
-The following HTTP status codes are returned in NetApp Console (local deployment) APIs. 
+The following HTTP status codes are returned in NetApp Console local deployment APIs. 
 
 [cols="1,3", options="header"]
 |===
