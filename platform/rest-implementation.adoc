@@ -58,7 +58,29 @@ The following request headers are used in NetApp Console local deployment REST A
 
 == Query parameters
 
-Refer to the individual API reference for the service you are using for information on query parameters and components.
+Query parameters filter and control the results returned by a REST API call. 
+
+The following query parameters can be used where supported in NetApp Console local deployment REST APIs.
+
+NOTE: Not all query parameters are available at every endpoint. Refer to the reference documentation for the specific API you are using.
+
+[cols="1,3", options="header"]
+|===
+| Parameter | Description
+
+| count
+| Returns the total number of resources matching the query, independent of pagination. 
+
+| filter
+| Filters the results returned in a collection. 
+
+| include
+| Specifies which fields to return in the response. 
+
+| continue
+| Pagination cursor returned when more results exist beyond the current page. 
+|===
+
 
 == Response headers
 

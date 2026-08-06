@@ -16,7 +16,7 @@ Learn how to obtain the required authentication information and perform a REST A
 
 == Step 1: Obtain the access tokens 
 
-You'll need an access token to use the NetApp Console local deployment REST APIs. The tokens need to be included with every API call.  
+You'll need an access token to use the Console local deployment REST APIs. The tokens need to be included with every API call.  
 
 * link:create-user-token.html[Create a user token] 
 
@@ -24,7 +24,7 @@ You'll need an access token to use the NetApp Console local deployment REST APIs
 
 == Step 2: Create the required request headers 
 
-You need to create several HTTP request headers and include them with each API call. The following table shows the request headers used by the NetApp Console local deployment REST APIs.
+You need to create several HTTP request headers and include them with each API call. The following table shows the request headers used by the Console local deployment REST APIs.
 
 [cols="1,3", options="header"]
 |===
