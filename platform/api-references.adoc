@@ -34,15 +34,13 @@ Key features include:
 * Model validation and authorization rules
 * Configuration state lifecycle (DRAFT, TESTING, SUCCESSFUL, UNSUCCESSFUL)
 
-
-
-
-
 link:../agentic/get-configs.html[Agentic Platform configuration manager REST API reference]
 
 == Assets
 
 You can use the Asset API service to obtain configuration data and metrics about the assets monitored by the Console local deployment.
+
+Assets include fleets, LUNs, namespaces, network interfaces, nodes, ports, QoS policy groups, qtrees, SMB shares, Storage VMs (SVMs), and volumes.
 
 link:../asset/get-organizations-aggregates.html[Assets REST API reference]
 
