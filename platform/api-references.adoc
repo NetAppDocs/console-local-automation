@@ -16,7 +16,7 @@ Learn about the NetApp Console local deployment API reference documentation.
 
 == Agentic Platform configuration manager
 
-The Agentic Platform configuration manager API provides REST endpoints for managing Large Language Model (LLM) configurations. 
+You can use the Agentic Platform configuration manager API endpoints to managing Large Language Model (LLM) configurations. 
 
 The initial catalog supports the following models and providers: `openai`, `commonOpenAI`, and `anthropic`.
 
@@ -38,7 +38,7 @@ link:../agentic/get-configs.html[Agentic Platform configuration manager REST API
 
 == Assets
 
-You can use the Asset API service to obtain configuration data and metrics about the assets monitored by the Console local deployment.
+You can use the Asset API endpoints to obtain configuration data and metrics about the assets monitored by the Console local deployment.
 
 Assets include fleets, LUNs, namespaces, network interfaces, nodes, ports, QoS policy groups, qtrees, SMB shares, Storage VMs (SVMs), and volumes.
 
@@ -46,7 +46,7 @@ link:../asset/get-organizations-aggregates.html[Assets REST API reference]
 
 == Identity and access management
 
-The identity and access management (IAM) service provides a centralized point for managing customer and partner information. IAM endpoints enable you to manage and control access to the Console resources.
+You can use the identity and access management (IAM) API endpoints to manage and control access to the Console resources.
 
 CAUTION: In NetApp Console local deployment, the term "project" is replaced with "fleet". Project API endpoints are deprecated and should only be used for legacy compliance. The reference documentation maps deprecated project API endpoints to the new fleet equivalent where applicable.
 
@@ -54,6 +54,6 @@ link:../tenancyv4/get-fleets.html[Identity and access management REST API refere
 
 == Storage management
 
-The storage management endpoints allow you to register systems, manage storage resources, and configure storage policies for your ONTAP clusters managed through the Console local deployment.
+You can use the storage management API endpoints to register systems, manage storage resources, and configure storage policies for your ONTAP clusters managed through the Console local deployment.
 
 link:../storage-management/get-v1-organizations-capacitypolicies.html[Storage management REST API reference]
