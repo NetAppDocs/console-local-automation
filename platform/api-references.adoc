@@ -44,7 +44,7 @@ For OpenAI models GPT-5.5 and later, the `temperature` field is automatically st
 
 link:../agentic/get-configs.html[Agentic Platform configuration manager REST API reference]
 
-== Asset
+== Assets
 
 You can use the Asset API service to obtain configuration data and metrics about the assets monitored by the Console local deployment.
 
