@@ -27,20 +27,16 @@ Key features include:
 * SSL verification settings, including custom CA certificates
 * Automatic stale Kubernetes (K8s) resource cleanup when the provider changes
 * Provider-compatibility field stripping: OpenAI-only fields are automatically stripped for Anthropic backends
-* Model-family temperature stripping: The `temperature` field is automatically stripped for Anthropic Claude Opus 4+ models and OpenAI GPT-5.5+ models (deprecated by the provider)
-* Anthropic path rewrite: Any `/v1/chat/completions` requests are transparently rewritten to `/v1/messages` for Anthropic backends at the HTTPRoute level
+* Model-family temperature stripping: For OpenAI models GPT-5.5 and later, the `temperature` field is automatically stripped from requests (`temperature` is deprecated by OpenAI for these models)
+* Anthropic path rewrite: Clients using OpenAI-compatible SDKs (langchaingo, OpenAI Python SDK) can send a request to `/v1/chat/completions` and it will automatically be rewritten to `/v1/messages` at the gateway level
 * Per-request user identifier injection: The `extraParams.user` field is injected into every LLM request as a BackendAI default
 * Model deduplication: When listing models from a `commonOpenAI` provider, duplicate model IDs differing only in dot/dash notation are deduplicated
 * Model validation and authorization rules
 * Configuration state lifecycle (DRAFT, TESTING, SUCCESSFUL, UNSUCCESSFUL)
-        
-.Anthropic path rewrite
 
-Clients using OpenAI-compatible SDKs (langchaingo, OpenAI Python SDK) can send a request to `/v1/chat/completions` and it will automatically be rewritten to `/v1/messages` at the gateway level.
 
-.Temperature stripping
 
-For OpenAI models GPT-5.5 and later, the `temperature` field is automatically stripped from requests (`temperature` is deprecated by OpenAI for these models). 
+
 
 link:../agentic/get-configs.html[Agentic Platform configuration manager REST API reference]
 
