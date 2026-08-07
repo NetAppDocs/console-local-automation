@@ -12,7 +12,7 @@ summary: A workflow describing how to cerate a service token
 :imagesdir: ../media/
 
 [.lead]
-Create a service access token that can be used by applications and scripts to make REST API calls to the NetApp Console local deployment. Service tokens are obtained using the OAuth 2.0 client credentials grant type with a client ID and client secret. 
+Create a service access token that can be used by applications and scripts to make REST API calls to NetApp Console local deployment. Service tokens are obtained using the OAuth 2.0 client credentials grant type with a client ID and client secret. 
 
 .Before you begin
 
