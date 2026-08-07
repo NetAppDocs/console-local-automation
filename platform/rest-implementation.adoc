@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: platform/rest-implementation.html
 keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
-summary: A workflow describing how to cerate a service token
+summary: Overview of the REST implementation details used by NetApp Console local deployment APIs.
 ---
 = REST implementation in NetApp Console local deployment  
 :hardbreaks:

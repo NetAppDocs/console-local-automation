@@ -64,7 +64,7 @@ curl --request POST \
   "client_id": "<client-id>",
   "client_secret": "<client-secret>",
   "grant_type": "client_credentials"
-}
+}'
 ----
 
 .JSON input parameters 

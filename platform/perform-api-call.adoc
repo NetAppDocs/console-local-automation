@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: platform/perform-api-call.html
 keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
-summary: A workflow describing how to cerate a service token
+summary: Workflow for obtaining an access token and making your first REST API call to the Console local deployment APIs.
 ---
 = Perform your first API call in NetApp Console local deployment  
 :hardbreaks:
@@ -58,8 +58,8 @@ The following example lists all the fleets from the Assets service:
 [source,curl]
 ----
 curl --request GET \
- --url https://<host>/v1/services/assets/organizations/<organization_ID>/fleets \
- --header 'authorization: Bearer <access_token>’
+  --url https://<host>/v1/services/assets/organizations/<organization_ID>/fleets \
+  --header 'authorization: Bearer <access_token>'
 ----
 
 
