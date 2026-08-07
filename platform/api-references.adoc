@@ -16,7 +16,7 @@ Learn about the NetApp Console local deployment API reference documentation.
 
 == Agentic Platform configuration manager
 
-You can use the Agentic Platform configuration manager API endpoints to managing Large Language Model (LLM) configurations. 
+You can use the Agentic Platform configuration manager API endpoints to manage Large Language Model (LLM) configurations. 
 
 The initial catalog supports the following models and providers: `openai`, `commonOpenAI`, and `anthropic`.
 
