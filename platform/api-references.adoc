@@ -60,6 +60,6 @@ link:../tenancyv4/get-fleets.html[Identity and access management REST API refere
 
 == Storage management
 
-The storage management endpoints allow you to register systems, manage storage resources, and configure storage policies for your ONTAP clusters managed through the NetApp Console local deployment.
+The storage management endpoints allow you to register systems, manage storage resources, and configure storage policies for your ONTAP clusters managed through the Console local deployment.
 
 link:../storage-management/get-v1-organizations-capacitypolicies.html[Storage management REST API reference]

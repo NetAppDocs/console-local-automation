@@ -4,7 +4,7 @@ permalink: platform/create-service-token.html
 keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
 summary: A workflow describing how to cerate a service token
 ---
-= Create a service token for the NetApp Console local deployment 
+= Create a service token for NetApp Console local deployment 
 :hardbreaks:
 :nofooter:
 :icons: font

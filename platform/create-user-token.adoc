@@ -4,7 +4,7 @@ permalink: platform/create-user-token.html
 keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
 summary: A workflow describing how to cerate a service token
 ---
-= Create a user token for the NetApp Console local deployment 
+= Create a user token for NetApp Console local deployment 
 :hardbreaks:
 :nofooter:
 :icons: font
@@ -18,9 +18,9 @@ You need a user access token to authenticate REST API calls on behalf of a local
 
 Before obtaining a user access token, confirm that you have the following: 
 
-* The IP address or FQDN of your NetApp Console local deployment instance.  
+* The IP address or FQDN of your Console local deployment instance.  
 
-* A valid local user account on the NetApp Console local deployment instance with the appropriate permissions for the REST API calls you plan to make. 
+* A valid local user account on the Console local deployment instance with the appropriate permissions for the REST API calls you plan to make. 
 
 == Create the user access token
 
@@ -71,7 +71,7 @@ The following table shows the required input parameters.
 
 // first body row
 | username
-| The username of the local user on the NetApp Console local deployment instance.  
+| The username of the local user on the Console local deployment instance.  
 
 | password
 | The password for the local user account. 
