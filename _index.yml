@@ -16,12 +16,12 @@ indexpage:
          url: /storage-management/get-v1-organizations-capacitypolicies.html
     - title: More resources
       links:
+        - title: NetApp Console local deployment documentation
+          url: https://docs.netapp.com/us-en/console-local/index.html
         - title: NetApp Console automation (SaaS deployment)
           url: https://docs.netapp.com/us-en/console-automation/
         - title: NetApp Console solutions
           url: https://www.netapp.com/cloud-services/
-        - title: NetApp Console automation hub
-          url: https://docs.netapp.com/us-en/netapp-automation/solutions/bac-overview.html
         - title: ONTAP 9 documentation
           url: https://docs.netapp.com/us-en/ontap/
         - title: Additional resources
