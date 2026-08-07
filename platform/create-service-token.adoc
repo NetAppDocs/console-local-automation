@@ -92,7 +92,7 @@ The following table shows the required input parameters.
 
 
 .JSON input example 
-The JSON input example includes the required input parameters.
+The JSON input example includes the required input parameters. 
 
 [source,json]
 ----
