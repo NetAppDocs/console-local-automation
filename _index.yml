@@ -6,14 +6,15 @@ indexpage:
   tiles:
     - title: Platform services
       links:
-        - title: Agentic Platform
-          url: /agentic/get-configs.html
-        - title: Assets
-          url: /asset/get-organizations-aggregates.html
-        - title: Identity and access management
-          url: /tenancyv4/get-fleets.html
-        - title: Storage management
-          url: /storage-management/get-v1-organizations-capacitypolicies.html
+        - title: Agentic Platform
+          url: /agentic/get-configs.html
+        - title: Assets
+          url: /asset/get-organizations-aggregates.html
+        - title: Identity and access management
+          url: /tenancyv4/get-fleets.html
+        - title: Storage management
+          url: /storage-management/get-v1-organizations-capacitypolicies.html
+
     - title: More resources
       links:
         - title: NetApp Console local deployment documentation
