@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: platform/api-reference.html
 keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
-summary: A workflow describing how to cerate a service token
+summary: Links to the reference documentation for each NetApp Console local deployment REST API.
 ---
 = NetApp Console local deployment API reference documentation  
 :hardbreaks:

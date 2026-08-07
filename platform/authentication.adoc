@@ -2,7 +2,7 @@
 sidebar: sidebar
 permalink: platform/authentication.html
 keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
-summary: A workflow describing how to cerate a service token
+summary: Overview of authentication and authorization for NetApp Console local deployment REST APIs.
 ---
 = Learn about authentication and authorization in NetApp Console local deployment
 :hardbreaks:
