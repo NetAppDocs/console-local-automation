@@ -18,6 +18,8 @@ Learn about the NetApp Console local deployment API reference documentation.
 
 The Agentic Platform configuration manager API provides REST endpoints for managing Large Language Model (LLM) configurations. 
 
+The initial catalog supports the following models and providers: `openai`, `commonOpenAI`, and `anthropic`.
+
 Key features include:
 
 * Dynamic configuration management with automatic hot reload
@@ -31,19 +33,14 @@ Key features include:
 * Model deduplication: When listing models from a `commonOpenAI` provider, duplicate model IDs differing only in dot/dash notation are deduplicated
 * Model validation and authorization rules
 * Configuration state lifecycle (DRAFT, TESTING, SUCCESSFUL, UNSUCCESSFUL)
-
-.Supported models and providers
-
-The initial catalog supports the following models and providers: `openai`, `commonOpenAI`, and `anthropic`. 
         
-
 .Anthropic path rewrite
 
 Clients using OpenAI-compatible SDKs (langchaingo, OpenAI Python SDK) can send a request to `/v1/chat/completions` and it will automatically be rewritten to `/v1/messages` at the gateway level.
 
 .Temperature stripping
 
-For OpenAI models GPT-5.5 and later, the `temperature` field is automatically stripped from requests (`temperature` is deprecated by OpenAI for these model families). 
+For OpenAI models GPT-5.5 and later, the `temperature` field is automatically stripped from requests (`temperature` is deprecated by OpenAI for these models). 
 
 link:../agentic/get-configs.html[Agentic Platform configuration manager REST API reference]
 
