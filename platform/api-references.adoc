@@ -54,12 +54,12 @@ link:../asset/get-organizations-aggregates.html[Assets REST API reference]
 
 The identity and access management (IAM) service provides a centralized point for managing customer and partner information. IAM endpoints enable you to manage and control access to the Console resources.
 
-CAUTION: In NetApp Console local deployment, the term "project" is replaced with "fleet". Project API endpoints are deprecated and should only be used for legacy compliance. This reference documentation maps deprecated project API endpoints to the new fleet equivalent 
+CAUTION: In NetApp Console local deployment, the term "project" is replaced with "fleet". Project API endpoints are deprecated and should only be used for legacy compliance. The reference documentation maps deprecated project API endpoints to the new fleet equivalent where applicable.
 
 link:../tenancyv4/get-fleets.html[Identity and access management REST API reference]
 
 == Storage management
 
-The storage management endpoints allow you to register systems, manage storage resources, and configure storage policies for your ONTAP clusters managed through the NetApp Console.
+The storage management endpoints allow you to register systems, manage storage resources, and configure storage policies for your ONTAP clusters managed through the NetApp Console local deployment.
 
 link:../storage-management/get-v1-organizations-capacitypolicies.html[Storage management REST API reference]
