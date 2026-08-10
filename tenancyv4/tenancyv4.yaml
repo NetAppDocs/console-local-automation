@@ -9011,7 +9011,7 @@ paths:
             description: |-
                 Lists all projects under the specified folder. 
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-folders-fleets.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/get-folders-fleets.html). 
                          
             parameters:
                 - description: Folder ID.
@@ -9064,7 +9064,7 @@ paths:
             description: |-
                Creates a project under the specified folder.
 
-               **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/post-folders-fleets.html). 
+               **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/post-folders-fleets.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -9130,7 +9130,7 @@ paths:
             description: |-
                 Removes a project from the specified folder.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/delete-folders-fleets-.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/delete-folders-fleets-.html). 
             responses:
                 "204":
                     description: Indicates if the project was removed from the folder.
@@ -9152,7 +9152,7 @@ paths:
             description: |-
                 Retrieves a project under the specified folder.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-folders-fleets-.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/get-folders-fleets-.html). 
             responses:
                 "200":
                     content:
@@ -9211,7 +9211,7 @@ paths:
             description: |-
                 Updates a project under the specified folder with partial information.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/patch-folders-fleets-.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/patch-folders-fleets-.html). 
             parameters:
                 - $ref: '#/components/parameters/filter'
             requestBody:
@@ -9250,7 +9250,7 @@ paths:
             description: |-
                 Replaces a project in the specified folder with new information.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/put-folders-fleets-.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/put-folders-fleets-.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -10853,7 +10853,7 @@ paths:
             description: |-
                 Lists all projects under the specified organization.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-organizations-fleets.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/get-organizations-fleets.html). 
             parameters:
                 - description: Folder ID.
                   example: 666a3f38-d4fa-5b62-a391-a69029758d32
@@ -10905,7 +10905,7 @@ paths:
             description: |-
                 Creates a new project under the specified organization.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/post-organizations-fleets.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/post-organizations-fleets.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -10971,7 +10971,7 @@ paths:
             description: |-
                 Removes a project from the specified organization.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/delete-organizations-fleets-.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/delete-organizations-fleets-.html). 
             responses:
                 "204":
                     description: Indicates if the project was removed from an organization.
@@ -10993,7 +10993,7 @@ paths:
             description: |-
                 Retrieves a project under the specified organization.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-organizations-fleets-.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/get-organizations-fleets-.html). 
             parameters:
                 - $ref: '#/components/parameters/filter'
             responses:
@@ -11054,7 +11054,7 @@ paths:
             description: |-
                 Updates a project under the specified organization with partial information.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/patch-organizations-fleets-.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/patch-organizations-fleets-.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -11091,7 +11091,7 @@ paths:
             description: |-
                 Replaces a project under the specified organization with new information.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/put-organizations-fleets-.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/put-organizations-fleets-.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -12629,7 +12629,7 @@ paths:
             description: |-
                Lists all projects.
 
-               **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-fleets.html).  
+               **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/get-fleets.html).  
             parameters:
                 - $ref: '#/components/parameters/filter'
                 - $ref: '#/components/parameters/skip'
@@ -12664,7 +12664,7 @@ paths:
             description: |-
                 Creates a new project.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/post-fleets.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/post-fleets.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -12730,7 +12730,7 @@ paths:
             description: |-
                 Deletes the specified project.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/delete-fleets-.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/delete-fleets-.html). 
             responses:
                 "204":
                     description: Indicates if the project was deleted.
@@ -12753,7 +12753,7 @@ paths:
             description: |-
                 Retrieves the specified project.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-fleets-.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/get-fleets-.html). 
             parameters:
                 - $ref: '#/components/parameters/filter'
                 - $ref: '#/components/parameters/skip'
@@ -12812,7 +12812,7 @@ paths:
             description: |-
                 Updates the specified project with partial information.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/patch-fleets-.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/patch-fleets-.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -12849,7 +12849,7 @@ paths:
             description: |-
                 Replaces the specified project with new information.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/put-fleets-.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/put-fleets-.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.resource+json:
@@ -13461,7 +13461,7 @@ paths:
             description: |-
                 Lists all users in the specified project.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/get-fleets-users.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/get-fleets-users.html). 
             parameters:
                 - $ref: '#/components/parameters/filter'
                 - $ref: '#/components/parameters/skip'
@@ -13503,7 +13503,7 @@ paths:
             description: |-
                 Adds users to the specified project.
 
-                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://review.docs.netapp.com/us-en/console-local-automation_aoife-ncl-mvp-rel-adoc/tenancyv4/post-fleets-users.html). 
+                **Note**: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available [here](https://docs.netapp.com/us-en/console-local-automation/tenancyv4/post-fleets-users.html). 
             requestBody:
                 content:
                     application/vnd.netapp.bxp.userbulk+json:
