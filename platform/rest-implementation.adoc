@@ -1,0 +1,149 @@
+---
+sidebar: sidebar
+permalink: platform/rest-implementation.html
+keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
+summary: Overview of the REST implementation details used by NetApp Console local deployment APIs.
+---
+= REST implementation in NetApp Console local deployment  
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ../media/
+
+[.lead]
+Representational State Transfer (REST) is a style for creating distributed web applications. When applied to the design of a web services API, it establishes a set of technologies and best practices for exposing server-based resources and managing their states. Learn about the REST implementation common to NetApp Console local deployment APIs. 
+
+== HTTP methods
+
+The following HTTP methods are used in NetApp Console local deployment REST APIs. Not all HTTP methods are available at each of the REST endpoints. For more information, see the reference documentation for the specific API you are using.
+
+[cols="1,3", options="header"]
+|===
+| Method | Description
+
+| POST
+| Create an object instance
+
+| GET
+| Retrieve an object instance or collection
+
+| PATCH
+| Update an existing object
+
+| PUT
+| Update an existing resource instance based on the supplied input values
+
+| DELETE
+| Remove an existing object
+|===
+
+== Request headers
+
+The following request headers are used in NetApp Console local deployment REST APIs.
+
+[cols="1,3", options="header"]
+|===
+| Request Header | Description
+
+| Authorization
+| This header contains a bearer token used to access the Console server.
+
+| Content-Type
+| This representation header is used to indicate the original media type of the resource.
+
+| Accept
+| The server automatically returns content in JSON format if the Accept header is not specified.
+|===
+
+== Query parameters
+
+Query parameters filter and control the results returned by a REST API call. 
+
+The following table shows some example query parameters that can be used where supported in NetApp Console local deployment REST APIs.
+
+NOTE: Not all query parameters are available at every endpoint. Refer to the reference documentation for the specific API you are using.
+
+[cols="1,3", options="header"]
+|===
+| Parameter | Description
+
+| count
+| Returns the total number of resources matching the query, independent of pagination. 
+
+| filter
+| Filters the results returned in a collection. 
+
+| include
+| Specifies which fields to return in the response. 
+
+| continue
+| Pagination cursor returned when more results exist beyond the current page. 
+|===
+
+
+== Response headers
+
+The following table shows common HTTP response headers used in NetApp Console local deployment REST APIs.
+
+[cols="1,3", options="header"]
+|===
+| Response Header | Description
+
+| `access-control-allow-origin`
+| The Cross Origin Resource Sharing (CORS) header indicates whether the response can be shared with requesting code from the specified origin.
+
+| `content-encoding`
+| The type of data encoding used is indicated with this header.
+
+| `content-type`
+| The data representation is carried in the header and is used to indicate the original media type of the content.
+
+| `date`
+| This header contains the date and time the message was sent.
+
+|===
+
+== HTTP status codes
+
+The following HTTP status codes are returned in NetApp Console local deployment APIs. 
+
+[cols="1,3", options="header"]
+|===
+| HTTP Status Code | Description
+
+| 200
+| OK: Returned for successful operation completion
+
+| 201
+| Created: The resource was created successfully.
+
+| 204
+| The operation was completed successfully and the server did not send a response message.
+
+| 400
+| Bad Request: Returned if the input is malformed and could not be parsed
+
+| 401
+| Unauthorized: Returned if user authentication failed or the token has expired
+
+| 403
+| Forbidden: Returned for authorization errors depending on the resource and token.
+
+| 404
+| Not Found: The requested resource could not be found.
+
+| 409
+| Conflict: The operation failed because another operation is already in progress.
+
+| 5xx
+| An unexpected error occurred within the Console server which has prevented it from fulfilling the request.
+|===
+
+== Error handling
+
+There are three processes involved with error handling and processing:
+
+* The error is logged for supportability
+* The error is also returned to the caller for any specific handling
+* The database connection is rolled back

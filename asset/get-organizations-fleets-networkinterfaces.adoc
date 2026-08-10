@@ -1,0 +1,925 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'asset/get-organizations-fleets-networkinterfaces.html'
+summary: 'List interfaces in a fleet in NetApp Console local deployment'
+---
+
+= List interfaces in a fleet in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/networkinterfaces`#
+
+
+
+Lists all interfaces in the specified fleet.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|fleet_id
+|string
+|path
+|True
+a|Identifier for a fleet.
+
+
+|count
+|string
+|query
+|False
+a|Indicates if the total number of resources should be returned in the response object.
+
+URL examples: "count=true"
+
+OpenAPI examples: "true"
+
+
+|filter
+|string
+|query
+|False
+a|Specifies which fields should be matched in order to return a resource when listing a collection.
+
+Supported operators:
+
+* eq - Equality
+* lt/gt - Less than/greater than
+* lte/gte - Less than or equal to/greater than or equal to
+
+URL example: "filter=field%20eq%20%27value%27"
+
+OpenAPI examples: "field eq 'value'"
+
+
+|include
+|string
+|query
+|False
+a|Specifies which fields should be returned when listing a collection.
+
+URL examples: "include=id", "include=id,name"
+
+OpenAPI examples: "id"
+
+
+|limit
+|string
+|query
+|False
+a|Specifies the maximum number of resources to return when listing a collection.
+
+URL examples: "limit=2"
+
+OpenAPI examples: "2"
+
+
+|metadata
+|string
+|query
+|False
+a|Indicates if the metadata should be returned in the response object.
+
+URL examples: "metadata=true"
+
+OpenAPI examples: "true"
+
+
+|orderBy
+|string
+|query
+|False
+a|Indicates the sort order of resources when listing a collection.
+
+URL examples: "orderBy=name", "orderBy=name%20desc"
+
+OpenAPI examples: "name desc"
+
+
+|skip
+|string
+|query
+|False
+a|Specifies the number of resources to skip when listing a collection.
+
+URL examples: "skip=1"
+
+OpenAPI examples: "1"
+
+
+|===
+
+== Response
+
+```
+Status: 200, OK
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Total number of resources in the collection that match the query.
+
+
+|items
+|array[link:#networkinterface_1_0_get_response_body[networkinterface_1.0_get_response_body]]
+|True
+a|Network interfaces in the collection.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 2,
+  "items": [
+    {
+      "cluster": {
+        "id": "4c8d2919-ac4c-4ea7-bf7c-24863d4da94b",
+        "name": "cluster-01"
+      },
+      "id": "7b3c4d5e-6789-0abc-def1-234567890abc",
+      "location": {
+        "homeNode": {
+          "id": "5e57a329-1137-42d1-adb8-00361552c2d6",
+          "name": "node-01"
+        },
+        "homePort": {
+          "id": "8c9d0e1f-2a3b-4c5d-6e7f-8a9b0c1d2e3f",
+          "name": "e0a"
+        },
+        "node": {
+          "id": "5e57a329-1137-42d1-adb8-00361552c2d6",
+          "name": "node-01"
+        },
+        "port": {
+          "id": "8c9d0e1f-2a3b-4c5d-6e7f-8a9b0c1d2e3f",
+          "name": "e0a"
+        }
+      },
+      "metadata": {
+        "modificationTimestamp": "2022-10-06T20:58:16.305662Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 1250.5
+        },
+        "latency": {
+          "average": 80.25
+        },
+        "throughput": {
+          "total": 104857600
+        }
+      },
+      "name": "lif-data-01",
+      "organizationId": "16c07c0c-666b-4870-9363-764eef9e7160",
+      "protocols": [
+        "nfs",
+        "cifs"
+      ],
+      "role": "DATA",
+      "svm": {
+        "id": "d1ddc65d-f7a2-4ca7-9847-5afd069a3dbe",
+        "name": "svm-01"
+      },
+      "type": "application/vnd.netapp.bxp.networkinterface",
+      "version": "1.0",
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    },
+    {
+      "cluster": {
+        "id": "4c8d2919-ac4c-4ea7-bf7c-24863d4da94b",
+        "name": "cluster-01"
+      },
+      "id": "9d0e1f2a-3b4c-5d6e-7f8a-9b0c1d2e3f4a",
+      "location": {
+        "homeNode": {
+          "id": "5e57a329-1137-42d1-adb8-00361552c2d6",
+          "name": "node-01"
+        },
+        "homePort": {
+          "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "name": "0c"
+        },
+        "node": {
+          "id": "5e57a329-1137-42d1-adb8-00361552c2d6",
+          "name": "node-01"
+        },
+        "port": {
+          "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "name": "0c"
+        }
+      },
+      "metadata": {
+        "modificationTimestamp": "2022-10-06T21:15:42.108234Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 3200
+        },
+        "latency": {
+          "average": 45.5
+        },
+        "throughput": {
+          "total": 209715200
+        }
+      },
+      "name": "lif-fc-01",
+      "organizationId": "16c07c0c-666b-4870-9363-764eef9e7160",
+      "protocols": [
+        "fcp"
+      ],
+      "role": "DATA",
+      "svm": {
+        "id": "d1ddc65d-f7a2-4ca7-9847-5afd069a3dbe",
+        "name": "svm-01"
+      },
+      "type": "application/vnd.netapp.bxp.networkinterface",
+      "version": "1.0",
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#cluster_1_0_reference]
+[.api-collapsible-fifth-title]
+cluster_1.0_reference
+
+Reference to an ONTAP cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the cluster.
+
+
+|name
+|string
+|False
+a|Cluster name.
+
+
+|===
+
+
+[#node_1_0_reference]
+[.api-collapsible-fifth-title]
+node_1.0_reference
+
+Reference to an ONTAP node.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the node.
+
+
+|name
+|string
+|False
+a|Node name.
+
+
+|===
+
+
+[#homePort]
+[.api-collapsible-fifth-title]
+homePort
+
+Reference to the home network port.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the home port.
+
+
+|name
+|string
+|False
+a|Home port name.
+
+
+|===
+
+
+[#port]
+[.api-collapsible-fifth-title]
+port
+
+Reference to a network port.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the port.
+
+
+|name
+|string
+|False
+a|Port name.
+
+
+|===
+
+
+[#networkinterface_1_0_location]
+[.api-collapsible-fifth-title]
+networkinterface_1.0_location
+
+Current and home location of the interface.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|homeNode
+|link:#node_1_0_reference[node_1.0_reference]
+|False
+a|Reference to an ONTAP node.
+
+* x-tag: Node
+
+
+|homePort
+|link:#homePort[homePort]
+|False
+a|Reference to the home network port.
+
+
+|node
+|link:#node_1_0_reference[node_1.0_reference]
+|False
+a|Reference to an ONTAP node.
+
+* x-tag: Node
+
+
+|port
+|link:#port[port]
+|False
+a|Reference to a network port.
+
+
+|===
+
+
+[#common_1_0_inventory_metadata]
+[.api-collapsible-fifth-title]
+common_1.0_inventory_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|===
+
+
+[#iops]
+[.api-collapsible-fifth-title]
+iops
+
+IOPS metrics for the network interface.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of I/O operations observed at the storage object.
+
+
+|===
+
+
+[#latency]
+[.api-collapsible-fifth-title]
+latency
+
+Latency metrics for the network interface.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|average
+|number
+|False
+a|The average round trip latency observed at the storage object, in microseconds.
+
+
+|===
+
+
+[#throughput]
+[.api-collapsible-fifth-title]
+throughput
+
+Throughput metrics for the network interface.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of throughput observed at the storage object, in bytes per second.
+
+
+|===
+
+
+[#networkinterface_1_0_metrics]
+[.api-collapsible-fifth-title]
+networkinterface_1.0_metrics
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|iops
+|link:#iops[iops]
+|False
+a|IOPS metrics for the network interface.
+
+
+|latency
+|link:#latency[latency]
+|False
+a|Latency metrics for the network interface.
+
+
+|throughput
+|link:#throughput[throughput]
+|False
+a|Throughput metrics for the network interface.
+
+
+|===
+
+
+[#svm_1_0_reference]
+[.api-collapsible-fifth-title]
+svm_1.0_reference
+
+Reference to an ONTAP SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the SVM.
+
+
+|name
+|string
+|False
+a|SVM name.
+
+
+|===
+
+
+[#networkinterface_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+networkinterface_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|cluster
+|link:#cluster_1_0_reference[cluster_1.0_reference]
+|False
+a|Reference to an ONTAP cluster.
+
+* x-tag: Cluster
+
+
+|id
+|string
+|False
+a|Identifier of the interface.
+
+
+|location
+|link:#networkinterface_1_0_location[networkinterface_1.0_location]
+|False
+a|Current and home location of the interface.
+
+
+|metadata
+|link:#common_1_0_inventory_metadata[common_1.0_inventory_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|metrics
+|link:#networkinterface_1_0_metrics[networkinterface_1.0_metrics]
+|False
+a|
+
+|name
+|string
+|False
+a|Interface name.
+
+
+|organizationId
+|string
+|False
+a|Identifier for an organization.
+
+
+|protocols
+|array[string]
+|False
+a|List of data protocols served by the interface.
+
+
+|role
+|string
+|False
+a|The role of the interface.
+Defined values are:
+
+* "CLUSTER" - Cluster-scoped interface.
+* "CLUSTER_MGMT" - Cluster management interface.
+* "DATA" - Data interface serving NFS, CIFS, iSCSI, FCP, NVMe, or S3 traffic.
+* "DCN" - Data compute network interface.
+* "INTERCLUSTER" - Used for cross-cluster communication.
+* "NODE_MGMT" - Node management interface.
+
+
+|svm
+|link:#svm_1_0_reference[svm_1.0_reference]
+|False
+a|Reference to an ONTAP SVM.
+
+* x-tag: SVM
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+*** "application/vnd.netapp.bxp.networkinterface"
+
+
+|version
+|string
+|False
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|workingEnvironmentId
+|string
+|False
+a|Identifier for the asset's system.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

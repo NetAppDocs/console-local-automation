@@ -1,0 +1,884 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'asset/get-organizations-fleets-namespaces.html'
+summary: 'List NVMe namespaces in a fleet in NetApp Console local deployment'
+---
+
+= List NVMe namespaces in a fleet in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/namespaces`#
+
+
+
+Lists all NVMe namespaces in the specified fleet.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|fleet_id
+|string
+|path
+|True
+a|Identifier for a fleet.
+
+
+|count
+|string
+|query
+|False
+a|Indicates if the total number of resources should be returned in the response object.
+
+URL examples: "count=true"
+
+OpenAPI examples: "true"
+
+
+|filter
+|string
+|query
+|False
+a|Specifies which fields should be matched in order to return a resource when listing a collection.
+
+Supported operators:
+
+* eq - Equality
+* lt/gt - Less than/greater than
+* lte/gte - Less than or equal to/greater than or equal to
+
+URL example: "filter=field%20eq%20%27value%27"
+
+OpenAPI examples: "field eq 'value'"
+
+
+|include
+|string
+|query
+|False
+a|Specifies which fields should be returned when listing a collection.
+
+URL examples: "include=id", "include=id,name"
+
+OpenAPI examples: "id"
+
+
+|limit
+|string
+|query
+|False
+a|Specifies the maximum number of resources to return when listing a collection.
+
+URL examples: "limit=2"
+
+OpenAPI examples: "2"
+
+
+|metadata
+|string
+|query
+|False
+a|Indicates if the metadata should be returned in the response object.
+
+URL examples: "metadata=true"
+
+OpenAPI examples: "true"
+
+
+|orderBy
+|string
+|query
+|False
+a|Indicates the sort order of resources when listing a collection.
+
+URL examples: "orderBy=name", "orderBy=name%20desc"
+
+OpenAPI examples: "name desc"
+
+
+|skip
+|string
+|query
+|False
+a|Specifies the number of resources to skip when listing a collection.
+
+URL examples: "skip=1"
+
+OpenAPI examples: "1"
+
+
+|===
+
+== Response
+
+```
+Status: 200, OK
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Total number of resources in the collection that match the query.
+
+
+|items
+|array[link:#namespace_1_0_get_response_body[namespace_1.0_get_response_body]]
+|True
+a|NVMe namespaces in the collection.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 2,
+  "items": [
+    {
+      "cluster": {
+        "id": "2c5f8a9b-4e7d-4c1a-b8f3-6e9d2a5c8f1b",
+        "name": "cluster-01"
+      },
+      "clusterPersonality": "ASA_R2",
+      "id": "c08d213b-3c38-4c07-bde0-852ef821b815",
+      "metadata": {
+        "modificationTimestamp": "2026-01-16T14:32:48.789123Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 345.2
+        },
+        "latency": {
+          "average": 89.34
+        },
+        "throughput": {
+          "total": 87593.6
+        }
+      },
+      "name": "/vol/vol1/namespace1",
+      "organizationId": "3b8f9e2a-7c4d-4e8f-a1b2-9d6e7f8a9b0c",
+      "space": {
+        "available": 824633720832,
+        "size": 1374389534720,
+        "used": 549755813888
+      },
+      "state": "ONLINE",
+      "subsystem": {
+        "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "name": "subsystem-01"
+      },
+      "svm": {
+        "id": "4a7b9e2c-8f5d-4c3a-b1e6-9d2f4c7a8e5b",
+        "name": "svm-01"
+      },
+      "type": "application/vnd.netapp.bxp.namespace",
+      "version": "1.0",
+      "volume": {
+        "id": "8e2f9d4c-6a5b-4f8e-a2d7-5c9e4f2a7b8d",
+        "name": "volume-01"
+      },
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    },
+    {
+      "cluster": {
+        "id": "2c5f8a9b-4e7d-4c1a-b8f3-6e9d2a5c8f1b",
+        "name": "cluster-01"
+      },
+      "clusterPersonality": "ASA_R2",
+      "id": "6b8e1f9a-3c7d-4a2e-8f5b-1d4c7e9a6b2f",
+      "metadata": {
+        "modificationTimestamp": "2026-01-16T14:35:22.456789Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 189.7
+        },
+        "latency": {
+          "average": 203.68
+        },
+        "throughput": {
+          "total": 45821.9
+        }
+      },
+      "name": "/vol/vol2/namespace2",
+      "organizationId": "3b8f9e2a-7c4d-4e8f-a1b2-9d6e7f8a9b0c",
+      "space": {
+        "available": 395136991232,
+        "size": 859832668160,
+        "used": 464695676928
+      },
+      "state": "ONLINE",
+      "subsystem": {
+        "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+        "name": "subsystem-02"
+      },
+      "svm": {
+        "id": "9c2e5f7a-4b8d-4f1c-a7e3-6d9f2c5e8a1b",
+        "name": "svm-02"
+      },
+      "type": "application/vnd.netapp.bxp.namespace",
+      "version": "1.0",
+      "volume": {
+        "id": "3a6d9f2c-5e8b-4f4a-c7d1-8e5a3d6f9c2e",
+        "name": "volume-02"
+      },
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#cluster_1_0_reference]
+[.api-collapsible-fifth-title]
+cluster_1.0_reference
+
+Reference to an ONTAP cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the cluster.
+
+
+|name
+|string
+|False
+a|Cluster name.
+
+
+|===
+
+
+[#common_1_0_inventory_metadata]
+[.api-collapsible-fifth-title]
+common_1.0_inventory_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|===
+
+
+[#iops]
+[.api-collapsible-fifth-title]
+iops
+
+IOPS metrics for the NVMe namespace.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of I/O operations observed at the storage object.
+
+
+|===
+
+
+[#latency]
+[.api-collapsible-fifth-title]
+latency
+
+Latency metrics for the NVMe namespace.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|average
+|number
+|False
+a|The average round trip latency observed at the storage object in microseconds.
+
+
+|===
+
+
+[#throughput]
+[.api-collapsible-fifth-title]
+throughput
+
+Throughput metrics for the NVMe namespace.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of throughput observed at the storage object in bytes per second.
+
+
+|===
+
+
+[#namespace_1_0_metrics]
+[.api-collapsible-fifth-title]
+namespace_1.0_metrics
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|iops
+|link:#iops[iops]
+|False
+a|IOPS metrics for the NVMe namespace.
+
+
+|latency
+|link:#latency[latency]
+|False
+a|Latency metrics for the NVMe namespace.
+
+
+|throughput
+|link:#throughput[throughput]
+|False
+a|Throughput metrics for the NVMe namespace.
+
+
+|===
+
+
+[#namespace_1_0_space]
+[.api-collapsible-fifth-title]
+namespace_1.0_space
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|available
+|integer
+|False
+a|The available space in bytes.
+
+
+|size
+|integer
+|False
+a|The total provisioned size of the NVMe namespace in bytes.
+
+
+|used
+|integer
+|False
+a|The amount of space consumed by the NVMe namespace in bytes.
+
+
+|===
+
+
+[#subsystem]
+[.api-collapsible-fifth-title]
+subsystem
+
+NVMe subsystem to which the namespace is mapped.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the NVMe subsystem to which the namespace is mapped.
+
+
+|name
+|string
+|False
+a|Name of the NVMe subsystem to which the namespace is mapped.
+
+
+|===
+
+
+[#svm_1_0_reference]
+[.api-collapsible-fifth-title]
+svm_1.0_reference
+
+Reference to an ONTAP SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the SVM.
+
+
+|name
+|string
+|False
+a|SVM name.
+
+
+|===
+
+
+[#volume_1_0_reference]
+[.api-collapsible-fifth-title]
+volume_1.0_reference
+
+Reference to an ONTAP volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the volume.
+
+
+|name
+|string
+|False
+a|Volume name.
+
+
+|===
+
+
+[#namespace_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+namespace_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|cluster
+|link:#cluster_1_0_reference[cluster_1.0_reference]
+|False
+a|Reference to an ONTAP cluster.
+
+* x-tag: Cluster
+
+
+|clusterPersonality
+|string
+|False
+a|The personality of the ONTAP cluster that the NVMe namespace belongs to, derived from the cluster's disaggregated and SAN-optimized configuration.
+Defined values are:
+
+* "UNIFIED_ONTAP" - A traditional unified ONTAP cluster (not disaggregated).
+* "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array (ASA) r2 cluster.
+* "AFX" - A disaggregated cluster that is not SAN-optimized.
+* enum: ["UNIFIED_ONTAP", "ASA_R2", "AFX"]
+* example: ASA_R2
+
+
+|id
+|string
+|False
+a|Identifier of the NVMe namespace.
+
+
+|metadata
+|link:#common_1_0_inventory_metadata[common_1.0_inventory_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|metrics
+|link:#namespace_1_0_metrics[namespace_1.0_metrics]
+|False
+a|
+
+|name
+|string
+|False
+a|NVMe namespace name.
+
+
+|organizationId
+|string
+|False
+a|Identifier for an organization.
+
+
+|space
+|link:#namespace_1_0_space[namespace_1.0_space]
+|False
+a|
+
+|state
+|string
+|False
+a|The state of the NVMe namespace.
+Defined values are:
+
+* "online" - The namespace is online and available for I/O.
+* "offline" - The namespace is offline and not available for I/O.
+
+
+|subsystem
+|link:#subsystem[subsystem]
+|False
+a|NVMe subsystem to which the namespace is mapped.
+
+
+|svm
+|link:#svm_1_0_reference[svm_1.0_reference]
+|False
+a|Reference to an ONTAP SVM.
+
+* x-tag: SVM
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+*** "application/vnd.netapp.bxp.namespace"
+
+
+|version
+|string
+|False
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|volume
+|link:#volume_1_0_reference[volume_1.0_reference]
+|False
+a|Reference to an ONTAP volume.
+
+* x-tag: Volume
+
+
+|workingEnvironmentId
+|string
+|False
+a|Identifier for the asset's system.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

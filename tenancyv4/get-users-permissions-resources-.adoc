@@ -1,0 +1,778 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'tenancyv4/get-users-permissions-resources-.html'
+summary: 'Retrieve a resource for a user with a permission in NetApp Console local deployment'
+---
+
+= Retrieve a resource for a user with a permission in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/users/{user_id}/permissions/{permission_id}/resources/{resource_id}`#
+
+
+
+Retrieves a resource for which a user has given permission.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|user_id
+|string
+|path
+|True
+a|ID of the user or aadId or auth0Id.
+
+* example: 666a3f38-d4fa-5b62-a391-a69029758d32 or auth0\|66e41be44594c8505b0dba75
+
+
+|permission_id
+|string
+|path
+|True
+a|ID of the permission or permission rule.
+
+* example: 666a3f38-d4fa-5b62-a391-a69029758d32 or bxp:binding-read
+
+
+|resource_id
+|string
+|path
+|True
+a|ID of the resource or legacyId.
+
+* example: 666a3f38-d4fa-5b62-a391-a69029758d32 or account-Adcxyz
+
+
+|filter
+|string
+|query
+|False
+a|Specifies which fields should be matched when listing tenancy resources.
+
+Supported operators:
+
+* eq - Equality
+* ne - Not equal
+* lt/gt - Less than/greater than
+* lte/gte - Less than or equal to/greater than or equal to
+* in - Membership test
+* ex - Existence check
+
+Expressions can be chained with `and` or `or` to build complex filters and
+grouped with parentheses for precedence control.
+
+URL example: "filter=resourceType%20eq%20'organization'%20or%20state%20ne%20'INACTIVE'"
+
+URL example with grouping: "filter=(resourceType%20eq%20'organization'%20or%20state%20ne%20'INACTIVE')%20and%20tier%20gt%20'1'"
+
+OpenAPI examples: "resourceType eq 'organization' and state ne 'INACTIVE'"
+
+
+|===
+
+== Response
+
+```
+Status: 200, Returns the stored resource in the JSON response body.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|description
+|string
+|False
+a|JSON string containing the description of the resource. Defined values are: * Minimum length: 1 * Maximum length: 254 * This string is internally validated to prevent XSS, Unicode, directory traversal, and SQL-injection attacks.
+
+
+|id
+|string
+|True
+a|Globally unique identifier of the resource.
+Defined values are:
+
+* Conforms to the UUIDv4 Schema
+
+
+|isSystem
+|string
+|False
+a|Specifies if an object is system generated.
+Defined values are:
+
+* "true"
+
+
+|legacyId
+|string
+|False
+a|Unique identifier as understood by the previous version of this service.
+
+
+|links
+|array[link:#type_bxp_link[type_bxp_link]]
+|False
+a|Array of link relationships associated with the resource or collection.
+
+
+|metadata
+|link:#type_bxp_metadata[type_bxp_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|name
+|string
+|True
+a|JSON string containing a name for the resource.
+Defined values are:
+
+* Minimum length: 1
+* Maximum length: 300
+* This string is internally validated to prevent XSS, Unicode, directory traversal, and SQL-injection attacks.
+
+
+|ownerOrganizationId
+|string
+|False
+a|JSON string containing the ID of the organization.
+
+
+|parentId
+|string
+|False
+a|JSON string containing the ID of the hierarchy.
+
+
+|rawId
+|string
+|False
+a|JSON string containing the physical ID of the resource. It is the ID as defined by the system (a UUID, a string, or any other defined ID). For example, the UUID of an ONTAP cluster or the UUID of an application in Astra Control.
+
+* maxLength: 400
+* minLength: 1
+
+
+|resourceClass
+|string
+|True
+a|JSON string containing the resource class. This field is for Accounts (tenancy) compatibility support.
+
+
+|resourceType
+|string
+|True
+a|JSON string containing the resource type. This should be one of the allowed resource types, which should be in the resource types collection. These resource types are defined by the service applications and the NetApp Console IAM system.
+
+
+|state
+|string
+|False
+a|Represents the state of the resource. State of the resource can be reconciling, which indicates the resource is currently undergoing a reconciliation process
+or available, which indicates the resources is currently available.
+Defined values are:
+
+* "reconciling"
+* "available"
+
+
+|tags
+|array[link:#tags[tags]]
+|False
+a|JSON array of tags (name/value pairs) representing metadata for the resource.
+
+
+|type
+|string
+|True
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.resource"
+
+
+|version
+|string
+|True
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "description": "Added a resource of resourceType volume",
+  "id": "666a3f38-d4fa-5b62-a391-a69029758d32",
+  "metadata": {
+    "createdBy": "8f84cf09-8036-51e4-b579-bd30cb07b269",
+    "creationTimestamp": "2022-10-06T20:58:16.305662Z",
+    "labels": [],
+    "modificationTimestamp": "2022-10-06T20:58:16.305662Z",
+    "modifiedBy": "8f84cf09-8036-51e4-b579-bd30cb07b269"
+  },
+  "name": "volume-1",
+  "rawId": "cluster-1-volume-1",
+  "resourceType": "volume",
+  "tags": [
+    {
+      "internal:bxp:organizationId": "777a3f38-d4fa-5b62-a391-a69029758d32"
+    }
+  ],
+  "type": "application/vnd.netapp.bxp.resource",
+  "version": "1.0"
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Error
+
+```
+Status: 404, Not found
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The collection specified in the request URI wasn't found.",
+  "status": "404",
+  "title": "Collection not found",
+  "type": "https://bluexp.netapp.io/problems/2"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#accept-post]
+[.api-collapsible-fifth-title]
+accept-post
+
+Provides details about which media types are accepted when creating a resource.
+
+
+
+[#accept-put]
+[.api-collapsible-fifth-title]
+accept-put
+
+Indicates details about what media types are accepted when updating a resource.
+
+
+
+[#hints]
+[.api-collapsible-fifth-title]
+hints
+
+Provides details about how a link can be interacted with, such as allowed methods, required permissions, and accepted media types for create/update operations.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|accept-post
+|link:#accept-post[accept-post]
+|False
+a|Provides details about which media types are accepted when creating a resource.
+
+
+|accept-put
+|link:#accept-put[accept-put]
+|False
+a|Indicates details about what media types are accepted when updating a resource.
+
+
+|allow
+|array[string]
+|False
+a|An array of methods that can be used to interact with the link target.
+
+Defined values for collections:
+
+"POST" - Indicates if new resources can be created in the collection.
+Defined values for resources:
+
+"PUT" - Indicates if the resource can be modified
+"DELETE" - Indicates if the resource can be deleted
+
+
+|permissions
+|array[string]
+|False
+a|List of the permissions required to use the link.
+
+
+|status
+|string
+|False
+a|Indicates if the target of the link is deprecated.
+
+Defined values are:
+
+"deprecated"
+
+
+|===
+
+
+[#targetSchema]
+[.api-collapsible-fifth-title]
+targetSchema
+
+Link to a JSON schema that can be used to validate the target of the link (response body).
+
+The preferred format is a $ref link to an external schema.
+
+This field is optional and should only be included when there is a known schema for the target of the href.
+
+See https://json-schema.org/draft/2019-09/json-schema-hypermedia.html#rfc.section.9.2 for more details.
+
+
+
+[#type_bxp_link]
+[.api-collapsible-fifth-title]
+type_bxp_link
+
+Link relationship
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|hints
+|link:#hints[hints]
+|False
+a|Provides details about how a link can be interacted with, such as allowed methods, required permissions, and accepted media types for create/update operations.
+
+
+|href
+|string
+|True
+a|String describing a relative URI.
+
+
+|rel
+|string
+|True
+a|The type of relationship for the link. Values are defined in the IANA Link Relationships registry, or an extension relationship type as specified in section 2.1.2 of RFC 8288.
+
+
+|targetSchema
+|link:#targetSchema[targetSchema]
+|False
+a|Link to a JSON schema that can be used to validate the target of the link (response body).
+
+The preferred format is a $ref link to an external schema.
+
+This field is optional and should only be included when there is a known schema for the target of the href.
+
+See https://json-schema.org/draft/2019-09/json-schema-hypermedia.html#rfc.section.9.2 for more details.
+
+
+|title
+|string
+|False
+a|Label of a link such that it can be used as a human-readable identifier (e.g., a menu entry).
+
+Minimum length: 0
+Maximum length: 1023
+
+
+|type
+|string
+|False
+a|The media type of the target of the href.
+
+This field is optional and should be included when there is a known media type for the target of the href.
+
+See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link for more details.
+
+
+|===
+
+
+[#type_bxp_label]
+[.api-collapsible-fifth-title]
+type_bxp_label
+
+Name/value pair.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the label.
+
+
+|value
+|string
+|True
+a|Value of the label.
+
+
+|===
+
+
+[#type_bxp_metadata]
+[.api-collapsible-fifth-title]
+type_bxp_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|createdBy
+|string
+|False
+a|UUID of the user who created the resource.
+
+
+|creationTimestamp
+|string
+|False
+a|Resource creation date.
+
+
+|labels
+|array[link:#type_bxp_label[type_bxp_label]]
+|False
+a|Array of name/value pairs representing additional information for the resource.
+
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|modifiedBy
+|string
+|False
+a|UUID of the user who modified the resource.
+
+
+|===
+
+
+[#tags]
+[.api-collapsible-fifth-title]
+tags
+Hash mapping strings to string
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

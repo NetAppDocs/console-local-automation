@@ -1,0 +1,1208 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'asset/get-organizations-svms.html'
+summary: 'List SVMs in an organization in NetApp Console local deployment'
+---
+
+= List SVMs in an organization in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/svms`#
+
+
+
+Lists all SVMs in the specified organization.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|count
+|string
+|query
+|False
+a|Indicates if the total number of resources should be returned in the response object.
+
+URL examples: "count=true"
+
+OpenAPI examples: "true"
+
+
+|filter
+|string
+|query
+|False
+a|Specifies which fields should be matched in order to return a resource when listing a collection.
+
+Supported operators:
+
+* eq - Equality
+* lt/gt - Less than/greater than
+* lte/gte - Less than or equal to/greater than or equal to
+
+URL example: "filter=field%20eq%20%27value%27"
+
+OpenAPI examples: "field eq 'value'"
+
+
+|include
+|string
+|query
+|False
+a|Specifies which fields should be returned when listing a collection.
+
+URL examples: "include=id", "include=id,name"
+
+OpenAPI examples: "id"
+
+
+|limit
+|string
+|query
+|False
+a|Specifies the maximum number of resources to return when listing a collection.
+
+URL examples: "limit=2"
+
+OpenAPI examples: "2"
+
+
+|metadata
+|string
+|query
+|False
+a|Indicates if the metadata should be returned in the response object.
+
+URL examples: "metadata=true"
+
+OpenAPI examples: "true"
+
+
+|orderBy
+|string
+|query
+|False
+a|Indicates the sort order of resources when listing a collection.
+
+URL examples: "orderBy=name", "orderBy=name%20desc"
+
+OpenAPI examples: "name desc"
+
+
+|skip
+|string
+|query
+|False
+a|Specifies the number of resources to skip when listing a collection.
+
+URL examples: "skip=1"
+
+OpenAPI examples: "1"
+
+
+|===
+
+== Response
+
+```
+Status: 200, OK
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Total number of resources in the collection that match the query.
+
+
+|items
+|array[link:#svm_1_0_get_response_body[svm_1.0_get_response_body]]
+|True
+a|SVM resources in the collection.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 2,
+  "items": [
+    {
+      "adminState": "RUNNING",
+      "aggregates": [
+        {
+          "id": "c08d213b-3c38-4c07-bde0-852ef821b815",
+          "name": "aggregate-01"
+        }
+      ],
+      "antiRansomware": {
+        "defaultVolumeState": "DISABLED"
+      },
+      "audit": {
+        "enabled": true
+      },
+      "cifs": {
+        "enabled": true
+      },
+      "cluster": {
+        "id": "4c8d2919-ac4c-4ea7-bf7c-24863d4da94b",
+        "name": "cluster-01"
+      },
+      "fcp": {
+        "enabled": false
+      },
+      "id": "92c08026-35d2-45fe-8c1b-67b08d0c0322",
+      "iscsi": {
+        "enabled": false
+      },
+      "metadata": {
+        "modificationTimestamp": "2022-10-06T20:58:16.305662Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 250.5
+        },
+        "latency": {
+          "average": 150.75
+        },
+        "throughput": {
+          "total": 61070.2
+        }
+      },
+      "name": "svm-01",
+      "nfs": {
+        "enabled": true
+      },
+      "nvme": {
+        "enabled": false
+      },
+      "operationalState": "RUNNING",
+      "organizationId": "16c07c0c-666b-4870-9363-764eef9e7160",
+      "s3": {
+        "enabled": false
+      },
+      "security": {
+        "auditLogEnabled": true,
+        "compliancePercent": 100,
+        "keyManagerConfigured": true,
+        "loginBannerConfigured": true,
+        "sshSecured": true
+      },
+      "space": {
+        "afsTotal": 1099511627776,
+        "available": 549755813888
+      },
+      "storage": {
+        "available": 1099511627776
+      },
+      "subtype": "DEFAULT",
+      "svmType": "DATA",
+      "type": "application/vnd.netapp.bxp.svm",
+      "version": "1.0",
+      "volumeCount": 20,
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    },
+    {
+      "adminState": "RUNNING",
+      "aggregates": [
+        {
+          "id": "d19e324c-4d4f-5d18-cef1-963fg932c926",
+          "name": "aggregate-02"
+        }
+      ],
+      "antiRansomware": {
+        "defaultVolumeState": "DISABLED"
+      },
+      "audit": {
+        "enabled": true
+      },
+      "cifs": {
+        "enabled": true
+      },
+      "cluster": {
+        "id": "4c8d2919-ac4c-4ea7-bf7c-24863d4da94b",
+        "name": "cluster-01"
+      },
+      "fcp": {
+        "enabled": false
+      },
+      "id": "a7f19b3e-42c6-4d1a-9f7e-8b2d3c4e5f6a",
+      "iscsi": {
+        "enabled": false
+      },
+      "metadata": {
+        "modificationTimestamp": "2022-10-06T21:15:42.108234Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 180.3
+        },
+        "latency": {
+          "average": 120.25
+        },
+        "throughput": {
+          "total": 45088768
+        }
+      },
+      "name": "svm-02",
+      "nfs": {
+        "enabled": true
+      },
+      "nvme": {
+        "enabled": false
+      },
+      "operationalState": "STOPPED",
+      "organizationId": "16c07c0c-666b-4870-9363-764eef9e7160",
+      "s3": {
+        "enabled": false
+      },
+      "space": {
+        "afsTotal": 2199023255552,
+        "available": 1649267441664
+      },
+      "storage": {
+        "available": 2199023255552
+      },
+      "subtype": "DP_DESTINATION",
+      "svmType": "DATA",
+      "type": "application/vnd.netapp.bxp.svm",
+      "version": "1.0",
+      "volumeCount": 20,
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#aggregate_1_0_reference]
+[.api-collapsible-fifth-title]
+aggregate_1.0_reference
+
+Reference to an ONTAP aggregate.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the aggregate.
+
+
+|name
+|string
+|False
+a|Aggregate name.
+
+
+|===
+
+
+[#antiRansomware]
+[.api-collapsible-fifth-title]
+antiRansomware
+
+Anti-ransomware related information of the SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|defaultVolumeState
+|string
+|False
+a|The default anti-ransomware state for volumes created in the SVM.
+Defined values are:
+
+* "DISABLED" - Anti-ransomware monitoring is disabled on new volumes.
+* "DRY_RUN" - Anti-ransomware monitoring is enabled in the evaluation mode on new volumes.
+
+
+|===
+
+
+[#audit]
+[.api-collapsible-fifth-title]
+audit
+
+Audit configuration for the SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|enabled
+|boolean
+|False
+a|Indicates whether or not auditing is enabled on the SVM.
+
+
+|===
+
+
+[#cifs]
+[.api-collapsible-fifth-title]
+cifs
+
+CIFS service configuration for the SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|enabled
+|boolean
+|False
+a|Indicates whether or not the CIFS service is administratively enabled.
+
+
+|===
+
+
+[#cluster_1_0_reference]
+[.api-collapsible-fifth-title]
+cluster_1.0_reference
+
+Reference to an ONTAP cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the cluster.
+
+
+|name
+|string
+|False
+a|Cluster name.
+
+
+|===
+
+
+[#fcp]
+[.api-collapsible-fifth-title]
+fcp
+
+FCP service configuration for the SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|enabled
+|boolean
+|False
+a|Indicates whether or not the FCP service is administratively enabled.
+
+
+|===
+
+
+[#iscsi]
+[.api-collapsible-fifth-title]
+iscsi
+
+iSCSI service configuration for the SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|enabled
+|boolean
+|False
+a|Indicates whether or not the iSCSI service is administratively enabled.
+
+
+|===
+
+
+[#common_1_0_inventory_metadata]
+[.api-collapsible-fifth-title]
+common_1.0_inventory_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|===
+
+
+[#iops]
+[.api-collapsible-fifth-title]
+iops
+
+IOPS metrics for volumes in the SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of I/O operations observed for volumes on the SVM.
+
+
+|===
+
+
+[#latency]
+[.api-collapsible-fifth-title]
+latency
+
+Latency metrics for volumes in the SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|average
+|number
+|False
+a|The average round trip latency observed for volumes on the SVM, in microseconds.
+
+
+|===
+
+
+[#throughput]
+[.api-collapsible-fifth-title]
+throughput
+
+Throughput metrics for volumes in the SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of throughput observed for volumes on the SVM, in bytes per second.
+
+
+|===
+
+
+[#svm_1_0_metrics]
+[.api-collapsible-fifth-title]
+svm_1.0_metrics
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|iops
+|link:#iops[iops]
+|False
+a|IOPS metrics for volumes in the SVM.
+
+
+|latency
+|link:#latency[latency]
+|False
+a|Latency metrics for volumes in the SVM.
+
+
+|throughput
+|link:#throughput[throughput]
+|False
+a|Throughput metrics for volumes in the SVM.
+
+
+|===
+
+
+[#nfs]
+[.api-collapsible-fifth-title]
+nfs
+
+NFS service configuration for the SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|enabled
+|boolean
+|False
+a|Indicates whether or not the NFS service is administratively enabled.
+
+
+|===
+
+
+[#nvme]
+[.api-collapsible-fifth-title]
+nvme
+
+NVMe service configuration for the SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|enabled
+|boolean
+|False
+a|Indicates whether or not the NVMe service is administratively enabled.
+
+
+|===
+
+
+[#s3]
+[.api-collapsible-fifth-title]
+s3
+
+S3 service configuration for the SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|enabled
+|boolean
+|False
+a|Indicates whether or not the S3 service is administratively enabled.
+
+
+|===
+
+
+[#security]
+[.api-collapsible-fifth-title]
+security
+
+Security related information for the SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|auditLogEnabled
+|boolean
+|False
+a|Indicates whether or not audit logging is enabled on the SVM.
+
+
+|compliancePercent
+|number
+|False
+a|Percentage of security best practices that the SVM has configured, in the range [0, 100].
+An SVM is considered non-compliant if any of the following conditions are true:
+
+* CIFS or NFS is enabled but audit logging is disabled.
+* SSH is configured with insecure ciphers.
+* No login banner is set at the SVM scope.
+
+
+|keyManagerConfigured
+|boolean
+|False
+a|Indicates whether or not a key manager is configured for the SVM.
+
+
+|loginBannerConfigured
+|boolean
+|False
+a|Indicates whether or not a login banner is configured for the SVM.
+
+
+|sshSecured
+|boolean
+|False
+a|Indicates whether or not the SVM SSH configuration uses only secure ciphers.
+
+
+|===
+
+
+[#svm_1_0_space]
+[.api-collapsible-fifth-title]
+svm_1.0_space
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|afsTotal
+|integer
+|False
+a|Total size of the active filesystems in the SVM, excluding snap-reserve, in bytes.
+
+
+|available
+|integer
+|False
+a|The total available volume capacity on the SVM, in bytes.
+
+
+|===
+
+
+[#svm_1_0_storage]
+[.api-collapsible-fifth-title]
+svm_1.0_storage
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|available
+|integer
+|False
+a|Currently available storage capacity in SVM, in bytes. When the storage limit is not set, this defaults to INT_MAX_VALUE.
+
+
+|===
+
+
+[#svm_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+svm_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|adminState
+|string
+|False
+a|The administrative state of the SVM.
+Defined values are:
+
+* "STARTING" - The SVM is starting up.
+* "RUNNING" - The SVM is administratively up.
+* "STOPPING" - The SVM is in the process of stopping.
+* "STOPPED" - The SVM is administratively stopped.
+* "DELETING" - The SVM is being deleted.
+* "INITIALIZING" - The SVM is being initialized.
+
+
+|aggregates
+|array[link:#aggregate_1_0_reference[aggregate_1.0_reference]]
+|False
+a|List of aggregates assigned to the SVM.
+
+
+|antiRansomware
+|link:#antiRansomware[antiRansomware]
+|False
+a|Anti-ransomware related information of the SVM.
+
+
+|audit
+|link:#audit[audit]
+|False
+a|Audit configuration for the SVM.
+
+
+|cifs
+|link:#cifs[cifs]
+|False
+a|CIFS service configuration for the SVM.
+
+
+|cluster
+|link:#cluster_1_0_reference[cluster_1.0_reference]
+|False
+a|Reference to an ONTAP cluster.
+
+* x-tag: Cluster
+
+
+|fcp
+|link:#fcp[fcp]
+|False
+a|FCP service configuration for the SVM.
+
+
+|id
+|string
+|False
+a|Identifier of the SVM.
+
+
+|iscsi
+|link:#iscsi[iscsi]
+|False
+a|iSCSI service configuration for the SVM.
+
+
+|maxVolumes
+|string
+|False
+a|The maximum number of volumes allowed in the SVM.
+Set to "UNLIMITED" when no limit is configured.
+
+
+|metadata
+|link:#common_1_0_inventory_metadata[common_1.0_inventory_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|metrics
+|link:#svm_1_0_metrics[svm_1.0_metrics]
+|False
+a|
+
+|name
+|string
+|False
+a|SVM name.
+
+
+|nfs
+|link:#nfs[nfs]
+|False
+a|NFS service configuration for the SVM.
+
+
+|nvme
+|link:#nvme[nvme]
+|False
+a|NVMe service configuration for the SVM.
+
+
+|operationalState
+|string
+|False
+a|The operational state of the SVM.
+Defined values are:
+
+* "RUNNING" - The SVM is operationally up and serving data.
+* "STOPPED" - The SVM is operationally stopped.
+
+
+|organizationId
+|string
+|False
+a|Identifier for an organization.
+
+
+|s3
+|link:#s3[s3]
+|False
+a|S3 service configuration for the SVM.
+
+
+|security
+|link:#security[security]
+|False
+a|Security related information for the SVM.
+
+
+|space
+|link:#svm_1_0_space[svm_1.0_space]
+|False
+a|
+
+|storage
+|link:#svm_1_0_storage[svm_1.0_storage]
+|False
+a|
+
+|subtype
+|string
+|False
+a|The subtype of the SVM.
+Defined values are:
+
+* "DEFAULT" - Default data Vserver.
+* "DP_DESTINATION" - Data Protection destination Vserver.
+* "SYNC_SOURCE" - MetroCluster source Vserver.
+* "SYNC_DESTINATION" - MetroCluster destination Vserver.
+* "DATA_ENGINE" - Data engine Vserver.
+
+
+|svmType
+|string
+|False
+a|The type of the SVM.
+Defined values are:
+
+* "DATA" - A data SVM.
+* "NODE" - A node SVM.
+* "ADMIN" - The admin SVM.
+* "SYSTEM" - A system SVM.
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+*** "application/vnd.netapp.bxp.svm"
+
+
+|version
+|string
+|False
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|volumeCount
+|number
+|False
+a|Number of FlexVol and FlexGroup volumes in the SVM.
+
+
+|workingEnvironmentId
+|string
+|False
+a|Identifier for the asset's system.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

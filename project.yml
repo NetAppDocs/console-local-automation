@@ -1,14 +1,610 @@
+---
 settings:
-  name: "Product Name"
+  name: API
   internal:
-    pdf_enabled: true
-    lipi_enabled: true
+    pdf_enabled: false
   prod:
-    pdf_enabled: true
-    lipi_enabled: false
+    pdf_enabled: false
     harmony_enabled: false
-
-sidebar: 
+sidebar:
   entries:
+  - title: NetApp Console local deployment API docs
+    url: "/index.html"
+  - section: platform
+  - title: Agentic Platform
+    entries:
+    - title: Configuration
+      entries:
+      - title: List all configurations
+        url: "/agentic/get-configs.html"
+      - title: Create a new draft configuration
+        url: "/agentic/post-configs.html"
+      - title: Delete a configuration
+        url: "/agentic/delete-configs-.html"
+      - title: Retrieve a configuration
+        url: "/agentic/get-configs-.html"
+      - title: Apply a configuration
+        url: "/agentic/patch-configs-.html"
+    - title: Health
+      entries:
+      - title: Retrieve the configuration manager health status
+        url: "/agentic/get-health.html"
+    - title: Provider models
+      entries:
+      - title: List models available from a LLM provider associated with a saved configuration
+        url: "/agentic/get-configs-providermodels.html"
+      - title: List models available from an LLM provider
+        url: "/agentic/post-providermodels.html"
+    - title: Supported models
+      entries:
+      - title: List all supported LLM models
+        url: "/agentic/get-supportedmodels.html"
+      - title: Retrieve an LLM model
+        url: "/agentic/get-supportedmodels-.html"
+    - title: Supported providers
+      entries:
+      - title: List all available LLM supported providers
+        url: "/agentic/get-supportedproviders.html"
+      - title: Retrieve an LLM supported provider
+        url: "/agentic/get-supportedproviders-.html"
+  - title: Assets
+    entries:
+    - title: Aggregate
+      entries:
+      - title: List aggregates in an organization
+        url: "/asset/get-organizations-aggregates.html"
+      - title: List aggregates in a fleet
+        url: "/asset/get-organizations-fleets-aggregates.html"
+    - title: Cluster
+      entries:
+      - title: List clusters in an organization
+        url: "/asset/get-organizations-clusters.html"
+      - title: List clusters in a fleet
+        url: "/asset/get-organizations-fleets-clusters.html"
+      - title: List clusters in a folder
+        url: "/asset/get-organizations-folders-clusters.html"
+    - title: Fleet
+      entries:
+      - title: List fleets
+        url: "/asset/get-organizations-fleets.html"
+    - title: LUN
+      entries:
+      - title: List LUNs
+        url: "/asset/get-organizations-fleets-luns.html"
+      - title: List LUNs in an organization
+        url: "/asset/get-organizations-luns.html"
+    - title: Namespace
+      entries:
+      - title: List NVMe namespaces in a fleet
+        url: "/asset/get-organizations-fleets-namespaces.html"
+      - title: List NVMe namespaces in an organization
+        url: "/asset/get-organizations-namespaces.html"
+    - title: Network interface
+      entries:
+      - title: List interfaces in a fleet
+        url: "/asset/get-organizations-fleets-networkinterfaces.html"
+      - title: List interfaces in an organization
+        url: "/asset/get-organizations-networkinterfaces.html"
+    - title: Node
+      entries:
+      - title: List nodes in a fleet
+        url: "/asset/get-organizations-fleets-nodes.html"
+      - title: List nodes in an organization
+        url: "/asset/get-organizations-nodes.html"
+    - title: Port
+      entries:
+      - title: List ports in a fleet
+        url: "/asset/get-organizations-fleets-ports.html"
+      - title: List ports in an organization
+        url: "/asset/get-organizations-ports.html"
+    - title: Qos policy group
+      entries:
+      - title: List QoS policy groups in a fleet
+        url: "/asset/get-organizations-fleets-qospolicygroups.html"
+      - title: List QoS policy groups in an organization
+        url: "/asset/get-organizations-qospolicygroups.html"
+    - title: Qtree
+      entries:
+      - title: List qtrees in a fleet
+        url: "/asset/get-organizations-fleets-qtrees.html"
+      - title: List qtrees in an organization
+        url: "/asset/get-organizations-qtrees.html"
+    - title: SMB share
+      entries:
+      - title: List SMB shares in a fleet
+        url: "/asset/get-organizations-fleets-smbshares.html"
+      - title: List SMB shares in an organization
+        url: "/asset/get-organizations-smbshares.html"
+    - title: Storage virtual machine
+      entries:
+      - title: List SVMs in a fleet
+        url: "/asset/get-organizations-fleets-svms.html"
+      - title: List SVMs in an organization
+        url: "/asset/get-organizations-svms.html"
+    - title: Timeseries
+      entries:
+      - title: Run a MetricsQL query for systems in the specified fleet
+        url: "/asset/post-organizations-fleets-metricsql.html"
+      - title: Retrieve time series data for systems in a fleet
+        url: "/asset/post-organizations-fleets-timeseries.html"
+      - title: Run a MetricsQL query for systems in an organization
+        url: "/asset/post-organizations-metricsql.html"
+      - title: Retrieve time series data for systems in an organization
+        url: "/asset/post-organizations-timeseries.html"
+    - title: Volume
+      entries:
+      - title: List volumes in a fleet
+        url: "/asset/get-organizations-fleets-volumes.html"
+      - title: List volumes in an organization
+        url: "/asset/get-organizations-volumes.html"
+  - title: Identity and access management
+    entries:
+    - title: Hierarchy
+      entries:
+      - title: List all fleets
+        url: "/tenancyv4/get-fleets.html"
+      - title: Create a new fleet
+        url: "/tenancyv4/post-fleets.html"
+      - title: Delete a fleet
+        url: "/tenancyv4/delete-fleets-.html"
+      - title: Retrieve a fleet
+        url: "/tenancyv4/get-fleets-.html"
+      - title: Partially update a fleet
+        url: "/tenancyv4/patch-fleets-.html"
+      - title: Modify a fleet
+        url: "/tenancyv4/put-fleets-.html"
+      - title: List all users under a fleet
+        url: "/tenancyv4/get-fleets-users.html"
+      - title: Create a new user association under a fleet
+        url: "/tenancyv4/post-fleets-users.html"
+      - title: List all folders
+        url: "/tenancyv4/get-folders.html"
+      - title: Create a new folder
+        url: "/tenancyv4/post-folders.html"
+      - title: Delete a folder
+        url: "/tenancyv4/delete-folders-.html"
+      - title: Retrieve a folder
+        url: "/tenancyv4/get-folders-.html"
+      - title: Update a folder partially
+        url: "/tenancyv4/patch-folders-.html"
+      - title: Update a folder
+        url: "/tenancyv4/put-folders-.html"
+      - title: List all fleets under a folder
+        url: "/tenancyv4/get-folders-fleets.html"
+      - title: Create a new fleet under a folder
+        url: "/tenancyv4/post-folders-fleets.html"
+      - title: Remove a fleet from a folder
+        url: "/tenancyv4/delete-folders-fleets-.html"
+      - title: Retrieve a fleet under a folder
+        url: "/tenancyv4/get-folders-fleets-.html"
+      - title: Partially update a fleet under a folder
+        url: "/tenancyv4/patch-folders-fleets-.html"
+      - title: Modify a fleet under a folder
+        url: "/tenancyv4/put-folders-fleets-.html"
+      - title: List all folders under a parent folder
+        url: "/tenancyv4/get-folders-folders.html"
+      - title: Create a child folder under a parent folder
+        url: "/tenancyv4/post-folders-folders.html"
+      - title: Remove a child folder from a parent folder
+        url: "/tenancyv4/delete-folders-folders-.html"
+      - title: Retrieve a child folder under a parent folder
+        url: "/tenancyv4/get-folders-folders-.html"
+      - title: List all projects under a folder
+        url: "/tenancyv4/get-folders-projects.html"
+      - title: Create a new project under a folder
+        url: "/tenancyv4/post-folders-projects.html"
+      - title: Remove a project from a folder
+        url: "/tenancyv4/delete-folders-projects-.html"
+      - title: Retrieve a project under a folder
+        url: "/tenancyv4/get-folders-projects-.html"
+      - title: Update a project under a folder partially
+        url: "/tenancyv4/patch-folders-projects-.html"
+      - title: Modify a project under a folder
+        url: "/tenancyv4/put-folders-projects-.html"
+      - title: List all organizations
+        url: "/tenancyv4/get-organizations.html"
+      - title: Create a new organization
+        url: "/tenancyv4/post-organizations.html"
+      - title: Retrieve an organization
+        url: "/tenancyv4/get-organizations-.html"
+      - title: Update an organization partially
+        url: "/tenancyv4/patch-organizations-.html"
+      - title: Modify an organization
+        url: "/tenancyv4/put-organizations-.html"
+      - title: List all fleets under an organization
+        url: "/tenancyv4/get-organizations-fleets.html"
+      - title: Create a new fleet resource under an organization
+        url: "/tenancyv4/post-organizations-fleets.html"
+      - title: Remove a fleet from an organization
+        url: "/tenancyv4/delete-organizations-fleets-.html"
+      - title: Retrieve a fleet under an organization
+        url: "/tenancyv4/get-organizations-fleets-.html"
+      - title: Partially update a fleet under an organization
+        url: "/tenancyv4/patch-organizations-fleets-.html"
+      - title: Modify a fleet under an organization
+        url: "/tenancyv4/put-organizations-fleets-.html"
+      - title: List all folders under an organization
+        url: "/tenancyv4/get-organizations-folders.html"
+      - title: Create a new folder under an organization
+        url: "/tenancyv4/post-organizations-folders.html"
+      - title: Remove a folder from an organization
+        url: "/tenancyv4/delete-organizations-folders-.html"
+      - title: Retrieve a folder under an organization
+        url: "/tenancyv4/get-organizations-folders-.html"
+      - title: Update a folder under an organization partially
+        url: "/tenancyv4/patch-organizations-folders-.html"
+      - title: Update a folder under an organization
+        url: "/tenancyv4/put-organizations-folders-.html"
+      - title: Remove a child organization from a parent organization
+        url: "/tenancyv4/delete-organizations-organizations-.html"
+      - title: List all projects under an organization
+        url: "/tenancyv4/get-organizations-projects.html"
+      - title: Create a new project under an organization
+        url: "/tenancyv4/post-organizations-projects.html"
+      - title: Remove a project from an organization
+        url: "/tenancyv4/delete-organizations-projects-.html"
+      - title: Retrieve a project under an organization
+        url: "/tenancyv4/get-organizations-projects-.html"
+      - title: Update a project under an organization partially
+        url: "/tenancyv4/patch-organizations-projects-.html"
+      - title: Modify a project under an organization
+        url: "/tenancyv4/put-organizations-projects-.html"
+      - title: List all projects
+        url: "/tenancyv4/get-projects.html"
+      - title: Create a new project
+        url: "/tenancyv4/post-projects.html"
+      - title: Delete a project
+        url: "/tenancyv4/delete-projects-.html"
+      - title: Retrieve a project
+        url: "/tenancyv4/get-projects-.html"
+      - title: Update a project partially
+        url: "/tenancyv4/patch-projects-.html"
+      - title: Modify a project
+        url: "/tenancyv4/put-projects-.html"
+    - title: Permission
+      entries:
+      - title: List all permissions
+        url: "/tenancyv4/get-permissions.html"
+      - title: Create a new permission
+        url: "/tenancyv4/post-permissions.html"
+      - title: Delete a permission
+        url: "/tenancyv4/delete-permissions-.html"
+      - title: Retrieve a permission
+        url: "/tenancyv4/get-permissions-.html"
+      - title: Update a permission partially
+        url: "/tenancyv4/patch-permissions-.html"
+      - title: Modify a permission
+        url: "/tenancyv4/put-permissions-.html"
+      - title: List all permissions for a resource
+        url: "/tenancyv4/get-resources-permissions.html"
+      - title: List all permissions for a role
+        url: "/tenancyv4/get-roles-permissions.html"
+      - title: Add a list of permissions to a role
+        url: "/tenancyv4/post-roles-permissions.html"
+      - title: Delete a permission for a role
+        url: "/tenancyv4/delete-roles-permissions-.html"
+      - title: Retrieve a permission for a role
+        url: "/tenancyv4/get-roles-permissions-.html"
+      - title: List all permissions for a user
+        url: "/tenancyv4/get-users-permissions.html"
+      - title: List all permissions a user has for a resource
+        url: "/tenancyv4/get-users-resources-permissions.html"
+      - title: Retrieve a permission on a resource for a user
+        url: "/tenancyv4/get-users-resources-permissions-.html"
+    - title: Resource and resourcegroup
+      entries:
+      - title: Add resource groups to a folder
+        url: "/tenancyv4/post-folders-resourcegroups.html"
+      - title: Remove a resource group from a folder
+        url: "/tenancyv4/delete-folders-resourcegroups-.html"
+      - title: Retrieve a resource group in a folder
+        url: "/tenancyv4/get-folders-resourcegroups-.html"
+      - title: List all resources under a folder
+        url: "/tenancyv4/get-folders-resources.html"
+      - title: Add resources to a folder
+        url: "/tenancyv4/post-folders-resources.html"
+      - title: Remove a resource from a folder
+        url: "/tenancyv4/delete-folders-resources-.html"
+      - title: Retrieve a resource under a folder
+        url: "/tenancyv4/get-folders-resources-.html"
+      - title: List all resource groups under an organization
+        url: "/tenancyv4/get-organizations-resourcegroups.html"
+      - title: Add resource groups to an organization
+        url: "/tenancyv4/post-organizations-resourcegroups.html"
+      - title: Remove a resource group from an organization
+        url: "/tenancyv4/delete-organizations-resourcegroups-.html"
+      - title: Retrieve a resource group under an organization
+        url: "/tenancyv4/get-organizations-resourcegroups-.html"
+      - title: List all resources under an organization
+        url: "/tenancyv4/get-organizations-resources.html"
+      - title: Add resources to an organization
+        url: "/tenancyv4/post-organizations-resources.html"
+      - title: Remove a resource from an organization
+        url: "/tenancyv4/delete-organizations-resources-.html"
+      - title: Retrieve a resource under an organization
+        url: "/tenancyv4/get-organizations-resources-.html"
+      - title: Add resource groups to a project
+        url: "/tenancyv4/post-projects-resourcegroups.html"
+      - title: Remove a resource group from a project
+        url: "/tenancyv4/delete-projects-resourcegroups-.html"
+      - title: Retrieve a resource group under a project
+        url: "/tenancyv4/get-projects-resourcegroups-.html"
+      - title: List all resources in a project
+        url: "/tenancyv4/get-projects-resources.html"
+      - title: Add resources to a project
+        url: "/tenancyv4/post-projects-resources.html"
+      - title: Remove a resource from a project
+        url: "/tenancyv4/delete-projects-resources-.html"
+      - title: Retrieve a resource in a project
+        url: "/tenancyv4/get-projects-resources-.html"
+      - title: List all resource groups
+        url: "/tenancyv4/get-resourcegroups.html"
+      - title: Create a new resource group
+        url: "/tenancyv4/post-resourcegroups.html"
+      - title: Delete a resource group
+        url: "/tenancyv4/delete-resourcegroups-.html"
+      - title: Retrieve a resource group
+        url: "/tenancyv4/get-resourcegroups-.html"
+      - title: Update a resource group
+        url: "/tenancyv4/patch-resourcegroups-.html"
+      - title: Modify a resource group
+        url: "/tenancyv4/put-resourcegroups-.html"
+      - title: List all resources for a resource group
+        url: "/tenancyv4/get-resourcegroups-resources.html"
+      - title: Add resources to a resource group
+        url: "/tenancyv4/post-resourcegroups-resources.html"
+      - title: Remove a resource from a resource group
+        url: "/tenancyv4/delete-resourcegroups-resources-.html"
+      - title: Retrieve a resource in a resource group
+        url: "/tenancyv4/get-resourcegroups-resources-.html"
+      - title: List all resources
+        url: "/tenancyv4/get-resources.html"
+      - title: Create a new resource
+        url: "/tenancyv4/post-resources.html"
+      - title: Delete a resource
+        url: "/tenancyv4/delete-resources-.html"
+      - title: Retrieve a resource
+        url: "/tenancyv4/get-resources-.html"
+      - title: Update a resource
+        url: "/tenancyv4/patch-resources-.html"
+      - title: Modify a resource
+        url: "/tenancyv4/put-resources-.html"
+      - title: List all resource types
+        url: "/tenancyv4/get-resourcetypes.html"
+      - title: Create a new resource type
+        url: "/tenancyv4/post-resourcetypes.html"
+      - title: Retrieve a resource type
+        url: "/tenancyv4/get-resourcetypes-.html"
+      - title: List all resources for a user with a permission
+        url: "/tenancyv4/get-users-permissions-resources.html"
+      - title: Retrieve a resource for a user with a permission
+        url: "/tenancyv4/get-users-permissions-resources-.html"
+      - title: List all resources for a user
+        url: "/tenancyv4/get-users-resources.html"
+      - title: Add resources to an agent
+        url: "/tenancyv4/post-users-resources.html"
+      - title: Remove a resource from an agent
+        url: "/tenancyv4/delete-users-resources-.html"
+      - title: Check if a user has permission for a resource
+        url: "/tenancyv4/get-users-resources-.html"
+    - title: Role
+      entries:
+      - title: List all roles
+        url: "/tenancyv4/get-roles.html"
+      - title: Create a new role
+        url: "/tenancyv4/post-roles.html"
+      - title: Delete a role
+        url: "/tenancyv4/delete-roles-.html"
+      - title: Retrieve a role
+        url: "/tenancyv4/get-roles-.html"
+      - title: Update a role resource partially
+        url: "/tenancyv4/patch-roles-.html"
+      - title: Modify a role resource
+        url: "/tenancyv4/put-roles-.html"
+      - title: List all the roles for a user
+        url: "/tenancyv4/get-users-roles.html"
+    - title: User and usergroup
+      entries:
+      - title: Create a new user group in a folder
+        url: "/tenancyv4/post-folders-roles-usergroups.html"
+      - title: Remove a role associated with a user group from a folder
+        url: "/tenancyv4/delete-folders-roles-usergroups-.html"
+      - title: Associate a set of users for a folder with a role
+        url: "/tenancyv4/post-folders-roles-users.html"
+      - title: Remove a user from a folder
+        url: "/tenancyv4/delete-folders-roles-users-.html"
+      - title: Add user groups to a folder
+        url: "/tenancyv4/post-folders-usergroups.html"
+      - title: Remove a user group from a folder
+        url: "/tenancyv4/delete-folders-usergroups-.html"
+      - title: Retrieve a user group in a folder
+        url: "/tenancyv4/get-folders-usergroups-.html"
+      - title: List all users for a folder
+        url: "/tenancyv4/get-folders-users.html"
+      - title: Add users to a folder
+        url: "/tenancyv4/post-folders-users.html"
+      - title: Remove a user from a folder
+        url: "/tenancyv4/delete-folders-users-.html"
+      - title: Retrieve a user associated with a folder
+        url: "/tenancyv4/get-folders-users-.html"
+      - title: Create a new user group in an organization
+        url: "/tenancyv4/post-organizations-roles-usergroups.html"
+      - title: Remove a role associated with a user group from an organization
+        url: "/tenancyv4/delete-organizations-roles-usergroups-.html"
+      - title: Associate users in an organization with a role
+        url: "/tenancyv4/post-organizations-roles-users.html"
+      - title: Remove a user from an organization
+        url: "/tenancyv4/delete-organizations-roles-users-.html"
+      - title: Create a new service account
+        url: "/tenancyv4/post-organizations-serviceaccounts.html"
+      - title: Delete a service account
+        url: "/tenancyv4/delete-organizations-serviceaccounts-.html"
+      - title: Retrieve a service account
+        url: "/tenancyv4/get-organizations-serviceaccounts-.html"
+      - title: Update a service account partially
+        url: "/tenancyv4/patch-organizations-serviceaccounts-.html"
+      - title: Modify a service account
+        url: "/tenancyv4/put-organizations-serviceaccounts-.html"
+      - title: Create a new client secret for a service account
+        url: "/tenancyv4/post-organizations-serviceaccounts-clientsecret.html"
+      - title: List all the public keys for a service account
+        url: "/tenancyv4/get-organizations-serviceaccounts-publickeys.html"
+      - title: Create a public key for a service account
+        url: "/tenancyv4/post-organizations-serviceaccounts-publickeys.html"
+      - title: Delete a public key for a service account
+        url: "/tenancyv4/delete-organizations-serviceaccounts-publickeys-.html"
+      - title: Partially update a public key for a service account
+        url: "/tenancyv4/patch-organizations-serviceaccounts-publickeys-.html"
+      - title: List all user groups under an organization
+        url: "/tenancyv4/get-organizations-usergroups.html"
+      - title: Add user groups to an organization
+        url: "/tenancyv4/post-organizations-usergroups.html"
+      - title: Remove a user group from an organization
+        url: "/tenancyv4/delete-organizations-usergroups-.html"
+      - title: Retrieve a user group under an organization
+        url: "/tenancyv4/get-organizations-usergroups-.html"
+      - title: List all users under an organization
+        url: "/tenancyv4/get-organizations-users.html"
+      - title: Add users to an organization
+        url: "/tenancyv4/post-organizations-users.html"
+      - title: Remove a user from an organization
+        url: "/tenancyv4/delete-organizations-users-.html"
+      - title: Retrieve a user under an organization
+        url: "/tenancyv4/get-organizations-users-.html"
+      - title: Modify a user
+        url: "/tenancyv4/patch-organizations-users-.html"
+      - title: Create a new user group in a project
+        url: "/tenancyv4/post-projects-roles-usergroups.html"
+      - title: Remove a role associated with a user group from a project
+        url: "/tenancyv4/delete-projects-roles-usergroups-.html"
+      - title: Associate a set of users to a project with a role
+        url: "/tenancyv4/post-projects-roles-users.html"
+      - title: Remove a user from a project
+        url: "/tenancyv4/delete-projects-roles-users-.html"
+      - title: Add user groups to a project
+        url: "/tenancyv4/post-projects-usergroups.html"
+      - title: Remove a user group from a project
+        url: "/tenancyv4/delete-projects-usergroups-.html"
+      - title: Retrieve a user group under a project
+        url: "/tenancyv4/get-projects-usergroups-.html"
+      - title: List all users for a project
+        url: "/tenancyv4/get-projects-users.html"
+      - title: Add users to a project
+        url: "/tenancyv4/post-projects-users.html"
+      - title: Remove a user from a project
+        url: "/tenancyv4/delete-projects-users-.html"
+      - title: Retrieve a user under a project
+        url: "/tenancyv4/get-projects-users-.html"
+      - title: List all users with a specific permission for a resource
+        url: "/tenancyv4/get-resources-permissions-users.html"
+      - title: Retrieve a user with a permission for a resource
+        url: "/tenancyv4/get-resources-permissions-users-.html"
+      - title: List all users with permissions for a resource
+        url: "/tenancyv4/get-resources-users.html"
+      - title: List all user groups
+        url: "/tenancyv4/get-usergroups.html"
+      - title: Create a new user group
+        url: "/tenancyv4/post-usergroups.html"
+      - title: Delete a user group
+        url: "/tenancyv4/delete-usergroups-.html"
+      - title: Retrieve a user group
+        url: "/tenancyv4/get-usergroups-.html"
+      - title: Update a user group partially
+        url: "/tenancyv4/patch-usergroups-.html"
+      - title: Modify a user group
+        url: "/tenancyv4/put-usergroups-.html"
+      - title: List all users for a user group
+        url: "/tenancyv4/get-usergroups-users.html"
+      - title: Add users to a user group
+        url: "/tenancyv4/post-usergroups-users.html"
+      - title: Remove a user from a user group
+        url: "/tenancyv4/delete-usergroups-users-.html"
+      - title: Retrieve a user in a user group
+        url: "/tenancyv4/get-usergroups-users-.html"
+      - title: List all users
+        url: "/tenancyv4/get-users.html"
+      - title: Create a new user
+        url: "/tenancyv4/post-users.html"
+      - title: Delete a user
+        url: "/tenancyv4/delete-users-.html"
+      - title: Retrieve a user
+        url: "/tenancyv4/get-users-.html"
+      - title: Update a user partially
+        url: "/tenancyv4/patch-users-.html"
+      - title: Modify a user
+        url: "/tenancyv4/put-users-.html"
+  - title: Storage management
+    entries:
+    - title: Storage classes and policies
+      entries:
+      - title: List all capacity policies in an organization
+        url: "/storage-management/get-v1-organizations-capacitypolicies.html"
+      - title: Create a new capacity policy
+        url: "/storage-management/post-v1-organizations-capacitypolicies.html"
+      - title: Delete a capacity policy
+        url: "/storage-management/delete-v1-organizations-capacitypolicies-.html"
+      - title: Retrieve a capacity policy
+        url: "/storage-management/get-v1-organizations-capacitypolicies-.html"
+      - title: Update a capacity policy
+        url: "/storage-management/patch-v1-organizations-capacitypolicies-.html"
+      - title: List all performance policies
+        url: "/storage-management/get-v1-organizations-performancepolicies.html"
+      - title: Create a new performance policy
+        url: "/storage-management/post-v1-organizations-performancepolicies.html"
+      - title: Delete a performance policy
+        url: "/storage-management/delete-v1-organizations-performancepolicies-.html"
+      - title: Retrieve a performance policy
+        url: "/storage-management/get-v1-organizations-performancepolicies-.html"
+      - title: Update an existing performance policy
+        url: "/storage-management/patch-v1-organizations-performancepolicies-.html"
+      - title: List protection policies
+        url: "/storage-management/get-v1-organizations-protectionpolicies.html"
+      - title: Create a protection policy
+        url: "/storage-management/post-v1-organizations-protectionpolicies.html"
+      - title: Delete a protection policy
+        url: "/storage-management/delete-v1-organizations-protectionpolicies-.html"
+      - title: Retrieve protection policy details
+        url: "/storage-management/get-v1-organizations-protectionpolicies-.html"
+      - title: Update a protection policy
+        url: "/storage-management/patch-v1-organizations-protectionpolicies-.html"
+      - title: List security policies
+        url: "/storage-management/get-v1-organizations-securitypolicies.html"
+      - title: Create a security policy
+        url: "/storage-management/post-v1-organizations-securitypolicies.html"
+      - title: Delete a security policy
+        url: "/storage-management/delete-v1-organizations-securitypolicies-.html"
+      - title: Retrieve security policy details
+        url: "/storage-management/get-v1-organizations-securitypolicies-.html"
+      - title: Update a security policy
+        url: "/storage-management/patch-v1-organizations-securitypolicies-.html"
+      - title: List all storage classes
+        url: "/storage-management/get-v1-organizations-storageclasses.html"
+      - title: Create a new storage class
+        url: "/storage-management/post-v1-organizations-storageclasses.html"
+      - title: Delete an existing storage class
+        url: "/storage-management/delete-v1-organizations-storageclasses-.html"
+      - title: Retrieve a storage class
+        url: "/storage-management/get-v1-organizations-storageclasses-.html"
+      - title: Update an existing storage class
+        url: "/storage-management/patch-v1-organizations-storageclasses-.html"
+    - title: Storage management
+      entries:
+      - title: Retrieve system recommendations for storage placement
+        url: "/storage-management/post-v1-organizations-systemrecommendations.html"
+      - title: Create a new LUN
+        url: "/storage-management/post-v1-organizations-workingenvironments-luns.html"
+      - title: Create a new volume
+        url: "/storage-management/post-v1-organizations-workingenvironments-volumes.html"
+    - title: System discovery
+      entries:
+      - title: Discover and register a storage device
+        url: "/storage-management/post-v1-organizations-fleets-workingenvironments.html"
+      - title: Delete a system
+        url: "/storage-management/delete-v1-organizations-workingenvironments-.html"
+      - title: Update a system
+        url: "/storage-management/patch-v1-organizations-workingenvironments-.html"
   - title: Legal notices
-    url: /legal-notices.html
+    url: "/legal-notices.html"
+product-family:
+  name: NetApp Console
+  repo: console-family

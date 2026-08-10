@@ -1,0 +1,476 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'asset/post-organizations-metricsql.html'
+summary: 'Run a MetricsQL query for systems in an organization in NetApp Console local deployment'
+---
+
+= Run a MetricsQL query for systems in an organization in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/metricsql`#
+
+
+
+Run a raw MetricsQL query against time series data for systems in an organization.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|===
+
+== Request Body
+
+                   
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|query
+|string
+|True
+a|MetricsQL query.
+
+
+|timeRange
+|link:#asset_1_0_time_range[asset_1.0_time_range]
+|False
+a|Time range for a query window. If omitted from the request body,
+an instant query is performed at the evaluation time. If provided in the request body, a range query is performed. Values can be absolute or relative to the
+evaluation time.
+
+
+|===
+
+
+.Example request
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "query": "sum(iops_total) by (cluster)",
+  "timeRange": {
+    "end": "NOW",
+    "start": "PT30M",
+    "step": "PT1M"
+  }
+}
+====
+
+== Response
+
+```
+Status: 200, OK
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|items
+|array[link:#items[items]]
+|False
+a|Time series matching the query.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "items": [
+    {
+      "labels": {
+        "cluster": "cluster-01",
+        "svm": "svm-prod-1"
+      },
+      "points": [
+        {
+          "timestamp": "2026-01-26T20:58:16.305662Z",
+          "value": 10.5
+        }
+      ]
+    },
+    {
+      "labels": {
+        "cluster": "cluster-01",
+        "svm": "svm-prod-2"
+      },
+      "points": [
+        {
+          "timestamp": "2026-01-26T20:58:16.305662Z",
+          "value": 8.3
+        }
+      ]
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#asset_1_0_time_range]
+[.api-collapsible-fifth-title]
+asset_1.0_time_range
+
+Time range for a query window. If omitted from the request body,
+an instant query is performed at the evaluation time. If provided in the request body, a range query is performed. Values can be absolute or relative to the
+evaluation time.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|end
+|string
+|False
+a|End of the query window. The value can be:
+
+* RFC 3339 timestamp (e.g. "2026-01-23T10:00:00Z"),
+* "NOW",
+* ISO 8601 duration interpreted as NOW minus the duration
+(e.g. "PT15M" = NOW-15 minutes).
+If omitted, defaults to "NOW".
+
+
+|start
+|string
+|True
+a|Start of the query window. The value can be:
+
+* RFC 3339 timestamp (e.g. "2026-01-23T10:00:00Z"),
+* "NOW",
+* ISO 8601 duration interpreted as NOW minus the duration
+(e.g. "PT15M" = NOW-15 minutes).
+
+
+|step
+|string
+|False
+a|ISO 8601 duration step between data points for range queries
+(e.g. "PT60S"). Ignored for instant queries.
+
+
+|===
+
+
+[#labels]
+[.api-collapsible-fifth-title]
+labels
+
+Label set identifying this series.
+
+Hash mapping strings to string
+
+[#points]
+[.api-collapsible-fifth-title]
+points
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|timestamp
+|string
+|True
+a|RFC 3339 timestamp of the data point.
+
+
+|value
+|number
+|True
+a|Numeric value at the specified timestamp.
+
+
+|===
+
+
+[#items]
+[.api-collapsible-fifth-title]
+items
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|labels
+|link:#labels[labels]
+|True
+a|Label set identifying this series.
+
+
+|points
+|array[link:#points[points]]
+|True
+a|Ordered list of data points. Range queries return multiple
+points; instant queries return exactly one point per series.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

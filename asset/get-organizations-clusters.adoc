@@ -1,0 +1,1303 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'asset/get-organizations-clusters.html'
+summary: 'List clusters in an organization in NetApp Console local deployment'
+---
+
+= List clusters in an organization in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/clusters`#
+
+
+
+Lists all clusters in the specified organization.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|count
+|string
+|query
+|False
+a|Indicates if the total number of resources should be returned in the response object.
+
+URL examples: "count=true"
+
+OpenAPI examples: "true"
+
+
+|filter
+|string
+|query
+|False
+a|Specifies which fields should be matched in order to return a resource when listing a collection.
+
+Supported operators:
+
+* eq - Equality
+* lt/gt - Less than/greater than
+* lte/gte - Less than or equal to/greater than or equal to
+
+URL example: "filter=field%20eq%20%27value%27"
+
+OpenAPI examples: "field eq 'value'"
+
+
+|include
+|string
+|query
+|False
+a|Specifies which fields should be returned when listing a collection.
+
+URL examples: "include=id", "include=id,name"
+
+OpenAPI examples: "id"
+
+
+|limit
+|string
+|query
+|False
+a|Specifies the maximum number of resources to return when listing a collection.
+
+URL examples: "limit=2"
+
+OpenAPI examples: "2"
+
+
+|metadata
+|string
+|query
+|False
+a|Indicates if the metadata should be returned in the response object.
+
+URL examples: "metadata=true"
+
+OpenAPI examples: "true"
+
+
+|orderBy
+|string
+|query
+|False
+a|Indicates the sort order of resources when listing a collection.
+
+URL examples: "orderBy=name", "orderBy=name%20desc"
+
+OpenAPI examples: "name desc"
+
+
+|skip
+|string
+|query
+|False
+a|Specifies the number of resources to skip when listing a collection.
+
+URL examples: "skip=1"
+
+OpenAPI examples: "1"
+
+
+|===
+
+== Response
+
+```
+Status: 200, OK
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Total number of resources in the collection that match the query.
+
+
+|items
+|array[link:#cluster_1_0_get_response_body[cluster_1.0_get_response_body]]
+|True
+a|Clusters in the collection.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 2,
+  "items": [
+    {
+      "cloudTargetCount": 2,
+      "contact": "support@company.com",
+      "deploymentModel": "HARDWARE",
+      "fleetIds": [
+        "1a2b3c4d-5678-90ab-cdef-1234567890ab",
+        "2b3c4d5e-6789-0abc-def1-234567890abc"
+      ],
+      "id": "c08d213b-3c38-4c07-bde0-852ef821b815",
+      "isAllFlashOptimized": true,
+      "isDisaggregated": false,
+      "isSanOptimized": false,
+      "location": "Building A, Data Center 1",
+      "managementInterfaces": [
+        "10.10.1.2",
+        "10.10.1.3"
+      ],
+      "metadata": {
+        "modificationTimestamp": "2026-01-09T15:30:45.123456Z"
+      },
+      "metrics": {
+        "arpSvmPercent": 10,
+        "iops": {
+          "total": 15420.5
+        },
+        "latency": {
+          "max": 500
+        },
+        "performanceCapacityUsed": 35,
+        "throughput": {
+          "total": 524288000
+        },
+        "volumeEncryptionPercent": 30
+      },
+      "name": "cluster-01",
+      "nodeCount": 4,
+      "ntpServerCount": 3,
+      "ontapVersion": {
+        "full": "NetApp Release 9.13.0: Sun Aug 06 18:20:57 UTC 2023",
+        "generation": 9,
+        "major": 13,
+        "minor": 0
+      },
+      "organizationId": "9b0ee210-70a0-4158-b025-0decde66e4de",
+      "personality": "UNIFIED_ONTAP",
+      "security": {
+        "asupHttpsConfigured": true,
+        "certificateExpiryStatus": "ACTIVE",
+        "certificateExpiryTime": "2026-06-15T00:00:00Z",
+        "compliancePercent": 100,
+        "fipsEnabled": true,
+        "isMD5PasswordHashUsed": false,
+        "keyManagerConfigured": true,
+        "logForwardEncrypted": "ENCRYPTED",
+        "loginBannerConfigured": true,
+        "rshEnabled": false,
+        "sshSecured": true,
+        "telnetEnabled": false
+      },
+      "space": {
+        "aggregate": {
+          "available": 3298534883328,
+          "efficiency": {
+            "logicalUsed": 4398046511104,
+            "ratio": 2
+          },
+          "size": 5497558138880,
+          "used": 2199023255552,
+          "usedPercent": 40
+        },
+        "cloudStorage": {
+          "used": 1099511627776
+        },
+        "disk": {
+          "usableSize": 6597069766656
+        },
+        "lun": {
+          "mappedSize": 549755813888,
+          "unmappedSize": 137438953472
+        },
+        "volume": {
+          "afsTotal": 5497558138880,
+          "available": 3298534883328,
+          "dataProtectionSize": 1099511627776
+        }
+      },
+      "status": "REACHABLE",
+      "type": "application/vnd.netapp.bxp.cluster",
+      "version": "1.0",
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    },
+    {
+      "contact": "operations@company.com",
+      "deploymentModel": "CLOUD_VOLUMES_ONTAP",
+      "fleetIds": [
+        "1a2b3c4d-5678-90ab-cdef-1234567890ab"
+      ],
+      "id": "a7f9c2d1-4b6e-4c89-9d3f-1a8e7c5b9f2e",
+      "isAllFlashOptimized": false,
+      "isDisaggregated": true,
+      "isSanOptimized": true,
+      "location": "Building B, Data Center 2",
+      "managementInterfaces": [
+        "fd20:8b1e:b258:2020::428"
+      ],
+      "metadata": {
+        "modificationTimestamp": "2026-01-09T14:22:10.987654Z"
+      },
+      "metrics": {
+        "arpSvmPercent": 90,
+        "iops": {
+          "total": 8750.25
+        },
+        "latency": {
+          "max": 100
+        },
+        "performanceCapacityUsed": 35,
+        "throughput": {
+          "total": 314572800
+        },
+        "volumeEncryptionPercent": 75
+      },
+      "name": "cluster-02",
+      "nodeCount": 2,
+      "ntpServerCount": 0,
+      "ontapVersion": {
+        "full": "NetApp Release 9.14.1: Mon Nov 13 10:15:32 UTC 2023",
+        "generation": 9,
+        "major": 14,
+        "minor": 1
+      },
+      "organizationId": "9b0ee210-70a0-4158-b025-0decde66e4de",
+      "personality": "ASA_R2",
+      "security": {
+        "asupHttpsConfigured": false,
+        "certificateExpiryStatus": "EXPIRING",
+        "certificateExpiryTime": "2026-06-15T00:00:00Z",
+        "compliancePercent": 36.4,
+        "fipsEnabled": false,
+        "isMD5PasswordHashUsed": true,
+        "keyManagerConfigured": false,
+        "logForwardEncrypted": "NOT_CONFIGURED",
+        "loginBannerConfigured": false,
+        "rshEnabled": false,
+        "sshSecured": false,
+        "telnetEnabled": false
+      },
+      "space": {
+        "aggregate": {
+          "available": 1649267441664,
+          "efficiency": {
+            "logicalUsed": 2199023255552,
+            "ratio": 1
+          },
+          "size": 2748779069440,
+          "used": 1099511627776,
+          "usedPercent": 40
+        },
+        "cloudStorage": {
+          "used": 549755813888
+        },
+        "disk": {
+          "usableSize": 3298534883328
+        },
+        "lun": {
+          "mappedSize": 274877906944,
+          "unmappedSize": 68719476736
+        },
+        "volume": {
+          "afsTotal": 2748779069440,
+          "available": 1649267441664,
+          "dataProtectionSize": 549755813888
+        }
+      },
+      "status": "UNREACHABLE",
+      "type": "application/vnd.netapp.bxp.cluster",
+      "version": "1.0",
+      "workingEnvironmentId": "VsaWorkingEnvironment-Lm9FRijl"
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#common_1_0_inventory_metadata]
+[.api-collapsible-fifth-title]
+common_1.0_inventory_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|===
+
+
+[#iops]
+[.api-collapsible-fifth-title]
+iops
+
+IOPS metrics for the cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of I/O operations observed on the cluster.
+
+
+|===
+
+
+[#latency]
+[.api-collapsible-fifth-title]
+latency
+
+Latency metrics for the cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|max
+|number
+|False
+a|The maximum average node latency observed on the cluster, in microseconds.
+
+
+|===
+
+
+[#throughput]
+[.api-collapsible-fifth-title]
+throughput
+
+Throughput metrics for the cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of throughput observed on the cluster, in bytes per second.
+
+
+|===
+
+
+[#cluster_1_0_metrics]
+[.api-collapsible-fifth-title]
+cluster_1.0_metrics
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|arpSvmPercent
+|number
+|False
+a|The percentage of storage virtual machines with the anti-ransomware default volume state set to "DRY_RUN".
+
+
+|iops
+|link:#iops[iops]
+|False
+a|IOPS metrics for the cluster.
+
+
+|latency
+|link:#latency[latency]
+|False
+a|Latency metrics for the cluster.
+
+
+|performanceCapacityUsed
+|number
+|False
+a|The maximum headroom CPU utilization percentage observed across all nodes in the cluster.
+
+
+|throughput
+|link:#throughput[throughput]
+|False
+a|Throughput metrics for the cluster.
+
+
+|volumeEncryptionPercent
+|number
+|False
+a|The percentage of volumes on the cluster that are encrypted using software or hardware encryption.
+
+
+|===
+
+
+[#ontapVersion]
+[.api-collapsible-fifth-title]
+ontapVersion
+
+Cluster version information. When the cluster has more than one node, the cluster version is equivalent to the lowest of generation, major, and minor versions on all nodes.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|full
+|string
+|False
+a|The full version string.
+
+
+|generation
+|number
+|False
+a|The generation portion of the version.
+
+
+|major
+|number
+|False
+a|The major portion of the version.
+
+
+|minor
+|number
+|False
+a|The minor portion of the version.
+
+
+|===
+
+
+[#security]
+[.api-collapsible-fifth-title]
+security
+
+Security related information for the cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|asupHttpsConfigured
+|boolean
+|False
+a|Indicates whether or not HTTPS is configured for AutoSupport.
+
+
+|certificateExpiryStatus
+|string
+|False
+a|The expiration status of the admin SVM SSL certificate.
+Defined values are:
+
+* "ACTIVE" - The certificate has not expired.
+* "EXPIRED" - The certificate has expired.
+* "EXPIRING" - The certificate expires within 60 days.
+* "UNKNOWN" - The certificate expiration status cannot be determined.
+
+
+|certificateExpiryTime
+|string
+|False
+a|The expiration time of the admin SVM SSL certificate in ISO 8601 format.
+
+
+|clusterPeerEncryptionStatus
+|string
+|False
+a|Indicates whether or not all cluster peer connections are encrypted.
+Defined values are:
+
+* "ENCRYPTED" - All cluster peer connections are encrypted.
+* "NOT_ENCRYPTED" - Some cluster peer connections are not encrypted.
+* "NOT_PEERED" - The cluster is not peered with any other clusters
+
+
+|compliancePercent
+|number
+|False
+a|Percentage of security best practices that the cluster has configured, in the range [0, 100].
+A cluster is considered non-compliant if any of the following conditions are true:
+
+* FIPS mode is not enabled.
+* Telnet is enabled.
+* SSH is configured with insecure ciphers.
+* No login banner is configured at the cluster scope.
+* Cluster peer connections are not encrypted.
+* Less than three NTP servers are configured.
+* Remote audit log forwarding is not encrypted.
+* AutoSupport HTTPS transport is not configured.
+* The default admin user account is enabled.
+* Remote Shell (rsh) is enabled.
+* MD5 password hashing is used for any account.
+
+
+|defaultAdminUserEnabled
+|boolean
+|False
+a|Indicates whether the default admin user account is enabled.
+
+
+|fipsEnabled
+|boolean
+|False
+a|Indicates whether or not the software FIPS mode is enabled on the cluster.
+
+
+|isMD5PasswordHashUsed
+|boolean
+|False
+a|Indicates whether or not MD5 password hashing is used for any account on the cluster.
+
+
+|keyManagerConfigured
+|boolean
+|False
+a|Indicates whether or not a key manager is configured for the cluster.
+
+
+|logForwardEncrypted
+|string
+|False
+a|Indicates whether or not audit log forwarding is encrypted.
+Defined values are:
+
+* "ENCRYPTED" - Audit log forwarding is encrypted for all destinations.
+* "NOT_ENCRYPTED" - Audit log forwarding is not encrypted for some destinations.
+* "NOT_CONFIGURED" - Audit log forwarding is not configured.
+
+
+|loginBannerConfigured
+|boolean
+|False
+a|Indicates whether the login banner is configured.
+
+
+|rshEnabled
+|boolean
+|False
+a|Indicates whether or not security protocol rsh is enabled on the cluster.
+
+
+|sshSecured
+|boolean
+|False
+a|Indicates whether or not the admin SVM uses secure SSH ciphers.
+
+
+|telnetEnabled
+|boolean
+|False
+a|Indicates whether or not security protocol telnet is enabled on the cluster.
+
+
+|===
+
+
+[#efficiency]
+[.api-collapsible-fifth-title]
+efficiency
+
+Storage efficiency information for the cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|logicalUsed
+|integer
+|False
+a|The logical used space, in bytes.
+
+
+|ratio
+|number
+|False
+a|Data reduction ratio (logical_used / used)
+
+
+|===
+
+
+[#aggregate]
+[.api-collapsible-fifth-title]
+aggregate
+
+Capacity information for the cluster derived from aggregate (local tier) capacity metrics.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|available
+|integer
+|False
+a|Space available in bytes.
+
+
+|efficiency
+|link:#efficiency[efficiency]
+|False
+a|Storage efficiency information for the cluster.
+
+
+|size
+|integer
+|False
+a|Total usable space in bytes, not including WAFL reserve and aggregate snapshot reserve.
+
+
+|used
+|integer
+|False
+a|Space used or reserved in bytes. Includes volume guarantees and aggregate metadata.
+
+
+|usedPercent
+|number
+|False
+a|Space used or reserved, as a percent.
+
+
+|===
+
+
+[#cloudStorage]
+[.api-collapsible-fifth-title]
+cloudStorage
+
+Capacity information for cloud storage attached to the cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|used
+|integer
+|False
+a|Used space in the cloud stores, in bytes.
+
+
+|===
+
+
+[#disk]
+[.api-collapsible-fifth-title]
+disk
+
+Capacity information for the cluster derived from disk capacity metrics.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|usableSize
+|integer
+|False
+a|Total usable disk space in bytes.
+
+
+|===
+
+
+[#lun]
+[.api-collapsible-fifth-title]
+lun
+
+Capacity information for the cluster derived from LUN capacity metrics.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|mappedSize
+|integer
+|False
+a|The total provisioned size of all LUNs that are mapped.
+
+
+|unmappedSize
+|integer
+|False
+a|The total provisioned size of all LUNs that are not mapped.
+
+
+|===
+
+
+[#volume]
+[.api-collapsible-fifth-title]
+volume
+
+Capacity information for the cluster derived from volume capacity metrics.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|afsTotal
+|integer
+|False
+a|Total size of the active filesystems in the cluster, excluding snap-reserve, in bytes.
+
+
+|available
+|integer
+|False
+a|The available space on the cluster, in bytes.
+
+
+|dataProtectionSize
+|integer
+|False
+a|Total size of the active filesystems in the cluster, excluding snap-reserve, for data protection volumes, in bytes.
+
+
+|===
+
+
+[#cluster_1_0_space]
+[.api-collapsible-fifth-title]
+cluster_1.0_space
+
+Capacity information for the cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|aggregate
+|link:#aggregate[aggregate]
+|False
+a|Capacity information for the cluster derived from aggregate (local tier) capacity metrics.
+
+
+|cloudStorage
+|link:#cloudStorage[cloudStorage]
+|False
+a|Capacity information for cloud storage attached to the cluster.
+
+
+|disk
+|link:#disk[disk]
+|False
+a|Capacity information for the cluster derived from disk capacity metrics.
+
+
+|lun
+|link:#lun[lun]
+|False
+a|Capacity information for the cluster derived from LUN capacity metrics.
+
+
+|volume
+|link:#volume[volume]
+|False
+a|Capacity information for the cluster derived from volume capacity metrics.
+
+
+|===
+
+
+[#cluster_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+cluster_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|cloudTargetCount
+|number
+|False
+a|Number of cloud targets in the cluster.
+
+
+|contact
+|string
+|False
+a|Administrative contact for the cluster.
+
+
+|deploymentModel
+|string
+|False
+a|The deployment model of the ONTAP cluster.
+Defined values are:
+
+* "HARDWARE" - Deployed on physical NetApp hardware (AFF, FAS).
+* "ONTAP_SELECT" - Software-defined deployment on commodity or virtualized infrastructure.
+* "CLOUD_VOLUMES_ONTAP" - Cloud-based deployment managed via NetApp BlueXP.
+* enum: ["HARDWARE", "ONTAP_SELECT", "CLOUD_VOLUMES_ONTAP"]
+* example: HARDWARE
+
+
+|fleetIds
+|array[string]
+|False
+a|List of identifiers for the fleets that the cluster belongs to.
+
+
+|id
+|string
+|False
+a|Identifier of the cluster.
+
+
+|isAllFlashOptimized
+|boolean
+|False
+a|Specifies whether the cluster is all flash optimized.
+
+
+|isDisaggregated
+|boolean
+|False
+a|Indicates whether the cluster uses a disaggregated architecture, where storage and compute are separated.
+
+
+|isSanOptimized
+|boolean
+|False
+a|Indicates whether the cluster is optimized for SAN workloads.
+
+
+|location
+|string
+|False
+a|Location of the cluster.
+
+
+|managementInterfaces
+|array[string]
+|False
+a|List of management interface IP addresses (IPv4 and IPV6).
+
+
+|metadata
+|link:#common_1_0_inventory_metadata[common_1.0_inventory_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|metrics
+|link:#cluster_1_0_metrics[cluster_1.0_metrics]
+|False
+a|
+
+|name
+|string
+|False
+a|Cluster name.
+
+
+|nodeCount
+|number
+|False
+a|Number of nodes in the cluster.
+
+
+|ntpServerCount
+|number
+|False
+a|Number of NTP servers configured for the cluster.
+
+
+|ontapVersion
+|link:#ontapVersion[ontapVersion]
+|False
+a|Cluster version information. When the cluster has more than one node, the cluster version is equivalent to the lowest of generation, major, and minor versions on all nodes.
+
+
+|organizationId
+|string
+|False
+a|Identifier for an organization.
+
+
+|personality
+|string
+|False
+a|The personality of the ONTAP cluster, derived from the cluster's disaggregated and SAN-optimized configuration.
+Defined values are:
+
+* "UNIFIED_ONTAP" - A traditional unified ONTAP cluster (not disaggregated).
+* "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array (ASA) r2 cluster.
+* "AFX" - A disaggregated cluster that is not SAN-optimized.
+* enum: ["UNIFIED_ONTAP", "ASA_R2", "AFX"]
+* example: UNIFIED_ONTAP
+
+
+|security
+|link:#security[security]
+|False
+a|Security related information for the cluster.
+
+
+|space
+|link:#cluster_1_0_space[cluster_1.0_space]
+|False
+a|Capacity information for the cluster.
+
+
+|status
+|string
+|False
+a|The reachability status of the cluster.
+Defined values are:
+
+* "REACHABLE" - The cluster is reachable and operational.
+* "UNREACHABLE" - The cluster is not reachable.
+* "UNKNOWN" - The reachability status cannot be determined (e.g., monitoring data is stale or unavailable).
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+*** "application/vnd.netapp.bxp.cluster"
+
+
+|version
+|string
+|False
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|volumeCount
+|number
+|False
+a|Number of FlexVol and FlexGroup volumes in the cluster.
+
+
+|workingEnvironmentId
+|string
+|False
+a|Identifier for the asset's system.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

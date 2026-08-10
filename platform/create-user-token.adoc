@@ -1,0 +1,114 @@
+---
+sidebar: sidebar
+permalink: platform/create-user-token.html
+keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
+summary: Workflow for obtaining a user access token from the local identity provider.
+---
+= Create a user token for NetApp Console local deployment 
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ../media/
+
+[.lead]
+You need a user access token to authenticate REST API calls on behalf of a local user in the NetApp Console local deployment. The token is obtained directly from the local identity provider on the Console local deployment instance. 
+
+.Before you begin
+
+Before obtaining a user access token, confirm that you have the following: 
+
+* The IP address or FQDN of your Console local deployment instance.  
+
+* A valid local user account on the Console local deployment instance with the appropriate permissions for the REST API calls you plan to make. 
+
+== Create the user access token
+
+Learn about the HTTP methods, resource path, and input parameters you need to generate a user access token that you can use to authorize API requests.  
+
+.HTTP method and resource path
+
+The following table shows the HTTP method and resource path required in this API call.
+
+[cols="1,3", options="header"]
+|===
+// header row
+|HTTP method
+| Resource path
+
+
+// first body row
+| POST
+| `\https://<host>/oauth/token` 
+
+
+// table end
+|===
+
+.Curl example 
+
+[source,curl]
+----
+curl --request POST \
+  --url https://<host>/oauth/token \
+  --header 'content-type: application/json' \
+  --data '{
+  "username": "<username>",
+  "password": "<password>",
+  "grant_type": "password"
+}'
+----
+
+.JSON input parameters 
+
+The following table shows the required input parameters. 
+
+[cols="1,3", options="header"]
+|===
+// header row
+| Parameter
+| Description
+
+// first body row
+| username
+| The username of the local user on the Console local deployment instance.  
+
+| password
+| The password for the local user account. 
+
+// table end
+|===
+
+
+.JSON input example 
+The JSON input example includes the required input parameters.
+
+[source,json]
+----
+{
+    "grant_type": "password",
+    "username": "<username>",
+    "password": "<password>"
+}
+----
+
+.JSON output example
+
+The JSON output includes the access token and expiry as shown in the following example:  
+
+[source,json]
+----
+{
+
+ "access_token": "<access_token>",
+ "expires_in": 21600,
+ "token_type": "Bearer"
+
+}
+----
+
+.After you finish
+
+Include the token in the `Authorization` request header for REST API calls as needed, as shown in the following example:
+
+`Authorization: Bearer <access_token>` 

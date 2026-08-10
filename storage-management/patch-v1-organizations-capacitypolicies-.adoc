@@ -1,0 +1,518 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'storage-management/patch-v1-organizations-capacitypolicies-.html'
+summary: 'Update a capacity policy in NetApp Console local deployment'
+---
+
+= Update a capacity policy in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/v1/organizations/{organizationId}/capacitypolicies/{capacityPolicyId}`#
+
+
+
+Updates the specified capacity policy.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organizationId
+|string
+|path
+|True
+a|Organization ID
+
+* example: 666a3f38-d4fa-5b62-a391-a69029758d32
+
+
+|capacityPolicyId
+|string
+|path
+|True
+a|Capacity policy ID
+
+* example: 123e4567-e89b-12d3-a456-426614174000
+
+
+|===
+
+== Request Body
+
+Capacity policy properties to update. Only include the fields you want to modify.
+                   
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|autoGrow
+|string
+|False
+a|Auto-grow setting of the capacity policy.
+
+
+|description
+|string
+|False
+a|Description of the capacity policy.
+
+
+|name
+|string
+|False
+a|Name of the capacity policy.
+
+
+|spaceReserved
+|string
+|False
+a|Space reservation setting of the capacity policy.
+
+
+|tags
+|array[link:#tags[tags]]
+|False
+a|JSON array of tags (name/value pairs) associated with the capacity policy.
+
+
+|tiering
+|string
+|False
+a|Tiering setting of the capacity policy.
+
+
+|type
+|string
+|True
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.capacitypolicy"
+
+
+|version
+|string
+|True
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|volumeType
+|string
+|False
+a|Volume type setting of the capacity policy.
+
+
+|===
+
+
+.Example request
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "autoGrow": "GROW_SHRINK",
+  "description": "Updated policy with new tiering configuration",
+  "name": "Updated Production Policy",
+  "spaceReserved": "THICK",
+  "tags": [
+    {
+      "internal:bxp:metric:associatedWorkloadCnt": "2"
+    },
+    {
+      "internal:bxp:metric:complianceStatus": "compliant"
+    }
+  ],
+  "tiering": "SNAPSHOT_ONLY",
+  "type": "application/vnd.netapp.bxp.capacitypolicy",
+  "version": "1.0",
+  "volumeType": "FLEXGROUP"
+}
+====
+
+== Response
+
+```
+Status: 204, Capacity policy updated successfully
+```
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Error
+
+```
+Status: 404, Not found
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The collection specified in the request URI wasn't found.",
+  "status": "404",
+  "title": "Collection not found",
+  "type": "https://bluexp.netapp.io/problems/2"
+}
+====
+
+== Error
+
+```
+Status: 409, Conflict
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request body JSON contains a field that conflicts with an idempotent value.",
+  "status": "409",
+  "title": "JSON resource conflict",
+  "type": "https://bluexp.netapp.io/problems/10"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#tags]
+[.api-collapsible-fifth-title]
+tags
+Hash mapping strings to string
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

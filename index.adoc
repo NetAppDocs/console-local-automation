@@ -1,0 +1,47 @@
+---
+permalink: index.html
+sidebar: sidebar
+layout: landing-page
+indexpage:
+  tiles:
+  - title: Platform services
+    links:
+    - title: Agentic Platform
+      url: "/agentic/get-configs.html"
+    - title: Assets
+      url: "/asset/get-organizations-aggregates.html"
+    - title: Identity and access management
+      url: "/tenancyv4/get-fleets.html"
+    - title: Storage management
+      url: "/storage-management/get-v1-organizations-capacitypolicies.html"
+  - title: More resources
+    links:
+    - title: NetApp Console local deployment documentation
+      url: https://docs.netapp.com/us-en/console-local/index.html
+    - title: NetApp Console automation (SaaS deployment)
+      url: https://docs.netapp.com/us-en/console-automation/
+    - title: NetApp Console solutions
+      url: https://www.netapp.com/cloud-services/
+    - title: ONTAP 9 documentation
+      url: https://docs.netapp.com/us-en/ontap/
+lead: NetApp Console local deployment is a self-hosted deployment option that lets
+  you run the NetApp Console local deployment control plane in your on-premises environment.
+  NetApp Console local deployment delivers the unified storage management and automation
+  capabilities such as provisioning, policy enforcement, drift detection, and remediation
+  in an isolated deployment that keeps your data, metadata, and management traffic
+  entirely within your own infrastructure.
+summary: NetApp Console local deployment is a self-hosted deployment option that lets
+  you run the NetApp Console local deployment control plane in your on-premises environment.
+  NetApp Console local deployment delivers the unified storage management and automation
+  capabilities such as provisioning, policy enforcement, drift detection, and remediation
+  in an isolated deployment that keeps your data, metadata, and management traffic
+  entirely within your own infrastructure.
+keywords: automation, automating, bluexp, netapp, console, local, deployment
+
+---
+= NetApp Console local deployment API documentation
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ./media/

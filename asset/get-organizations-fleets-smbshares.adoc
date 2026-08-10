@@ -1,0 +1,704 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'asset/get-organizations-fleets-smbshares.html'
+summary: 'List SMB shares in a fleet in NetApp Console local deployment'
+---
+
+= List SMB shares in a fleet in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/smbshares`#
+
+
+
+Lists all SMB shares in the specified fleet.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|fleet_id
+|string
+|path
+|True
+a|Identifier for a fleet.
+
+
+|count
+|string
+|query
+|False
+a|Indicates if the total number of resources should be returned in the response object.
+
+URL examples: "count=true"
+
+OpenAPI examples: "true"
+
+
+|filter
+|string
+|query
+|False
+a|Specifies which fields should be matched in order to return a resource when listing a collection.
+
+Supported operators:
+
+* eq - Equality
+* lt/gt - Less than/greater than
+* lte/gte - Less than or equal to/greater than or equal to
+
+URL example: "filter=field%20eq%20%27value%27"
+
+OpenAPI examples: "field eq 'value'"
+
+
+|include
+|string
+|query
+|False
+a|Specifies which fields should be returned when listing a collection.
+
+URL examples: "include=id", "include=id,name"
+
+OpenAPI examples: "id"
+
+
+|limit
+|string
+|query
+|False
+a|Specifies the maximum number of resources to return when listing a collection.
+
+URL examples: "limit=2"
+
+OpenAPI examples: "2"
+
+
+|metadata
+|string
+|query
+|False
+a|Indicates if the metadata should be returned in the response object.
+
+URL examples: "metadata=true"
+
+OpenAPI examples: "true"
+
+
+|orderBy
+|string
+|query
+|False
+a|Indicates the sort order of resources when listing a collection.
+
+URL examples: "orderBy=name", "orderBy=name%20desc"
+
+OpenAPI examples: "name desc"
+
+
+|skip
+|string
+|query
+|False
+a|Specifies the number of resources to skip when listing a collection.
+
+URL examples: "skip=1"
+
+OpenAPI examples: "1"
+
+
+|===
+
+== Response
+
+```
+Status: 200, OK
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Total number of SMB shares in the collection that match the query.
+
+
+|items
+|array[link:#smbshare_1_0_get_response_body[smbshare_1.0_get_response_body]]
+|True
+a|SMB shares in the collection.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 2,
+  "items": [
+    {
+      "accessBasedEnumeration": false,
+      "aclCount": 3,
+      "cluster": {
+        "id": "4c8d2919-ac4c-4ea7-bf7c-24863d4da94b",
+        "name": "cluster-01"
+      },
+      "description": "Engineering team file share",
+      "encryption": false,
+      "homeDirectory": false,
+      "id": "c08d213b-3c38-4c07-bde0-852ef821b815",
+      "metadata": {
+        "modificationTimestamp": "2022-10-06T20:58:16.305662Z"
+      },
+      "name": "share-01",
+      "oplocks": true,
+      "organizationId": "16c07c0c-666b-4870-9363-764eef9e7160",
+      "path": "/vol/volume-01/share01",
+      "showSnapshot": false,
+      "svm": {
+        "id": "d1ddc65d-f7a2-4ca7-9847-5afd069a3dbe",
+        "name": "svm-01"
+      },
+      "type": "application/vnd.netapp.bxp.smbshare",
+      "version": "1.0",
+      "volume": {
+        "id": "92c08026-35d2-45fe-8c1b-67b08d0c0322",
+        "name": "volume-01"
+      },
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    },
+    {
+      "accessBasedEnumeration": true,
+      "aclCount": 5,
+      "cluster": {
+        "id": "4c8d2919-ac4c-4ea7-bf7c-24863d4da94b",
+        "name": "cluster-01"
+      },
+      "description": "Finance team secure share",
+      "encryption": true,
+      "homeDirectory": false,
+      "id": "7a2f9d3b-1e4c-4a8f-b5c6-2d8e9f1a0b3c",
+      "metadata": {
+        "modificationTimestamp": "2022-10-06T21:15:42.108234Z"
+      },
+      "name": "share-02",
+      "oplocks": true,
+      "organizationId": "16c07c0c-666b-4870-9363-764eef9e7160",
+      "path": "/vol/volume-02/finance",
+      "showSnapshot": false,
+      "svm": {
+        "id": "f9c0d1e2-3a4b-5c6d-7e8f-9a0b1c2d3e4f",
+        "name": "svm-02"
+      },
+      "type": "application/vnd.netapp.bxp.smbshare",
+      "version": "1.0",
+      "volume": {
+        "id": "a7f19b3e-42c6-4d1a-9f7e-8b2d3c4e5f6a",
+        "name": "volume-02"
+      },
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#cluster_1_0_reference]
+[.api-collapsible-fifth-title]
+cluster_1.0_reference
+
+Reference to an ONTAP cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the cluster.
+
+
+|name
+|string
+|False
+a|Cluster name.
+
+
+|===
+
+
+[#common_1_0_inventory_metadata]
+[.api-collapsible-fifth-title]
+common_1.0_inventory_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|===
+
+
+[#svm_1_0_reference]
+[.api-collapsible-fifth-title]
+svm_1.0_reference
+
+Reference to an ONTAP SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the SVM.
+
+
+|name
+|string
+|False
+a|SVM name.
+
+
+|===
+
+
+[#volume_1_0_reference]
+[.api-collapsible-fifth-title]
+volume_1.0_reference
+
+Reference to an ONTAP volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the volume.
+
+
+|name
+|string
+|False
+a|Volume name.
+
+
+|===
+
+
+[#smbshare_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+smbshare_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|accessBasedEnumeration
+|boolean
+|False
+a|Indicates whether access-based enumeration is enabled.
+When enabled, only files and directories that the connecting user has permission to access are visible.
+
+
+|aclCount
+|integer
+|False
+a|Number of access control lists (ACLs) configured on the SMB share.
+
+
+|cluster
+|link:#cluster_1_0_reference[cluster_1.0_reference]
+|False
+a|Reference to an ONTAP cluster.
+
+* x-tag: Cluster
+
+
+|description
+|string
+|False
+a|Description (comment) of the SMB share.
+
+
+|encryption
+|boolean
+|False
+a|Indicates whether SMB encryption is required for all data in transit on this share.
+
+
+|homeDirectory
+|boolean
+|False
+a|Indicates whether the share is a home directory share that dynamically maps to the connecting user's home directory.
+
+
+|id
+|string
+|False
+a|Identifier of the SMB share (UUIDv5 generated from the SVM UUID and the share name).
+
+
+|metadata
+|link:#common_1_0_inventory_metadata[common_1.0_inventory_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|name
+|string
+|False
+a|Name of the SMB share.
+
+
+|oplocks
+|boolean
+|False
+a|Indicates whether opportunistic locks (oplocks) are enabled, allowing clients to cache files locally and improve performance.
+
+
+|organizationId
+|string
+|False
+a|Identifier for an organization.
+
+
+|path
+|string
+|False
+a|Absolute filesystem path of the SMB share, relative to the SVM root volume.
+
+
+|showSnapshot
+|boolean
+|False
+a|Indicates whether the .snapshot directory is visible to clients accessing the share.
+
+
+|svm
+|link:#svm_1_0_reference[svm_1.0_reference]
+|False
+a|Reference to an ONTAP SVM.
+
+* x-tag: SVM
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+*** "application/vnd.netapp.bxp.smbshare"
+
+
+|version
+|string
+|False
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|volume
+|link:#volume_1_0_reference[volume_1.0_reference]
+|False
+a|Reference to an ONTAP volume.
+
+* x-tag: Volume
+
+
+|workingEnvironmentId
+|string
+|False
+a|Identifier for the asset's system.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

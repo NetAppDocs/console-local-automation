@@ -1,0 +1,167 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'storage-management/patch-v1-organizations-workingenvironments-.html'
+summary: 'Update a system in NetApp Console local deployment'
+---
+
+= Update a system in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}`#
+
+
+
+Updates the system. Include only the fields you want to update in the request.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organizationId
+|string
+|path
+|True
+a|Organization ID
+
+* example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+
+|workingEnvironmentId
+|string
+|path
+|True
+a|System ID
+
+* example: OnPremWorkingEnvironment-3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+
+|===
+
+== Request Body
+
+                   
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|password
+|string
+|False
+a|ONTAP cluster password
+
+* example: NetApp123!
+* format: password
+
+
+|username
+|string
+|False
+a|ONTAP cluster username
+
+* example: admin
+
+
+|===
+
+
+.Example request
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "password": "NetApp123!",
+  "username": "admin"
+}
+====
+
+== Response
+
+```
+Status: 204, System updated successfully. No content returned.
+```
+
+== Response
+
+```
+Status: 401, Unauthorized access
+```
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "Authentication failed. Invalid or missing JWT token.",
+  "status": "401",
+  "title": "Authentication Failed",
+  "type": "https://bluexp.netapp.io/problems/401"
+}
+====
+
+== Response
+
+```
+Status: 403, Forbidden request
+```
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "Action not allowed for user. Update permission required.",
+  "status": "403",
+  "title": "Forbidden",
+  "type": "https://bluexp.netapp.io/problems/403"
+}
+====
+
+== Response
+
+```
+Status: 404, Not found
+```
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested OnPrem system could not be found.",
+  "status": "404",
+  "title": "Resource Not Found",
+  "type": "https://bluexp.netapp.io/problems/404"
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "Failed to update credentials for Data ONTAP system: Production Cluster 1. Reason: Connection timeout - unable to reach ONTAP cluster",
+  "status": "400",
+  "title": "Credential Update Failed",
+  "type": "https://bluexp.netapp.io/problems/400"
+}
+====
+

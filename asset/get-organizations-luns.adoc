@@ -1,0 +1,1030 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'asset/get-organizations-luns.html'
+summary: 'List LUNs in an organization in NetApp Console local deployment'
+---
+
+= List LUNs in an organization in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/luns`#
+
+
+
+Lists all LUNs in the specified organization.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|count
+|string
+|query
+|False
+a|Indicates if the total number of resources should be returned in the response object.
+
+URL examples: "count=true"
+
+OpenAPI examples: "true"
+
+
+|filter
+|string
+|query
+|False
+a|Specifies which fields should be matched in order to return a resource when listing a collection.
+
+Supported operators:
+
+* eq - Equality
+* lt/gt - Less than/greater than
+* lte/gte - Less than or equal to/greater than or equal to
+
+URL example: "filter=field%20eq%20%27value%27"
+
+OpenAPI examples: "field eq 'value'"
+
+
+|include
+|string
+|query
+|False
+a|Specifies which fields should be returned when listing a collection.
+
+URL examples: "include=id", "include=id,name"
+
+OpenAPI examples: "id"
+
+
+|limit
+|string
+|query
+|False
+a|Specifies the maximum number of resources to return when listing a collection.
+
+URL examples: "limit=2"
+
+OpenAPI examples: "2"
+
+
+|metadata
+|string
+|query
+|False
+a|Indicates if the metadata should be returned in the response object.
+
+URL examples: "metadata=true"
+
+OpenAPI examples: "true"
+
+
+|orderBy
+|string
+|query
+|False
+a|Indicates the sort order of resources when listing a collection.
+
+URL examples: "orderBy=name", "orderBy=name%20desc"
+
+OpenAPI examples: "name desc"
+
+
+|skip
+|string
+|query
+|False
+a|Specifies the number of resources to skip when listing a collection.
+
+URL examples: "skip=1"
+
+OpenAPI examples: "1"
+
+
+|===
+
+== Response
+
+```
+Status: 200, OK
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Total number of resources in the collection that match the query.
+
+
+|items
+|array[link:#lun_1_0_get_response_body[lun_1.0_get_response_body]]
+|True
+a|LUNs in the collection.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 2,
+  "items": [
+    {
+      "aggregate": {
+        "id": "9f3e2d1c-8b7a-4e5f-9c8d-7b6a5f4e3d2c",
+        "name": "aggr1"
+      },
+      "cluster": {
+        "id": "2c5f8a9b-4e7d-4c1a-b8f3-6e9d2a5c8f1b",
+        "name": "cluster-01"
+      },
+      "clusterPersonality": "UNIFIED_ONTAP",
+      "fleetIds": [
+        "1a2b3c4d-5678-90ab-cdef-1234567890ab",
+        "2b3c4d5e-6789-0abc-def1-234567890abc"
+      ],
+      "id": "f8e9d2b4-1a5c-4f7e-9d3b-8c6a5e2f1b9d",
+      "mapped": "MAPPED",
+      "metadata": {
+        "modificationTimestamp": "2026-01-16T14:32:48.789123Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 345.2
+        },
+        "latency": {
+          "average": 89.34
+        },
+        "throughput": {
+          "total": 87593.6
+        }
+      },
+      "name": "lun-01",
+      "node": {
+        "id": "7d9e2f4c-5b8a-4e1d-9c3f-8a6b4d2e7f9c",
+        "name": "node-01"
+      },
+      "organizationId": "3b8f9e2a-7c4d-4e8f-a1b2-9d6e7f8a9b0c",
+      "qosPolicy": {
+        "name": "policy-01"
+      },
+      "qtree": {
+        "name": "qtree-01"
+      },
+      "space": {
+        "available": 824633720832,
+        "size": 1374389534720,
+        "used": 549755813888
+      },
+      "state": "ONLINE",
+      "storageClassId": "5f4dcc3b-5aa7-4e2d-9c3a-8a9f1f0e6b7c",
+      "svm": {
+        "id": "4a7b9e2c-8f5d-4c3a-b1e6-9d2f4c7a8e5b",
+        "name": "svm-01"
+      },
+      "type": "application/vnd.netapp.bxp.lun",
+      "version": "1.0",
+      "volume": {
+        "id": "8e2f9d4c-6a5b-4f8e-a2d7-5c9e4f2a7b8d",
+        "name": "volume-01"
+      },
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    },
+    {
+      "aggregate": {
+        "id": "5e7a2d8f-9c4b-4f1e-a6d3-8b2e5f7a9c4d",
+        "name": "aggr2"
+      },
+      "cluster": {
+        "id": "2c5f8a9b-4e7d-4c1a-b8f3-6e9d2a5c8f1b",
+        "name": "cluster-01"
+      },
+      "clusterPersonality": "UNIFIED_ONTAP",
+      "fleetIds": [
+        "1a2b3c4d-5678-90ab-cdef-1234567890ab"
+      ],
+      "id": "6b8e1f9a-3c7d-4a2e-8f5b-1d4c7e9a6b2f",
+      "mapped": "UNMAPPED",
+      "metadata": {
+        "modificationTimestamp": "2026-01-16T14:35:22.456789Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 189.7
+        },
+        "latency": {
+          "average": 203.68
+        },
+        "throughput": {
+          "total": 45821.9
+        }
+      },
+      "name": "lun-02",
+      "node": {
+        "id": "1f4e9a2c-8d5b-4c7f-a3e6-7b9d1f4e8a2c",
+        "name": "node-02"
+      },
+      "organizationId": "3b8f9e2a-7c4d-4e8f-a1b2-9d6e7f8a9b0c",
+      "qosPolicy": {
+        "name": "policy-02"
+      },
+      "qtree": {
+        "name": "qtree-02"
+      },
+      "space": {
+        "available": 395136991232,
+        "size": 859832668160,
+        "used": 464695676928
+      },
+      "state": "OFFLINE",
+      "svm": {
+        "id": "9c2e5f7a-4b8d-4f1c-a7e3-6d9f2c5e8a1b",
+        "name": "svm-02"
+      },
+      "type": "application/vnd.netapp.bxp.lun",
+      "version": "1.0",
+      "volume": {
+        "id": "3a6d9f2c-5e8b-4f4a-c7d1-8e5a3d6f9c2e",
+        "name": "volume-02"
+      },
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#aggregate_1_0_reference]
+[.api-collapsible-fifth-title]
+aggregate_1.0_reference
+
+Reference to an ONTAP aggregate.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the aggregate.
+
+
+|name
+|string
+|False
+a|Aggregate name.
+
+
+|===
+
+
+[#cluster_1_0_reference]
+[.api-collapsible-fifth-title]
+cluster_1.0_reference
+
+Reference to an ONTAP cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the cluster.
+
+
+|name
+|string
+|False
+a|Cluster name.
+
+
+|===
+
+
+[#common_1_0_inventory_metadata]
+[.api-collapsible-fifth-title]
+common_1.0_inventory_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|===
+
+
+[#iops]
+[.api-collapsible-fifth-title]
+iops
+
+IOPS metrics for the LUN.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of I/O operations observed at the storage object.
+
+
+|===
+
+
+[#latency]
+[.api-collapsible-fifth-title]
+latency
+
+Latency metrics for the LUN.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|average
+|number
+|False
+a|The average round trip latency observed at the storage object in microseconds.
+
+
+|===
+
+
+[#throughput]
+[.api-collapsible-fifth-title]
+throughput
+
+Throughput metrics for the LUN.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of throughput observed at the storage object in bytes per second.
+
+
+|===
+
+
+[#lun_1_0_metrics]
+[.api-collapsible-fifth-title]
+lun_1.0_metrics
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|iops
+|link:#iops[iops]
+|False
+a|IOPS metrics for the LUN.
+
+
+|latency
+|link:#latency[latency]
+|False
+a|Latency metrics for the LUN.
+
+
+|throughput
+|link:#throughput[throughput]
+|False
+a|Throughput metrics for the LUN.
+
+
+|===
+
+
+[#node_1_0_reference]
+[.api-collapsible-fifth-title]
+node_1.0_reference
+
+Reference to an ONTAP node.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the node.
+
+
+|name
+|string
+|False
+a|Node name.
+
+
+|===
+
+
+[#qosPolicy]
+[.api-collapsible-fifth-title]
+qosPolicy
+
+QoS policy applied to the LUN.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|False
+a|The name of the QoS policy group applied to the LUN.
+
+
+|===
+
+
+[#qtree]
+[.api-collapsible-fifth-title]
+qtree
+
+Qtree that contains the LUN.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|False
+a|The name of the qtree to which the LUN belongs.
+
+
+|===
+
+
+[#lun_1_0_space]
+[.api-collapsible-fifth-title]
+lun_1.0_space
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|available
+|integer
+|False
+a|The available space in bytes.
+
+
+|size
+|integer
+|False
+a|The total provisioned size of the LUN.
+
+
+|used
+|integer
+|False
+a|The total space consumed in the volume by the LUN, including filesystem overhead,
+but excluding prefix and suffix streams.
+
+
+|===
+
+
+[#svm_1_0_reference]
+[.api-collapsible-fifth-title]
+svm_1.0_reference
+
+Reference to an ONTAP SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the SVM.
+
+
+|name
+|string
+|False
+a|SVM name.
+
+
+|===
+
+
+[#volume_1_0_reference]
+[.api-collapsible-fifth-title]
+volume_1.0_reference
+
+Reference to an ONTAP volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the volume.
+
+
+|name
+|string
+|False
+a|Volume name.
+
+
+|===
+
+
+[#lun_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+lun_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|aggregate
+|link:#aggregate_1_0_reference[aggregate_1.0_reference]
+|False
+a|Reference to an ONTAP aggregate.
+
+* x-tag: Aggregate
+
+
+|cluster
+|link:#cluster_1_0_reference[cluster_1.0_reference]
+|False
+a|Reference to an ONTAP cluster.
+
+* x-tag: Cluster
+
+
+|clusterPersonality
+|string
+|False
+a|The personality of the ONTAP cluster that the LUN belongs to, derived from the cluster's disaggregated and SAN-optimized configuration.
+Defined values are:
+
+* "UNIFIED_ONTAP" - A traditional unified ONTAP cluster (not disaggregated).
+* "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array (ASA) r2 cluster.
+* "AFX" - A disaggregated cluster that is not SAN-optimized.
+* enum: ["UNIFIED_ONTAP", "ASA_R2", "AFX"]
+* example: UNIFIED_ONTAP
+
+
+|fleetIds
+|array[string]
+|False
+a|List of identifiers for the fleets that the LUN belongs to.
+
+
+|id
+|string
+|False
+a|Identifier of the LUN.
+
+
+|mapped
+|string
+|False
+a|Indicates whether the LUN is mapped to an igroup.
+Defined values are:
+
+* "MAPPED" - The LUN is mapped to an igroup.
+* "UNMAPPED" - The LUN is not mapped to an igroup.
+
+
+|metadata
+|link:#common_1_0_inventory_metadata[common_1.0_inventory_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|metrics
+|link:#lun_1_0_metrics[lun_1.0_metrics]
+|False
+a|
+
+|name
+|string
+|False
+a|LUN name.
+
+
+|node
+|link:#node_1_0_reference[node_1.0_reference]
+|False
+a|Reference to an ONTAP node.
+
+* x-tag: Node
+
+
+|organizationId
+|string
+|False
+a|Identifier for an organization.
+
+
+|qosPolicy
+|link:#qosPolicy[qosPolicy]
+|False
+a|QoS policy applied to the LUN.
+
+
+|qtree
+|link:#qtree[qtree]
+|False
+a|Qtree that contains the LUN.
+
+
+|space
+|link:#lun_1_0_space[lun_1.0_space]
+|False
+a|
+
+|state
+|string
+|False
+a|The state of the LUN.
+Defined values are:
+
+* "ONLINE" - The LUN is online and accessible.
+* "OFFLINE" - The LUN is offline and not accessible.
+* "FOREIGN_LUN_ERROR" - The LUN is in an error state due to a foreign LUN issue.
+* "NVFAIL" - The LUN is in an error state due to an NVRAM failure.
+* "SPACE_ERROR" - The LUN is in an error state due to insufficient space.
+
+
+|storageClassId
+|string
+|False
+a|Identifier for the storage class associated with the LUN.
+
+
+|svm
+|link:#svm_1_0_reference[svm_1.0_reference]
+|False
+a|Reference to an ONTAP SVM.
+
+* x-tag: SVM
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+*** "application/vnd.netapp.bxp.lun"
+
+
+|version
+|string
+|False
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|volume
+|link:#volume_1_0_reference[volume_1.0_reference]
+|False
+a|Reference to an ONTAP volume.
+
+* x-tag: Volume
+
+
+|workingEnvironmentId
+|string
+|False
+a|Identifier for the asset's system.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

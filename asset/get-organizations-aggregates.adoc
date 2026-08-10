@@ -1,0 +1,1279 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'asset/get-organizations-aggregates.html'
+summary: 'List aggregates in an organization in NetApp Console local deployment'
+---
+
+= List aggregates in an organization in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/aggregates`#
+
+
+
+Lists all aggregates in the specified organization.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|count
+|string
+|query
+|False
+a|Indicates if the total number of resources should be returned in the response object.
+
+URL examples: "count=true"
+
+OpenAPI examples: "true"
+
+
+|filter
+|string
+|query
+|False
+a|Specifies which fields should be matched in order to return a resource when listing a collection.
+
+Supported operators:
+
+* eq - Equality
+* lt/gt - Less than/greater than
+* lte/gte - Less than or equal to/greater than or equal to
+
+URL example: "filter=field%20eq%20%27value%27"
+
+OpenAPI examples: "field eq 'value'"
+
+
+|include
+|string
+|query
+|False
+a|Specifies which fields should be returned when listing a collection.
+
+URL examples: "include=id", "include=id,name"
+
+OpenAPI examples: "id"
+
+
+|limit
+|string
+|query
+|False
+a|Specifies the maximum number of resources to return when listing a collection.
+
+URL examples: "limit=2"
+
+OpenAPI examples: "2"
+
+
+|metadata
+|string
+|query
+|False
+a|Indicates if the metadata should be returned in the response object.
+
+URL examples: "metadata=true"
+
+OpenAPI examples: "true"
+
+
+|orderBy
+|string
+|query
+|False
+a|Indicates the sort order of resources when listing a collection.
+
+URL examples: "orderBy=name", "orderBy=name%20desc"
+
+OpenAPI examples: "name desc"
+
+
+|skip
+|string
+|query
+|False
+a|Specifies the number of resources to skip when listing a collection.
+
+URL examples: "skip=1"
+
+OpenAPI examples: "1"
+
+
+|===
+
+== Response
+
+```
+Status: 200, OK
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Total number of resources in the collection that match the query.
+
+
+|items
+|array[link:#aggregate_1_0_get_response_body[aggregate_1.0_get_response_body]]
+|True
+a|Aggregates in the collection.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 2,
+  "items": [
+    {
+      "aggregateType": "UNIFIED_DATA",
+      "blockStorage": {
+        "mirror": {
+          "enabled": false
+        },
+        "primary": {
+          "diskType": "SSD",
+          "raidType": "RAID_DP"
+        }
+      },
+      "cluster": {
+        "id": "f2e3d4c5-6789-01bc-def2-345678901bcd",
+        "name": "cluster-01"
+      },
+      "clusterPersonality": "UNIFIED_ONTAP",
+      "diskCount": 12,
+      "id": "c08d213b-3c38-4c07-bde0-852ef821b815",
+      "inactiveDataReporting": {
+        "enabled": true
+      },
+      "metadata": {
+        "modificationTimestamp": "2022-10-06T20:58:16.305662Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 250.5
+        },
+        "latency": {
+          "average": 150.75
+        },
+        "modeledIops": 50000,
+        "modeledIopsAvailable": 35000,
+        "throughput": {
+          "total": 61070.2
+        }
+      },
+      "name": "aggregate-01",
+      "node": {
+        "id": "g3f4e5d6-7890-12cd-ef03-456789012cde",
+        "name": "node-01"
+      },
+      "organizationId": "a1b2c3d4-5678-90ab-cdef-1234567890ab",
+      "raidGroupCount": 2,
+      "security": {
+        "driveProtectionEnabled": false,
+        "isEncrypted": true,
+        "softwareEncryptionEnabled": true
+      },
+      "snaplockType": "NON_SNAPLOCK",
+      "space": {
+        "blockStorage": {
+          "available": 549755813888,
+          "availablePercent": 50,
+          "size": 1099511627776,
+          "used": 549755813888,
+          "usedPercent": 50
+        },
+        "cloudStorage": {
+          "cloudTargetCount": 2,
+          "used": 5755813888
+        },
+        "efficiencyWithoutSnapshots": {
+          "logicalUsed": 549755813888,
+          "ratio": 1
+        },
+        "overcommittedPercentage": 80,
+        "snapshot": {
+          "available": 27487790694,
+          "availablePercent": 50,
+          "total": 54975581388,
+          "used": 27487790694,
+          "usedPercent": 50
+        }
+      },
+      "state": "ONLINE",
+      "type": "application/vnd.netapp.bxp.aggregate",
+      "version": "1.0",
+      "volumeCount": 35,
+      "workingEnvironmentId": "VsaWorkingEnvironment-abc123"
+    },
+    {
+      "aggregateType": "UNIFIED_DATA",
+      "blockStorage": {
+        "mirror": {
+          "enabled": true
+        },
+        "primary": {
+          "diskType": "NVME_SSD",
+          "raidType": "RAID_TEC"
+        }
+      },
+      "cluster": {
+        "id": "f2e3d4c5-6789-01bc-def2-345678901bcd",
+        "name": "cluster-01"
+      },
+      "clusterPersonality": "UNIFIED_ONTAP",
+      "diskCount": 24,
+      "id": "d19e324c-4d4f-5d18-cef1-963fg932c926",
+      "inactiveDataReporting": {
+        "enabled": false
+      },
+      "metadata": {
+        "modificationTimestamp": "2022-10-06T20:58:16.305662Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 250.5
+        },
+        "latency": {
+          "average": 150.75
+        },
+        "modeledIops": 75000,
+        "modeledIopsAvailable": 50000,
+        "throughput": {
+          "total": 61070.2
+        }
+      },
+      "name": "aggregate-02",
+      "node": {
+        "id": "h4g5f6e7-8901-23de-f014-567890123def",
+        "name": "node-02"
+      },
+      "organizationId": "a1b2c3d4-5678-90ab-cdef-1234567890ab",
+      "raidGroupCount": 3,
+      "security": {
+        "driveProtectionEnabled": true,
+        "isEncrypted": true,
+        "softwareEncryptionEnabled": false
+      },
+      "snaplockType": "NON_SNAPLOCK",
+      "space": {
+        "blockStorage": {
+          "available": 1319413953331,
+          "availablePercent": 60,
+          "size": 2199023255552,
+          "used": 879609302220,
+          "usedPercent": 40
+        },
+        "cloudStorage": {
+          "cloudTargetCount": 2,
+          "used": 5755813888
+        },
+        "efficiencyWithoutSnapshots": {
+          "logicalUsed": 879609302220,
+          "ratio": 1.25
+        },
+        "overcommittedPercentage": 120,
+        "snapshot": {
+          "available": 76965813944,
+          "availablePercent": 70,
+          "total": 109951162777,
+          "used": 32985348833,
+          "usedPercent": 30
+        }
+      },
+      "state": "ONLINE",
+      "type": "application/vnd.netapp.bxp.aggregate",
+      "version": "1.0",
+      "volumeCount": 48,
+      "workingEnvironmentId": "VsaWorkingEnvironment-abc123"
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#mirror]
+[.api-collapsible-fifth-title]
+mirror
+
+SyncMirror configuration for the aggregate.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|enabled
+|boolean
+|False
+a|Indicates whether the aggregate is SyncMirror protected.
+
+
+|===
+
+
+[#primary]
+[.api-collapsible-fifth-title]
+primary
+
+Configuration information for the primary storage portion of the aggregate. This excludes the hybrid cache details.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|diskType
+|string
+|False
+a|The type of disk being used by the aggregate.
+Defined values are:
+
+* "FC"
+* "LUN"
+* "NL_SAS"
+* "NVME_SSD"
+* "SAS"
+* "SATA"
+* "SCSI"
+* "SSD"
+* "SSD_CAP"
+* "SSD_ZNS"
+* "VM_DISK"
+
+
+|raidType
+|string
+|False
+a|RAID type of the aggregate.
+Defined values are:
+
+* "RAID_DP"
+* "RAID_EP"
+* "RAID_TEC"
+* "RAID0"
+* "RAID4"
+* "MIXED_RAID_TYPE"
+
+
+|===
+
+
+[#blockStorage]
+[.api-collapsible-fifth-title]
+blockStorage
+
+Configuration information for the locally attached portion of the aggregate.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|mirror
+|link:#mirror[mirror]
+|False
+a|SyncMirror configuration for the aggregate.
+
+
+|primary
+|link:#primary[primary]
+|False
+a|Configuration information for the primary storage portion of the aggregate. This excludes the hybrid cache details.
+
+
+|===
+
+
+[#cluster_1_0_reference]
+[.api-collapsible-fifth-title]
+cluster_1.0_reference
+
+Reference to an ONTAP cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the cluster.
+
+
+|name
+|string
+|False
+a|Cluster name.
+
+
+|===
+
+
+[#inactiveDataReporting]
+[.api-collapsible-fifth-title]
+inactiveDataReporting
+
+Inactive data reporting configuration for the aggregate.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|enabled
+|boolean
+|False
+a|Specifies whether or not inactive data reporting is enabled on the aggregate.
+
+
+|===
+
+
+[#common_1_0_inventory_metadata]
+[.api-collapsible-fifth-title]
+common_1.0_inventory_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|===
+
+
+[#iops]
+[.api-collapsible-fifth-title]
+iops
+
+IOPS metrics for the aggregate.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of I/O operations observed at the storage object.
+
+
+|===
+
+
+[#latency]
+[.api-collapsible-fifth-title]
+latency
+
+Latency metrics for the aggregate.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|average
+|number
+|False
+a|The average round trip latency observed at the storage object, in microseconds.
+
+
+|===
+
+
+[#throughput]
+[.api-collapsible-fifth-title]
+throughput
+
+Throughput metrics for the aggregate.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of throughput observed at the storage object, in bytes per second.
+
+
+|===
+
+
+[#aggregate_1_0_metrics]
+[.api-collapsible-fifth-title]
+aggregate_1.0_metrics
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|iops
+|link:#iops[iops]
+|False
+a|IOPS metrics for the aggregate.
+
+
+|latency
+|link:#latency[latency]
+|False
+a|Latency metrics for the aggregate.
+
+
+|modeledIops
+|number
+|False
+a|The total expected IOPS consumption for the aggregate.
+
+
+|modeledIopsAvailable
+|number
+|False
+a|The remaining expected IOPS capacity available on the aggregate.
+
+
+|throughput
+|link:#throughput[throughput]
+|False
+a|Throughput metrics for the aggregate.
+
+
+|===
+
+
+[#node_1_0_reference]
+[.api-collapsible-fifth-title]
+node_1.0_reference
+
+Reference to an ONTAP node.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the node.
+
+
+|name
+|string
+|False
+a|Node name.
+
+
+|===
+
+
+[#security]
+[.api-collapsible-fifth-title]
+security
+
+Security properties of the aggregate.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|driveProtectionEnabled
+|boolean
+|False
+a|Indicates whether the aggregate is encrypted using self-encrypting drives.
+
+
+|isEncrypted
+|boolean
+|False
+a|Indicates whether the aggregate is encrypted.
+
+
+|softwareEncryptionEnabled
+|boolean
+|False
+a|Indicates whether the aggregate is encrypted using software-based encryption.
+
+
+|===
+
+
+[#blockStorage]
+[.api-collapsible-fifth-title]
+blockStorage
+
+Capacity information for the aggregate's local block storage.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|available
+|integer
+|False
+a|Space available in bytes.
+
+
+|availablePercent
+|number
+|False
+a|The space available, as a percent.
+
+
+|size
+|integer
+|False
+a|Total usable space in bytes, not including WAFL reserve and aggregate snapshot reserve.
+
+
+|used
+|integer
+|False
+a|Space used or reserved in bytes. Includes volume guarantees and aggregate metadata.
+
+
+|usedPercent
+|number
+|False
+a|The space used, as a percent.
+
+
+|===
+
+
+[#cloudStorage]
+[.api-collapsible-fifth-title]
+cloudStorage
+
+Capacity information for cloud storage attached to the aggregate.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|cloudTargetCount
+|integer
+|False
+a|Number of cloud tiers configured for the aggregate.
+
+
+|used
+|integer
+|False
+a|Used space in the cloud stores, in bytes.
+
+
+|===
+
+
+[#efficiencyWithoutSnapshots]
+[.api-collapsible-fifth-title]
+efficiencyWithoutSnapshots
+
+Storage efficiency that does not include the savings provided by snapshots.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|logicalUsed
+|integer
+|False
+a|The logical used space, in bytes.
+
+
+|ratio
+|number
+|False
+a|Data reduction ratio (logical_used / used)
+
+
+|===
+
+
+[#snapshot]
+[.api-collapsible-fifth-title]
+snapshot
+
+Snapshot reserve capacity information for the aggregate.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|available
+|integer
+|False
+a|Available space for snapshots in bytes.
+
+
+|availablePercent
+|number
+|False
+a|Available space for snapshots, as a percent.
+
+
+|total
+|integer
+|False
+a|Total space for snapshots in bytes.
+
+
+|used
+|integer
+|False
+a|Space used by snapshots in bytes.
+
+
+|usedPercent
+|number
+|False
+a|Percentage of disk space used by snapshots.
+
+
+|===
+
+
+[#aggregate_1_0_space]
+[.api-collapsible-fifth-title]
+aggregate_1.0_space
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|blockStorage
+|link:#blockStorage[blockStorage]
+|False
+a|Capacity information for the aggregate's local block storage.
+
+
+|cloudStorage
+|link:#cloudStorage[cloudStorage]
+|False
+a|Capacity information for cloud storage attached to the aggregate.
+
+
+|efficiencyWithoutSnapshots
+|link:#efficiencyWithoutSnapshots[efficiencyWithoutSnapshots]
+|False
+a|Storage efficiency that does not include the savings provided by snapshots.
+
+
+|overcommittedPercentage
+|number
+|False
+a|The percentage by which total volume commitments exceed the aggregate's physical capacity.
+
+
+|snapshot
+|link:#snapshot[snapshot]
+|False
+a|Snapshot reserve capacity information for the aggregate.
+
+
+|===
+
+
+[#aggregate_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+aggregate_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|aggregateType
+|string
+|False
+a|The type of the aggregate.
+Defined values are:
+
+* "UNIFIED_DATA"
+* "DISAGGREGATED_DATA"
+* "STORAGE_AVAILABILITY_ZONE"
+
+
+|blockStorage
+|link:#blockStorage[blockStorage]
+|False
+a|Configuration information for the locally attached portion of the aggregate.
+
+
+|cluster
+|link:#cluster_1_0_reference[cluster_1.0_reference]
+|False
+a|Reference to an ONTAP cluster.
+
+* x-tag: Cluster
+
+
+|clusterPersonality
+|string
+|False
+a|The personality of the ONTAP cluster that the aggregate belongs to, derived from the cluster's disaggregated and SAN-optimized configuration.
+Defined values are:
+
+* "UNIFIED_ONTAP" - A traditional unified ONTAP cluster (not disaggregated).
+* "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array (ASA) r2 cluster.
+* "AFX" - A disaggregated cluster that is not SAN-optimized.
+* enum: ["UNIFIED_ONTAP", "ASA_R2", "AFX"]
+* example: UNIFIED_ONTAP
+
+
+|diskCount
+|number
+|False
+a|Number of disks in the aggregate.
+
+
+|id
+|string
+|False
+a|Identifier of the aggregate.
+
+
+|inactiveDataReporting
+|link:#inactiveDataReporting[inactiveDataReporting]
+|False
+a|Inactive data reporting configuration for the aggregate.
+
+
+|metadata
+|link:#common_1_0_inventory_metadata[common_1.0_inventory_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|metrics
+|link:#aggregate_1_0_metrics[aggregate_1.0_metrics]
+|False
+a|
+
+|name
+|string
+|False
+a|Aggregate name.
+
+
+|node
+|link:#node_1_0_reference[node_1.0_reference]
+|False
+a|Reference to an ONTAP node.
+
+* x-tag: Node
+
+
+|organizationId
+|string
+|False
+a|Identifier for an organization.
+
+
+|raidGroupCount
+|number
+|False
+a|Number of RAID groups in the aggregate.
+
+
+|security
+|link:#security[security]
+|False
+a|Security properties of the aggregate.
+
+
+|snaplockType
+|string
+|False
+a|The SnapLock type of the aggregate.
+Defined values are:
+
+* "COMPLIANCE"
+* "ENTERPRISE"
+* "NON_SNAPLOCK"
+
+
+|space
+|link:#aggregate_1_0_space[aggregate_1.0_space]
+|False
+a|
+
+|state
+|string
+|False
+a|The state of the aggregate.
+Defined values are:
+
+* "ONLINE"
+* "ONLINING"
+* "OFFLINE"
+* "OFFLINING"
+* "RELOCATING"
+* "UNMOUNTED"
+* "RESTRICTED"
+* "INCONSISTENT"
+* "FAILED"
+* "UNKNOWN"
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+*** "application/vnd.netapp.bxp.aggregate"
+
+
+|version
+|string
+|False
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|volumeCount
+|number
+|False
+a|Number of volumes in the aggregate.
+
+
+|workingEnvironmentId
+|string
+|False
+a|Identifier for the asset's systems.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

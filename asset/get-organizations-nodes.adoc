@@ -1,0 +1,976 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'asset/get-organizations-nodes.html'
+summary: 'List nodes in an organization in NetApp Console local deployment'
+---
+
+= List nodes in an organization in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/nodes`#
+
+
+
+Lists all nodes in the specified organization.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|count
+|string
+|query
+|False
+a|Indicates if the total number of resources should be returned in the response object.
+
+URL examples: "count=true"
+
+OpenAPI examples: "true"
+
+
+|filter
+|string
+|query
+|False
+a|Specifies which fields should be matched in order to return a resource when listing a collection.
+
+Supported operators:
+
+* eq - Equality
+* lt/gt - Less than/greater than
+* lte/gte - Less than or equal to/greater than or equal to
+
+URL example: "filter=field%20eq%20%27value%27"
+
+OpenAPI examples: "field eq 'value'"
+
+
+|include
+|string
+|query
+|False
+a|Specifies which fields should be returned when listing a collection.
+
+URL examples: "include=id", "include=id,name"
+
+OpenAPI examples: "id"
+
+
+|limit
+|string
+|query
+|False
+a|Specifies the maximum number of resources to return when listing a collection.
+
+URL examples: "limit=2"
+
+OpenAPI examples: "2"
+
+
+|metadata
+|string
+|query
+|False
+a|Indicates if the metadata should be returned in the response object.
+
+URL examples: "metadata=true"
+
+OpenAPI examples: "true"
+
+
+|orderBy
+|string
+|query
+|False
+a|Indicates the sort order of resources when listing a collection.
+
+URL examples: "orderBy=name", "orderBy=name%20desc"
+
+OpenAPI examples: "name desc"
+
+
+|skip
+|string
+|query
+|False
+a|Specifies the number of resources to skip when listing a collection.
+
+URL examples: "skip=1"
+
+OpenAPI examples: "1"
+
+
+|===
+
+== Response
+
+```
+Status: 200, OK
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Total number of resources in the collection that match the query.
+
+
+|items
+|array[link:#node_1_0_get_response_body[node_1.0_get_response_body]]
+|True
+a|Nodes in the collection.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 2,
+  "items": [
+    {
+      "cluster": {
+        "id": "2c5f8a9b-4e7d-4c1a-b8f3-6e9d2a5c8f1b",
+        "name": "cluster-01"
+      },
+      "ha": {
+        "partner": "node-02"
+      },
+      "id": "b9d7e3f2-4c8a-4e1b-9f6d-2a5c8e4b7f9d",
+      "isAllFlashOptimized": true,
+      "location": "Rack 12, Row 4, Data Center A",
+      "metadata": {
+        "modificationTimestamp": "2026-01-16T15:22:14.789456Z"
+      },
+      "metrics": {
+        "cpuUtilization": 45.2,
+        "flashCacheHitPercent": 85.4,
+        "iops": {
+          "total": 8750.3
+        },
+        "latency": {
+          "average": 89.34
+        },
+        "performanceCapacityUsed": 68.7,
+        "throughput": {
+          "total": 2847592.7
+        }
+      },
+      "model": "AFF-A250",
+      "name": "node-01",
+      "ontapVersion": {
+        "full": "NetApp Release 9.16.1: Thu Oct 12 14:30:22 UTC 2025",
+        "generation": 9,
+        "major": 16,
+        "minor": 1
+      },
+      "organizationId": "3b8f9e2a-7c4d-4e8f-a1b2-9d6e7f8a9b0c",
+      "serialNumber": "4048820-60-9",
+      "space": {
+        "aggregate": {
+          "available": 824633720832,
+          "size": 1374389534720,
+          "used": 549755813888
+        },
+        "disk": {
+          "available": 824633720832,
+          "size": 1374389534720,
+          "spareSize": 549755813888
+        }
+      },
+      "state": "UP",
+      "type": "application/vnd.netapp.bxp.node",
+      "version": "1.0",
+      "volumeCount": 24,
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    },
+    {
+      "cluster": {
+        "id": "2c5f8a9b-4e7d-4c1a-b8f3-6e9d2a5c8f1b",
+        "name": "cluster-01"
+      },
+      "ha": {
+        "partner": "node-01"
+      },
+      "id": "5f8e2a9c-7d4b-4c6e-a8f1-3b6d9e2c5f8a",
+      "isAllFlashOptimized": false,
+      "location": "Rack 13, Row 4, Data Center A",
+      "metadata": {
+        "modificationTimestamp": "2026-01-16T15:24:37.123789Z"
+      },
+      "metrics": {
+        "cpuUtilization": 52.1,
+        "flashCacheHitPercent": 72.8,
+        "iops": {
+          "total": 4320.7
+        },
+        "latency": {
+          "average": 125.68
+        },
+        "performanceCapacityUsed": 71.3,
+        "throughput": {
+          "total": 1392847.5
+        }
+      },
+      "model": "FAS2750",
+      "name": "node-02",
+      "ontapVersion": {
+        "full": "NetApp Release 9.16.1: Thu Oct 12 14:30:22 UTC 2025",
+        "generation": 9,
+        "major": 16,
+        "minor": 1
+      },
+      "organizationId": "3b8f9e2a-7c4d-4e8f-a1b2-9d6e7f8a9b0c",
+      "serialNumber": "4048820-60-10",
+      "space": {
+        "aggregate": {
+          "available": 1649267441664,
+          "size": 2199023255552,
+          "used": 549755813888
+        },
+        "disk": {
+          "available": 824633720832,
+          "size": 1374389534720,
+          "spareSize": 549755813888
+        }
+      },
+      "state": "UP",
+      "type": "application/vnd.netapp.bxp.node",
+      "version": "1.0",
+      "volumeCount": 18,
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#cluster_1_0_reference]
+[.api-collapsible-fifth-title]
+cluster_1.0_reference
+
+Reference to an ONTAP cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the cluster.
+
+
+|name
+|string
+|False
+a|Cluster name.
+
+
+|===
+
+
+[#ha]
+[.api-collapsible-fifth-title]
+ha
+
+High-availability configuration for the node.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|partner
+|string
+|False
+a|Name of HA partner node.
+
+
+|===
+
+
+[#common_1_0_inventory_metadata]
+[.api-collapsible-fifth-title]
+common_1.0_inventory_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|===
+
+
+[#iops]
+[.api-collapsible-fifth-title]
+iops
+
+IOPS metrics for the node.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of I/O operations observed at the storage object.
+
+
+|===
+
+
+[#latency]
+[.api-collapsible-fifth-title]
+latency
+
+Latency metrics for the node.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|average
+|number
+|False
+a|The average round trip latency observed at the storage object in microseconds.
+
+
+|===
+
+
+[#throughput]
+[.api-collapsible-fifth-title]
+throughput
+
+Throughput metrics for the node.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of throughput observed at the storage object in bytes per second.
+
+
+|===
+
+
+[#node_1_0_metrics]
+[.api-collapsible-fifth-title]
+node_1.0_metrics
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|cpuUtilization
+|number
+|False
+a|Average processor utilization.
+
+
+|flashCacheHitPercent
+|number
+|False
+a|The percentage of read operations that were served from Flash Cache.
+
+
+|iops
+|link:#iops[iops]
+|False
+a|IOPS metrics for the node.
+
+
+|latency
+|link:#latency[latency]
+|False
+a|Latency metrics for the node.
+
+
+|performanceCapacityUsed
+|number
+|False
+a|Performance capacity used.
+
+
+|throughput
+|link:#throughput[throughput]
+|False
+a|Throughput metrics for the node.
+
+
+|===
+
+
+[#ontapVersion]
+[.api-collapsible-fifth-title]
+ontapVersion
+
+Cluster version information. When the cluster has more than one node, the cluster version is equivalent to the lowest of generation, major, and minor versions on all nodes.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|full
+|string
+|False
+a|The full version string.
+
+
+|generation
+|number
+|False
+a|The generation portion of the version.
+
+
+|major
+|number
+|False
+a|The major portion of the version.
+
+
+|minor
+|number
+|False
+a|The minor portion of the version.
+
+
+|===
+
+
+[#aggregate]
+[.api-collapsible-fifth-title]
+aggregate
+
+Aggregate capacity information for the node.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|available
+|integer
+|False
+a|The available space in bytes.
+
+
+|size
+|integer
+|False
+a|Total usable space in bytes, not including WAFL reserve and aggregate snapshot reserve.
+
+
+|used
+|integer
+|False
+a|Space used or reserved in bytes. Includes volume guarantees and aggregate metadata.
+
+
+|===
+
+
+[#disk]
+[.api-collapsible-fifth-title]
+disk
+
+Capacity information for the node derived from disk capacity metrics.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|available
+|integer
+|False
+a|Available disk space in bytes.
+
+
+|size
+|integer
+|False
+a|Total usable space for all disks, in bytes.
+
+
+|spareSize
+|integer
+|False
+a|Total usable space for all spare disks, in bytes.
+
+
+|===
+
+
+[#node_1_0_space]
+[.api-collapsible-fifth-title]
+node_1.0_space
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|aggregate
+|link:#aggregate[aggregate]
+|False
+a|Aggregate capacity information for the node.
+
+
+|disk
+|link:#disk[disk]
+|False
+a|Capacity information for the node derived from disk capacity metrics.
+
+
+|===
+
+
+[#node_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+node_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|cluster
+|link:#cluster_1_0_reference[cluster_1.0_reference]
+|False
+a|Reference to an ONTAP cluster.
+
+* x-tag: Cluster
+
+
+|ha
+|link:#ha[ha]
+|False
+a|High-availability configuration for the node.
+
+
+|id
+|string
+|False
+a|Identifier of the node.
+
+
+|isAllFlashOptimized
+|boolean
+|False
+a|Specifies whether the node is all flash optimized.
+
+
+|location
+|string
+|False
+a|The physical location of the node.
+
+
+|maxVolumesPerNode
+|number
+|False
+a|The maximum number of volumes supported on the node.
+
+
+|metadata
+|link:#common_1_0_inventory_metadata[common_1.0_inventory_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|metrics
+|link:#node_1_0_metrics[node_1.0_metrics]
+|False
+a|
+
+|model
+|string
+|False
+a|The model of the node.
+
+
+|name
+|string
+|False
+a|Node name.
+
+
+|ontapVersion
+|link:#ontapVersion[ontapVersion]
+|False
+a|Cluster version information. When the cluster has more than one node, the cluster version is equivalent to the lowest of generation, major, and minor versions on all nodes.
+
+
+|organizationId
+|string
+|False
+a|Identifier for an organization.
+
+
+|serialNumber
+|string
+|False
+a|The serial number of the node.
+
+
+|space
+|link:#node_1_0_space[node_1.0_space]
+|False
+a|
+
+|state
+|string
+|False
+a|The state of the node.
+Defined values are:
+
+* "UP" - Node is up and operational.
+* "BOOTING" - Node is booting up.
+* "DOWN" - Node has stopped or is dumping core.
+* "TAKEN_OVER" - Node has been taken over by its HA partner and is not yet waiting for giveback.
+* "WAITING_FOR_GIVEBACK" - Node has been taken over by its HA partner and is waiting for the HA partner to giveback disks.
+* "DEGRADED" - Node has one or more critical services offline.
+* "UNKNOWN" - Node or its HA partner cannot be contacted and there is no information on the node's state.
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+*** "application/vnd.netapp.bxp.node"
+
+
+|version
+|string
+|False
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|volumeCount
+|number
+|False
+a|Number of volumes hosted on the node.
+
+
+|workingEnvironmentId
+|string
+|False
+a|Identifier for the asset's system.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

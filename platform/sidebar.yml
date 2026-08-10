@@ -1,0 +1,21 @@
+section: platform
+title: Get started
+entries:
+  - title: Learn about the REST APIs for NetApp Console local deployment  
+    url: /platform/learn-about.html
+  - title: REST implementation
+    url: /platform/rest-implementation.html
+  - title: Base URLs and API endpoint paths
+    url: /platform/endpoint-paths.html
+  - title: Authentication and authorization
+    entries:
+      - title: Learn about authentication and authorization
+        url: /platform/authentication.html
+      - title: Create a user token
+        url: /platform/create-user-token.html
+      - title: Create a service token
+        url: /platform/create-service-token.html
+  - title: Your first API call
+    url: /platform/perform-api-call.html
+  - title: API references
+    url: /platform/api-reference.html

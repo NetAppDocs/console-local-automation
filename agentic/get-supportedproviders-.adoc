@@ -1,0 +1,534 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'agentic/get-supportedproviders-.html'
+summary: 'Retrieve an LLM supported provider in NetApp Console local deployment'
+---
+
+= Retrieve an LLM supported provider in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/supportedProviders/{supported_provider_id}`#
+
+
+
+Returns detailed information about a specific Large Language Model (LLM) supported provider, identified by its unique ID.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|supported_provider_id
+|string
+|path
+|True
+a|Unique identifier of the supported provider or provider name.
+
+* example: 550e8400-e29b-41d4-a716-446655440000 or openai
+
+
+|===
+
+== Response
+
+```
+Status: 200, Successfully retrieved the supported provider.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|description
+|string
+|False
+a|Human-readable description of the supported provider.
+
+
+|id
+|string
+|True
+a|Globally unique identifier of the supported provider.
+Defined values are:
+
+* Conforms to the UUIDv4 Schema
+
+
+|isConfigured
+|boolean
+|False
+a|Indicates whether this supported provider has been configured with credentials.
+
+
+|isEnabled
+|boolean
+|False
+a|Indicates whether this supported provider is currently enabled for use.
+
+
+|metadata
+|link:#type_bxp_metadata[type_bxp_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|name
+|string
+|True
+a|Name of the LLM supported provider.
+Defined values are:
+
+* "openai" - OpenAI API
+* "anthropic" - Anthropic Claude API
+* "commonOpenAI" - Generic OpenAI-compatible API
+
+
+|supportedModelTypes
+|array[string]
+|False
+a|List of model types supported by this supported provider.
+
+
+|type
+|string
+|True
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.supportedProvider"
+
+
+|version
+|string
+|True
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "description": "OpenAI API - Access to GPT models including GPT-4, GPT-4o, and GPT-3.5",
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "isConfigured": false,
+  "isEnabled": true,
+  "metadata": {
+    "createdBy": "666a3f38-d4fa-5b62-a391-a69029758d32",
+    "creationTimestamp": "2022-10-06T20:58:16.305662Z",
+    "labels": [
+      {
+        "name": "string",
+        "value": "string"
+      }
+    ],
+    "modificationTimestamp": "2022-10-06T20:58:16.305662Z",
+    "modifiedBy": "666a3f38-d4fa-5b62-a391-a69029758d32"
+  },
+  "name": "openai",
+  "supportedModelTypes": [
+    "chat",
+    "completion",
+    "embedding",
+    "image",
+    "audio"
+  ],
+  "type": "application/vnd.netapp.bxp.supportedProvider",
+  "version": "1.0"
+}
+====
+
+== Response
+
+```
+Status: 401, Unauthorized - authentication required.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+== Response
+
+```
+Status: 403, Forbidden - insufficient permissions.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+== Response
+
+```
+Status: 404, Not found - supported provider does not exist.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+== Response
+
+```
+Status: 500, Internal server error.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+== Error
+
+```
+Status: 400, Bad request - invalid supported provider id format.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#type_bxp_label]
+[.api-collapsible-fifth-title]
+type_bxp_label
+
+Name/value pair.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the label.
+
+
+|value
+|string
+|True
+a|Value of the label.
+
+
+|===
+
+
+[#type_bxp_metadata]
+[.api-collapsible-fifth-title]
+type_bxp_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|createdBy
+|string
+|False
+a|UUID of the user who created the resource.
+
+
+|creationTimestamp
+|string
+|False
+a|Resource creation date.
+
+
+|labels
+|array[link:#type_bxp_label[type_bxp_label]]
+|False
+a|Array of name/value pairs representing additional information for the resource.
+
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|modifiedBy
+|string
+|False
+a|UUID of the user who modified the resource.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

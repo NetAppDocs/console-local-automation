@@ -1,0 +1,1016 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'tenancyv4/patch-organizations-.html'
+summary: 'Update an organization partially in NetApp Console local deployment'
+---
+
+= Update an organization partially in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/organizations/{organization_id}`#
+
+
+
+Updates the specified organization with partial information. With content-type "application/vnd.netapp.bxp.resource+json", replaces the specified attributes in the request body with the values provided. With content-type "application/vnd.netapp.bxp.organization+json", allows the changing of specific settings for this organization. With content-type "application/vnd.netapp.bxp.organization+deactivation+json", performs an organization state change (deactivation or reactivation). The stateDesired field determines the action.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Organization ID.
+
+* example: 666a3f38-d4fa-5b62-a391-a69029758d32
+
+
+|Accept
+|string
+|header
+|False
+a|Specifies the expected response media type for state change operations. Must match the operation being performed:
+
+* application/vnd.netapp.bxp.organization+deactivation+json for deactivation
+* application/vnd.netapp.bxp.organization+deactivation+dryrun+json for deactivation dry-run
+* application/vnd.netapp.bxp.organization+reactivation+json for reactivation
+* application/vnd.netapp.bxp.organization+reactivation+dryrun+json for reactivation dry-run
+
+
+|===
+
+== Request Body
+
+With content-type "application/vnd.netapp.bxp.resource+json", replaces the specified attributes in the request body with the values provided.
+With content-type "application/vnd.netapp.bxp.organization+json", allows the changing of specific settings for this organization.
+With content-type "application/vnd.netapp.bxp.organization+deactivation+json", performs a state change operation (requires M2M token with tenancy:v4:sre scope). The stateDesired field determines the operation: DEACTIVATE, DEACTIVATE_DRYRUN, REACTIVATE, or REACTIVATE_DRYRUN.
+                   
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|orgAdminAuth0Id
+|string
+|False
+a|Auth0 subject (e.g. auth0\|abc123) of the user to assign as organization admin upon reactivation.
+
+
+|orgAdminEmailId
+|string
+|False
+a|Email address of the user to assign as organization admin upon reactivation.
+
+
+|orgAdminUserId
+|string
+|False
+a|Internal user ID to assign as organization admin upon reactivation. At most one of orgAdminUserId, orgAdminAuth0Id, or orgAdminEmailId can be provided.
+
+
+|stateDesired
+|string
+|True
+a|The desired reactivation operation:
+
+* REACTIVATE: Reactivates a previously deactivated organization.
+* REACTIVATE_DRYRUN: Previews what would be restored without making changes.
+
+
+|===
+
+
+.Example request
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "stateDesired": "DEACTIVATE"
+}
+====
+
+== Response
+
+```
+Status: 200, Returns the result of a state change operation (deactivation/reactivation). The response Content-Type matches the operation performed.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|archived
+|link:#archived[archived]
+|False
+a|Counts of archived entities. Present when dryRun=false.
+
+
+|blockers
+|array[string]
+|False
+a|List of conditions that block deactivation.
+
+
+|deactivationBatchId
+|string
+|False
+a|Unique identifier linking all archived documents from this deactivation event. Only present when dryRun=false.
+
+
+|deactivationTimestamp
+|string
+|False
+a|Timestamp of when the deactivation was performed. Only present when dryRun=false.
+
+
+|dryRun
+|boolean
+|False
+a|Indicates whether this was a dry-run (preview) or actual deactivation.
+
+
+|excluded
+|link:#excluded[excluded]
+|False
+a|Counts of entities excluded from archival. Present when dryRun=false.
+
+
+|impact
+|link:#impact[impact]
+|False
+a|Detailed impact report with counts and IDs of affected objects. Present when dryRun=true.
+
+
+|organizationId
+|string
+|False
+a|ID of the organization that was deactivated.
+
+
+|status
+|string
+|False
+a|Status of the organization. DEACTIVATED after successful deactivation, ACTIVE for dry-run previews (organization is still active).
+
+
+|ttlExpirationTimestamp
+|string
+|False
+a|Timestamp of when archived data will be purged by TTL. Only present when dryRun=false.
+
+
+|users
+|link:#users[users]
+|False
+a|Summary of user actions taken. Present when dryRun=false.
+
+
+|warnings
+|array[string]
+|False
+a|List of warnings about the deactivation impact.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "blockers": [
+    "string"
+  ],
+  "deactivationBatchId": "string",
+  "deactivationTimestamp": "string",
+  "impact": {
+    "bindings": {
+      "ids": [
+        "string"
+      ]
+    },
+    "grants": {
+      "ids": [
+        "string"
+      ]
+    },
+    "inactiveBindings": {
+      "ids": [
+        "string"
+      ]
+    },
+    "inactiveGrants": {
+      "ids": [
+        "string"
+      ]
+    },
+    "partnerships": {
+      "dissolved": {
+        "ids": [
+          "string"
+        ]
+      }
+    },
+    "resourcegroups": {
+      "ids": [
+        "string"
+      ]
+    },
+    "resources": {
+      "ids": [
+        "string"
+      ]
+    },
+    "usergroups": {
+      "ids": [
+        "string"
+      ]
+    },
+    "users": {
+      "agents": {
+        "ids": [
+          "string"
+        ]
+      },
+      "multiOrganizationUsers": {
+        "action": "string",
+        "ids": [
+          "string"
+        ]
+      },
+      "serviceAccounts": {
+        "ids": [
+          "string"
+        ]
+      },
+      "soleOrganizationUsers": {
+        "action": "string",
+        "ids": [
+          "string"
+        ]
+      },
+      "systemUsersExcluded": {
+        "ids": [
+          "string"
+        ]
+      },
+      "tagOnlyUsers": {
+        "action": "string",
+        "ids": [
+          "string"
+        ]
+      }
+    }
+  },
+  "organizationId": "string",
+  "status": "string",
+  "ttlExpirationTimestamp": "string",
+  "warnings": [
+    "string"
+  ]
+}
+====
+
+== Response
+
+```
+Status: 204, Indicates if the organization was updated (for resource/safemode patches).
+```
+
+== Response
+
+```
+Status: 406, The accept header does not match the expected response type for the statedesired operation.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|error
+|string
+|False
+a|Explanation of why the Accept header was rejected.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "error": "string"
+}
+====
+
+== Response
+
+```
+Status: 415, The content-type header is not recognized or supported for this endpoint.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|error
+|string
+|False
+a|Explanation of the unsupported media type.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "error": "string"
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Error
+
+```
+Status: 404, Not found
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The collection specified in the request URI wasn't found.",
+  "status": "404",
+  "title": "Collection not found",
+  "type": "https://bluexp.netapp.io/problems/2"
+}
+====
+
+== Error
+
+```
+Status: 409, Conflict
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request body JSON contains a field that conflicts with an idempotent value.",
+  "status": "409",
+  "title": "JSON resource conflict",
+  "type": "https://bluexp.netapp.io/problems/10"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#archived]
+[.api-collapsible-fifth-title]
+archived
+
+Counts of archived entities. Present when dryRun=false.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|bindings
+|integer
+|False
+a|
+
+|elevatedBindingsDeleted
+|integer
+|False
+a|Number of elevated (safe-mode TTL) bindings deleted prior to archival.
+
+
+|grants
+|integer
+|False
+a|
+
+|inactiveBindings
+|integer
+|False
+a|
+
+|inactiveGrants
+|integer
+|False
+a|
+
+|resourcegroups
+|integer
+|False
+a|
+
+|resources
+|integer
+|False
+a|
+
+|usergroups
+|integer
+|False
+a|
+
+|===
+
+
+[#excluded]
+[.api-collapsible-fifth-title]
+excluded
+
+Counts of entities excluded from archival. Present when dryRun=false.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|systemUsers
+|integer
+|False
+a|
+
+|===
+
+
+[#deactivation_impact_detail]
+[.api-collapsible-fifth-title]
+deactivation_impact_detail
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Number of affected entities.
+
+
+|ids
+|array[string]
+|False
+a|List of affected entity IDs.
+
+
+|===
+
+
+[#partnerships]
+[.api-collapsible-fifth-title]
+partnerships
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|dissolved
+|link:#deactivation_impact_detail[deactivation_impact_detail]
+|False
+a|
+
+|===
+
+
+[#deactivation_user_impact]
+[.api-collapsible-fifth-title]
+deactivation_user_impact
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|action
+|string
+|False
+a|Description of the action taken on these users.
+
+
+|count
+|integer
+|False
+a|Number of affected users.
+
+
+|ids
+|array[string]
+|False
+a|List of affected user IDs.
+
+
+|===
+
+
+[#users]
+[.api-collapsible-fifth-title]
+users
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|agents
+|link:#deactivation_impact_detail[deactivation_impact_detail]
+|False
+a|
+
+|multiOrganizationUsers
+|link:#deactivation_user_impact[deactivation_user_impact]
+|False
+a|
+
+|serviceAccounts
+|link:#deactivation_impact_detail[deactivation_impact_detail]
+|False
+a|
+
+|soleOrganizationUsers
+|link:#deactivation_user_impact[deactivation_user_impact]
+|False
+a|
+
+|systemUsersExcluded
+|link:#deactivation_impact_detail[deactivation_impact_detail]
+|False
+a|
+
+|tagOnlyUsers
+|link:#deactivation_user_impact[deactivation_user_impact]
+|False
+a|
+
+|===
+
+
+[#impact]
+[.api-collapsible-fifth-title]
+impact
+
+Detailed impact report with counts and IDs of affected objects. Present when dryRun=true.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|bindings
+|link:#deactivation_impact_detail[deactivation_impact_detail]
+|False
+a|
+
+|grants
+|link:#deactivation_impact_detail[deactivation_impact_detail]
+|False
+a|
+
+|inactiveBindings
+|link:#deactivation_impact_detail[deactivation_impact_detail]
+|False
+a|
+
+|inactiveGrants
+|link:#deactivation_impact_detail[deactivation_impact_detail]
+|False
+a|
+
+|partnerships
+|link:#partnerships[partnerships]
+|False
+a|
+
+|resourcegroups
+|link:#deactivation_impact_detail[deactivation_impact_detail]
+|False
+a|
+
+|resources
+|link:#deactivation_impact_detail[deactivation_impact_detail]
+|False
+a|
+
+|usergroups
+|link:#deactivation_impact_detail[deactivation_impact_detail]
+|False
+a|
+
+|users
+|link:#users[users]
+|False
+a|
+
+|===
+
+
+[#users]
+[.api-collapsible-fifth-title]
+users
+
+Summary of user actions taken. Present when dryRun=false.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|deleted
+|integer
+|False
+a|
+
+|organizationAssociationRemoved
+|integer
+|False
+a|
+
+|tagsRemoved
+|integer
+|False
+a|
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

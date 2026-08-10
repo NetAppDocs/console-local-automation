@@ -1,0 +1,703 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'storage-management/get-v1-organizations-securitypolicies.html'
+summary: 'List security policies in NetApp Console local deployment'
+---
+
+= List security policies in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/v1/organizations/{organizationId}/securitypolicies`#
+
+
+
+Retrieves the list of security policies for the specified organization.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organizationId
+|string
+|path
+|True
+a|Organization ID
+
+
+|filter
+|string
+|query
+|False
+a|Specifies which fields should be matched when listing resources.
+
+Supported comparison operators:
+
+* eq - Equality
+* ne - Not equal
+* lt - Less than
+* le - Less than or equal to
+* gt - Greater than
+* ge - Greater than or equal to
+* re - Regular expression match
+* ex - Existence check (field exists)
+* in - Membership test (value in list)
+
+Logical operators:
+
+* and - Logical AND
+* or - Logical OR
+* not - Logical NOT
+
+Property names support:
+
+* Dot notation for nested fields: metadata.name
+* Array indexing: items[0].name or items[*].name or items.name
+
+Value types:
+
+* Strings: wrapped in single quotes ('value') or double quotes ("value")
+* Numbers: integers (42) or floats (3.14)
+* Booleans: true or false
+* Null: null
+
+Grouping:
+
+* Use parentheses to group expressions and control precedence
+* Example: (a eq 'x' or b eq 'y') and c eq 'z'
+
+IN operator syntax:
+
+* Use parentheses with comma-separated quoted values
+* Example: resourceType in ('AWS','AZURE','GCP')
+
+Examples:
+
+* Simple: resourceType eq 'cluster'
+* With negation: not (tags.internal:bxp:workingEnvironmentId ex)
+* Multiple conditions: resourceType eq 'cluster' and state ne 'INACTIVE'
+* With grouping: (resourceType eq 'organization' or state ne 'INACTIVE') and tier gt '1'
+* With IN operator: resourceType in ('AWS','AZURE','GCP') and state eq 'active'
+
+URL-encoded example: "filter=field1%20eq%20'value1'%20or%20field2%20ne%20'value2'"
+
+
+|limit
+|string
+|query
+|False
+a|Specifies the maximum number of resources to return when listing a collection.
+
+URL examples: "limit=2"
+
+OpenAPI examples: "2"
+
+
+|skip
+|string
+|query
+|False
+a|Specifies the number of resources to skip when listing a collection.
+
+URL examples: "skip=1"
+
+OpenAPI examples: "1"
+
+
+|orderBy
+|string
+|query
+|False
+a|Specifies the field and direction for sorting resources when listing a collection.
+
+Format: field [asc/desc]
+
+Direction keywords (case-insensitive):
+
+* asc - Ascending order (default if omitted)
+* desc - Descending order
+
+Examples:
+
+* Field only: orderBy=name (defaults to ascending)
+* Ascending: orderBy=name asc
+* Descending: orderBy=name desc
+
+
+|count
+|string
+|query
+|False
+a|Indicates if the total number of resources should be returned in the response object.
+
+URL examples: "count=true"
+
+OpenAPI examples: "true"
+
+
+|===
+
+== Response
+
+```
+Status: 200, Successfully retrieved security policies list.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|True
+a|Total number of resources in the collection that match the query.
+
+
+|items
+|array[link:#security_policy_1_0_get_response_body[security_policy_1.0_get_response_body]]
+|True
+a|List of security policies.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 2,
+  "items": [
+    {
+      "description": "Security policy for production workloads with encryption and ransomware protection",
+      "encryptionType": "ENABLED",
+      "fips": "ON",
+      "id": "5fa85f64-5717-4562-b3fc-2c963f66afa8",
+      "metadata": {
+        "createdBy": "666a3f38-d4fa-5b62-a391-a69029758d32",
+        "creationTimestamp": "2022-10-06T20:58:16.305662Z",
+        "labels": [],
+        "modificationTimestamp": "2022-10-06T20:58:16.305662Z",
+        "modifiedBy": "666a3f38-d4fa-5b62-a391-a69029758d32"
+      },
+      "name": "High Security Policy",
+      "organizationId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "policyType": "USER_DEFINED",
+      "ransomwareProtection": "ON",
+      "tags": [
+        {
+          "internal:bxp:metric:associatedWorkloadCnt": "2"
+        }
+      ],
+      "type": "application/vnd.netapp.bxp.securitypolicy",
+      "version": "1.0"
+    },
+    {
+      "description": "Standard security policy for non-production workloads",
+      "encryptionType": "ANY",
+      "fips": "OFF",
+      "id": "6fb96g75-6828-5673-c4gd-3d074g77bgb9",
+      "metadata": {
+        "createdBy": "666a3f38-d4fa-5b62-a391-a69029758d32",
+        "creationTimestamp": "2022-11-01T15:30:00.000Z",
+        "labels": [],
+        "modificationTimestamp": "2022-11-01T15:30:00.000Z",
+        "modifiedBy": "666a3f38-d4fa-5b62-a391-a69029758d32"
+      },
+      "name": "Standard Security Policy",
+      "organizationId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "policyType": "USER_DEFINED",
+      "ransomwareProtection": "OFF",
+      "tags": [
+        {
+          "internal:bxp:metric:associatedWorkloadCnt": "0"
+        }
+      ],
+      "type": "application/vnd.netapp.bxp.securitypolicy",
+      "version": "1.0"
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Error
+
+```
+Status: 404, Not found
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The collection specified in the request URI wasn't found.",
+  "status": "404",
+  "title": "Collection not found",
+  "type": "https://bluexp.netapp.io/problems/2"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#type_bxp_label]
+[.api-collapsible-fifth-title]
+type_bxp_label
+
+Name/value pair.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the label.
+
+
+|value
+|string
+|True
+a|Value of the label.
+
+
+|===
+
+
+[#type_bxp_metadata]
+[.api-collapsible-fifth-title]
+type_bxp_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|createdBy
+|string
+|False
+a|UUID of the user who created the resource.
+
+
+|creationTimestamp
+|string
+|False
+a|Resource creation date.
+
+
+|labels
+|array[link:#type_bxp_label[type_bxp_label]]
+|False
+a|Array of name/value pairs representing additional information for the resource.
+
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|modifiedBy
+|string
+|False
+a|UUID of the user who modified the resource.
+
+
+|===
+
+
+[#tags]
+[.api-collapsible-fifth-title]
+tags
+Hash mapping strings to string
+
+[#security_policy_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+security_policy_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|description
+|string
+|False
+a|Description of the security policy.
+
+
+|encryptionType
+|string
+|False
+a|Type of encryption applied by the security policy. Should be enabled (ENABLED) or can be enabled or disabled (ANY).
+
+
+|fips
+|string
+|False
+a|FIPS setting. Should be enabled (ON), disabled (OFF), or can be enabled or disabled (ANY).
+
+
+|id
+|string
+|True
+a|Unique identifier of the security policy.
+
+
+|metadata
+|link:#type_bxp_metadata[type_bxp_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|name
+|string
+|True
+a|Name of the security policy.
+
+
+|organizationId
+|string
+|False
+a|Organization ID that the policy is associated with.
+
+
+|policyType
+|string
+|False
+a|Type of the security policy.
+
+
+|ransomwareProtection
+|string
+|False
+a|Ransomware protection setting. Should be enabled (ON), disabled (OFF), or can be enabled or disabled (ANY).
+
+
+|tags
+|array[link:#tags[tags]]
+|False
+a|JSON array of tags (name/value pairs) associated with the security policy. Can be used to add any additional data related to the security policy.
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.securitypolicy"
+
+
+|version
+|string
+|False
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

@@ -1,0 +1,715 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'storage-management/post-v1-organizations-performancepolicies.html'
+summary: 'Create a new performance policy in NetApp Console local deployment'
+---
+
+= Create a new performance policy in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/performancepolicies`#
+
+
+
+Creates a new performance policy within the specified organization.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organizationId
+|string
+|path
+|True
+a|Unique identifier of the organization.
+
+
+|===
+
+== Request Body
+
+Expected to contain necessary parameters for creating a new performance policy.
+                   
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|adaptive
+|link:#adaptive_perf_policy_1_0[adaptive_perf_policy_1.0]
+|True
+a|Adaptive performance policy details.
+
+
+|description
+|string
+|False
+a|Description of the performance policy.
+
+
+|name
+|string
+|True
+a|Name of the performance policy.
+
+
+|tags
+|array[link:#tags[tags]]
+|False
+a|JSON array of tags (name/value pairs) associated with the performance policy. Can be used to add any additional data related to the performance policy.
+
+
+|type
+|string
+|True
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.performancepolicy"
+
+
+|version
+|string
+|True
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+.Example request
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "adaptive": {
+    "absoluteMinIopsPerTb": 1500,
+    "expectedIopsPerTb": 2000,
+    "expectedLatency": 200,
+    "peakIopsPerTb": 3000
+  },
+  "description": "Configuration for extreme performance on workloads",
+  "name": "Extreme Performance",
+  "tags": [
+    {
+      "internal:bxp:metric:associatedWorkloadCnt": "3"
+    }
+  ],
+  "type": "application/vnd.netapp.bxp.performancepolicy",
+  "version": "1.0"
+}
+====
+
+== Response
+
+```
+Status: 201, Performance policy created successfully
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|adaptive
+|link:#adaptive_perf_policy_1_0[adaptive_perf_policy_1.0]
+|False
+a|Adaptive performance policy details.
+
+
+|description
+|string
+|False
+a|Description of the performance policy.
+
+
+|id
+|string
+|True
+a|Unique identifier of the performance policy.
+
+
+|metadata
+|link:#type_bxp_metadata[type_bxp_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|name
+|string
+|True
+a|Name of the performance policy.
+
+
+|organizationId
+|string
+|False
+a|Organization ID that the policy is associated with.
+
+
+|policyType
+|string
+|False
+a|Type of the performance policy.
+
+
+|tags
+|array[link:#tags[tags]]
+|False
+a|JSON array of tags (name/value pairs) associated with the performance policy. Can be used to add any additional data related to the performance policy.
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.performancepolicy"
+
+
+|version
+|string
+|False
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "adaptive": {
+    "absoluteMinIopsPerTb": 800,
+    "expectedIopsPerTb": 1000,
+    "expectedLatency": 500,
+    "peakIopsPerTb": 1500
+  },
+  "description": "Configuration for high performance workloads",
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "metadata": {
+    "createdBy": "666a3f38-d4fa-5b62-a391-a69029758d32",
+    "creationTimestamp": "2022-10-06T20:58:16.305662Z",
+    "labels": [],
+    "modificationTimestamp": "2022-10-06T20:58:16.305662Z",
+    "modifiedBy": "666a3f38-d4fa-5b62-a391-a69029758d32"
+  },
+  "name": "High Performance Policy",
+  "organizationId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "policyType": "USER_DEFINED",
+  "tags": [
+    {
+      "internal:bxp:metric:associatedWorkloadCnt": "2"
+    }
+  ],
+  "type": "application/vnd.netapp.bxp.performancepolicy",
+  "version": "1.0"
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Error
+
+```
+Status: 404, Not found
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The collection specified in the request URI wasn't found.",
+  "status": "404",
+  "title": "Collection not found",
+  "type": "https://bluexp.netapp.io/problems/2"
+}
+====
+
+== Error
+
+```
+Status: 409, Conflict
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request body JSON contains a field that conflicts with an idempotent value.",
+  "status": "409",
+  "title": "JSON resource conflict",
+  "type": "https://bluexp.netapp.io/problems/10"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#adaptive_perf_policy_1_0]
+[.api-collapsible-fifth-title]
+adaptive_perf_policy_1.0
+
+Adaptive performance policy details.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|absoluteMinIopsPerTb
+|integer
+|False
+a|Absolute minimum IOPS per terabyte that is used as an override when the expected IOPS is less than this value.
+
+
+|expectedIopsPerTb
+|integer
+|True
+a|Minimum expected IOPS, per terabyte.
+
+
+|expectedLatency
+|integer
+|True
+a|Expected latency, in milliseconds.
+
+
+|peakIopsPerTb
+|integer
+|True
+a|Maximum expected IOPS, per terabyte.
+
+
+|===
+
+
+[#tags]
+[.api-collapsible-fifth-title]
+tags
+Hash mapping strings to string
+
+[#type_bxp_label]
+[.api-collapsible-fifth-title]
+type_bxp_label
+
+Name/value pair.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the label.
+
+
+|value
+|string
+|True
+a|Value of the label.
+
+
+|===
+
+
+[#type_bxp_metadata]
+[.api-collapsible-fifth-title]
+type_bxp_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|createdBy
+|string
+|False
+a|UUID of the user who created the resource.
+
+
+|creationTimestamp
+|string
+|False
+a|Resource creation date.
+
+
+|labels
+|array[link:#type_bxp_label[type_bxp_label]]
+|False
+a|Array of name/value pairs representing additional information for the resource.
+
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|modifiedBy
+|string
+|False
+a|UUID of the user who modified the resource.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

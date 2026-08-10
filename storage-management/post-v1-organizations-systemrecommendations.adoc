@@ -1,0 +1,708 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'storage-management/post-v1-organizations-systemrecommendations.html'
+summary: 'Retrieve system recommendations for storage placement in NetApp Console local deployment'
+---
+
+= Retrieve system recommendations for storage placement in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/systemrecommendations`#
+
+
+
+Calculates the cluster and SVM storage in the fleet to make recommendations based on the constraints and storage classes.
+Returns a list of system recommendations for optimal storage placement.
+
+NOTE: Returns three recommendations by default.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organizationId
+|string
+|path
+|True
+a|Organization ID
+
+
+|===
+
+== Request Body
+
+System recommendations request payload
+                   
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|capacityPolicyId
+|string
+|False
+a|Optional capacity policy identifier for the recommendation.
+
+
+|fleetId
+|string
+|False
+a|Fleet identifier for the recommendation.
+
+
+|performancePolicyId
+|string
+|False
+a|Optional performance policy identifier for the recommendation.
+
+
+|securityPolicyId
+|string
+|False
+a|Optional security policy identifier for the recommendation.
+
+
+|size
+|integer
+|True
+a|Size of the storage, in bytes.
+
+
+|storageClassId
+|string
+|False
+a|Optional storage class identifier for the recommendation.
+
+
+|storageCount
+|integer
+|False
+a|Number of storage units requested, used to specify LUN count.
+
+
+|storageType
+|string
+|True
+a|Type of storage requested.
+
+
+|type
+|string
+|True
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.systemrecommendations"
+
+
+|version
+|string
+|True
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+.Example request
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "fleetId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "size": 107374182400,
+  "storageClassId": "888c5g50-f6gc-7d84-c5b3-c89241970f54",
+  "storageCount": 4,
+  "storageType": "LUN",
+  "type": "application/vnd.netapp.bxp.systemrecommendations",
+  "version": 1
+}
+====
+
+== Response
+
+```
+Status: 200, Successful response with system recommendations
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Number of recommendations provided
+
+
+|items
+|array[link:#items[items]]
+|False
+a|List of placement recommendations.
+
+* example: [{"availableCapacity" \=> 549755813888, "fleets" \=> [{"id" \=> "666a3f38-d4fa-5b62-a391-a69029758d31", "name" \=> "fleet-name-1"}], "name" \=> "cluster-name-1", "ontapVersion" \=> "9.16.1", "personality" \=> "UNIFIED_ONTAP", "recommendation" \=> "STRICT", "svms" \=> [{"aggregates" \=> [{"id" \=> "aaa17i72-h8ie-9f06-e7d5-ea145392h76", "name" \=> "aggr1", "recommendation" \=> "STRICT"}, {"id" \=> "bbb28j83-i9jk-0l17-f8g6-faa65243h81", "name" \=> "dataAggr2", "recommendation" \=> "RELAXED"}], "enabledProtocols" \=> ["NFS", "CIFS"], "id" \=> "777b4f49-e5fb-6c73-b4a2-b79130869e43", "name" \=> "svm1", "recommendation" \=> "STRICT"}, {"aggregates" \=> [{"id" \=> "bbb28j83-i9jk-0l17-f8g6-faa65243h81", "name" \=> "dataAggr2", "recommendation" \=> "RELAXED"}], "enabledProtocols" \=> ["iSCSI"], "id" \=> "888c5g50-f6gc-7d84-c5b3-c89241970f54", "name" \=> "svm2", "recommendation" \=> "RELAXED"}], "totalCapacity" \=> 1099511627776, "usedCapacity" \=> 536870912000, "workingEnvironmentId" \=> "OnPremWorkingEnvironment-RRpEXDdH"}, {"availableCapacity" \=> 1099511627776, "fleets" \=> [{"id" \=> "999d6h61-g7hd-8e95-d6c4-d99352081g65", "name" \=> "fleet-name-2"}], "name" \=> "cluster-name-2", "ontapVersion" \=> "9.12.1", "personality" \=> "ASA_R2", "recommendation" \=> "RELAXED", "svms" \=> [{"aggregates" \=> [{"id" \=> "bbb28j83-i9jk-0l17-f8g6-faa65243h81", "name" \=> "dataAggr2", "recommendation" \=> "RELAXED"}], "enabledProtocols" \=> ["NFS"], "id" \=> "aaa17i72-h8ie-9f06-e7d5-ea145392h76", "name" \=> "svm3", "recommendation" \=> "RELAXED"}], "totalCapacity" \=> 2199023255552, "usedCapacity" \=> 536870911900, "workingEnvironmentId" \=> "OnPremWorkingEnvironment-XYZ789"}]
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 1,
+  "items": [
+    {
+      "availableCapacity": 536870912000,
+      "name": "onprem-cluster-01",
+      "ontapVersion": "9.16.1",
+      "personality": "UNIFIED_ONTAP",
+      "recommendation": "STRICT",
+      "svms": [
+        {
+          "aggregates": [
+            {
+              "id": "bbb28j83-i9jk-0l17-f8g6-faa65243h81",
+              "name": "dataAggr",
+              "recommendation": "STRICT"
+            }
+          ],
+          "enabledProtocols": [
+            "NFS",
+            "CIFS"
+          ],
+          "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+          "name": "svm1",
+          "recommendation": "STRICT"
+        },
+        {
+          "aggregates": [
+            {
+              "id": "bbb28j83-i9jk-0l17-f8g6-faa65243h81",
+              "name": "dataAggr",
+              "recommendation": "STRICT"
+            },
+            {
+              "id": "ccc39k94-j0kl-1m28-g9h7-gbb76354i92",
+              "name": "dataAggr2",
+              "recommendation": "RELAXED"
+            }
+          ],
+          "enabledProtocols": [
+            "NFS"
+          ],
+          "id": "4fb96g75-6828-5673-c4gd-3d074g77bgb7",
+          "name": "svm2",
+          "recommendation": "STRICT"
+        }
+      ],
+      "totalCapacity": 1073741824000,
+      "type": "application/vnd.netapp.bxp.systemrecommendations",
+      "usedCapacity": 536870912000,
+      "version": 1,
+      "workingEnvironmentId": "OnPremWorkingEnvironment-abc123xyz"
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Error
+
+```
+Status: 404, Not found
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The collection specified in the request URI wasn't found.",
+  "status": "404",
+  "title": "Collection not found",
+  "type": "https://bluexp.netapp.io/problems/2"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#aggregates]
+[.api-collapsible-fifth-title]
+aggregates
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Aggregate identifier
+
+
+|name
+|string
+|False
+a|Aggregate name
+
+
+|recommendation
+|string
+|False
+a|Indicates whether the performance policy is followed or relaxed while recommending this aggregate.
+Defined values are:
+
+* "STRICT" - performance policy criteria is strictly followed while recommending this aggregate.
+* "RELAXED" - performance policy criteria is relaxed while recommending this aggregate.
+
+
+|===
+
+
+[#svms]
+[.api-collapsible-fifth-title]
+svms
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|aggregates
+|array[link:#aggregates[aggregates]]
+|False
+a|List of aggregates in the SVM.
+
+
+|enabledProtocols
+|array[string]
+|True
+a|List of enabled protocols on the SVM.
+
+
+|id
+|string
+|True
+a|Recommended Storage Virtual Machine identifier.
+
+
+|name
+|string
+|True
+a|Storage Virtual Machine name.
+
+
+|recommendation
+|string
+|False
+a|Indicates whether the performance policy is followed or relaxed while recommending this Storage VM.
+If any aggregate under this SVM is recommended with a strict policy, the SVM recommendation will also be strict.
+Defined values are:
+
+* "STRICT" - performance policy criteria is strictly followed while recommending this SVM.
+* "RELAXED" - performance policy criteria is relaxed while recommending this SVM.
+
+
+|===
+
+
+[#items]
+[.api-collapsible-fifth-title]
+items
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|availableCapacity
+|integer
+|True
+a|Available capacity of the system, in bytes.
+
+
+|name
+|string
+|True
+a|Recommended cluster name.
+
+
+|ontapVersion
+|string
+|False
+a|ONTAP version of the system.
+
+* example: 9.16.1
+
+
+|personality
+|string
+|False
+a|The personality of the ONTAP cluster.
+Defined values are:
+
+* "UNIFIED_ONTAP" - A traditional unified ONTAP cluster (not disaggregated).
+* "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array (ASA) r2 cluster.
+* "AFX" - A disaggregated cluster that is not SAN-optimized.
+* enum: ["UNIFIED_ONTAP", "ASA_R2", "AFX"]
+* example: UNIFIED_ONTAP
+
+
+|recommendation
+|string
+|False
+a|Indicates whether the performance policy is followed or relaxed while recommending this cluster.
+If any SVM under this cluster is recommended with a strict policy, the cluster recommendation will also be strict.
+Defined values are:
+
+* "STRICT" - performance policy criteria is strictly followed while recommending this cluster.
+* "RELAXED" - performance policy criteria is relaxed while recommending this cluster.
+
+
+|svms
+|array[link:#svms[svms]]
+|True
+a|List of Storage Virtual Machines in the system.
+
+
+|totalCapacity
+|integer
+|True
+a|Total capacity of the system, in bytes.
+
+
+|type
+|string
+|True
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.systemrecommendations"
+
+
+|usedCapacity
+|integer
+|False
+a|Used capacity of the system, in bytes.
+
+
+|version
+|string
+|True
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|workingEnvironmentId
+|string
+|True
+a|Recommended system identifier.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

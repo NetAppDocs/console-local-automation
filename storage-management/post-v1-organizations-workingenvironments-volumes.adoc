@@ -1,0 +1,535 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'storage-management/post-v1-organizations-workingenvironments-volumes.html'
+summary: 'Create a new volume in NetApp Console local deployment'
+---
+
+= Create a new volume in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}/volumes`#
+
+
+
+Creates a new volume in the specified system.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organizationId
+|string
+|path
+|True
+a|Organization ID
+
+
+|workingEnvironmentId
+|string
+|path
+|True
+a|Public ID of the system
+
+
+|===
+
+== Request Body
+
+Volume properties for creation
+                   
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|aggregates
+|array[string]
+|False
+a|List of aggregate identifiers where the volume can be created.
+
+
+|cifsShares
+|link:#volumes_1_0_cifs_shares[volumes_1.0_cifs_shares]
+|False
+a|CIFS share details.
+
+
+|exportPolicy
+|link:#volumes_1_0_export_policy[volumes_1.0_export_policy]
+|False
+a|Export policy details
+
+
+|name
+|string
+|True
+a|Name of the volume to be provisioned.
+
+
+|size
+|integer
+|True
+a|Size of the volume, in bytes.
+
+
+|storageClassId
+|string
+|False
+a|Storage class identifier.
+
+
+|svmId
+|string
+|True
+a|Storage Virtual Machine identifier.
+
+
+|type
+|string
+|True
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.volume"
+
+
+|version
+|string
+|True
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+.Example request
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "aggregates": [
+    "999d6h61-g7hd-8e95-d6c4-d99352081g65",
+    "aaa17i72-h8ie-9f06-e7d5-ea145392h76"
+  ],
+  "exportPolicy": {
+    "hosts": [
+      "host1",
+      "host2"
+    ],
+    "name": "custom-policy"
+  },
+  "name": "my_volume",
+  "size": 107374182400,
+  "storageClassId": "888c5g50-f6gc-7d84-c5b3-c89241970f54",
+  "svmId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "type": "application/vnd.netapp.bxp.volume",
+  "version": 1
+}
+====
+
+== Response
+
+```
+Status: 202, Volume create request accepted and is being processed
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|jobId
+|string
+|True
+a|Unique identifier for the created job.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "jobId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Error
+
+```
+Status: 404, Not found
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The collection specified in the request URI wasn't found.",
+  "status": "404",
+  "title": "Collection not found",
+  "type": "https://bluexp.netapp.io/problems/2"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#volumes_1_0_cifs_shares]
+[.api-collapsible-fifth-title]
+volumes_1.0_cifs_shares
+
+CIFS share details.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|False
+a|Name of the CIFS share.
+
+
+|permission
+|string
+|False
+a|Permissions for the CIFS share.
+
+
+|usersOrGroups
+|array[string]
+|False
+a|List of users or groups with access to the CIFS share.
+
+
+|===
+
+
+[#volumes_1_0_export_policy]
+[.api-collapsible-fifth-title]
+volumes_1.0_export_policy
+
+Export policy details
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|hosts
+|array[string]
+|False
+a|List of hosts associated with the export policy.
+
+
+|name
+|string
+|False
+a|Name of the export policy. To associate an existing policy, name is mandatory. For new policy creation it is optional, if not provided it will default to the volume name.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

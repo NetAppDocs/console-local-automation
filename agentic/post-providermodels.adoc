@@ -1,0 +1,650 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'agentic/post-providermodels.html'
+summary: 'List all models available from the specified LLM provider in NetApp Console local deployment'
+---
+
+= List all models available from the specified LLM provider in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/providerModels`#
+
+
+
+Returns a list of all models available from the specified Large Language Model (LLM) provider.
+This endpoint queries the provider's API directly using the provided
+credentials to discover available models.
+
+The request body requires provider credentials to authenticate with
+the provider's API. Use the provider-specific configuration object
+(openai, anthropic, and so on) based on the provider type.
+
+The response contains basic model information including name, provider,
+and model type.
+
+
+== Request Body
+
+Provider credentials required to fetch models from the LLM provider's API.
+                   
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|anthropic
+|link:#provider_credentials_anthropic_config[provider_credentials_anthropic_config]
+|False
+a|Anthropic Claude provider-specific configuration
+
+
+|commonOpenAI
+|link:#provider_credentials_commonOpenAI_config[provider_credentials_commonOpenAI_config]
+|False
+a|Generic OpenAI-compatible API configuration (for custom/self-hosted LLM proxies).  Duplicate models with equivalent dot/dash notation are merged; the first occurrence is returned. `commonOpenAI` is an alias for the OpenAI provider with a custom baseUrl. Both map to the same AgentGateway backend type.
+
+
+|openai
+|link:#provider_credentials_openai_config[provider_credentials_openai_config]
+|False
+a|OpenAI provider-specific configuration
+
+
+|sslVerify
+|boolean
+|False
+a|Whether to verify SSL/TLS certificates when connecting to the
+provider's API endpoint. Set to false only for development or
+self-signed certificate environments.
+
+
+|===
+
+
+.Example request
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "anthropic": {
+    "anthropicVersion": "2023-06-01",
+    "apiKey": "sk-ant-your-anthropic-key",
+    "baseUrl": "https://api.anthropic.com"
+  },
+  "sslVerify": true
+}
+====
+
+== Response
+
+```
+Status: 200, Successfully retrieved the list of models from the provider.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Number of items in the current response.
+
+
+|items
+|array[link:#providerModel_1_0_get_response_body[providerModel_1.0_get_response_body]]
+|True
+a|Array of provider model resources.
+
+
+|type
+|string
+|True
+a|Media type of the resource collection.
+Defined values are:
+
+* "application/vnd.netapp.bxp.providerModels"
+
+
+|version
+|string
+|True
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 10,
+  "items": [
+    {
+      "modelType": "chat",
+      "name": "gpt-4o",
+      "provider": "openai",
+      "supported": true,
+      "type": "application/vnd.netapp.bxp.providerModel",
+      "version": "1.0"
+    }
+  ],
+  "type": "application/vnd.netapp.bxp.providerModels",
+  "version": "1.0"
+}
+====
+
+== Response
+
+```
+Status: 401, Unauthorized - authentication required or invalid provider credentials.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+== Response
+
+```
+Status: 403, Forbidden - insufficient permissions.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+== Response
+
+```
+Status: 500, Internal server error.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+== Response
+
+```
+Status: 502, Bad gateway - failed to connect to the provider's api.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+== Error
+
+```
+Status: 400, Bad request - invalid request body.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#provider_credentials_anthropic_config]
+[.api-collapsible-fifth-title]
+provider_credentials_anthropic_config
+
+Anthropic Claude provider-specific configuration
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|anthropicVersion
+|string
+|False
+a|Anthropic API version header. If not specified, defaults to `2023-06-01`.
+
+
+|apiKey
+|string
+|True
+a|Anthropic API key
+
+
+|baseUrl
+|string
+|False
+a|Base URL for Anthropic API (optional)
+
+
+|===
+
+
+[#extraHeaders]
+[.api-collapsible-fifth-title]
+extraHeaders
+
+Additional headers to include in requests
+
+Hash mapping strings to string
+
+[#extraParams]
+[.api-collapsible-fifth-title]
+extraParams
+
+Additional parameters to include in requests
+
+Hash mapping strings to string
+
+[#provider_credentials_commonOpenAI_config]
+[.api-collapsible-fifth-title]
+provider_credentials_commonOpenAI_config
+
+Generic OpenAI-compatible API configuration (for custom/self-hosted LLM proxies).  Duplicate models with equivalent dot/dash notation are merged; the first occurrence is returned. `commonOpenAI` is an alias for the OpenAI provider with a custom baseUrl. Both map to the same AgentGateway backend type.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|apiKey
+|string
+|False
+a|API key for the OpenAI-compatible service
+
+
+|baseUrl
+|string
+|True
+a|Base URL for the OpenAI-compatible API
+
+
+|extraHeaders
+|link:#extraHeaders[extraHeaders]
+|False
+a|Additional headers to include in requests
+
+
+|extraParams
+|link:#extraParams[extraParams]
+|False
+a|Additional parameters to include in requests
+
+
+|===
+
+
+[#provider_credentials_openai_config]
+[.api-collapsible-fifth-title]
+provider_credentials_openai_config
+
+OpenAI provider-specific configuration
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|apiKey
+|string
+|True
+a|OpenAI API key
+
+
+|baseUrl
+|string
+|False
+a|Base URL for OpenAI API (optional, defaults to https://api.openai.com)
+
+
+|organizationId
+|string
+|False
+a|OpenAI organization ID (optional)
+
+
+|===
+
+
+[#providerModel_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+providerModel_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|modelType
+|string
+|False
+a|Type or category of the model.
+Defined values are:
+
+* "chat" - Chat completion models
+* "completion" - Text completion models
+* "embedding" - Embedding models
+* "image" - Image generation models
+* "audio" - Audio transcription/generation models
+* "multimodal" - Models supporting multiple input/output types
+
+
+|name
+|string
+|True
+a|Name or identifier of the model as returned by the provider's API.
+
+
+|provider
+|string
+|True
+a|Name of the LLM provider.
+Defined values are:
+
+* "openai" - OpenAI API
+* "anthropic" - Anthropic Claude API
+* "commonOpenAI" - Generic OpenAI-compatible API
+
+
+|supported
+|string
+|False
+a|JSON string that indicates if the model is supported by the Agentic Platform.
+Defined values are:
+
+* true
+* false
+
+
+|type
+|string
+|True
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.providerModel"
+
+
+|version
+|string
+|True
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

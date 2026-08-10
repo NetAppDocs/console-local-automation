@@ -1,0 +1,676 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'asset/get-organizations-ports.html'
+summary: 'List ports in an organization in NetApp Console local deployment'
+---
+
+= List ports in an organization in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/ports`#
+
+
+
+Lists all ports in the specified organization.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|count
+|string
+|query
+|False
+a|Indicates if the total number of resources should be returned in the response object.
+
+URL examples: "count=true"
+
+OpenAPI examples: "true"
+
+
+|filter
+|string
+|query
+|False
+a|Specifies which fields should be matched in order to return a resource when listing a collection.
+
+Supported operators:
+
+* eq - Equality
+* lt/gt - Less than/greater than
+* lte/gte - Less than or equal to/greater than or equal to
+
+URL example: "filter=field%20eq%20%27value%27"
+
+OpenAPI examples: "field eq 'value'"
+
+
+|include
+|string
+|query
+|False
+a|Specifies which fields should be returned when listing a collection.
+
+URL examples: "include=id", "include=id,name"
+
+OpenAPI examples: "id"
+
+
+|limit
+|string
+|query
+|False
+a|Specifies the maximum number of resources to return when listing a collection.
+
+URL examples: "limit=2"
+
+OpenAPI examples: "2"
+
+
+|metadata
+|string
+|query
+|False
+a|Indicates if the metadata should be returned in the response object.
+
+URL examples: "metadata=true"
+
+OpenAPI examples: "true"
+
+
+|orderBy
+|string
+|query
+|False
+a|Indicates the sort order of resources when listing a collection.
+
+URL examples: "orderBy=name", "orderBy=name%20desc"
+
+OpenAPI examples: "name desc"
+
+
+|skip
+|string
+|query
+|False
+a|Specifies the number of resources to skip when listing a collection.
+
+URL examples: "skip=1"
+
+OpenAPI examples: "1"
+
+
+|===
+
+== Response
+
+```
+Status: 200, OK
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Total number of ports in the collection that match the query.
+
+
+|items
+|array[link:#port_1_0_get_response_body[port_1.0_get_response_body]]
+|True
+a|Ports in the collection.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 2,
+  "items": [
+    {
+      "cluster": {
+        "id": "4c8d2919-ac4c-4ea7-bf7c-24863d4da94b",
+        "name": "cluster-01"
+      },
+      "id": "c08d213b-3c38-4c07-bde0-852ef821b815",
+      "metadata": {
+        "modificationTimestamp": "2026-06-10T14:32:48.789123Z"
+      },
+      "metrics": {
+        "throughput": {
+          "total": 125000000
+        },
+        "utilization": 45.2
+      },
+      "name": "e0a",
+      "node": {
+        "id": "5e57a329-1137-42d1-adb8-00361552c2d6",
+        "name": "node-01"
+      },
+      "organizationId": "16c07c0c-666b-4870-9363-764eef9e7160",
+      "portType": "NETWORK_PORT",
+      "speed": 25000,
+      "type": "application/vnd.netapp.bxp.port",
+      "version": "1.0",
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    },
+    {
+      "cluster": {
+        "id": "4c8d2919-ac4c-4ea7-bf7c-24863d4da94b",
+        "name": "cluster-01"
+      },
+      "id": "7a2f9d3b-1e4c-4a8f-b5c6-2d8e9f1a0b3c",
+      "metadata": {
+        "modificationTimestamp": "2026-06-10T14:32:48.789123Z"
+      },
+      "metrics": {
+        "throughput": {
+          "total": 200000000
+        },
+        "utilization": 62.5
+      },
+      "name": "0a",
+      "node": {
+        "id": "5e57a329-1137-42d1-adb8-00361552c2d6",
+        "name": "node-01"
+      },
+      "organizationId": "16c07c0c-666b-4870-9363-764eef9e7160",
+      "portType": "FC_PORT",
+      "speed": 32000,
+      "type": "application/vnd.netapp.bxp.port",
+      "version": "1.0",
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#cluster_1_0_reference]
+[.api-collapsible-fifth-title]
+cluster_1.0_reference
+
+Reference to an ONTAP cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the cluster.
+
+
+|name
+|string
+|False
+a|Cluster name.
+
+
+|===
+
+
+[#common_1_0_inventory_metadata]
+[.api-collapsible-fifth-title]
+common_1.0_inventory_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|===
+
+
+[#throughput]
+[.api-collapsible-fifth-title]
+throughput
+
+Throughput metrics observed at the port.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of throughput observed at the port in bytes per second.
+
+
+|===
+
+
+[#port_1_0_metrics]
+[.api-collapsible-fifth-title]
+port_1.0_metrics
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|throughput
+|link:#throughput[throughput]
+|False
+a|Throughput metrics observed at the port.
+
+
+|utilization
+|number
+|False
+a|Port utilization as a percentage (0-100). Calculated from throughput relative to link speed.
+
+
+|===
+
+
+[#node_1_0_reference]
+[.api-collapsible-fifth-title]
+node_1.0_reference
+
+Reference to an ONTAP node.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the node.
+
+
+|name
+|string
+|False
+a|Node name.
+
+
+|===
+
+
+[#port_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+port_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|cluster
+|link:#cluster_1_0_reference[cluster_1.0_reference]
+|False
+a|Reference to an ONTAP cluster.
+
+* x-tag: Cluster
+
+
+|id
+|string
+|False
+a|Identifier of the port (UUID from ONTAP).
+
+* example: c08d213b-3c38-4c07-bde0-852ef821b815
+* format: uuid
+
+
+|metadata
+|link:#common_1_0_inventory_metadata[common_1.0_inventory_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|metrics
+|link:#port_1_0_metrics[port_1.0_metrics]
+|False
+a|
+
+|name
+|string
+|False
+a|Port name (e.g., e0a, 0a).
+
+
+|node
+|link:#node_1_0_reference[node_1.0_reference]
+|False
+a|Reference to an ONTAP node.
+
+* x-tag: Node
+
+
+|organizationId
+|string
+|False
+a|Identifier for an organization.
+
+
+|portType
+|string
+|False
+a|Type of the network port.
+Defined values are:
+
+* "NETWORK_PORT" - Ethernet network port.
+* "FC_PORT" - Fibre Channel port.
+
+
+|speed
+|integer
+|False
+a|Operational speed of the port in megabits per second (Mbps). For Ethernet ports this is the operational speed. For FC ports this is the maximum speed.
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+*** "application/vnd.netapp.bxp.port"
+
+
+|version
+|string
+|False
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|workingEnvironmentId
+|string
+|False
+a|Identifier for the asset's system.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

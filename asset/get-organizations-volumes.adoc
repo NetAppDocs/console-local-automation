@@ -1,0 +1,1634 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'asset/get-organizations-volumes.html'
+summary: 'List volumes in an organization in NetApp Console local deployment'
+---
+
+= List volumes in an organization in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/volumes`#
+
+
+
+Lists all volumes in the specified organization.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|count
+|string
+|query
+|False
+a|Indicates if the total number of resources should be returned in the response object.
+
+URL examples: "count=true"
+
+OpenAPI examples: "true"
+
+
+|filter
+|string
+|query
+|False
+a|Specifies which fields should be matched in order to return a resource when listing a collection.
+
+Supported operators:
+
+* eq - Equality
+* lt/gt - Less than/greater than
+* lte/gte - Less than or equal to/greater than or equal to
+
+URL example: "filter=field%20eq%20%27value%27"
+
+OpenAPI examples: "field eq 'value'"
+
+
+|include
+|string
+|query
+|False
+a|Specifies which fields should be returned when listing a collection.
+
+URL examples: "include=id", "include=id,name"
+
+OpenAPI examples: "id"
+
+
+|limit
+|string
+|query
+|False
+a|Specifies the maximum number of resources to return when listing a collection.
+
+URL examples: "limit=2"
+
+OpenAPI examples: "2"
+
+
+|metadata
+|string
+|query
+|False
+a|Indicates if the metadata should be returned in the response object.
+
+URL examples: "metadata=true"
+
+OpenAPI examples: "true"
+
+
+|orderBy
+|string
+|query
+|False
+a|Indicates the sort order of resources when listing a collection.
+
+URL examples: "orderBy=name", "orderBy=name%20desc"
+
+OpenAPI examples: "name desc"
+
+
+|skip
+|string
+|query
+|False
+a|Specifies the number of resources to skip when listing a collection.
+
+URL examples: "skip=1"
+
+OpenAPI examples: "1"
+
+
+|===
+
+== Response
+
+```
+Status: 200, OK
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Total number of resources in the collection that match the query.
+
+
+|items
+|array[link:#volume_1_0_get_response_body[volume_1.0_get_response_body]]
+|True
+a|Volume resources in the collection.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 2,
+  "items": [
+    {
+      "aggregates": [
+        {
+          "id": "1b18483c-2b4e-411b-b9ea-528e49dde9d2",
+          "name": "aggregate-01"
+        }
+      ],
+      "antiRansomware": {
+        "state": "ENABLED"
+      },
+      "autosize": {
+        "mode": "GROW"
+      },
+      "cluster": {
+        "id": "4c8d2919-ac4c-4ea7-bf7c-24863d4da94b",
+        "name": "cluster-01"
+      },
+      "clusterPersonality": "UNIFIED_ONTAP",
+      "efficiency": {
+        "compression": true,
+        "inlineDedupe": true
+      },
+      "encryption": {
+        "enabled": true,
+        "hardwareEnabled": true
+      },
+      "flashPool": {
+        "cacheRetentionPriority": "HIGH",
+        "cachingPolicy": "AUTO"
+      },
+      "fleetIds": [
+        "1a2b3c4d-5678-90ab-cdef-1234567890ab",
+        "2b3c4d5e-6789-0abc-def1-234567890abc"
+      ],
+      "guarantee": {
+        "type": "VOLUME"
+      },
+      "id": "92c08026-35d2-45fe-8c1b-67b08d0c0322",
+      "isThinProvisioned": true,
+      "metadata": {
+        "modificationTimestamp": "2022-10-06T20:58:16.305662Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 250.5
+        },
+        "latency": {
+          "average": 150.75
+        },
+        "throughput": {
+          "total": 61070.2
+        }
+      },
+      "name": "volume-01",
+      "nas": {
+        "exportPolicy": {
+          "name": "default"
+        },
+        "path": "/volumes/volume-01"
+      },
+      "nodes": [
+        {
+          "id": "5e57a329-1137-42d1-adb8-00361552c2d6",
+          "name": "node-01"
+        }
+      ],
+      "organizationId": "16c07c0c-666b-4870-9363-764eef9e7160",
+      "qosPolicy": {
+        "name": "policy-01"
+      },
+      "snaplock": {
+        "expiryTimestamp": "2022-10-06T21:15:42.108234Z",
+        "type": "ENTERPRISE"
+      },
+      "snapmirror": {
+        "isProtected": true
+      },
+      "space": {
+        "afsTotal": 1099511627776,
+        "available": 549755813888,
+        "availablePercent": 50,
+        "inodes": {
+          "filesTotal": 31876710,
+          "usedPercent": 5
+        },
+        "logicalUsed": 524288000000,
+        "quotaCommitted": 62144000000,
+        "snapshot": {
+          "autodelete": {
+            "enabled": false
+          },
+          "count": 10,
+          "overflowPercent": 0,
+          "reserveAvailable": 49478023249,
+          "reserveAvailablePercent": 90,
+          "reserveSize": 54975581388,
+          "spaceUsed": 5497558138,
+          "spaceUsedPercent": 10
+        },
+        "used": 549755813888,
+        "usedPercent": 50
+      },
+      "state": "ONLINE",
+      "storageClassId": "5f4dcc3b-5aa7-4e2d-9c3a-8a9f1f0e6b7c",
+      "svm": {
+        "id": "d1ddc65d-f7a2-4ca7-9847-5afd069a3dbe",
+        "name": "svm-01"
+      },
+      "tiering": {
+        "policy": "AUTO"
+      },
+      "type": "application/vnd.netapp.bxp.volume",
+      "version": "1.0",
+      "volumeType": "RW",
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    },
+    {
+      "aggregates": [
+        {
+          "id": "e8b9c1d2-f3a4-5b6c-7d8e-9f0a1b2c3d4e",
+          "name": "aggregate-02"
+        }
+      ],
+      "antiRansomware": {
+        "state": "DISABLED"
+      },
+      "autosize": {
+        "mode": "OFF"
+      },
+      "cluster": {
+        "id": "4c8d2919-ac4c-4ea7-bf7c-24863d4da94b",
+        "name": "cluster-01"
+      },
+      "clusterPersonality": "UNIFIED_ONTAP",
+      "efficiency": {
+        "compression": true,
+        "inlineDedupe": false
+      },
+      "encryption": {
+        "enabled": true,
+        "hardwareEnabled": false
+      },
+      "flashPool": {
+        "cacheRetentionPriority": "HIGH",
+        "cachingPolicy": "AUTO"
+      },
+      "fleetIds": [
+        "1a2b3c4d-5678-90ab-cdef-1234567890ab"
+      ],
+      "guarantee": {
+        "type": "NONE"
+      },
+      "id": "a7f19b3e-42c6-4d1a-9f7e-8b2d3c4e5f6a",
+      "isRoot": false,
+      "isThinProvisioned": false,
+      "metadata": {
+        "modificationTimestamp": "2022-10-06T21:15:42.108234Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 180.3
+        },
+        "latency": {
+          "average": 120.25
+        },
+        "throughput": {
+          "total": 45088768
+        }
+      },
+      "name": "volume-02",
+      "nas": {
+        "exportPolicy": {
+          "name": "restricted"
+        },
+        "path": "/volumes/volume-02"
+      },
+      "nodes": [
+        {
+          "id": "5e57a329-1137-42d1-adb8-00361552c2d6",
+          "name": "node-01"
+        },
+        {
+          "id": "7a3f9c12-2d4e-5f6a-8b9c-0d1e2f3a4b5c",
+          "name": "node-02"
+        }
+      ],
+      "organizationId": "16c07c0c-666b-4870-9363-764eef9e7160",
+      "qosPolicy": {
+        "name": "policy-02"
+      },
+      "snaplock": {
+        "expiryTimestamp": "2022-10-06T21:15:42.108234Z",
+        "type": "COMPLIANCE"
+      },
+      "snapmirror": {
+        "isProtected": false
+      },
+      "space": {
+        "afsTotal": 2199023255552,
+        "available": 1649267441664,
+        "availablePercent": 75,
+        "inodes": {
+          "filesTotal": 63753420,
+          "usedPercent": 3
+        },
+        "logicalUsed": 262144000000,
+        "quotaCommitted": 62144000000,
+        "snapshot": {
+          "autodelete": {
+            "enabled": true
+          },
+          "count": 8,
+          "overflowPercent": 0,
+          "reserveAvailable": 98956046499,
+          "reserveAvailablePercent": 90,
+          "reserveSize": 109951162777,
+          "spaceUsed": 10995116277,
+          "spaceUsedPercent": 10
+        },
+        "used": 549755813888,
+        "usedPercent": 25
+      },
+      "state": "ONLINE",
+      "storageClassId": "5f4dcc3b-5aa7-4e2d-9c3a-8a9f1f0e6b7c",
+      "svm": {
+        "id": "f9c0d1e2-3a4b-5c6d-7e8f-9a0b1c2d3e4f",
+        "name": "svm-02"
+      },
+      "tiering": {
+        "policy": "SNAPSHOT_ONLY"
+      },
+      "type": "application/vnd.netapp.bxp.volume",
+      "version": "1.0",
+      "volumeType": "RW",
+      "workingEnvironmentId": "OnPremWorkingEnvironment-KxESQhek"
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#aggregate_1_0_reference]
+[.api-collapsible-fifth-title]
+aggregate_1.0_reference
+
+Reference to an ONTAP aggregate.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the aggregate.
+
+
+|name
+|string
+|False
+a|Aggregate name.
+
+
+|===
+
+
+[#antiRansomware]
+[.api-collapsible-fifth-title]
+antiRansomware
+
+Anti-ransomware related information of the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|state
+|string
+|False
+a|The anti-ransomware state of the volume.
+Defined values are:
+
+* "DISABLED" - Anti-ransomware monitoring is disabled on the volume.
+* "DISABLE_IN_PROGRESS" - Anti-ransomware monitoring is being disabled and a cleanup operation is in effect.
+* "DRY_RUN" - Anti-ransomware monitoring is enabled in the evaluation mode.
+* "ENABLED" - Anti-ransomware monitoring is active on the volume.
+* "PAUSED" - Anti-ransomware monitoring is paused on the volume.
+* "ENABLE_PAUSED" - Anti-ransomware monitoring is paused on the volume from its earlier enabled state.
+* "DRY_RUN_PAUSED" - Anti-ransomware monitoring is paused on the volume from its earlier dry_run state.
+
+
+|===
+
+
+[#autosize]
+[.api-collapsible-fifth-title]
+autosize
+
+Autosize configuration of the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|mode
+|string
+|False
+a|The autosize mode of the volume.
+Defined values are:
+
+* "OFF" - Autosizing of the volume is disabled.
+* "GROW" - Volume automatically grows when the amount of used space is above the grow threshold value.
+* "GROW_SHRINK" - Volume grows or shrinks in response to the amount of space used.
+
+
+|===
+
+
+[#cluster_1_0_reference]
+[.api-collapsible-fifth-title]
+cluster_1.0_reference
+
+Reference to an ONTAP cluster.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the cluster.
+
+
+|name
+|string
+|False
+a|Cluster name.
+
+
+|===
+
+
+[#efficiency]
+[.api-collapsible-fifth-title]
+efficiency
+
+Efficiency settings of the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|compression
+|boolean
+|False
+a|Indicates whether compression is enabled.
+
+
+|inlineDedupe
+|boolean
+|False
+a|Indicates whether inline deduplication is enabled.
+
+
+|===
+
+
+[#encryption]
+[.api-collapsible-fifth-title]
+encryption
+
+Volume encryption settings.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|enabled
+|boolean
+|False
+a|Indicates whether volume encryption is enabled.
+
+
+|hardwareEnabled
+|boolean
+|False
+a|Indicates if the volume resides on encrypted disks.
+
+
+|===
+
+
+[#flashPool]
+[.api-collapsible-fifth-title]
+flashPool
+
+Flash Pool configuration of the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|cacheRetentionPriority
+|string
+|False
+a|Defines how long the blocks of a volume will be cached in the Flash Pool once they become cold.
+Defined values are:
+
+* "NORMAL"
+* "LOW"
+* "HIGH"
+
+
+|cachingPolicy
+|string
+|False
+a|The caching policy applied to the volume. A caching policy defines how the system caches a volume's data in Flash Cache modules.
+Defined values are:
+
+* "NONE"
+* "AUTO"
+* "META"
+* "RANDOM_READ"
+* "RANDOM_READ_WRITE"
+* "ALL_READ"
+* "ALL_READ_RANDOM_WRITE"
+* "ALL"
+* "NOREAD_RANDOM_WRITE"
+* "META_RANDOM_WRITE"
+* "RANDOM_READ_WRITE_RANDOM_WRITE"
+* "ALL_READ_RANDOM_WRITE_RANDOM_WRITE"
+* "ALL_RANDOM_WRITE"
+
+
+|===
+
+
+[#guarantee]
+[.api-collapsible-fifth-title]
+guarantee
+
+Space guarantee settings of the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|type
+|string
+|False
+a|The type of space guarantee of this volume in the aggregate.
+Defined values are:
+
+* "VOLUME"
+* "NONE"
+
+
+|===
+
+
+[#common_1_0_inventory_metadata]
+[.api-collapsible-fifth-title]
+common_1.0_inventory_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|===
+
+
+[#iops]
+[.api-collapsible-fifth-title]
+iops
+
+IOPS metrics for the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of I/O operations observed at the storage object.
+
+
+|===
+
+
+[#latency]
+[.api-collapsible-fifth-title]
+latency
+
+Latency metrics for the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|average
+|number
+|False
+a|The average round trip latency observed at the storage object, in microseconds.
+
+
+|===
+
+
+[#throughput]
+[.api-collapsible-fifth-title]
+throughput
+
+Throughput metrics for the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of throughput observed at the storage object, in bytes per second.
+
+
+|===
+
+
+[#volume_1_0_metrics]
+[.api-collapsible-fifth-title]
+volume_1.0_metrics
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|iops
+|link:#iops[iops]
+|False
+a|IOPS metrics for the volume.
+
+
+|latency
+|link:#latency[latency]
+|False
+a|Latency metrics for the volume.
+
+
+|throughput
+|link:#throughput[throughput]
+|False
+a|Throughput metrics for the volume.
+
+
+|===
+
+
+[#exportPolicy]
+[.api-collapsible-fifth-title]
+exportPolicy
+
+NFS export policy applied to the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|False
+a|The name of the export policy applied to the volume.
+
+
+|===
+
+
+[#nas]
+[.api-collapsible-fifth-title]
+nas
+
+NAS configuration of the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|exportPolicy
+|link:#exportPolicy[exportPolicy]
+|False
+a|NFS export policy applied to the volume.
+
+
+|path
+|string
+|False
+a|The fully-qualified path in the owning SVM's namespace at which the volume is mounted.
+
+
+|===
+
+
+[#node_1_0_reference]
+[.api-collapsible-fifth-title]
+node_1.0_reference
+
+Reference to an ONTAP node.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the node.
+
+
+|name
+|string
+|False
+a|Node name.
+
+
+|===
+
+
+[#qosPolicy]
+[.api-collapsible-fifth-title]
+qosPolicy
+
+QoS policy group applied to the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|False
+a|The name of the QoS policy group applied to the volume.
+
+
+|===
+
+
+[#snaplock]
+[.api-collapsible-fifth-title]
+snaplock
+
+SnapLock configuration of the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|expiryTimestamp
+|string
+|False
+a|Expiry time of the volume.
+
+
+|type
+|string
+|False
+a|The SnapLock type of the volume.
+Defined values are:
+
+* "COMPLIANCE" - A SnapLock Compliance (SLC) volume provides the highest level of WORM protection and an administrator cannot destroy a SLC volume if it contains unexpired WORM files.
+* "ENTERPRISE" - An administrator can delete a SnapLock Enterprise (SLE) volume.
+* "NON_SNAPLOCK" - Indicates that the volume is not a SnapLock volume.
+
+
+|===
+
+
+[#snapmirror]
+[.api-collapsible-fifth-title]
+snapmirror
+
+SnapMirror protection information for the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|isProtected
+|boolean
+|False
+a|Indicates whether a volume is a SnapMirror source volume, using SnapMirror to protect its data.
+
+
+|===
+
+
+[#inodes]
+[.api-collapsible-fifth-title]
+inodes
+
+File inode usage information for the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|filesTotal
+|integer
+|False
+a|The maximum number of files (inodes) for user-visible data allowed on the volume.
+
+
+|usedPercent
+|number
+|False
+a|Number of files (inodes) used, as a percent.
+
+
+|===
+
+
+[#autodelete]
+[.api-collapsible-fifth-title]
+autodelete
+
+Snapshot autodelete settings for the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|enabled
+|boolean
+|False
+a|Specifies whether snapshot autodelete is currently enabled on this volume.
+
+
+|===
+
+
+[#snapshot]
+[.api-collapsible-fifth-title]
+snapshot
+
+Snapshot space usage information for the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|autodelete
+|link:#autodelete[autodelete]
+|False
+a|Snapshot autodelete settings for the volume.
+
+
+|count
+|integer
+|False
+a|Number of snapshots in the volume.
+
+
+|overflowPercent
+|number
+|False
+a|Percentage of active file system space consumed by snapshots exceeding the snapshot reserve.
+
+
+|reserveAvailable
+|integer
+|False
+a|Size available for snapshots within the snapshot reserve, in bytes.
+
+
+|reserveAvailablePercent
+|number
+|False
+a|Percentage of snapshot reserve size that is still available.
+
+
+|reserveSize
+|integer
+|False
+a|Size in the volume that has been set aside as a reserve for snapshot usage, in bytes.
+
+
+|spaceUsed
+|integer
+|False
+a|The total space used by snapshots in the volume, in bytes.
+
+
+|spaceUsedPercent
+|number
+|False
+a|Percentage of snapshot reserve size that has been used.
+
+
+|===
+
+
+[#volume_1_0_space]
+[.api-collapsible-fifth-title]
+volume_1.0_space
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|afsTotal
+|integer
+|False
+a|Total size of the active filesystem, excluding snap-reserve, in bytes.
+
+
+|available
+|integer
+|False
+a|The available space, in bytes.
+
+
+|availablePercent
+|number
+|False
+a|The space available, as a percent.
+
+
+|inodes
+|link:#inodes[inodes]
+|False
+a|File inode usage information for the volume.
+
+
+|logicalUsed
+|integer
+|False
+a|The logical used space, in bytes.
+
+
+|quotaCommitted
+|integer
+|False
+a|The total space committed by all user-defined qtree quotas on the volume, in bytes.
+
+
+|snapshot
+|link:#snapshot[snapshot]
+|False
+a|Snapshot space usage information for the volume.
+
+
+|used
+|integer
+|False
+a|The virtual space used (includes volume reserves) before storage efficiency, in bytes.
+
+
+|usedPercent
+|number
+|False
+a|The space used, as a percent.
+
+
+|===
+
+
+[#svm_1_0_reference]
+[.api-collapsible-fifth-title]
+svm_1.0_reference
+
+Reference to an ONTAP SVM.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|id
+|string
+|False
+a|Identifier of the SVM.
+
+
+|name
+|string
+|False
+a|SVM name.
+
+
+|===
+
+
+[#tiering]
+[.api-collapsible-fifth-title]
+tiering
+
+Cloud tiering configuration of the volume.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|policy
+|string
+|False
+a|The policy that determines whether the user data blocks of a volume in a FabricPool will be tiered to the cloud store when they become cold.
+Defined values are:
+
+* "ALL" - This policy allows tiering of both snapshots and active file system user data to the cloud store as soon as possible by ignoring the temperature on the volume blocks.
+* "AUTO" - This policy allows tiering of both snapshot and active file system user data to the cloud store.
+* "NONE" - Volume blocks will not be tiered to the cloud store.
+* "SNAPSHOT_ONLY" - This policy allows tiering of only the volume snapshots not associated with the active file system.
+
+
+|===
+
+
+[#volume_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+volume_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|aggregates
+|array[link:#aggregate_1_0_reference[aggregate_1.0_reference]]
+|False
+a|List of aggregates that host the volume. Contains a single aggregate for FlexVol volumes and the aggregates for each constituent volume for FlexGroup volumes.
+
+
+|antiRansomware
+|link:#antiRansomware[antiRansomware]
+|False
+a|Anti-ransomware related information of the volume.
+
+
+|autosize
+|link:#autosize[autosize]
+|False
+a|Autosize configuration of the volume.
+
+
+|cluster
+|link:#cluster_1_0_reference[cluster_1.0_reference]
+|False
+a|Reference to an ONTAP cluster.
+
+* x-tag: Cluster
+
+
+|clusterPersonality
+|string
+|False
+a|The personality of the ONTAP cluster that the volume belongs to, derived from the cluster's disaggregated and SAN-optimized configuration.
+Defined values are:
+
+* "UNIFIED_ONTAP" - A traditional unified ONTAP cluster (not disaggregated).
+* "ASA_R2" - A disaggregated, SAN-optimized All-Flash SAN Array (ASA) r2 cluster.
+* "AFX" - A disaggregated cluster that is not SAN-optimized.
+* enum: ["UNIFIED_ONTAP", "ASA_R2", "AFX"]
+* example: UNIFIED_ONTAP
+
+
+|efficiency
+|link:#efficiency[efficiency]
+|False
+a|Efficiency settings of the volume.
+
+
+|encryption
+|link:#encryption[encryption]
+|False
+a|Volume encryption settings.
+
+
+|flashPool
+|link:#flashPool[flashPool]
+|False
+a|Flash Pool configuration of the volume.
+
+
+|fleetIds
+|array[string]
+|False
+a|List of identifiers for the fleets that the volume belongs to.
+
+
+|guarantee
+|link:#guarantee[guarantee]
+|False
+a|Space guarantee settings of the volume.
+
+
+|id
+|string
+|False
+a|Identifier of the volume.
+
+
+|isRoot
+|boolean
+|False
+a|Indicates whether the volume is a root volume.
+
+
+|isThinProvisioned
+|boolean
+|False
+a|Indicates whether the volume is thin provisioned.
+
+
+|metadata
+|link:#common_1_0_inventory_metadata[common_1.0_inventory_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|metrics
+|link:#volume_1_0_metrics[volume_1.0_metrics]
+|False
+a|
+
+|name
+|string
+|False
+a|Volume name.
+
+
+|nas
+|link:#nas[nas]
+|False
+a|NAS configuration of the volume.
+
+
+|nodes
+|array[link:#node_1_0_reference[node_1.0_reference]]
+|False
+a|List of nodes that host the volume. Contains a single node for FlexVol volumes and the nodes for each constituent volume for FlexGroup volumes.
+
+
+|organizationId
+|string
+|False
+a|Identifier for an organization.
+
+
+|qosPolicy
+|link:#qosPolicy[qosPolicy]
+|False
+a|QoS policy group applied to the volume.
+
+
+|snaplock
+|link:#snaplock[snaplock]
+|False
+a|SnapLock configuration of the volume.
+
+
+|snapmirror
+|link:#snapmirror[snapmirror]
+|False
+a|SnapMirror protection information for the volume.
+
+
+|space
+|link:#volume_1_0_space[volume_1.0_space]
+|False
+a|
+
+|state
+|string
+|False
+a|The state of the volume.
+Defined values are:
+
+* "ERROR"
+* "MIXED"
+* "OFFLINE"
+* "ONLINE"
+* "RESTRICTED"
+
+
+|storageClassId
+|string
+|False
+a|The identifier for the storage class associated with the volume.
+
+
+|svm
+|link:#svm_1_0_reference[svm_1.0_reference]
+|False
+a|Reference to an ONTAP SVM.
+
+* x-tag: SVM
+
+
+|tiering
+|link:#tiering[tiering]
+|False
+a|Cloud tiering configuration of the volume.
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+*** "application/vnd.netapp.bxp.volume"
+
+
+|version
+|string
+|False
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|volumeType
+|string
+|False
+a|Type of the volume.
+
+Defined values are:
+
+* "RW" - read-write volume.
+* "DP" - data-protection volume.
+* "LS" - load-sharing data-protection volume.
+
+
+|workingEnvironmentId
+|string
+|False
+a|Identifier for the asset's system.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

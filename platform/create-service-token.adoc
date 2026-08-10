@@ -1,0 +1,125 @@
+---
+sidebar: sidebar
+permalink: platform/create-service-token.html
+keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
+summary: A workflow describing how to cerate a service token
+---
+= Create a service token for NetApp Console local deployment 
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ../media/
+
+[.lead]
+Create a service access token that can be used by applications and scripts to make REST API calls to NetApp Console local deployment. Service tokens are obtained using the OAuth 2.0 client credentials grant type with a client ID and client secret. 
+
+.Before you begin
+
+To create service access token, you need a service account. If you don't have a service account, create one in your local deployment using the steps for *client secret authentication* in link:https://docs.netapp.com/us-en/console-automation/platform/register_service.html[Register a service with the NetApp Console^]. 
+
+NOTE: Private key JWT authentication is not supported for service accounts in the Console local deployment. Only client ID and client secret authentication is available. 
+
+The following credentials are required:
+
+* `client_id`
++
+The client ID assigned to the service account. 
+
+* `client_secret`
++
+The client secret generated for the service account. 
+
+== Create the service access token
+
+Learn about the HTTP methods, resource path, and input parameters you need to generate a service access token that you can use to authorize API requests. 
+
+.HTTP method and resource path
+
+The following table shows the HTTP method and resource path required in this API call.
+
+[cols="1,3", options="header"]
+|===
+// header row
+|HTTP method
+| Resource path
+
+
+// first body row
+| POST
+| `\https://<host>/oauth/token`
+
+
+// table end
+|===
+
+.Curl example 
+
+[source,curl]
+----
+curl --request POST \
+  --url https://<host>/oauth/token \
+  --header 'content-type: application/json' \
+  --data '{
+  "client_id": "<client-id>",
+  "client_secret": "<client-secret>",
+  "grant_type": "client_credentials"
+}'
+----
+
+.JSON input parameters 
+
+The following table shows the required input parameters. 
+
+[cols="1,3", options="header"]
+|===
+// header row
+| Parameter
+| Description
+
+// first body row
+| grant_type
+| Must be set to client_credentials
+
+| client_id
+| The client ID assigned to the service account on the NetApp Console local deployment instance.
+
+| client_secret
+| The client secret generated for the service account.
+
+// table end
+|=== 
+
+
+.JSON input example 
+The JSON input example includes the required input parameters. 
+
+[source,json]
+----
+{
+    "grant_type": "client_credentials",
+    "client_id": "<client_id>",
+    "client_secret": "<client_secret>"
+}
+----
+
+.JSON output example
+
+The JSON output includes the access token and expiry as shown in the following example:  
+
+[source,json]
+----
+{
+
+ "access_token": "<access_token>",
+ "expires_in": 21600,
+ "token_type": "Bearer"
+
+}
+----
+
+.After you finish
+
+Include the token in the `Authorization` request header for REST API calls as needed, as shown in the following example:
+
+`Authorization: Bearer <access_token>` 

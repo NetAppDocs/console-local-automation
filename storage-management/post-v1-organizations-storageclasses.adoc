@@ -1,0 +1,1139 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'storage-management/post-v1-organizations-storageclasses.html'
+summary: 'Create a new storage class in NetApp Console local deployment'
+---
+
+= Create a new storage class in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/storageclasses`#
+
+
+
+Creates a new storage class within the specified organization.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organizationId
+|string
+|path
+|True
+a|Unique identifier of the organization.
+
+
+|===
+
+== Request Body
+
+Expected to contain necessary parameters for creating a new storage class. At least one policy must be present in the request to create a storage class.
+                   
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|capacityPolicy
+|string
+|False
+a|Capacity policy ID associated with the storage class.
+
+
+|description
+|string
+|False
+a|Description of the storage class.
+
+
+|name
+|string
+|True
+a|Name of the storage class.
+This name must be unique within the specific organization.
+
+
+|performancePolicy
+|string
+|False
+a|Performance policy ID associated with the storage class.
+
+
+|protectionPolicies
+|array[string]
+|False
+a|List of protection policies associated with the storage class.
+
+
+|securityPolicy
+|string
+|False
+a|Security policy ID associated with the storage class.
+
+
+|tags
+|array[link:#tags[tags]]
+|False
+a|JSON array of tags (name/value pairs) associated with the storage class. Can be used to add any additional data related to the storage class.
+
+
+|type
+|string
+|True
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.storageclass"
+
+
+|version
+|string
+|True
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+.Example request
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "capacityPolicy": "b336b8c1-b388-43e4-8f85-4ca84121ebda",
+  "description": "Configuration for high performance workloads",
+  "name": "High Performance Configuration",
+  "performancePolicy": "494a3e48-812a-4204-8450-32aa6aaf1c5f",
+  "protectionPolicies": [
+    "92a8fc02-3bd2-4e1f-b034-521ca42ddabf"
+  ],
+  "securityPolicy": "188714a5-6687-4410-83c3-7214f2943b2d",
+  "tags": [
+    {
+      "internal:bxp:metric:associatedWorkloadCnt": "3"
+    }
+  ],
+  "type": "application/vnd.netapp.bxp.storageclass",
+  "version": "1.0"
+}
+====
+
+== Response
+
+```
+Status: 201, Storage class created successfully.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|capacityPolicy
+|link:#capacity_policy_1_0_get_response_body[capacity_policy_1.0_get_response_body]
+|False
+a|
+
+|description
+|string
+|False
+a|Description of the storage class.
+
+
+|id
+|string
+|False
+a|Unique identifier of the storage class.
+
+
+|metadata
+|link:#type_bxp_metadata[type_bxp_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|name
+|string
+|False
+a|Name of the storage class.
+
+
+|organizationId
+|string
+|False
+a|Organization ID that the storage class is associated with.
+
+
+|performancePolicy
+|link:#performance_policy_1_0_get_response_body[performance_policy_1.0_get_response_body]
+|False
+a|
+
+|protectionPolicies
+|array[link:#protection_policy_1_0_get_response_body[protection_policy_1.0_get_response_body]]
+|False
+a|
+
+|securityPolicy
+|link:#security_policy_1_0_get_response_body[security_policy_1.0_get_response_body]
+|False
+a|
+
+|storageClassType
+|string
+|False
+a|Type of the storage class.
+
+
+|tags
+|array[link:#tags[tags]]
+|False
+a|JSON array of tags (name/value pairs) associated with the storage class. Can be used to add any additional data related to the storage class.
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.storageclass"
+
+
+|version
+|string
+|False
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "capacityPolicy": {
+    "id": "b336b8c1-b388-43e4-8f85-4ca84121ebda",
+    "name": "General Purpose Capacity Policy"
+  },
+  "description": "Configuration for high performance workloads",
+  "id": "0fedcba9-8765-4321-0fed-cba987654321",
+  "metadata": {
+    "createdBy": "666a3f38-d4fa-5b62-a391-a69029758d32",
+    "creationTimestamp": "2022-10-06T20:58:16.305662Z",
+    "labels": [],
+    "modificationTimestamp": "2022-10-06T20:58:16.305662Z",
+    "modifiedBy": "666a3f38-d4fa-5b62-a391-a69029758d32"
+  },
+  "name": "High Performance Configuration",
+  "organizationId": "123e4567-e89b-12d3-a456-426614174000",
+  "performancePolicy": {
+    "id": "494a3e48-812a-4204-8450-32aa6aaf1c5f",
+    "name": "High Performance Policy"
+  },
+  "protectionPolicies": [
+    {
+      "id": "92a8fc02-3bd2-4e1f-b034-521ca42ddabf",
+      "name": "Snapshot Protected Policy"
+    }
+  ],
+  "securityPolicy": {
+    "id": "188714a5-6687-4410-83c3-7214f2943b2d",
+    "name": "Encryption Enabled Policy"
+  },
+  "storageClassType": "SYSTEM_DEFINED",
+  "tags": [
+    {
+      "internal:bxp:metric:associatedWorkloadCnt": "3"
+    },
+    {
+      "internal:bxp:metric:complianceStatus": "compliant"
+    }
+  ],
+  "type": "application/vnd.netapp.bxp.storageclass",
+  "version": "1.0"
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Error
+
+```
+Status: 404, Not found
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The collection specified in the request URI wasn't found.",
+  "status": "404",
+  "title": "Collection not found",
+  "type": "https://bluexp.netapp.io/problems/2"
+}
+====
+
+== Error
+
+```
+Status: 409, Conflict
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request body JSON contains a field that conflicts with an idempotent value.",
+  "status": "409",
+  "title": "JSON resource conflict",
+  "type": "https://bluexp.netapp.io/problems/10"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#tags]
+[.api-collapsible-fifth-title]
+tags
+Hash mapping strings to string
+
+[#type_bxp_label]
+[.api-collapsible-fifth-title]
+type_bxp_label
+
+Name/value pair.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the label.
+
+
+|value
+|string
+|True
+a|Value of the label.
+
+
+|===
+
+
+[#type_bxp_metadata]
+[.api-collapsible-fifth-title]
+type_bxp_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|createdBy
+|string
+|False
+a|UUID of the user who created the resource.
+
+
+|creationTimestamp
+|string
+|False
+a|Resource creation date.
+
+
+|labels
+|array[link:#type_bxp_label[type_bxp_label]]
+|False
+a|Array of name/value pairs representing additional information for the resource.
+
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|modifiedBy
+|string
+|False
+a|UUID of the user who modified the resource.
+
+
+|===
+
+
+[#capacity_policy_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+capacity_policy_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|autoGrow
+|string
+|False
+a|Auto-grow setting of the capacity policy.
+
+
+|description
+|string
+|False
+a|Description of the capacity policy.
+
+
+|id
+|string
+|True
+a|Unique identifier of the capacity policy.
+
+
+|metadata
+|link:#type_bxp_metadata[type_bxp_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|name
+|string
+|True
+a|Name of the capacity policy.
+
+
+|organizationId
+|string
+|False
+a|Organization ID that the policy is associated with.
+
+
+|policyType
+|string
+|False
+a|Type of the capacity policy.
+
+
+|spaceReserved
+|string
+|False
+a|Space reservation setting of the capacity policy.
+
+
+|tags
+|array[link:#tags[tags]]
+|False
+a|JSON array of tags (name/value pairs) associated with the capacity policy. Can be used to add any additional data related to the capacity policy.
+
+
+|tiering
+|string
+|False
+a|Tiering setting of the capacity policy.
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.capacitypolicy"
+
+
+|version
+|string
+|False
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|volumeType
+|string
+|False
+a|Volume type setting of the capacity policy.
+
+
+|===
+
+
+[#adaptive_perf_policy_1_0]
+[.api-collapsible-fifth-title]
+adaptive_perf_policy_1.0
+
+Adaptive performance policy details.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|absoluteMinIopsPerTb
+|integer
+|False
+a|Absolute minimum IOPS per terabyte that is used as an override when the expected IOPS is less than this value.
+
+
+|expectedIopsPerTb
+|integer
+|True
+a|Minimum expected IOPS, per terabyte.
+
+
+|expectedLatency
+|integer
+|True
+a|Expected latency, in milliseconds.
+
+
+|peakIopsPerTb
+|integer
+|True
+a|Maximum expected IOPS, per terabyte.
+
+
+|===
+
+
+[#performance_policy_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+performance_policy_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|adaptive
+|link:#adaptive_perf_policy_1_0[adaptive_perf_policy_1.0]
+|False
+a|Adaptive performance policy details.
+
+
+|description
+|string
+|False
+a|Description of the performance policy.
+
+
+|id
+|string
+|True
+a|Unique identifier of the performance policy.
+
+
+|metadata
+|link:#type_bxp_metadata[type_bxp_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|name
+|string
+|True
+a|Name of the performance policy.
+
+
+|organizationId
+|string
+|False
+a|Organization ID that the policy is associated with.
+
+
+|policyType
+|string
+|False
+a|Type of the performance policy.
+
+
+|tags
+|array[link:#tags[tags]]
+|False
+a|JSON array of tags (name/value pairs) associated with the performance policy. Can be used to add any additional data related to the performance policy.
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.performancepolicy"
+
+
+|version
+|string
+|False
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+[#snapshotSchedules]
+[.api-collapsible-fifth-title]
+snapshotSchedules
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|retentionCount
+|integer
+|False
+a|Number of snapshots to retain.
+
+
+|schedule
+|string
+|False
+a|Type of schedule for snapshots.
+
+
+|===
+
+
+[#protection_policy_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+protection_policy_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|description
+|string
+|False
+a|Description of the protection policy.
+
+
+|id
+|string
+|True
+a|Unique identifier of the protection policy.
+
+
+|metadata
+|link:#type_bxp_metadata[type_bxp_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|name
+|string
+|True
+a|Name of the protection policy.
+
+
+|organizationId
+|string
+|False
+a|Organization ID that the policy is associated with.
+
+
+|policyType
+|string
+|False
+a|Type of the protection policy.
+
+
+|snapshotSchedules
+|array[link:#snapshotSchedules[snapshotSchedules]]
+|False
+a|An array of snapshot schedules defined in the protection policy.
+
+
+|tags
+|array[link:#tags[tags]]
+|False
+a|JSON array of tags (name/value pairs) associated with the protection policy. Can be used to add any additional data related to the protection policy.
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.protectionpolicy"
+
+
+|version
+|string
+|False
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+[#security_policy_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+security_policy_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|description
+|string
+|False
+a|Description of the security policy.
+
+
+|encryptionType
+|string
+|False
+a|Type of encryption applied by the security policy. Should be enabled (ENABLED) or can be enabled or disabled (ANY).
+
+
+|fips
+|string
+|False
+a|FIPS setting. Should be enabled (ON), disabled (OFF), or can be enabled or disabled (ANY).
+
+
+|id
+|string
+|True
+a|Unique identifier of the security policy.
+
+
+|metadata
+|link:#type_bxp_metadata[type_bxp_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|name
+|string
+|True
+a|Name of the security policy.
+
+
+|organizationId
+|string
+|False
+a|Organization ID that the policy is associated with.
+
+
+|policyType
+|string
+|False
+a|Type of the security policy.
+
+
+|ransomwareProtection
+|string
+|False
+a|Ransomware protection setting. Should be enabled (ON), disabled (OFF), or can be enabled or disabled (ANY).
+
+
+|tags
+|array[link:#tags[tags]]
+|False
+a|JSON array of tags (name/value pairs) associated with the security policy. Can be used to add any additional data related to the security policy.
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.securitypolicy"
+
+
+|version
+|string
+|False
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

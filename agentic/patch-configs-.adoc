@@ -1,0 +1,678 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'agentic/patch-configs-.html'
+summary: 'Apply an Agentic Platform configuration in NetApp Console local deployment'
+---
+
+= Apply an Agentic Platform configuration in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/configs/{config_id}`#
+
+
+
+Triggers the Kubernetes (K8s) resource creation and applies the specified Agentic platform configuration. The PATCH endpoint orchestrates the full apply pipeline. A failed connection test sets the state to unsuccessful and does not apply K8s resources.
+The AgentGateway automatically hot reloads the updated configuration.
+
+Provider-specific credentials can be updated using the corresponding provider object. Changing the provider in a PATCH request automatically removes the previous provider's Kubernetes (K8s) resources.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|config_id
+|string
+|path
+|True
+a|Unique identifier for the configuration instance.
+
+
+|===
+
+== Request Body
+
+Replaces the specified attributes in the request body with the values provided.
+                   
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|adminAddr
+|string
+|False
+a|Admin address for the AgentGateway
+
+
+|anthropic
+|link:#provider_credentials_anthropic_config[provider_credentials_anthropic_config]
+|False
+a|Anthropic Claude provider-specific configuration
+
+
+|commonOpenAI
+|link:#provider_credentials_commonOpenAI_config[provider_credentials_commonOpenAI_config]
+|False
+a|Generic OpenAI-compatible API configuration (for custom/self-hosted LLM proxies).  Duplicate models with equivalent dot/dash notation are merged; the first occurrence is returned. `commonOpenAI` is an alias for the OpenAI provider with a custom baseUrl. Both map to the same AgentGateway backend type.
+
+
+|extraHeaders
+|link:#extraHeaders[extraHeaders]
+|False
+a|Additional HTTP headers
+
+
+|extraParams
+|link:#extraParams[extraParams]
+|False
+a|Provider-specific additional parameters
+
+
+|models
+|array[string]
+|False
+a|List of models to configure
+
+
+|openai
+|link:#provider_credentials_openai_config[provider_credentials_openai_config]
+|False
+a|OpenAI provider-specific configuration
+
+
+|port
+|integer
+|False
+a|Gateway port
+
+
+|proxyConfigured
+|string
+|False
+a|Indicates whether a proxy is configured for this LLM backend. This field reflects whether a cluster-level proxy is active. It is set automatically and should not be set by callers.
+Defined values are:
+
+* "true"  - A proxy is configured and active for outbound LLM traffic
+* "false" - No proxy is configured; LLM traffic is routed directly
+
+
+|requestsPerMinute
+|integer
+|False
+a|The rate limit - maximum requests per minute (0 = unlimited).
+
+
+|sslVerify
+|boolean
+|False
+a|Indicates whether to verify SSL certificates.
+
+
+|stateDesired
+|string
+|False
+a|Desired state for the configuration lifecycle transition.
+Use this field to request a state change for the configuration.
+Defined values are:
+
+* "DRAFT" - Move configuration to draft mode
+* "TESTING" - Tests the LLM provider connection only. Does not create or modify AgentGateway resources. The llmHealthState is updated to reflect the test result.
+* "SUCCESSFUL" - Mark configuration as having been successfully applied
+* "UNSUCCESSFUL" - Mark configuration as having failed
+
+NOTE: Only TESTING has a distinct behavior. DRAFT, SUCCESSFUL, UNSUCCESSFUL in stateDesired have no special effect -- the full apply pipeline runs.
+
+
+|tokensPerMinute
+|integer
+|False
+a|The rate limit - maximum tokens per minute (0 = unlimited).
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.config"
+
+
+|version
+|string
+|False
+a|Version of the configuration format.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+.Example request
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "proxyConfigured": "false",
+  "type": "application/vnd.netapp.bxp.config",
+  "version": "1.0"
+}
+====
+
+== Response
+
+```
+Status: 200, Configuration updated successfully.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|configVersion
+|string
+|False
+a|Version of the applied configuration
+
+
+|message
+|string
+|True
+a|Success message
+
+
+|timestamp
+|string
+|False
+a|Timestamp of the operation
+
+
+|type
+|string
+|True
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.config"
+
+
+|version
+|string
+|True
+a|Version of the configuration format.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "configVersion": "1.0",
+  "message": "Configuration updated successfully. AgentGateway will automatically apply changes.",
+  "type": "application/vnd.netapp.bxp.config",
+  "version": "1.0"
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Error
+
+```
+Status: 404, Not found
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The collection specified in the request URI wasn't found.",
+  "status": "404",
+  "title": "Collection not found",
+  "type": "https://bluexp.netapp.io/problems/2"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#provider_credentials_anthropic_config]
+[.api-collapsible-fifth-title]
+provider_credentials_anthropic_config
+
+Anthropic Claude provider-specific configuration
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|anthropicVersion
+|string
+|False
+a|Anthropic API version header. If not specified, defaults to `2023-06-01`.
+
+
+|apiKey
+|string
+|True
+a|Anthropic API key
+
+
+|baseUrl
+|string
+|False
+a|Base URL for Anthropic API (optional)
+
+
+|===
+
+
+[#extraHeaders]
+[.api-collapsible-fifth-title]
+extraHeaders
+
+Additional headers to include in requests
+
+Hash mapping strings to string
+
+[#extraParams]
+[.api-collapsible-fifth-title]
+extraParams
+
+Additional parameters to include in requests
+
+Hash mapping strings to string
+
+[#provider_credentials_commonOpenAI_config]
+[.api-collapsible-fifth-title]
+provider_credentials_commonOpenAI_config
+
+Generic OpenAI-compatible API configuration (for custom/self-hosted LLM proxies).  Duplicate models with equivalent dot/dash notation are merged; the first occurrence is returned. `commonOpenAI` is an alias for the OpenAI provider with a custom baseUrl. Both map to the same AgentGateway backend type.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|apiKey
+|string
+|False
+a|API key for the OpenAI-compatible service
+
+
+|baseUrl
+|string
+|True
+a|Base URL for the OpenAI-compatible API
+
+
+|extraHeaders
+|link:#extraHeaders[extraHeaders]
+|False
+a|Additional headers to include in requests
+
+
+|extraParams
+|link:#extraParams[extraParams]
+|False
+a|Additional parameters to include in requests
+
+
+|===
+
+
+[#extraHeaders]
+[.api-collapsible-fifth-title]
+extraHeaders
+
+Additional HTTP headers
+
+Hash mapping strings to string
+
+[#extraParams]
+[.api-collapsible-fifth-title]
+extraParams
+
+Provider-specific additional parameters
+
+Hash mapping strings to string
+
+[#provider_credentials_openai_config]
+[.api-collapsible-fifth-title]
+provider_credentials_openai_config
+
+OpenAI provider-specific configuration
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|apiKey
+|string
+|True
+a|OpenAI API key
+
+
+|baseUrl
+|string
+|False
+a|Base URL for OpenAI API (optional, defaults to https://api.openai.com)
+
+
+|organizationId
+|string
+|False
+a|OpenAI organization ID (optional)
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

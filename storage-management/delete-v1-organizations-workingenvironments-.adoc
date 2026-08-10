@@ -1,0 +1,108 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'storage-management/delete-v1-organizations-workingenvironments-.html'
+summary: 'Delete a system in NetApp Console local deployment'
+---
+
+= Delete a system in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}`#
+
+
+
+Removes the specified on-premises system from an organization.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organizationId
+|string
+|path
+|True
+a|Organization ID
+
+* example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+
+|workingEnvironmentId
+|string
+|path
+|True
+a|System ID
+
+* example: OnPremWorkingEnvironment-3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+
+|===
+
+== Response
+
+```
+Status: 204, System deleted successfully. No content returned.
+```
+
+== Response
+
+```
+Status: 403, Forbidden request
+```
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "You do not have permission to delete this system.",
+  "status": "403",
+  "title": "Forbidden",
+  "type": "https://bluexp.netapp.io/problems/403"
+}
+====
+
+== Response
+
+```
+Status: 404, Not found
+```
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The specified system does not exist.",
+  "status": "404",
+  "title": "Not Found",
+  "type": "https://bluexp.netapp.io/problems/404"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized access
+```
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "Authentication required or invalid credentials.",
+  "status": "401",
+  "title": "Unauthorized",
+  "type": "https://bluexp.netapp.io/problems/401"
+}
+====
+

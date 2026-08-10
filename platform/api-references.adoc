@@ -1,0 +1,59 @@
+---
+sidebar: sidebar
+permalink: platform/api-reference.html
+keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
+summary: Links to the reference documentation for each NetApp Console local deployment REST API.
+---
+= NetApp Console local deployment API reference documentation  
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ../media/
+
+[.lead]
+Learn about the NetApp Console local deployment API reference documentation. 
+
+== Agentic Platform configuration manager
+
+You can use the Agentic Platform configuration manager API endpoints to manage Large Language Model (LLM) configurations. 
+
+The initial catalog supports the following models and providers: `openai`, `commonOpenAI`, and `anthropic`.
+
+Key features include:
+
+* Dynamic configuration management with automatic hot reload.
+* Support for multiple LLM providers (`openai`, `commonOpenAI`, and `anthropic`).
+* SSL verification settings, including custom CA certificates.
+* Automatic stale Kubernetes (K8s) resource cleanup if the provider changes.
+* Provider-compatibility field stripping: OpenAI-only fields are automatically stripped for Anthropic backends.
+* Model-family temperature stripping: For OpenAI models GPT-5.5 and later, the `temperature` field is automatically stripped from requests (`temperature` is deprecated by OpenAI for these models).
+* Anthropic path rewrite: Clients using OpenAI-compatible SDKs (langchaingo, OpenAI Python SDK) can send a request to `/v1/chat/completions` and it will automatically be rewritten to `/v1/messages` at the gateway level.
+* Per-request user identifier injection: The `extraParams.user` field is injected into every LLM request as a BackendAI default.
+* Model deduplication: When listing models from a `commonOpenAI` provider, duplicate model IDs differing only in dot/dash notation are deduplicated.
+* Model validation and authorization rules.
+* Configuration state lifecycle (DRAFT, TESTING, SUCCESSFUL, UNSUCCESSFUL).
+
+link:../agentic/get-configs.html[Agentic Platform configuration manager REST API reference]
+
+== Assets
+
+You can use the Asset API endpoints to obtain configuration data and metrics about the assets monitored by the Console local deployment.
+
+Assets include fleets, LUNs, namespaces, network interfaces, nodes, ports, QoS policy groups, qtrees, SMB shares, Storage VMs (SVMs), and volumes.
+
+link:../asset/get-organizations-aggregates.html[Assets REST API reference]
+
+== Identity and access management
+
+You can use the identity and access management (IAM) API endpoints to manage and control access to the Console resources.
+
+CAUTION: In NetApp Console local deployment, the term "project" is replaced with "fleet". Project API endpoints are deprecated and should only be used for legacy compliance. The reference documentation maps deprecated project API endpoints to the new fleet equivalent where applicable.
+
+link:../tenancyv4/get-fleets.html[Identity and access management REST API reference]
+
+== Storage management
+
+You can use the storage management API endpoints to register systems, manage storage resources, and configure storage policies for your ONTAP clusters managed through the Console local deployment.
+
+link:../storage-management/get-v1-organizations-capacitypolicies.html[Storage management REST API reference]

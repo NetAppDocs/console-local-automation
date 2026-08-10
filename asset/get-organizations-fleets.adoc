@@ -1,0 +1,662 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'asset/get-organizations-fleets.html'
+summary: 'List fleets in NetApp Console local deployment'
+---
+
+= List fleets in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets`#
+
+
+
+Lists all fleets.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|count
+|string
+|query
+|False
+a|Indicates if the total number of resources should be returned in the response object.
+
+URL examples: "count=true"
+
+OpenAPI examples: "true"
+
+
+|filter
+|string
+|query
+|False
+a|Specifies filter criteria for listing resources. Use field names and supported operators to match resources. Multiple conditions can be combined.
+
+Only the following fields are supported for filtering:
+
+* `name`
+* `description`
+
+Supported operators:
+
+* eq - Equality
+* in - In a list of values
+* lt/gt - Less than/greater than
+* lte/gte - Less than or equal to/greater than or equal to
+* re - Regular expression match
+
+URL example: "filter=name%20eq%20%27value%27"
+
+OpenAPI examples: "name eq 'value'"
+
+
+|limit
+|string
+|query
+|False
+a|Specifies the maximum number of resources to return when listing a collection.
+
+URL examples: "limit=2"
+
+OpenAPI examples: "2"
+
+
+|orderBy
+|string
+|query
+|False
+a|Indicates the sort order of resources when listing a collection.
+
+URL examples: "orderBy=name", "orderBy=name%20desc"
+
+OpenAPI examples: "name desc"
+
+
+|skip
+|string
+|query
+|False
+a|Specifies the number of resources to skip when listing a collection.
+
+URL examples: "skip=1"
+
+OpenAPI examples: "1"
+
+
+|===
+
+== Response
+
+```
+Status: 200, OK
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Total number of resources in the collection that match the query.
+
+
+|items
+|array[link:#fleet_1_0_get_response_body[fleet_1.0_get_response_body]]
+|True
+a|Fleets in the collection.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "count": 2,
+  "items": [
+    {
+      "compliantSvmCount": 35,
+      "compliantSystemCount": 6,
+      "description": "Fleet for production environment.",
+      "id": "7f2e8d4c-9b1a-4f5e-a3d6-2c8e5f7a9b4d",
+      "metadata": {
+        "modificationTimestamp": "2026-01-16T14:45:12.234567Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 250000
+        },
+        "throughput": {
+          "total": 10000000000
+        }
+      },
+      "name": "fleet-01",
+      "organizationId": "3b8f9e2a-7c4d-4e8f-a1b2-9d6e7f8a9b0c",
+      "space": {
+        "available": 395136991232000,
+        "size": 527765581332480
+      },
+      "svmCount": 40,
+      "systemCount": 8,
+      "type": "application/vnd.netapp.bxp.fleet",
+      "version": "1.0",
+      "volumeCount": 3000
+    },
+    {
+      "compliantSvmCount": 12,
+      "compliantSystemCount": 2,
+      "description": "Fleet for development environment.",
+      "id": "4e9c2f6a-8d5b-4c1e-a7f3-9b2e6d4c8a5f",
+      "metadata": {
+        "modificationTimestamp": "2026-01-16T14:47:38.891234Z"
+      },
+      "metrics": {
+        "iops": {
+          "total": 50000
+        },
+        "throughput": {
+          "total": 2000000000
+        }
+      },
+      "name": "fleet-02",
+      "organizationId": "3b8f9e2a-7c4d-4e8f-a1b2-9d6e7f8a9b0c",
+      "space": {
+        "available": 158548396492800,
+        "size": 263882790666240
+      },
+      "svmCount": 15,
+      "systemCount": 3,
+      "type": "application/vnd.netapp.bxp.fleet",
+      "version": "1.0",
+      "volumeCount": 150
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#common_1_0_inventory_metadata]
+[.api-collapsible-fifth-title]
+common_1.0_inventory_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|===
+
+
+[#iops]
+[.api-collapsible-fifth-title]
+iops
+
+IOPS metrics for the fleet.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of I/O operations observed at the storage fleet.
+
+
+|===
+
+
+[#throughput]
+[.api-collapsible-fifth-title]
+throughput
+
+Throughput metrics for the fleet.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|total
+|number
+|False
+a|The rate of throughput observed at the storage fleet in bytes per second.
+
+
+|===
+
+
+[#metrics]
+[.api-collapsible-fifth-title]
+metrics
+
+Performance metrics for the fleet.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|iops
+|link:#iops[iops]
+|False
+a|IOPS metrics for the fleet.
+
+
+|throughput
+|link:#throughput[throughput]
+|False
+a|Throughput metrics for the fleet.
+
+
+|===
+
+
+[#space]
+[.api-collapsible-fifth-title]
+space
+
+Storage capacity for the fleet.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|available
+|integer
+|False
+a|Available capacity for the fleet in bytes.
+
+
+|size
+|integer
+|False
+a|Total capacity for the fleet in bytes.
+
+
+|===
+
+
+[#fleet_1_0_get_response_body]
+[.api-collapsible-fifth-title]
+fleet_1.0_get_response_body
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|compliantSvmCount
+|number
+|False
+a|Number of SVMs in the fleet that are 100% security compliant.
+
+
+|compliantSystemCount
+|number
+|False
+a|Number of systems in the fleet that are 100% security compliant.
+
+
+|description
+|string
+|False
+a|Description for the fleet.
+
+
+|id
+|string
+|False
+a|Identifier of the fleet.
+
+
+|metadata
+|link:#common_1_0_inventory_metadata[common_1.0_inventory_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|metrics
+|link:#metrics[metrics]
+|False
+a|Performance metrics for the fleet.
+
+
+|name
+|string
+|False
+a|Fleet name.
+
+
+|organizationId
+|string
+|False
+a|Identifier for an organization.
+
+
+|space
+|link:#space[space]
+|False
+a|Storage capacity for the fleet.
+
+
+|svmCount
+|number
+|False
+a|Number of SVMs in the fleet.
+
+
+|systemCount
+|integer
+|False
+a|Number of systems in the fleet.
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+Defined values are:
+
+*** "application/vnd.netapp.bxp.fleet"
+
+
+|version
+|string
+|False
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|volumeCount
+|number
+|False
+a|Number of FlexVol and FlexGroup volumes in the fleet.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

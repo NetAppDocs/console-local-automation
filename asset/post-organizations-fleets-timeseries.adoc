@@ -1,0 +1,751 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'asset/post-organizations-fleets-timeseries.html'
+summary: 'Retrieve time series data for systems in a fleet in NetApp Console local deployment'
+---
+
+= Retrieve time series data for systems in a fleet in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/timeseries`#
+
+
+
+Retrieve time series data for systems in a fleet.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|fleet_id
+|string
+|path
+|True
+a|Identifier for a fleet.
+
+
+|===
+
+== Request Body
+
+                   
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|singleMetric
+|link:#singleMetric[singleMetric]
+|True
+a|Configuration for a query against a single metric.
+
+
+|timeRange
+|link:#asset_1_0_time_range[asset_1.0_time_range]
+|False
+a|Time range for a query window. If omitted from the request body,
+an instant query is performed at the evaluation time. If provided in the request body, a range query is performed. Values can be absolute or relative to the
+evaluation time.
+
+
+|===
+
+
+.Example request
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "singleMetric": {
+    "metric": "iops_total",
+    "rollup": {
+      "function": "AVG_OVER_TIME",
+      "window": "PT10M"
+    }
+  },
+  "timeRange": {
+    "end": "NOW",
+    "start": "PT2H",
+    "step": "PT10M"
+  }
+}
+====
+
+== Response
+
+```
+Status: 200, OK
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|items
+|array[link:#items[items]]
+|False
+a|Time series matching the query.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "items": [
+    {
+      "labels": {
+        "cluster": "cluster-01",
+        "svm": "svm-prod-1"
+      },
+      "points": [
+        {
+          "timestamp": "2026-01-26T20:58:16.305662Z",
+          "value": 10.5
+        }
+      ]
+    },
+    {
+      "labels": {
+        "cluster": "cluster-01",
+        "svm": "svm-prod-2"
+      },
+      "points": [
+        {
+          "timestamp": "2026-01-26T20:58:16.305662Z",
+          "value": 8.3
+        }
+      ]
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#filters]
+[.api-collapsible-fifth-title]
+filters
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|label
+|string
+|True
+a|Label key to filter on.
+
+
+|operator
+|string
+|True
+a|Filter operator.
+
+
+|values
+|array[string]
+|True
+a|Label values to compare against.
+Multiple values are only supported for `REGEX_MATCH` and `REGEX_NOT_MATCH` operators.
+Multiple values are combined with logical OR.
+
+
+|===
+
+
+[#forecast]
+[.api-collapsible-fifth-title]
+forecast
+
+Configuration for forecasting values using linear interpolation.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|horizon
+|string
+|True
+a|ISO 8601 duration into the future (e.g. "PT60S") relative to
+the evaluation time.
+
+The maximum allowed horizon is 30 days.
+
+
+|lookbackWindow
+|string
+|True
+a|ISO 8601 duration lookbehind window (e.g. "PT5M") used over
+raw samples for linear interpolation.
+
+
+|step
+|string
+|False
+a|Interval between forecasted data points in ISO 8601 duration format.
+
+If omitted, only a single forecasted value is generated at the end of the forecast horizon.
+
+When provided, a forecasted value is generated at every interval between the evaluation time
+(exclusive) and the end of the forecast horizon (inclusive).
+
+When step is provided, the maximum allowed forecast horizon will be determined by how much data
+is available within the lookback window. The limits are:
+
+* `< 1 week` - No forecast is allowed.
+* `1 - 2 weeks` - Maximum horizon is 2 weeks
+* `> 2 weeks` - Maximum horizon is 4 weeks
+
+
+|===
+
+
+[#rollup]
+[.api-collapsible-fifth-title]
+rollup
+
+Per-series rollup function evaluated over a sliding window at each query step,
+before any outer `aggregation` or `sort` is applied.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|function
+|string
+|True
+a|Rollup function to apply to each series over the lookback window.
+Defined values are:
+
+* `MAX_OVER_TIME` - maximum value over the lookback window
+* `MIN_OVER_TIME` - minimum value over the lookback window
+* `AVG_OVER_TIME` - average value over the lookback window
+* `SUM_OVER_TIME` - sum of values over the lookback window
+* `COUNT_OVER_TIME` - count of samples over the lookback window
+
+
+|window
+|string
+|True
+a|ISO 8601 duration lookback window evaluated at each query step. Must be greater than zero.
+
+
+|===
+
+
+[#sort]
+[.api-collapsible-fifth-title]
+sort
+
+Sort series based on average value and limit the number of returned series. This is used for retrieving
+the top or bottom N series for a given metric.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|limit
+|integer
+|True
+a|Maximum number of series to return.
+
+
+|order
+|string
+|True
+a|Sort order.
+
+Defined values are:
+
+* "ASC" - ascending order - This results in the bottom `limit` series returned.
+* "DESC" - descending order - This results in the top `limit` series returned.
+
+
+|===
+
+
+[#valueFilter]
+[.api-collapsible-fifth-title]
+valueFilter
+
+Numeric value filter applied to each sample before the aggregation function is evaluated.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|operator
+|string
+|True
+a|Comparison operator applied to each sample value against the threshold.
+
+Defined values are:
+
+* `EQ`  - equal (`==`)
+* `NE`  - not equal (`!=`)
+* `LT`  - less than (`<`)
+* `GT`  - greater than (`>`)
+* `LTE` - less than or equal (`+<=+`)
+* `GTE` - greater than or equal (`>=`)
+
+
+|threshold
+|number
+|True
+a|The numeric constant to compare each sample value against.
+
+
+|===
+
+
+[#singleMetric]
+[.api-collapsible-fifth-title]
+singleMetric
+
+Configuration for a query against a single metric.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|aggregation
+|string
+|False
+a|Aggregation function applied to the series.
+
+
+|filters
+|array[link:#filters[filters]]
+|False
+a|Label filters applied before aggregation.
+
+
+|forecast
+|link:#forecast[forecast]
+|False
+a|Configuration for forecasting values using linear interpolation.
+
+
+|groupBy
+|array[string]
+|False
+a|Label keys to group series by.
+
+
+|metric
+|string
+|True
+a|Metric name to query.
+
+
+|rollup
+|link:#rollup[rollup]
+|False
+a|Per-series rollup function evaluated over a sliding window at each query step,
+before any outer `aggregation` or `sort` is applied.
+
+
+|sort
+|link:#sort[sort]
+|False
+a|Sort series based on average value and limit the number of returned series. This is used for retrieving
+the top or bottom N series for a given metric.
+
+
+|valueFilter
+|link:#valueFilter[valueFilter]
+|False
+a|Numeric value filter applied to each sample before the aggregation function is evaluated.
+
+
+|===
+
+
+[#asset_1_0_time_range]
+[.api-collapsible-fifth-title]
+asset_1.0_time_range
+
+Time range for a query window. If omitted from the request body,
+an instant query is performed at the evaluation time. If provided in the request body, a range query is performed. Values can be absolute or relative to the
+evaluation time.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|end
+|string
+|False
+a|End of the query window. The value can be:
+
+* RFC 3339 timestamp (e.g. "2026-01-23T10:00:00Z"),
+* "NOW",
+* ISO 8601 duration interpreted as NOW minus the duration
+(e.g. "PT15M" = NOW-15 minutes).
+If omitted, defaults to "NOW".
+
+
+|start
+|string
+|True
+a|Start of the query window. The value can be:
+
+* RFC 3339 timestamp (e.g. "2026-01-23T10:00:00Z"),
+* "NOW",
+* ISO 8601 duration interpreted as NOW minus the duration
+(e.g. "PT15M" = NOW-15 minutes).
+
+
+|step
+|string
+|False
+a|ISO 8601 duration step between data points for range queries
+(e.g. "PT60S"). Ignored for instant queries.
+
+
+|===
+
+
+[#labels]
+[.api-collapsible-fifth-title]
+labels
+
+Label set identifying this series.
+
+Hash mapping strings to string
+
+[#points]
+[.api-collapsible-fifth-title]
+points
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|timestamp
+|string
+|True
+a|RFC 3339 timestamp of the data point.
+
+
+|value
+|number
+|True
+a|Numeric value at the specified timestamp.
+
+
+|===
+
+
+[#items]
+[.api-collapsible-fifth-title]
+items
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|labels
+|link:#labels[labels]
+|True
+a|Label set identifying this series.
+
+
+|points
+|array[link:#points[points]]
+|True
+a|Ordered list of data points. Range queries return multiple
+points; instant queries return exactly one point per series.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

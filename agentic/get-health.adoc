@@ -1,0 +1,140 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'agentic/get-health.html'
+summary: 'Retrieve the configuration manager health status in NetApp Console local deployment'
+---
+
+= Retrieve the configuration manager health status in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/health`#
+
+
+
+Returns the health status of the configuration manager service.
+
+
+== Response
+
+```
+Status: 200, Returns the health status of the configuration manager service in the JSON response body. It provides information about agent gateway connectivity and whether the configuration is loaded.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|details
+|link:#details[details]
+|False
+a|Additional health check details
+
+
+|service
+|string
+|True
+a|Name of the service
+
+
+|serviceVersion
+|string
+|False
+a|Version of the service
+
+
+|status
+|string
+|True
+a|Health status of the service.
+Defined values are:
+
+* "healthy" - Service is operational
+* "unhealthy" - Service has issues
+* "degraded" - Service is partially operational
+
+
+|timestamp
+|string
+|False
+a|Timestamp of the health check
+
+
+|type
+|string
+|True
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.health"
+
+
+|version
+|string
+|True
+a|Version of the resource.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "service": "agentgateway-config-manager",
+  "serviceVersion": "1.0.0",
+  "status": "healthy",
+  "timestamp": "2025-01-16T10:30:00Z",
+  "type": "application/vnd.netapp.bxp.health",
+  "version": "1.0"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#details]
+[.api-collapsible-fifth-title]
+details
+
+Additional health check details
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|agentgatewayConnected
+|boolean
+|False
+a|Indicates whether the AgentGateway is reachable.
+
+
+|configLoaded
+|boolean
+|False
+a|Indicates whether the configuration is loaded.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====

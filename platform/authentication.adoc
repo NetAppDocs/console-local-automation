@@ -1,0 +1,59 @@
+---
+sidebar: sidebar
+permalink: platform/authentication.html
+keywords: generate, user, token, service, token, bluexp, rest, apis, netapp, console, local
+summary: Overview of authentication and authorization for NetApp Console local deployment REST APIs.
+---
+= Learn about authentication and authorization in NetApp Console local deployment
+:hardbreaks:
+:nofooter:
+:icons: font
+:linkattrs:
+:imagesdir: ../media/
+
+[.lead]
+You should be familiar with the basic authentication and authorization concepts before using the NetApp Console local deployment REST APIs. 
+
+== OAuth 2.0 authorization framework 
+
+OAuth 2.0 (OAuth2) is an authorization framework that allows client applications to obtain limited access to protected resources at an HTTP service. The Console local deployment implements the OAuth 2.0 framework using a local identity provider embedded within each NetApp Console local deployment instance. 
+
+== Local identity provider 
+
+Each NetApp Console local deployment instance includes a local identity provider that issues and validates access tokens for both users and service accounts. Authentication is handled entirely on the local instance, no network connectivity to external cloud services is required to obtain or validate tokens. 
+
+== Access tokens 
+
+There are two types of access tokens you can use to authenticate REST API calls to the Console local deployment. 
+
+[cols="1,3", options="header"]
+|===
+// header row
+| Type
+| Description
+
+// first body row
+| User token
+| A token identifying a local user. Used to access the Console local deployment APIs on behalf of a specific user. 
+
+| Service token 
+| A token used by applications and scripts to perform REST API calls programmatically. Obtained using a service account's client ID and client secret through the OAuth 2.0 client credentials grant. 
+
+// table end
+|===
+
+== JWT encoding 
+
+All access tokens issued by the Console local identity provider are JSON Web Tokens (JWT) encoded using the RS256 (RSA Signature with SHA-256) algorithm.  
+
+== Service accounts 
+
+Each service account is assigned a client ID and a client secret, which are used together to obtain a service access token through the client credentials grant. 
+
+== Grant types 
+
+The different grant types are adapted to several use cases based on the characteristics of the applications. Implicit with each grant type is the type of credentials provided and how identity is confirmed. In local deployments of NetApp Console, the supported grant types are password (user token) and client credentials (service token). 
+
+== Scope 
+
+A _scope_ within the OAuth 2.0 framework provides a way to limit access to data and other resources. It can optionally be included when requesting an access token and is then applied at the resource server when the token is presented by the client. 

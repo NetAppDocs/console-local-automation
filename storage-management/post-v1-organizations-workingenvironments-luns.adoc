@@ -1,0 +1,553 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'storage-management/post-v1-organizations-workingenvironments-luns.html'
+summary: 'Create a new LUN in NetApp Console local deployment'
+---
+
+= Create a new LUN in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}/luns`#
+
+
+
+Creates a new LUN in the specified system.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organizationId
+|string
+|path
+|True
+a|Organization ID
+
+
+|workingEnvironmentId
+|string
+|path
+|True
+a|Public ID of the system
+
+
+|===
+
+== Request Body
+
+LUN properties for creation
+                   
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|aggregates
+|array[string]
+|False
+a|List of aggregate identifiers where the LUN can be created.
+
+
+|igroups
+|link:#luns_1_0_igroups[luns_1.0_igroups]
+|False
+a|Igroup details for LUN access.
+
+
+|name
+|string
+|True
+a|Name of the LUN that is to be provisioned.
+
+
+|numberOfLuns
+|integer
+|True
+a|Number of LUNs to create.
+
+
+|size
+|integer
+|True
+a|Size of the LUN, in bytes.
+
+
+|storageClassId
+|string
+|False
+a|Storage class identifier.
+
+
+|svmId
+|string
+|True
+a|Storage Virtual Machine identifier.
+
+
+|type
+|string
+|True
+a|Media type of the resource.
+Defined values are:
+
+* "application/vnd.netapp.bxp.lun"
+
+
+|version
+|string
+|True
+a|Version of the resource schema.
+Defined values are:
+
+* "1.0"
+
+
+|===
+
+
+.Example request
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "aggregates": [
+    "999d6h61-g7hd-8e95-d6c4-d99352081g65",
+    "aaa17i72-h8ie-9f06-e7d5-ea145392h76"
+  ],
+  "igroups": {
+    "format": "LINUX",
+    "hostOs": "LINUX",
+    "initiators": [
+      {
+        "comment": "This is an initiator for the finance department",
+        "name": "iqn.1993-08.org.debian:01:abcd1234"
+      },
+      {
+        "comment": "This is an initiator for the HR department",
+        "name": "iqn.1993-08.org.debian:01:efgh5678"
+      }
+    ],
+    "name": "my_igroup"
+  },
+  "name": "my_lun",
+  "numberOfLuns": 4,
+  "size": 107374182400,
+  "storageClassId": "888c5g50-f6gc-7d84-c5b3-c89241970f54",
+  "svmId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "type": "application/vnd.netapp.bxp.lun",
+  "version": 1
+}
+====
+
+== Response
+
+```
+Status: 202, LUN create request accepted and is being processed
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|jobId
+|string
+|True
+a|Unique identifier for the created job.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "jobId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Error
+
+```
+Status: 404, Not found
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The collection specified in the request URI wasn't found.",
+  "status": "404",
+  "title": "Collection not found",
+  "type": "https://bluexp.netapp.io/problems/2"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#initiators]
+[.api-collapsible-fifth-title]
+initiators
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|comment
+|string
+|False
+a|Optional comment about the initiator.
+
+
+|name
+|string
+|False
+a|The WWPN, IQN, or alias of the initiator.
+
+
+|===
+
+
+[#luns_1_0_igroups]
+[.api-collapsible-fifth-title]
+luns_1.0_igroups
+
+Igroup details for LUN access.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|format
+|string
+|False
+a|LUN format
+
+
+|hostOs
+|string
+|False
+a|Operating system of the host.
+
+
+|initiatorGroups
+|array[string]
+|False
+a|List of initiator groups for creating a new nested group.
+
+
+|initiators
+|array[link:#initiators[initiators]]
+|False
+a|List of initiators associated with the igroup.
+
+
+|name
+|string
+|False
+a|Name of the igroup. To associate an existing igroup, the field is mandatory. For new igroup creation it is optional, if not provided it will default to the volume name.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====
