@@ -25,7 +25,5 @@ indexpage:
           url: https://www.netapp.com/cloud-services/
         - title: ONTAP 9 documentation
           url: https://docs.netapp.com/us-en/ontap/
-        - title: Additional resources
-          url: /support/additional_resources.html 
 
       
