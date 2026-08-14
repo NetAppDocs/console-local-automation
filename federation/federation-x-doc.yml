@@ -1,0 +1,47 @@
+---
+paths:
+  "/organizations/{organization_id}/federations":
+    get:
+      x-doc:
+        title: List federations in NetApp Console local deployment
+        category: 
+        filename: get-organizations-federations.html
+        sidebar_title: List federations
+        subcategory: 
+    post:
+      x-doc:
+        title: Create a new federation in NetApp Console local deployment
+        category: 
+        filename: post-organizations-federations.html
+        sidebar_title: Create a new federation
+        subcategory: 
+  "/organizations/{organization_id}/federations/{federation_id}":
+    delete:
+      x-doc:
+        title: Delete a federation in NetApp Console local deployment
+        category: 
+        filename: delete-organizations-federations-.html
+        sidebar_title: Delete a federation
+        subcategory: 
+    get:
+      x-doc:
+        title: Retrieve a federation in NetApp Console local deployment
+        category: 
+        filename: get-organizations-federations-.html
+        sidebar_title: Retrieve a federation
+        subcategory: 
+    patch:
+      x-doc:
+        title: Update a federation in NetApp Console local deployment
+        category: 
+        filename: patch-organizations-federations-.html
+        sidebar_title: Update a federation
+        subcategory: 
+  "/organizations/{organization_id}/federations/{federation_id}/clients":
+    post:
+      x-doc:
+        title: Enable an Auth0 client for a federation in NetApp Console local deployment.
+        category: 
+        filename: post-organizations-federations-clients.html
+        sidebar_title: Enable an Auth0 client for a federation
+        subcategory: 
