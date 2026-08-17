@@ -973,7 +973,7 @@ components:
         alertcontrol_1.0_bulk_request_body:
             properties:
                 enabled:
-                    description: When true, enables all configured alert rules. When false, disables all.
+                    description: When true, enables all configured alert rules. When false, disables all configured alert rules.
                     example: true
                     type: boolean
             required:
@@ -1037,6 +1037,7 @@ components:
                 criticalImpactArea:
                     additionalProperties:
                         type: integer
+                    description: Distribution of all critical alerts by impact area.
                     example:
                         capacity: 1
                         performance: 2
@@ -1046,6 +1047,7 @@ components:
                 impactArea:
                     additionalProperties:
                         type: integer
+                    description: Distribution of all alerts by impact area.
                     example:
                         capacity: 1
                         performance: 3
@@ -1055,6 +1057,7 @@ components:
                 severity:
                     additionalProperties:
                         type: integer
+                    description: Distribution of all alerts by severity.
                     example:
                         critical: 6
                         error: 7
@@ -1550,110 +1553,9 @@ info:
     license:
         name: BlueXP License
     termsOfService: https://www.netapp.com/media/10784-cloud-data-services-terms.pdf
-    title: (public) Alert API
+    title: (ncl) Alert API
     version: "1.0"
 paths:
-    /alerts:
-        get:
-            description: Retrieves all alerts.
-            parameters:
-                - $ref: '#/components/parameters/filter'
-                - $ref: '#/components/parameters/skip'
-                - $ref: '#/components/parameters/include'
-                - $ref: '#/components/parameters/limit'
-                - $ref: '#/components/parameters/order_by'
-                - $ref: '#/components/parameters/count'
-                - $ref: '#/components/parameters/continue'
-                - description: Unique identifier of the organization to which the user belongs.
-                  example: 3b44d359-d125-4665-b605-49d72c2dd7be
-                  in: query
-                  name: organizationId
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    content:
-                        application/vnd.netapp.bxp.alerts+json:
-                            schema:
-                                $ref: '#/components/schemas/alert_1.0_list_response_body'
-                    description: List of all alerts
-                    headers:
-                        Location:
-                            description: Location of the newly created resource
-                            schema:
-                                format: uri
-                                type: string
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-            summary: Lists all the alerts resources in the collection
-            tags:
-                - Alert
-            x-permission: bxp:alert-read
-            x-persistence: false
-            x-scope: public,private
-        patch:
-            description: Creates a new alert with the ID supplied by the client if it doesn't exist or replaces the alert resource if it already exists.
-            requestBody:
-                content:
-                    application/vnd.netapp.bxp.alertbulk+json:
-                        example:
-                            items:
-                                - alertDetails: AutoSupport HTTPS Transport Disabled
-                                  alertId: 666a3f38-d4fa-5b62-a391-a69029758d32
-                                  alertObjectId: 666a3f38-d4fa-5b62-a391-a69029758e56
-                                  alertObjectName: cl001
-                                  alertObjectType: CLUSTER
-                                  associatedObjects:
-                                    - objectId: 666a3f38-d4fa-5b62-a391-a69029758e56
-                                      objectName: cl001
-                                      objectType: CLUSTER
-                                  description: AutoSupport supports HTTPS, HTTP, and SMTP for transport protocols. Because of the sensitive nature of AutoSupport messages, NetApp strongly recommends using HTTPS as the default transport protocol for sending AutoSupport messages to NetApp support.
-                                  impactArea: SECURITY
-                                  lastTrueOccurrence: "2022-10-07T19:58:16.305662Z"
-                                  name: AutoSupport HTTPS Transport Disabled
-                                  origin: HARVEST
-                                  originId: 333a3f38-a4fa-4e32-a371-a37027748a32
-                                  owner: John.Doe@akme.com
-                                  raisedOn: "2022-10-05T20:58:16.305662Z"
-                                  remediation:
-                                    redirectURL: https://www.xyz.com
-                                    text: 'To set HTTPS as the transport protocol for AutoSupport messages, run the following ONTAP command: system node autosupport modify -transport https'
-                                  resourceId: OnPremWorkingEnvironment-382602e4-6d35-4eaf-93cc-8b62b1b594c8
-                                  severity: CRITICAL
-                                  status: CLOSED
-                                  tag:
-                                    metric_name: volume_size_used_percent
-                                    metric_threshold: "90"
-                                    metric_unit: '%'
-                            organizationId: 3b44d359-d125-4665-b605-49d72c2dd7be
-                            type: application/vnd.netapp.bxp.alertbulk
-                            version: 1
-                        schema:
-                            $ref: '#/components/schemas/alert_1.0_patch_bulk_id_request_body'
-                description: Indicates the desired values for the alert resource that is to be created or replaced.
-                required: true
-            responses:
-                "202":
-                    description: Indicates the alerts request was accepted.
-                "204":
-                    description: Indicates if the alert resource was updated.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-                "409":
-                    $ref: '#/components/responses/409Conflict'
-            summary: Creates/replaces an alert resource
-            tags:
-                - Alert
-            x-permission: bxp:alert-create,bxp:alert-modify
-            x-persistence: false
-            x-scope: public,private
     /alerts/{alert_id}:
         get:
             description: Retrieve information about the specified alert.
@@ -1733,7 +1635,7 @@ paths:
                 - Alert
             x-permission: bxp:alert-read
             x-persistence: false
-            x-scope: public,private
+            x-scope: public,private,nco,ncl
         parameters:
             - description: |-
                 Uniquely identifies the alert.
@@ -1746,171 +1648,6 @@ paths:
               required: true
               schema:
                 type: string
-    /alerts/agents:
-        get:
-            description: Retrieves the status of the alert agents.
-            parameters:
-                - description: Unique identifier of the organization to which the user belongs.
-                  example: 3b44d359-d125-4665-b605-49d72c2dd7be
-                  in: query
-                  name: organizationId
-                  required: true
-                  schema:
-                    type: string
-            responses:
-                "200":
-                    content:
-                        application/vnd.netapp.bxp.agentstatuses+json:
-                            schema:
-                                $ref: '#/components/schemas/alert_1.0_alert_agent_list_response_body'
-                    description: List of all alert agents and their status.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-            tags:
-                - Alert
-            x-permission: bxp:alert-read
-            x-scope: public,private
-        patch:
-            description: Creates or updates the status of an alert agent.
-            requestBody:
-                content:
-                    application/vnd.netapp.bxp.agentstatus+json:
-                        example:
-                            items:
-                                - agentId: 333a3f38-a4fa-4e32-a371-a37027748a32
-                                  errorCode: AGENT_OVER_PROVISIONED
-                                  organizationId: 3b44d359-d125-4665-b605-49d72c2dd7be
-                                  state: MONITORING_SUBSET_OF_CLUSTERS
-                                  systemConfiguration:
-                                    - cpuCores: 8
-                                      memoryInGB: 32
-                            type: application/vnd.netapp.bxp.agentstatus
-                            version: 1
-                        schema:
-                            $ref: '#/components/schemas/alert_1.0_alert_agent_patch_list_request_body'
-                description: Indicates the desired values for the agent status resource that is to be created or replaced.
-                required: true
-            responses:
-                "202":
-                    description: Indicates that the agent status request was accepted.
-                "204":
-                    description: Indicates whether the agent status resource was updated.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-                "409":
-                    $ref: '#/components/responses/409Conflict'
-            summary: Creates/replaces an agent status resource
-            tags:
-                - Alert
-            x-permission: bxp:alert-create,bxp:alert-modify
-            x-persistence: false
-            x-scope: public,private
-    /organizations/{organization_id}/alert-control:
-        get:
-            description: Returns the current alert control configuration for the given organization, including the enabled/disabled state of each alert rule.
-            responses:
-                "200":
-                    content:
-                        application/json:
-                            example:
-                                organizationId: 3b44d359-d125-4665-b605-49d72c2dd7be
-                                rules:
-                                    - alertType: LUN destroyed
-                                      enabled: true
-                                    - alertType: Node panic
-                                      enabled: false
-                                updatedAt: "2024-01-15T10:00:00Z"
-                                updatedBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
-                            schema:
-                                $ref: '#/components/schemas/alertcontrol_1.0_get_response_body'
-                    description: The alert control configuration for the organization.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-            summary: Returns the alert control configuration for an organization
-            tags:
-                - Alert
-            x-permission: bxp:alert-read
-            x-persistence: false
-            x-scope: public,private
-        parameters:
-            - $ref: '#/components/parameters/organization_id'
-        patch:
-            description: Updates the enabled/disabled state of one or more alert rules for the given organization. Requires admin-level permissions (RBAC enforced).
-            requestBody:
-                content:
-                    application/json:
-                        example:
-                            rules:
-                                - alertType: LUN destroyed
-                                  enabled: false
-                                - alertType: Node panic
-                                  enabled: true
-                        schema:
-                            $ref: '#/components/schemas/alertcontrol_1.0_patch_request_body'
-                description: List of alert rules with their desired enabled state. Each alertType must be unique within the request.
-                required: true
-            responses:
-                "200":
-                    content:
-                        application/json:
-                            example:
-                                message: alert control updated
-                    description: Alert control updated successfully.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-            summary: Updates alert rule enabled/disabled states for an organization
-            tags:
-                - Alert
-            x-permission: bxp:alert-create,bxp:alert-modify
-            x-persistence: false
-            x-scope: public,private
-    /organizations/{organization_id}/alert-control/bulk:
-        parameters:
-            - $ref: '#/components/parameters/organization_id'
-        post:
-            description: Enables or disables ALL configured alert rules for the given organization in a single operation. Requires admin-level permissions (RBAC enforced).
-            requestBody:
-                content:
-                    application/json:
-                        example:
-                            enabled: false
-                        schema:
-                            $ref: '#/components/schemas/alertcontrol_1.0_bulk_request_body'
-                description: Specifies whether to enable or disable all alert rules.
-                required: true
-            responses:
-                "200":
-                    content:
-                        application/json:
-                            example:
-                                message: all rules updated
-                    description: Bulk update completed successfully.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-            summary: Bulk enables or disables all alert rules for an organization
-            tags:
-                - Alert
-            x-permission: bxp:alert-create,bxp:alert-modify
-            x-persistence: false
-            x-scope: public,private
     /organizations/{organization_id}/alerts:
         get:
             description: Lists all alerts for the specified organization.
@@ -1935,12 +1672,12 @@ paths:
                     $ref: '#/components/responses/401Unauthorized'
                 "403":
                     $ref: '#/components/responses/403Forbidden'
-            summary: Lists all alerts for a given organization
+            summary: Lists all alerts for a specified organization
             tags:
                 - Alert
             x-permission: bxp:alert-read
             x-persistence: false
-            x-scope: public,private
+            x-scope: public,private,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
         patch:
@@ -2002,7 +1739,7 @@ paths:
                 - Alert
             x-permission: bxp:alert-create,bxp:alert-modify
             x-persistence: false
-            x-scope: public,private
+            x-scope: public,private,ncl
     /organizations/{organization_id}/alertsummary:
         get:
             description: Retrieves an alert count summary for the specified organization, grouped by impactArea and severity.
@@ -2040,7 +1777,7 @@ paths:
                 - Alert
             x-permission: bxp:alert-read
             x-persistence: false
-            x-scope: public,private
+            x-scope: public,private,nco,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
     /organizations/{organization_id}/alerttrends:
@@ -2148,7 +1885,7 @@ paths:
                 - Alert
             x-permission: bxp:alert-read
             x-persistence: false
-            x-scope: public,private
+            x-scope: public,private,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
     /organizations/{organization_id}/fleets/{fleet_id}/alerts:
@@ -2177,12 +1914,12 @@ paths:
                     $ref: '#/components/responses/403Forbidden'
                 "404":
                     $ref: '#/components/responses/404NotFound'
-            summary: Lists all alerts for a given fleet
+            summary: Lists all alerts for a specified fleet
             tags:
                 - Alert
             x-permission: bxp:alert-read
             x-persistence: false
-            x-scope: public,private
+            x-scope: public,private,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
             - $ref: '#/components/parameters/fleet_id'
@@ -2225,13 +1962,13 @@ paths:
                 - Alert
             x-permission: bxp:alert-read
             x-persistence: false
-            x-scope: public,private
+            x-scope: public,private,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
             - $ref: '#/components/parameters/fleet_id'
     /organizations/{organization_id}/fleets/{fleet_id}/alerttrends:
         get:
-            description: Returns a time-series trend of alert counts for the given fleet, with flexible filtering and grouping.
+            description: Returns a time-series trend of alert counts for the specified fleet, with flexible filtering and grouping.
             parameters:
                 - description: Start of the time interval (ISO 8601).
                   in: query
@@ -2334,7 +2071,7 @@ paths:
                 - Alert
             x-permission: bxp:alert-read
             x-persistence: false
-            x-scope: public,private
+            x-scope: public,private,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
             - $ref: '#/components/parameters/fleet_id'
@@ -2364,12 +2101,12 @@ paths:
                     $ref: '#/components/responses/403Forbidden'
                 "404":
                     $ref: '#/components/responses/404NotFound'
-            summary: Lists all alerts for a given system
+            summary: Lists all alerts for a specified system
             tags:
                 - Alert
             x-permission: bxp:alert-read
             x-persistence: false
-            x-scope: public,private
+            x-scope: public,private,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
             - $ref: '#/components/parameters/system_id'
@@ -2412,7 +2149,7 @@ paths:
                 - Alert
             x-permission: bxp:alert-read
             x-persistence: false
-            x-scope: public,private
+            x-scope: public,private,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
             - $ref: '#/components/parameters/system_id'
@@ -2521,7 +2258,7 @@ paths:
                 - Alert
             x-permission: bxp:alert-read
             x-persistence: false
-            x-scope: public,private
+            x-scope: public,private,ncl
         parameters:
             - $ref: '#/components/parameters/organization_id'
             - $ref: '#/components/parameters/system_id'
