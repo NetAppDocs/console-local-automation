@@ -37,11 +37,4 @@ paths:
         filename: patch-organizations-federations-.html
         sidebar_title: Update a federation
         subcategory: 
-  "/organizations/{organization_id}/federations/{federation_id}/clients":
-    post:
-      x-doc:
-        title: Enable an Auth0 client for a federation in NetApp Console local deployment
-        category: 
-        filename: post-organizations-federations-clients.html
-        sidebar_title: Enable an Auth0 client for a federation
-        subcategory: 
+
