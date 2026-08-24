@@ -2367,8 +2367,6 @@ paths:
                 "403":
                     $ref: '#/components/responses/403Forbidden'
             summary: List federations.
-            tags:
-                - Federation
             x-permission: bxp:federation-read
             x-persistence: true
             x-scope: documentation,private,public,nco,ncl
@@ -2682,8 +2680,6 @@ paths:
                 "409":
                     $ref: '#/components/responses/409Conflict'
             summary: Create a new federation.
-            tags:
-                - Federation
             x-permission: bxp:federation-create
             x-persistence: true
             x-scope: documentation,private,public,nco,ncl
@@ -2702,8 +2698,6 @@ paths:
                 "404":
                     $ref: '#/components/responses/404NotFound'
             summary: Delete a federation.
-            tags:
-                - Federation
             x-permission: bxp:federation-delete
             x-persistence: true
             x-scope: documentation,private,public,nco,ncl
@@ -2884,8 +2878,6 @@ paths:
                 "404":
                     $ref: '#/components/responses/404NotFound'
             summary: Retrieve a federation.
-            tags:
-                - Federation
             x-permission: bxp:federation-read
             x-persistence: true
             x-scope: documentation,private,public,nco,ncl
@@ -3199,8 +3191,6 @@ paths:
                 "404":
                     $ref: '#/components/responses/404NotFound'
             summary: Update a federation.
-            tags:
-                - Federation
             x-permission: bxp:federation-modify
             x-persistence: true
             x-scope: documentation,private,public,nco,ncl
@@ -3208,16 +3198,5 @@ security:
     - bxp_bearer_auth: []
 servers:
     - url: '{{.Server}}'
-tags:
-    - description: |-
-        The federation endpoints enable you to create and manage federation connections with identity providers. Federation provided through the NetApp Console replaces the functionality provided through Cloud Central Federation Setup.
 
-        You can perform the following actions using the federation endpoints:
-        <ul>
-        <li>List federations</li>
-        <li>Create a federation</li>
-        <li>Delete a federation</li>
-        <li>Retrieve a federation</li>
-        <li>Update a federation</li>
-        </ul>
       
