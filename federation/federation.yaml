@@ -3208,3 +3208,16 @@ security:
     - bxp_bearer_auth: []
 servers:
     - url: '{{.Server}}'
+tags:
+    - description: |-
+        The federation endpoints enable you to create and manage federation connections with identity providers. Federation provided through the NetApp Console replaces the functionality provided through Cloud Central Federation Setup.
+
+        You can perform the following actions using the federation endpoints:
+        <ul>
+        <li>List federations</li>
+        <li>Create a federation</li>
+        <li>Delete a federation</li>
+        <li>Retrieve a federation</li>
+        <li>Update a federation</li>
+        </ul>
+      
