@@ -491,7 +491,7 @@ components:
                     example: https://example.com/FederationMetadata/2007-06/FederationMetadata.xml
                     type: string
                 signingCertificateFingerprint:
-                    description: The SHA-1 fingerprint of the X.509 signing certificate if the metadata XML file was provided.
+                    description: The SHA-1 fingerprint of the X.509 signing certificate if the metadata XML file is provided.
                     example: 33:0E:66:6A:D0:89:EA:78:10:7D:5A:35:FF:C5:51:E9:3A:CB:47:A8
                     type: string
             type: object
@@ -508,7 +508,7 @@ components:
                     type: string
                 groupsEnabled:
                     default: false
-                    description: Whether federation groups are enabled for Microsoft Entra ID.
+                    description: Indicates whether federation groups are enabled for Microsoft Entra ID.
                     example: true
                     type: boolean
                 maxGroupCount:
@@ -537,7 +537,7 @@ components:
                     type: string
                 groupsEnabled:
                     default: false
-                    description: Whether federation groups are enabled for Microsoft Entra ID.
+                    description: Indicates whether federation groups are enabled for Microsoft Entra ID.
                     example: true
                     type: boolean
                 maxGroupCount:
@@ -570,7 +570,7 @@ components:
                     type: string
                 groupsEnabled:
                     default: false
-                    description: Whether federation groups are enabled for Microsoft Entra ID.
+                    description: Indicates whether federation groups are enabled for Microsoft Entra ID.
                     example: true
                     type: boolean
                 maxGroupCount:
@@ -598,6 +598,23 @@ components:
                     description: The name of the connection in Auth0.
                     example: fed-example-com-waad
                     type: string
+                autoAssignDefaultRoleIds:
+                    description: |-
+                        Role IDs assigned on JIT first-login provision. View-only roles only - Max 5.
+                    example:
+                        - 4336388b-2992-43af-81de-ba9284b7dc36
+                    items:
+                        format: uuid
+                        type: string
+                    maxItems: 5
+                    type: array
+                    uniqueItems: true
+                autoAssignUsersEnabled:
+                    default: false
+                    description: |-
+                        When true, Console auto-creates (JIT) a user identity and org membership             
+                    example: false
+                    type: boolean
                 domains:
                     description: Array of email domain names that are associated with the federation.
                     example:
@@ -720,7 +737,7 @@ components:
                     type: string
                 connectionTimeout:
                     default: 10
-                    description: LDAP connection timeout in seconds.
+                    description: LDAP connection timeout, in seconds.
                     example: 10
                     format: int32
                     minimum: 1
@@ -731,12 +748,12 @@ components:
                     type: string
                 importUsers:
                     default: false
-                    description: Whether to import users from LDAP.
+                    description: Indicates whether to import users from LDAP.
                     example: true
                     type: boolean
                 pagination:
                     default: true
-                    description: Whether to use LDAP pagination for user searches.
+                    description: Indicates whether to use LDAP pagination for user searches.
                     example: true
                     type: boolean
                 rdnLdapAttribute:
@@ -753,7 +770,7 @@ components:
                     type: string
                 syncRegistrations:
                     default: false
-                    description: Whether to synchronize user registrations from LDAP.
+                    description: Indicates whether to synchronize user registrations from LDAP.
                     example: true
                     type: boolean
                 userObjectClasses:
@@ -786,7 +803,7 @@ components:
                     type: string
                 connectionTimeout:
                     default: 10
-                    description: LDAP connection timeout in seconds.
+                    description: LDAP connection timeout, in seconds.
                     example: 10
                     format: int32
                     minimum: 1
@@ -797,12 +814,12 @@ components:
                     type: string
                 importUsers:
                     default: false
-                    description: Whether to import users from LDAP.
+                    description: Indicates whether to import users from LDAP.
                     example: true
                     type: boolean
                 pagination:
                     default: true
-                    description: Whether to use LDAP pagination for user searches.
+                    description: Indicates whether to use LDAP pagination for user searches.
                     example: true
                     type: boolean
                 rdnLdapAttribute:
@@ -819,7 +836,7 @@ components:
                     type: string
                 syncRegistrations:
                     default: false
-                    description: Whether to synchronize user registrations from LDAP.
+                    description: Indicates whether to synchronize user registrations from LDAP.
                     example: true
                     type: boolean
                 userObjectClasses:
@@ -858,7 +875,7 @@ components:
                     type: string
                 connectionTimeout:
                     default: 10
-                    description: LDAP connection timeout in seconds.
+                    description: LDAP connection timeout, in seconds.
                     example: 10
                     format: int32
                     minimum: 1
@@ -869,12 +886,12 @@ components:
                     type: string
                 importUsers:
                     default: false
-                    description: Whether to import users from LDAP.
+                    description: Indicates whether to import users from LDAP.
                     example: true
                     type: boolean
                 pagination:
                     default: true
-                    description: Whether to use LDAP pagination for user searches.
+                    description: Indicates whether to use LDAP pagination for user searches.
                     example: true
                     type: boolean
                 rdnLdapAttribute:
@@ -891,7 +908,7 @@ components:
                     type: string
                 syncRegistrations:
                     default: false
-                    description: Whether to synchronize user registrations from LDAP.
+                    description: Indicates whether to synchronize user registrations from LDAP.
                     example: true
                     type: boolean
                 userObjectClasses:
@@ -932,15 +949,32 @@ components:
             properties:
                 adfsOptions:
                     $ref: '#/components/schemas/federation_1.0_adfs_request_options'
+                autoAssignDefaultRoleIds:
+                    description: |-
+                        Role IDs assigned on JIT first-login provision. View-only roles only - Max 5.
+                    example:
+                        - 4336388b-2992-43af-81de-ba9284b7dc36
+                    items:
+                        format: uuid
+                        type: string
+                    maxItems: 5
+                    type: array
+                    uniqueItems: true
+                autoAssignUsersEnabled:
+                    default: false
+                    description: |-
+                        When true, Console auto-creates (JIT) a user identity and org membership                     
+                    example: false
+                    type: boolean
                 domains:
                     description: |-
                         Array of email domain names that are associated with the federation.
                         <br/>All previously configured domains must be included in the request body when updating the `domains`
-                        field or they will be removed. Previously configured domains do not need to be in a `VERIFIED` state.
+                        field or they are removed. Previously configured domains do not need to be in a `VERIFIED` state.
                         <br/>
                         If a domain matches the user's email address or is an Entra ID `*.onmicrosoft.com` tenant domain, then it
                         does not need to be in a `VERIFIED` state. All other domains must be added to the domains
-                        collection and in a `VERIFIED` state.
+                        collection and be in a `VERIFIED` state.
                     example:
                         - example.com
                         - example2.com
@@ -1076,8 +1110,25 @@ components:
             properties:
                 adfsOptions:
                     $ref: '#/components/schemas/federation_1.0_adfs_request_options'
+                autoAssignDefaultRoleIds:
+                    description: |-
+                        Role IDs assigned on JIT first-login provision. View-only roles only - Max 5.
+                    example:
+                        - 4336388b-2992-43af-81de-ba9284b7dc36
+                    items:
+                        format: uuid
+                        type: string
+                    maxItems: 5
+                    type: array
+                    uniqueItems: true
+                autoAssignUsersEnabled:
+                    default: false
+                    description: |-
+                        When true, Console auto-creates (JIT) a user identity and org membership  
+                    example: false
+                    type: boolean
                 domains:
-                    description: "Array of email domain names that are associated with the federation.\n<br/>\nIf a domain matches the user's email address or is an Entra ID `*.onmicrosoft.com` tenant domain, then it \ndoes not need to be in a `VERIFIED` state. All other domains must be added to the domains \ncollection and in a `VERIFIED` state."
+                    description: "Array of email domain names that are associated with the federation.\n<br/>\nIf a domain matches the user's email address or is an Entra ID `*.onmicrosoft.com` tenant domain, then it \ndoes not need to be in a `VERIFIED` state. All other domains must be added to the domains \ncollection and be in a `VERIFIED` state."
                     example:
                         - example.com
                         - example2.com
@@ -2155,8 +2206,8 @@ info:
         | 200              | OK: Returned for successful operation completion                                                                  |
         | 202              | Accepted: The request was accepted and is currently in process.                                                   |
         | 204              | The operation was completed successfully and the server did not send a response message.                          |
-        | 400              | Bad Request: Returned if the input is malformed and could not be parsed                                           |
-        | 401              | Unauthorized: Returned if user authentication failed or the token has expired                                     |
+        | 400              | Bad Request: Returned if the input is malformed and could not be parsed.                                          |
+        | 401              | Unauthorized: Returned if user authentication failed or the token has expired.                                    |
         | 403              | Forbidden: Returned for authorization errors depending on the resource and token.                                 |
         | 409              | Conflict: The operation failed because another operation is already in progress.                                  |
         | 5xx              | An unexpected error occurred within the Console server which has prevented it from fulfilling the request.        |
@@ -2431,7 +2482,7 @@ paths:
                                     version: "1.0"
                         schema:
                             $ref: '#/components/schemas/federation_1.0_post_request_body'
-                description: Create a new federation.
+                description: Creates a new federation.
                 required: true
             responses:
                 "201":
@@ -3153,47 +3204,6 @@ paths:
             x-permission: bxp:federation-modify
             x-persistence: true
             x-scope: documentation,private,public,nco,ncl
-    /organizations/{organization_id}/federations/{federation_id}/clients:
-        parameters:
-            - $ref: '#/components/parameters/organization_id'
-            - description: ID of the federation.
-              example: 645eae30-ea32-4542-af58-1d9012fed81a
-              in: path
-              name: federation_id
-              required: true
-              schema:
-                format: uuid
-                type: string
-        post:
-            description: Enable an Auth0 client for a federation.
-            requestBody:
-                content:
-                    application/vnd.netapp.bxp.federationclient+json:
-                        example:
-                            clientId: 9KHm5x5gfccPX0k6aNDRUshfUtPBQjk9
-                            type: application/vnd.netapp.bxp.federationclient
-                            version: "1.0"
-                        schema:
-                            $ref: '#/components/schemas/federationclient_1.0_post_request_body'
-                description: Enable an Auth0 client for a federation.
-                required: true
-            responses:
-                "204":
-                    description: Indicates if the Auth0 client was enabled.
-                "400":
-                    $ref: '#/components/responses/400BadRequest'
-                "401":
-                    $ref: '#/components/responses/401Unauthorized'
-                "403":
-                    $ref: '#/components/responses/403Forbidden'
-                "404":
-                    $ref: '#/components/responses/404NotFound'
-            summary: Enable an Auth0 client for a federation.
-            tags:
-                - Federation
-            x-permission: bxp:federation-modify
-            x-persistence: true
-            x-scope: private,public,nco,ncl
 security:
     - bxp_bearer_auth: []
 servers:
