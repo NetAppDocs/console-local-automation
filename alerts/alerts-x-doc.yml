@@ -11,14 +11,6 @@ paths:
         sidebar_title: Lists all the alerts 
         subcategory: 
         explorer: false
-    patch:
-      x-doc:
-        title: Create or replace an alert in NetApp Console local deployment
-        category: Alert
-        filename: patch-alerts.html
-        sidebar_title: Create or replace an alert
-        subcategory: 
-        explorer: false
   "/alerts/{alert_id}":
     get:
       x-doc:
