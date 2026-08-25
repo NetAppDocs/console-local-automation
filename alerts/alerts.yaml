@@ -2207,6 +2207,3 @@ security:
     - bxp_bearer_auth: []
 servers:
     - url: '{{.Server}}'
-tags:
-    - description: The Alert APIs allows to insert, query and manage alerts
-      name: Alert
