@@ -83,19 +83,19 @@ paths:
   "/organizations/{organization_id}/alertsummary":
     get:
       x-doc:
-        title: Retrieve a summary of the alert counts in NetApp Console local deployment
+        title: Retrieve a summary of the alert counts for an organization in NetApp Console local deployment
         category: 
         filename: get-organizations-alertsummary.html
-        sidebar_title: Retrieve a summary of alert counts 
+        sidebar_title: Retrieve a summary of alert counts for an organization
         subcategory: 
         explorer: false
   "/organizations/{organization_id}/alerttrends":
     get:
       x-doc:
-        title: Retrieve a time-series trend of alert counts in NetApp Console local deployment
+        title: Retrieve a time-series trend of alert counts for an organization in NetApp Console local deployment
         category: 
         filename: get-organizations-alerttrends.html
-        sidebar_title: Retrieve a time-series trend of alert counts
+        sidebar_title: Retrieve a time-series trend of alert counts for an organization
         subcategory: 
         explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/alerts":
