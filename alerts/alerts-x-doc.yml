@@ -95,7 +95,7 @@ paths:
         title: Retrieve a time-series trend of alert counts in NetApp Console local deployment
         category: 
         filename: get-organizations-alerttrends.html
-        sidebar_title: Retrieve a time-series trend of alert count
+        sidebar_title: Retrieve a time-series trend of alert counts
         subcategory: 
         explorer: false
   "/organizations/{organization_id}/fleets/{fleet_id}/alerts":
