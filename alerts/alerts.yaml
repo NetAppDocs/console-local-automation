@@ -1632,7 +1632,7 @@ paths:
                     $ref: '#/components/responses/404NotFound'
             summary: Retrieves a specific alert resource
             tags:
-                - Alert
+                - Alerts
             x-permission: bxp:alert-read
             x-persistence: false
             x-scope: public,private,nco,ncl
@@ -1674,7 +1674,7 @@ paths:
                     $ref: '#/components/responses/403Forbidden'
             summary: Lists all alerts for a specified organization
             tags:
-                - Alert
+                - Alerts
             x-permission: bxp:alert-read
             x-persistence: false
             x-scope: public,private,ncl
@@ -1714,7 +1714,7 @@ paths:
                     $ref: '#/components/responses/403Forbidden'
             summary: Returns a summary of the alert counts grouped by impactArea and severity.
             tags:
-                - Alert
+                - Alerts
             x-permission: bxp:alert-read
             x-persistence: false
             x-scope: public,private,nco,ncl
@@ -1822,7 +1822,7 @@ paths:
                     $ref: '#/components/responses/404NotFound'
             summary: Returns a time-series trend of alert counts.
             tags:
-                - Alert
+                - Alerts
             x-permission: bxp:alert-read
             x-persistence: false
             x-scope: public,private,ncl
@@ -1856,7 +1856,7 @@ paths:
                     $ref: '#/components/responses/404NotFound'
             summary: Lists all alerts for a specified fleet
             tags:
-                - Alert
+                - Alerts
             x-permission: bxp:alert-read
             x-persistence: false
             x-scope: public,private,ncl
@@ -1899,7 +1899,7 @@ paths:
                     $ref: '#/components/responses/404NotFound'
             summary: Returns a summary of the alert counts for a fleet, grouped by impactArea and severity.
             tags:
-                - Alert
+                - Alerts
             x-permission: bxp:alert-read
             x-persistence: false
             x-scope: public,private,ncl
@@ -2008,7 +2008,7 @@ paths:
                     $ref: '#/components/responses/404NotFound'
             summary: Returns a time-series trend of alert counts for a fleet.
             tags:
-                - Alert
+                - Alerts
             x-permission: bxp:alert-read
             x-persistence: false
             x-scope: public,private,ncl
@@ -2043,7 +2043,7 @@ paths:
                     $ref: '#/components/responses/404NotFound'
             summary: Lists all alerts for a specified system
             tags:
-                - Alert
+                - Alerts
             x-permission: bxp:alert-read
             x-persistence: false
             x-scope: public,private,ncl
@@ -2086,7 +2086,7 @@ paths:
                     $ref: '#/components/responses/404NotFound'
             summary: Returns a summary of the alert counts for a system, grouped by impactArea and severity.
             tags:
-                - Alert
+                - Alerts
             x-permission: bxp:alert-read
             x-persistence: false
             x-scope: public,private,ncl
@@ -2195,7 +2195,7 @@ paths:
                     $ref: '#/components/responses/404NotFound'
             summary: Returns a time-series trend of alert counts for a system.
             tags:
-                - Alert
+                - Alerts
             x-permission: bxp:alert-read
             x-persistence: false
             x-scope: public,private,ncl
