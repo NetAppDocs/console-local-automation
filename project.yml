@@ -19,6 +19,7 @@ sidebar:
       url: /index.html
     - section: platform
     - section: agentic
+    - section: alerts
     - section: asset
     - section: tenancyv4
     - section: storage-management
