@@ -2,15 +2,6 @@
 overview: Alert API in NetApp Console local deployment
 permalink: overview.html
 paths:
-  "/alerts":
-    get:
-      x-doc:
-        title: List all alerts resources in NetApp Console local deployment
-        category: 
-        filename: get-alerts.html
-        sidebar_title: Lists all the alerts 
-        subcategory: 
-        explorer: false
   "/alerts/{alert_id}":
     get:
       x-doc:
