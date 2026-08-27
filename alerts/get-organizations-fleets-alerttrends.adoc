@@ -1,0 +1,463 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'alerts/get-organizations-fleets-alerttrends.html'
+summary: 'Retrieve a time-series trend of alert counts for a fleet in NetApp Console local deployment'
+---
+
+= Retrieve a time-series trend of alert counts for a fleet in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/alerttrends`#
+
+
+
+Returns a time-series trend of alert counts for the specified fleet, with flexible filtering and grouping.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Unique identifier of the organization to which the user belongs.
+
+
+|fleet_id
+|string
+|path
+|True
+a|Unique identifier of the fleet.
+
+
+|startTime
+|string
+|query
+|True
+a|Start of the time interval (ISO 8601).
+
+
+|endTime
+|string
+|query
+|True
+a|End of the time interval (ISO 8601).
+
+
+|granularity
+|string
+|query
+|True
+a|Time bucket size (for example, hourly, daily).
+
+
+|severity
+|array[string]
+|query
+|False
+a|Filter by alert severity. Repeatable.
+
+
+|impactArea
+|array[string]
+|query
+|False
+a|Filter by impact area. Repeatable.
+
+
+|status
+|array[string]
+|query
+|False
+a|Filter by alert status. Repeatable.
+
+
+|groupBy
+|array[string]
+|query
+|False
+a|Grouping attributes (for example, severity, impactArea, status).
+
+
+|===
+
+== Response
+
+```
+Status: 200, Time-series trend of alert counts for the fleet.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|buckets
+|array[link:#buckets[buckets]]
+|True
+a|A list of time buckets in the trend.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "buckets": [
+    {
+      "count": 4,
+      "endTime": "2024-05-10T11:00:00Z",
+      "startTime": "2024-05-10T10:00:00Z"
+    },
+    {
+      "count": 2,
+      "endTime": "2024-05-10T12:00:00Z",
+      "startTime": "2024-05-10T11:00:00Z"
+    }
+  ]
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Error
+
+```
+Status: 404, Not found
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The collection specified in the request URI wasn't found.",
+  "status": "404",
+  "title": "Collection not found",
+  "type": "https://bluexp.netapp.io/problems/2"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#buckets]
+[.api-collapsible-fifth-title]
+buckets
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|count
+|integer
+|False
+a|Number of alerts in this time bucket.
+
+
+|endTime
+|string
+|False
+a|End of the time bucket (ISO 8601).
+
+
+|startTime
+|string
+|False
+a|Start of the time bucket (ISO 8601).
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====
