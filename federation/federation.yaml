@@ -185,6 +185,17 @@ components:
                     schema:
                         $ref: '#/components/schemas/type_bxp_problem_detail'
             description: Request Entity Too Large
+        422UnprocessableEntity:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The request body is well-formed but contains semantically invalid field combinations.
+                        status: "422"
+                        title: Unprocessable entity
+                        type: https://bluexp.netapp.io/problems/1
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Unprocessable Entity
         429TooManyRequests:
             content:
                 application/vnd.netapp.bxp.problem+json:
@@ -208,6 +219,70 @@ components:
                         $ref: '#/components/schemas/type_bxp_problem_detail'
             description: Service Not Ready
     schemas:
+        autoprovisiontarget_1.0_get_response_body:
+            additionalProperties: false
+            example:
+                organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
+                roleIds:
+                    - a1b2c3d4-e5f6-7890-1234-56789abcdef0
+                type: application/vnd.netapp.bxp.autoprovisiontarget
+                version: "1.0"
+            properties:
+                organizationId:
+                    description: Organization that should receive JIT-provisioned users for this connection.
+                    example: 9b0ee210-70a0-4158-b025-0decde66e4de
+                    format: uuid
+                    type: string
+                roleIds:
+                    description: Default role identifiers to assign to JIT-provisioned users in the organization.
+                    example:
+                        - a1b2c3d4-e5f6-7890-1234-56789abcdef0
+                    items:
+                        format: uuid
+                        type: string
+                    maxItems: 5
+                    type: array
+                    uniqueItems: true
+                type:
+                    description: Media type of the resource.
+                    enum:
+                        - application/vnd.netapp.bxp.autoprovisiontarget
+                    example: application/vnd.netapp.bxp.autoprovisiontarget
+                    type: string
+                version:
+                    description: Version of the resource.
+                    enum:
+                        - "1.0"
+                    example: "1.0"
+                    type: string
+            required:
+                - organizationId
+                - roleIds
+            type: object
+        autoprovisiontarget_1.0_list_response_body:
+            additionalProperties: false
+            example:
+                items:
+                    - organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
+                      roleIds:
+                        - a1b2c3d4-e5f6-7890-1234-56789abcdef0
+                      type: application/vnd.netapp.bxp.autoprovisiontarget
+                      version: "1.0"
+                    - organizationId: 8a9dce10-61b1-4159-a026-1fedee77f5ef
+                      roleIds:
+                        - b2c3d4e5-f6a7-8901-2345-6789abcdef01
+                      type: application/vnd.netapp.bxp.autoprovisiontarget
+                      version: "1.0"
+            properties:
+                items:
+                    description: Organizations and default roles for JIT provisioning. Empty when there are no enabled targets.
+                    items:
+                        $ref: '#/components/schemas/autoprovisiontarget_1.0_get_response_body'
+                    type: array
+                    uniqueItems: true
+            required:
+                - items
+            type: object
         connection_1.0_get_response_body:
             properties:
                 domains:
@@ -599,8 +674,7 @@ components:
                     example: fed-example-com-waad
                     type: string
                 autoAssignDefaultRoleIds:
-                    description: |-
-                        Role IDs assigned on JIT first-login provision. View-only roles only - Max 5.
+                    description: Identifier of roles assigned to first-time users automatically added to the organization
                     example:
                         - 4336388b-2992-43af-81de-ba9284b7dc36
                     items:
@@ -611,8 +685,7 @@ components:
                     uniqueItems: true
                 autoAssignUsersEnabled:
                     default: false
-                    description: |-
-                        When true, Console auto-creates (JIT) a user identity and org membership             
+                    description: Whether first-time users should be automatically added to the organization when using this federation for SSO.
                     example: false
                     type: boolean
                 domains:
@@ -650,13 +723,27 @@ components:
                     format: uuid
                     type: string
                 keycloakComponentId:
-                    description: Keycloak component identifier for LDAP provider.
+                    description: |-
+                        Keycloak component identifier for LDAP provider. For multi-OU federations,
+                        populated with the primary (first, priority 0) component for backward
+                        compatibility; see keycloakComponents for the full list.
                     example: b3f7c2e2-1b3b-4e2a-9c8e-123456789abc
                     type: string
                 keycloakComponentName:
-                    description: Keycloak component name for LDAP provider.
+                    description: |-
+                        Keycloak component name for LDAP provider. For multi-OU federations,
+                        populated with the primary (first, priority 0) component for backward
+                        compatibility; see keycloakComponents for the full list.
                     example: Active Directory
                     type: string
+                keycloakComponents:
+                    description: |-
+                        One entry per Keycloak LDAP UserStorageProvider component backing this
+                        federation. Multi-OU federations have one component per OU; single-OU
+                        federations have exactly one entry.
+                    items:
+                        $ref: '#/components/schemas/federation_1.0_keycloak_component'
+                    type: array
                 ldapOptions:
                     $ref: '#/components/schemas/federation_1.0_ldap_response_options'
                 metadata:
@@ -724,6 +811,30 @@ components:
                     example: "1.0"
                     type: string
             type: object
+        federation_1.0_keycloak_component:
+            description: |-
+                A single Keycloak LDAP UserStorageProvider component backing one OU of a
+                federation. Entries are ordered ascending by priority (index 0 is priority
+                0, the highest lookup priority).
+            properties:
+                keycloakComponentId:
+                    description: Keycloak component identifier for this usersDn.
+                    example: aU_wYICyR-OrRJi6NBIrpw
+                    type: string
+                keycloakComponentName:
+                    description: Keycloak component name for this usersDn.
+                    example: corpAD-1
+                    type: string
+                priority:
+                    description: Lookup priority among sibling components (0 is highest / searched first).
+                    example: 0
+                    format: int32
+                    type: integer
+                usersDn:
+                    description: Maps this Keycloak component to its usersDn in ldapOptions.usersDns for multi-OU federations.
+                    example: cn=Users,dc=example,dc=com
+                    type: string
+            type: object
         federation_1.0_ldap_patch_request_options:
             description: Lightweight Directory Access Protocol (LDAP) configuration options when `providerType=LDAP`.
             properties:
@@ -782,9 +893,26 @@ components:
                     example: sAMAccountName
                     type: string
                 usersDn:
-                    description: Base DN for user searches.
+                    description: |-
+                        Base DN for user searches in single-OU federations. Provide either usersDn
+                        or usersDns, not both.
                     example: cn=Users,dc=example,dc=com
                     type: string
+                usersDns:
+                    description: |-
+                        List of base DNs for user searches, one entry per Organizational Unit (OU),
+                        for multi-OU federations. Provide either usersDn or usersDns, not both. One
+                        Keycloak LDAP component is created per entry, in list order (index 0 gets
+                        priority 0, the highest lookup priority).
+                    example:
+                        - OU=Sales,DC=ncl,DC=iam,DC=com
+                        - OU=IT,DC=ncl,DC=iam,DC=com
+                    items:
+                        type: string
+                    maxItems: 5
+                    minItems: 1
+                    type: array
+                    uniqueItems: true
                 uuidLdapAttribute:
                     description: LDAP attribute used as universally unique identifier (UUID).
                     example: objectGUID
@@ -848,9 +976,26 @@ components:
                     example: sAMAccountName
                     type: string
                 usersDn:
-                    description: Base DN for user searches.
+                    description: |-
+                        Base DN for user searches in single-OU federations. Provide either usersDn
+                        or usersDns, not both.
                     example: cn=Users,dc=example,dc=com
                     type: string
+                usersDns:
+                    description: |-
+                        List of base DNs for user searches, one entry per Organizational Unit (OU),
+                        for multi-OU federations. Provide either usersDn or usersDns, not both. One
+                        Keycloak LDAP component is created per entry, in list order (index 0 gets
+                        priority 0, the highest lookup priority).
+                    example:
+                        - OU=Sales,DC=ncl,DC=iam,DC=com
+                        - OU=IT,DC=ncl,DC=iam,DC=com
+                    items:
+                        type: string
+                    maxItems: 5
+                    minItems: 1
+                    type: array
+                    uniqueItems: true
                 uuidLdapAttribute:
                     description: LDAP attribute used as universally unique identifier (UUID).
                     example: objectGUID
@@ -859,7 +1004,6 @@ components:
                 - connectionUrl
                 - bindDn
                 - bindCredential
-                - usersDn
                 - connectionTimeout
             type: object
         federation_1.0_ldap_response_options:
@@ -920,9 +1064,25 @@ components:
                     example: sAMAccountName
                     type: string
                 usersDn:
-                    description: Base DN for user searches.
+                    description: |-
+                        Base DN for user searches (single usersDn federations). Populated with the
+                        first/primary OU for backward compatibility when the federation has
+                        multiple OUs; see usersDns for the full list.
                     example: cn=Users,dc=example,dc=com
                     type: string
+                usersDns:
+                    description: |-
+                        List of base DNs for user searches, one entry per Organizational Unit (OU),
+                        for multi-OU federations. Not present for single-OU federations.
+                    example:
+                        - OU=Sales,DC=ncl,DC=iam,DC=com
+                        - OU=IT,DC=ncl,DC=iam,DC=com
+                    items:
+                        type: string
+                    maxItems: 5
+                    minItems: 1
+                    type: array
+                    uniqueItems: true
                 uuidLdapAttribute:
                     description: LDAP attribute used as universally unique identifier (UUID).
                     example: objectGUID
@@ -950,8 +1110,7 @@ components:
                 adfsOptions:
                     $ref: '#/components/schemas/federation_1.0_adfs_request_options'
                 autoAssignDefaultRoleIds:
-                    description: |-
-                        Role IDs assigned on JIT first-login provision. View-only roles only - Max 5.
+                    description: Role IDs assigned on JIT first-login provision. View-only roles only - Max 5.
                     example:
                         - 4336388b-2992-43af-81de-ba9284b7dc36
                     items:
@@ -962,8 +1121,7 @@ components:
                     uniqueItems: true
                 autoAssignUsersEnabled:
                     default: false
-                    description: |-
-                        When true, Console auto-creates (JIT) a user identity and org membership                     
+                    description: 'When true, Console auto-creates (JIT) a user identity and org membership        '
                     example: false
                     type: boolean
                 domains:
@@ -1111,8 +1269,7 @@ components:
                 adfsOptions:
                     $ref: '#/components/schemas/federation_1.0_adfs_request_options'
                 autoAssignDefaultRoleIds:
-                    description: |-
-                        Role IDs assigned on JIT first-login provision. View-only roles only - Max 5.
+                    description: Role IDs assigned on JIT first-login provision. View-only roles only - Max 5.
                     example:
                         - 4336388b-2992-43af-81de-ba9284b7dc36
                     items:
@@ -1123,8 +1280,7 @@ components:
                     uniqueItems: true
                 autoAssignUsersEnabled:
                     default: false
-                    description: |-
-                        When true, Console auto-creates (JIT) a user identity and org membership  
+                    description: 'When true, Console auto-creates (JIT) a user identity and org membership      '
                     example: false
                     type: boolean
                 domains:
@@ -1271,6 +1427,21 @@ components:
             type: object
         federationassociation_1.0_get_response_body:
             properties:
+                autoAssignDefaultRoleIds:
+                    description: Identifier of roles assigned to first-time users automatically added to the target organization
+                    example:
+                        - 4336388b-2992-43af-81de-ba9284b7dc36
+                    items:
+                        format: uuid
+                        type: string
+                    maxItems: 5
+                    type: array
+                    uniqueItems: true
+                autoAssignUsersEnabled:
+                    default: false
+                    description: Whether first-time users should be automatically added to the target organization when using this federation association for SSO.
+                    example: false
+                    type: boolean
                 domains:
                     description: Array of email domain names that are associated with the federation.
                     example:
@@ -1420,6 +1591,21 @@ components:
         federationassociation_1.0_target_patch_request_body:
             additionalProperties: false
             properties:
+                autoAssignDefaultRoleIds:
+                    description: Identifier of roles assigned to first-time users automatically added to the target organization
+                    example:
+                        - 4336388b-2992-43af-81de-ba9284b7dc36
+                    items:
+                        format: uuid
+                        type: string
+                    maxItems: 5
+                    type: array
+                    uniqueItems: true
+                autoAssignUsersEnabled:
+                    default: false
+                    description: Whether first-time users should be automatically added to the target organization when using this federation association for SSO.
+                    example: false
+                    type: boolean
                 stateDesired:
                     description: |-
                         The desired state of the federation association for target organization operations. Defined values are:
@@ -2447,6 +2633,20 @@ paths:
                                     state: CREATED
                                     type: application/vnd.netapp.bxp.federation
                                     version: "1.0"
+                            LDAP Provider (Multi-OU):
+                                value:
+                                    ldapOptions:
+                                        bindDn: cn=admin,dc=example,dc=com
+                                        connectionTimeout: 10
+                                        connectionUrl: ldap://ldap.example.com:389
+                                        usersDns:
+                                            - OU=Sales,DC=example,DC=com
+                                            - OU=IT,DC=example,DC=com
+                                    name: LDAP Federation
+                                    providerType: LDAP
+                                    state: CREATED
+                                    type: application/vnd.netapp.bxp.federation
+                                    version: "1.0"
                             PingFederate Provider:
                                 value:
                                     domains:
@@ -2465,6 +2665,9 @@ paths:
                                     version: "1.0"
                             SAML Provider:
                                 value:
+                                    autoAssignDefaultRoleIds:
+                                        - 4336388b-2992-43af-81de-ba9284b7dc36
+                                    autoAssignUsersEnabled: true
                                     domains:
                                         - example.com
                                         - example2.com
@@ -2611,6 +2814,46 @@ paths:
                                         state: CREATED
                                         type: application/vnd.netapp.bxp.federation
                                         version: "1.0"
+                                LDAP Provider (Multi-OU):
+                                    value:
+                                        id: 845eae30-ea32-4542-af58-1d9012fed81a
+                                        keycloakComponentId: b3f7c2e2-1b3b-4e2a-9c8e-123456789abc
+                                        keycloakComponentName: LDAP Federation-1
+                                        keycloakComponents:
+                                            - keycloakComponentId: b3f7c2e2-1b3b-4e2a-9c8e-123456789abc
+                                              keycloakComponentName: LDAP Federation-1
+                                              priority: 0
+                                            - keycloakComponentId: c4a8d3f3-2c4c-5f3b-ad9f-234567890bcd
+                                              keycloakComponentName: LDAP Federation-2
+                                              priority: 1
+                                        ldapOptions:
+                                            bindDn: cn=admin,dc=example,dc=com
+                                            connectionTimeout: 10
+                                            connectionUrl: ldap://ldap.example.com:389
+                                            importUsers: false
+                                            pagination: true
+                                            rdnLdapAttribute: cn
+                                            searchScope: SUBTREE
+                                            syncRegistrations: false
+                                            userObjectClasses: person
+                                            usernameLdapAttribute: sAMAccountName
+                                            usersDn: OU=Sales,DC=example,DC=com
+                                            usersDns:
+                                                - OU=Sales,DC=example,DC=com
+                                                - OU=IT,DC=example,DC=com
+                                            uuidLdapAttribute: objectGUID
+                                        metadata:
+                                            createdBy: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                            creationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                            modificationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                            modifiedBy: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                        name: LDAP Federation
+                                        organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
+                                        providerType: LDAP
+                                        resourceId: 862b6f03-58ac-479b-9ca5-5cb4429d8996
+                                        state: CREATED
+                                        type: application/vnd.netapp.bxp.federation
+                                        version: "1.0"
                                 PingFederate Provider:
                                     value:
                                         auth0Id: con_jxQFVfPHKSdiwoxs
@@ -2640,6 +2883,9 @@ paths:
                                     value:
                                         auth0Id: con_jxQFVfPHKSdiwoxs
                                         auth0Name: fed-example-com-samlp
+                                        autoAssignDefaultRoleIds:
+                                            - 4336388b-2992-43af-81de-ba9284b7dc36
+                                        autoAssignUsersEnabled: true
                                         domains:
                                             - example.com
                                             - example2.com
@@ -2821,6 +3067,46 @@ paths:
                                         state: ENABLED
                                         type: application/vnd.netapp.bxp.federation
                                         version: "1.0"
+                                LDAP Provider (Multi-OU):
+                                    value:
+                                        id: 845eae30-ea32-4542-af58-1d9012fed81a
+                                        keycloakComponentId: b3f7c2e2-1b3b-4e2a-9c8e-123456789abc
+                                        keycloakComponentName: LDAP Federation-1
+                                        keycloakComponents:
+                                            - keycloakComponentId: b3f7c2e2-1b3b-4e2a-9c8e-123456789abc
+                                              keycloakComponentName: LDAP Federation-1
+                                              priority: 0
+                                            - keycloakComponentId: c4a8d3f3-2c4c-5f3b-ad9f-234567890bcd
+                                              keycloakComponentName: LDAP Federation-2
+                                              priority: 1
+                                        ldapOptions:
+                                            bindDn: cn=admin,dc=example,dc=com
+                                            connectionTimeout: 10
+                                            connectionUrl: ldap://ldap.example.com:389
+                                            importUsers: false
+                                            pagination: true
+                                            rdnLdapAttribute: cn
+                                            searchScope: SUBTREE
+                                            syncRegistrations: false
+                                            userObjectClasses: person
+                                            usernameLdapAttribute: sAMAccountName
+                                            usersDn: OU=Sales,DC=example,DC=com
+                                            usersDns:
+                                                - OU=Sales,DC=example,DC=com
+                                                - OU=IT,DC=example,DC=com
+                                            uuidLdapAttribute: objectGUID
+                                        metadata:
+                                            createdBy: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                            creationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                            modificationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                            modifiedBy: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                        name: LDAP Federation
+                                        organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
+                                        providerType: LDAP
+                                        resourceId: 862b6f03-58ac-479b-9ca5-5cb4429d8996
+                                        state: ENABLED
+                                        type: application/vnd.netapp.bxp.federation
+                                        version: "1.0"
                                 PingFederate Provider:
                                     value:
                                         auth0Id: con_jxQFVfPHKSdiwoxs
@@ -2968,6 +3254,20 @@ paths:
                                         connectionTimeout: 10
                                         connectionUrl: ldap://ldap.example.com:389
                                         usersDn: ou=users,dc=example,dc=com
+                                    name: LDAP Federation
+                                    providerType: LDAP
+                                    type: application/vnd.netapp.bxp.federation
+                                    version: "1.0"
+                            LDAP Provider (Multi-OU):
+                                value:
+                                    ldapOptions:
+                                        bindCredential: p@ssw0rd!
+                                        bindDn: cn=admin,dc=example,dc=com
+                                        connectionTimeout: 10
+                                        connectionUrl: ldap://ldap.example.com:389
+                                        usersDns:
+                                            - OU=Sales,DC=example,DC=com
+                                            - OU=IT,DC=example,DC=com
                                     name: LDAP Federation
                                     providerType: LDAP
                                     type: application/vnd.netapp.bxp.federation
@@ -3136,6 +3436,46 @@ paths:
                                         state: ENABLED
                                         type: application/vnd.netapp.bxp.federation
                                         version: "1.0"
+                                LDAP Provider (Multi-OU):
+                                    value:
+                                        id: 845eae30-ea32-4542-af58-1d9012fed81a
+                                        keycloakComponentId: b3f7c2e2-1b3b-4e2a-9c8e-123456789abc
+                                        keycloakComponentName: LDAP Federation-1
+                                        keycloakComponents:
+                                            - keycloakComponentId: b3f7c2e2-1b3b-4e2a-9c8e-123456789abc
+                                              keycloakComponentName: LDAP Federation-1
+                                              priority: 0
+                                            - keycloakComponentId: c4a8d3f3-2c4c-5f3b-ad9f-234567890bcd
+                                              keycloakComponentName: LDAP Federation-2
+                                              priority: 1
+                                        ldapOptions:
+                                            bindDn: cn=admin,dc=example,dc=com
+                                            connectionTimeout: 10
+                                            connectionUrl: ldap://ldap.example.com:389
+                                            importUsers: false
+                                            pagination: true
+                                            rdnLdapAttribute: cn
+                                            searchScope: SUBTREE
+                                            syncRegistrations: false
+                                            userObjectClasses: person
+                                            usernameLdapAttribute: sAMAccountName
+                                            usersDn: OU=Sales,DC=example,DC=com
+                                            usersDns:
+                                                - OU=Sales,DC=example,DC=com
+                                                - OU=IT,DC=example,DC=com
+                                            uuidLdapAttribute: objectGUID
+                                        metadata:
+                                            createdBy: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                            creationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                            modificationTimestamp: "2022-10-06T20:58:16.305662Z"
+                                            modifiedBy: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                        name: LDAP Federation
+                                        organizationId: 9b0ee210-70a0-4158-b025-0decde66e4de
+                                        providerType: LDAP
+                                        resourceId: 862b6f03-58ac-479b-9ca5-5cb4429d8996
+                                        state: ENABLED
+                                        type: application/vnd.netapp.bxp.federation
+                                        version: "1.0"
                                 PingFederate Provider:
                                     value:
                                         auth0Id: con_jxQFVfPHKSdiwoxs
@@ -3208,3 +3548,16 @@ security:
     - bxp_bearer_auth: []
 servers:
     - url: '{{.Server}}'
+tags:
+    - description: |-
+        The federation endpoints enable you to create and manage federation connections with identity providers. Federation provided through the NetApp Console replaces the functionality provided through Cloud Central Federation Setup.
+
+        You can perform the following actions using the federation endpoints:
+        <ul>
+        <li>List federations</li>
+        <li>Create a federation</li>
+        <li>Delete a federation</li>
+        <li>Retrieve a federation</li>
+        <li>Update a federation</li>
+        </ul>
+      name: Federation
