@@ -1741,7 +1741,7 @@ components:
                 entraIdOptions:
                     $ref: '#/components/schemas/unmigratedconnection_1.0_entraid_response_options'
                 id:
-                    description: The connection ID in Auth0.
+                    description: The ID of the connection in Auth0.
                     example: con_jxQFVfPHKSdiwoxs
                     type: string
                 name:
@@ -1967,7 +1967,7 @@ info:
 
         | HTTP Status Code | Description                                                                                                       |
         |------------------|-------------------------------------------------------------------------------------------------------------------|
-        | 200              | OK: Returned for successful operation completion.                                                                 |
+        | 200              | OK: Returned for successful operation completion                                                                  |
         | 202              | Accepted: The request was accepted and is currently in process.                                                   |
         | 204              | The operation was completed successfully and the server did not send a response message.                          |
         | 400              | Bad Request: Returned if the input is malformed and could not be parsed.                                          |
