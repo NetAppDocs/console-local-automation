@@ -36,6 +36,12 @@ Key features include:
 
 link:../agentic/get-configs.html[Agentic Platform configuration manager REST API reference]
 
+== Alerts
+
+You can use the Alerts API endpoints to insert, query, and manage alerts in NetApp Console local deployment.
+
+link:../alerts/get-alerts-.html[Alerts REST API reference]
+
 == Assets
 
 You can use the Asset API endpoints to obtain configuration data and metrics about the assets monitored by the Console local deployment.

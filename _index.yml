@@ -8,6 +8,8 @@ indexpage:
       links:
         - title: Agentic Platform
           url: /agentic/get-configs.html
+        - title: Alerts
+          url: /alerts/get-alerts-.html
         - title: Assets
           url: /asset/get-organizations-aggregates.html
         - title: Identity and access management
