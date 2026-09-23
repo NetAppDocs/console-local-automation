@@ -612,9 +612,9 @@ components:
                     example: cn=admin,dc=example,dc=com
                     type: string
                 connectionTimeout:
-                    default: 10
-                    description: LDAP connection timeout, in seconds.
-                    example: 10
+                    default: 5000
+                    description: LDAP connection timeout, in milliseconds.
+                    example: 5000
                     format: int32
                     minimum: 1
                     type: integer
@@ -678,9 +678,9 @@ components:
                     example: cn=admin,dc=example,dc=com
                     type: string
                 connectionTimeout:
-                    default: 10
-                    description: LDAP connection timeout, in seconds.
-                    example: 10
+                    default: 5000
+                    description: LDAP connection timeout, in milliseconds.
+                    example: 5000
                     format: int32
                     minimum: 1
                     type: integer
@@ -750,9 +750,9 @@ components:
                     example: cn=admin,dc=example,dc=com
                     type: string
                 connectionTimeout:
-                    default: 10
-                    description: LDAP connection timeout, in seconds.
-                    example: 10
+                    default: 5000
+                    description: LDAP connection timeout, in milliseconds.
+                    example: 5000
                     format: int32
                     minimum: 1
                     type: integer
@@ -2010,7 +2010,7 @@ paths:
                                       keycloakComponentName: Active Directory
                                       ldapOptions:
                                         bindDn: cn=admin,dc=example,dc=com
-                                        connectionTimeout: 10
+                                        connectionTimeout: 5000
                                         connectionUrl: ldap://ldap.example.com:389
                                         importUsers: false
                                         pagination: true
@@ -2069,7 +2069,7 @@ paths:
                                 value:
                                     ldapOptions:
                                         bindDn: cn=admin,dc=example,dc=com
-                                        connectionTimeout: 10
+                                        connectionTimeout: 5000
                                         connectionUrl: ldap://ldap.example.com:389
                                         usersDn: ou=users,dc=example,dc=com
                                     name: LDAP Federation
@@ -2110,7 +2110,7 @@ paths:
                                         keycloakComponentName: Active Directory
                                         ldapOptions:
                                             bindDn: cn=admin,dc=example,dc=com
-                                            connectionTimeout: 10
+                                            connectionTimeout: 5000
                                             connectionUrl: ldap://ldap.example.com:389
                                             importUsers: false
                                             pagination: true
@@ -2194,7 +2194,7 @@ paths:
                                         keycloakComponentName: Active Directory
                                         ldapOptions:
                                             bindDn: cn=admin,dc=example,dc=com
-                                            connectionTimeout: 10
+                                            connectionTimeout: 5000
                                             connectionUrl: ldap://ldap.example.com:389
                                             importUsers: false
                                             pagination: true
@@ -2264,7 +2264,7 @@ paths:
                                     ldapOptions:
                                         bindCredential: p@ssw0rd!
                                         bindDn: cn=admin,dc=example,dc=com
-                                        connectionTimeout: 10
+                                        connectionTimeout: 5000
                                         connectionUrl: ldap://ldap.example.com:389
                                         usersDn: ou=users,dc=example,dc=com
                                     name: LDAP Federation
@@ -2304,7 +2304,7 @@ paths:
                                         keycloakComponentName: Active Directory
                                         ldapOptions:
                                             bindDn: cn=admin,dc=example,dc=com
-                                            connectionTimeout: 10
+                                            connectionTimeout: 5000
                                             connectionUrl: ldap://ldap.example.com:389
                                             importUsers: false
                                             pagination: true
