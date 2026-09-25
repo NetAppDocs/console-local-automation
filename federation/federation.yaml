@@ -2245,7 +2245,10 @@ paths:
                 format: uuid
                 type: string
         patch:
-            description: Updates the specified federation.
+            description: |
+                Updates the specified federation.
+                Note: In NetApp Console local deployment, the stateDesired field is the only supported field that can be used in the request to update a federation.
+        
             requestBody:
                 content:
                     application/vnd.netapp.bxp.federation+json:
