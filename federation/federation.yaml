@@ -600,72 +600,6 @@ components:
                     example: "1.0"
                     type: string
             type: object
-        federation_1.0_ldap_patch_request_options:
-            description: Lightweight Directory Access Protocol (LDAP) configuration options when `providerType=LDAP`.
-            properties:
-                bindCredential:
-                    description: Password for the bind DN.
-                    example: P@ssw0rd!
-                    type: string
-                bindDn:
-                    description: Distinguished Name (DN) or UPN to bind to the LDAP server.
-                    example: cn=admin,dc=example,dc=com
-                    type: string
-                connectionTimeout:
-                    default: 5000
-                    description: LDAP connection timeout, in milliseconds.
-                    example: 5000
-                    format: int32
-                    minimum: 1
-                    type: integer
-                connectionUrl:
-                    description: LDAP connection URL.
-                    example: ldap://example.com:389
-                    type: string
-                importUsers:
-                    default: false
-                    description: Indicates whether to import users from LDAP.
-                    example: true
-                    type: boolean
-                pagination:
-                    default: true
-                    description: Indicates whether to use LDAP pagination for user searches.
-                    example: true
-                    type: boolean
-                rdnLdapAttribute:
-                    description: LDAP attribute used as Relative Distinguished Name (RDN).
-                    example: cn
-                    type: string
-                searchScope:
-                    default: SUBTREE
-                    description: LDAP search scope.
-                    enum:
-                        - ONELEVEL
-                        - SUBTREE
-                    example: SUBTREE
-                    type: string
-                syncRegistrations:
-                    default: false
-                    description: Indicates whether to synchronize user registrations from LDAP.
-                    example: true
-                    type: boolean
-                userObjectClasses:
-                    description: LDAP object class for users.
-                    example: person
-                    type: string
-                usernameLdapAttribute:
-                    description: LDAP attribute used as username.
-                    example: sAMAccountName
-                    type: string
-                usersDn:
-                    description: Base DN for user searches.
-                    example: cn=Users,dc=example,dc=com
-                    type: string
-                uuidLdapAttribute:
-                    description: LDAP attribute used as universally unique identifier (UUID).
-                    example: objectGUID
-                    type: string
-            type: object
         federation_1.0_ldap_post_request_options:
             description: Lightweight Directory Access Protocol (LDAP) configuration options when `providerType=LDAP`.
             properties:
@@ -823,67 +757,6 @@ components:
         federation_1.0_patch_request_body:
             additionalProperties: false
             properties:
-                autoAssignDefaultRoleIds:
-                    description: Role IDs assigned on JIT first-login provision. View-only roles only - Max 5.
-                    example:
-                        - 4336388b-2992-43af-81de-ba9284b7dc36
-                    items:
-                        format: uuid
-                        type: string
-                    maxItems: 5
-                    type: array
-                    uniqueItems: true
-                autoAssignUsersEnabled:
-                    default: false
-                    description: 'When true, Console auto-creates (JIT) a user identity and org membership        '
-                    example: false
-                    type: boolean
-                domains:
-                    description: |-
-                        Array of email domain names that are associated with the federation.
-                        <br/>All previously configured domains must be included in the request body when updating the `domains`
-                        field or they are removed. Previously configured domains do not need to be in a `VERIFIED` state.
-                        <br/>
-                        If a domain matches the user's email address or is an Entra ID `*.onmicrosoft.com` tenant domain, then it
-                        does not need to be in a `VERIFIED` state. All other domains must be added to the domains
-                        collection and be in a `VERIFIED` state.
-                    example:
-                        - example.com
-                        - example2.com
-                    items:
-                        type: string
-                    minItems: 1
-                    type: array
-                    uniqueItems: true
-                expirationNotificationPeriod:
-                    description: |-
-                        The time period when expiration notifications are generated. Defined values are:
-                        * "P7D" - Notifications are sent daily 7 days before expiration.
-                        * "P30D" - Notifications are sent weekly 30 days before expiration. Notifications are sent daily 7 days before expiration.
-                    enum:
-                        - P7D
-                        - P30D
-                    example: P30D
-                    type: string
-                expirationTimestamp:
-                    description: Not applicable for LDAP federations.
-                    example: "2024-11-18T20:58:16.305662Z"
-                    format: date-time
-                    type: string
-                ldapOptions:
-                    $ref: '#/components/schemas/federation_1.0_ldap_patch_request_options'
-                name:
-                    description: The name of the federation.
-                    example: Example Co.
-                    type: string
-                providerType:
-                    description: |-
-                        The type of the identity provider. Defined values are:
-                        * "LDAP" - Lightweight Directory Access Protocol
-                    enum:
-                        - LDAP
-                    example: LDAP
-                    type: string
                 stateDesired:
                     description: |-
                         The desired state of the federation. Defined values are:
@@ -2245,34 +2118,17 @@ paths:
                 format: uuid
                 type: string
         patch:
-            description: |
+            description: |-
                 Updates the specified federation.
-
-                Note: In NetApp Console local deployment, the `stateDesired` field is the only supported field that can be used in the request to update a federation.
-    
+                <br/><br/>
+                **Note:** In NetApp Console local deployment, the `stateDesired` field is the only supported field that can be used in the request to update a federation.
             requestBody:
                 content:
                     application/vnd.netapp.bxp.federation+json:
                         examples:
-                            DRAFT Federation:
+                            Enable Federation:
                                 value:
-                                    domains:
-                                        - example.com
-                                        - example2.com
-                                    name: Draft Federation
-                                    stateDesired: DRAFT
-                                    type: application/vnd.netapp.bxp.federation
-                                    version: "1.0"
-                            LDAP Provider:
-                                value:
-                                    ldapOptions:
-                                        bindCredential: p@ssw0rd!
-                                        bindDn: cn=admin,dc=example,dc=com
-                                        connectionTimeout: 5000
-                                        connectionUrl: ldap://ldap.example.com:389
-                                        usersDn: ou=users,dc=example,dc=com
-                                    name: LDAP Federation
-                                    providerType: LDAP
+                                    stateDesired: ENABLED
                                     type: application/vnd.netapp.bxp.federation
                                     version: "1.0"
                         schema:
