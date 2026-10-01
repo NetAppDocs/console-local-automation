@@ -1,0 +1,704 @@
+---
+sidebar: sidebar
+api: true
+explorer: false
+permalink: 'federation/get-organizations-federations-.html'
+summary: 'Retrieve a federation in NetApp Console local deployment'
+---
+
+= Retrieve a federation in NetApp Console local deployment
+:imagesdir: ../media/
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/federations/{federation_id}`#
+
+
+
+Retrieves the specified federation.
+
+
+== Parameters
+
+[cols=5*,options=header]
+|===
+|Name
+|Type
+|In
+|Required
+|Description
+
+|organization_id
+|string
+|path
+|True
+a|Identifier for an organization.
+
+
+|federation_id
+|string
+|path
+|True
+a|ID of the federation.
+
+* example: 645eae30-ea32-4542-af58-1d9012fed81a
+
+
+|include
+|string
+|query
+|False
+a|Specifies which fields should be returned when listing a collection.
+
+URL examples: "include=id", "include=id,name"
+
+OpenAPI examples: "id"
+
+
+|===
+
+== Response
+
+```
+Status: 200, Returns the stored federation in the JSON response body.
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|auth0Id
+|string
+|False
+a|The ID of the connection in Auth0.
+
+
+|auth0Name
+|string
+|False
+a|The name of the connection in Auth0.
+
+
+|autoAssignDefaultRoleIds
+|array[string]
+|False
+a|Identifier of roles assigned to first-time users automatically added to the organization
+
+
+|autoAssignUsersEnabled
+|boolean
+|False
+a|Whether first-time users should be automatically added to the organization when using this federation for SSO.
+
+
+|domains
+|array[string]
+|False
+a|Array of email domain names that are associated with the federation.
+
+
+|expirationNotificationPeriod
+|string
+|False
+a|The time period when expiration notifications are generated. Defined values are:
+
+* "P7D" - Notifications are sent daily 7 days before expiration.
+* "P30D" - Notifications are sent weekly 30 days before expiration. Notifications are sent daily 7 days before expiration.
+
+
+|expirationTimestamp
+|string
+|False
+a|The date that the credentials or certificate expires. When a certificate is provided, the value is set to
+the certificate's expiration timestamp.
+
+
+|id
+|string
+|False
+a|Globally unique identifier of the resource conforming to the UUIDv4 schema.
+
+
+|keycloakComponentId
+|string
+|False
+a|Keycloak component identifier for LDAP provider.
+
+
+|keycloakComponentName
+|string
+|False
+a|Keycloak component name for LDAP provider.
+
+
+|ldapOptions
+|link:#federation_1_0_ldap_response_options[federation_1.0_ldap_response_options]
+|False
+a|Lightweight Directory Access Protocol (LDAP) configuration options when `providerType=LDAP`.
+
+
+|metadata
+|link:#type_bxp_metadata[type_bxp_metadata]
+|False
+a|Metadata associated with the resource.
+
+
+|name
+|string
+|False
+a|The name of the federation.
+
+
+|organizationId
+|string
+|False
+a|Identifier for an organization.
+
+
+|providerType
+|string
+|False
+a|The type of the identity provider. Defined values are:
+
+* "LDAP" - Lightweight Directory Access Protocol
+
+
+|resourceId
+|string
+|False
+a|Identifier for the resource.
+
+
+|state
+|string
+|False
+a|The state of the federation. Defined values are:
+
+* "DRAFT" - The federation is partially configured.
+* "CREATED" - The federation is configured but not tested.
+* "TESTED" - The federation has been successfully tested.
+* "ENABLED" - The federation is enabled.
+* "DISABLED" - The federation is disabled.
+
+
+|type
+|string
+|False
+a|Media type of the resource.
+
+
+|version
+|string
+|False
+a|Version of the resource.
+
+
+|===
+
+
+.Example response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "id": "845eae30-ea32-4542-af58-1d9012fed81a",
+  "keycloakComponentId": "b3f7c2e2-1b3b-4e2a-9c8e-123456789abc",
+  "keycloakComponentName": "Active Directory",
+  "ldapOptions": {
+    "bindDn": "cn=admin,dc=example,dc=com",
+    "connectionTimeout": 5000,
+    "connectionUrl": "ldap://ldap.example.com:389",
+    "importUsers": false,
+    "pagination": true,
+    "rdnLdapAttribute": "cn",
+    "searchScope": "SUBTREE",
+    "syncRegistrations": false,
+    "userObjectClasses": "person",
+    "usernameLdapAttribute": "sAMAccountName",
+    "usersDn": "ou=users,dc=example,dc=com",
+    "uuidLdapAttribute": "objectGUID"
+  },
+  "metadata": {
+    "createdBy": "666a3f38-d4fa-5b62-a391-a69029758d32",
+    "creationTimestamp": "2022-10-06T20:58:16.305662Z",
+    "modificationTimestamp": "2022-10-06T20:58:16.305662Z",
+    "modifiedBy": "666a3f38-d4fa-5b62-a391-a69029758d32"
+  },
+  "name": "LDAP Federation",
+  "organizationId": "9b0ee210-70a0-4158-b025-0decde66e4de",
+  "providerType": "LDAP",
+  "resourceId": "862b6f03-58ac-479b-9ca5-5cb4429d8996",
+  "state": "ENABLED",
+  "type": "application/vnd.netapp.bxp.federation",
+  "version": "1.0"
+}
+====
+
+== Error
+
+```
+Status: 400, Bad request
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The supplied query parameters are invalid.",
+  "status": "400",
+  "title": "Invalid query parameters",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 401, Unauthorized
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The request is missing the required bearer token.",
+  "status": "401",
+  "title": "Missing bearer token",
+  "type": "https://bluexp.netapp.io/problems/1"
+}
+====
+
+== Error
+
+```
+Status: 403, Forbidden
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The requested operation isn't permitted.",
+  "status": "403",
+  "title": "Operation not permitted",
+  "type": "https://bluexp.netapp.io/problems/11"
+}
+====
+
+== Error
+
+```
+Status: 404, Not found
+```
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|correlationId
+|string
+|False
+a|Internal UUID representing the request or trace ID related.
+
+
+|detail
+|string
+|False
+a|Details about the problem.
+
+
+|invalidParams
+|array[link:#invalidParams[invalidParams]]
+|False
+a|List of invalid parameters.
+
+
+|status
+|string
+|True
+a|HTTP error code related to the problem.
+
+
+|title
+|string
+|True
+a|Title description of the problem.
+
+
+|type
+|string
+|True
+a|Content-type of the object.
+
+
+|===
+
+
+.Example error response
+[%collapsible%closed]
+====
+[source,json,subs=+macros]
+{
+  "detail": "The collection specified in the request URI wasn't found.",
+  "status": "404",
+  "title": "Collection not found",
+  "type": "https://bluexp.netapp.io/problems/2"
+}
+====
+
+== Definitions
+
+[.api-def-first-level]
+.See Definitions
+[%collapsible%closed]
+//Start collapsible Definitions block
+====                
+[#federation_1_0_ldap_response_options]
+[.api-collapsible-fifth-title]
+federation_1.0_ldap_response_options
+
+Lightweight Directory Access Protocol (LDAP) configuration options when `providerType=LDAP`.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|bindCredential
+|string
+|False
+a|Password for the bind DN.
+
+
+|bindDn
+|string
+|False
+a|Distinguished Name (DN) or UPN to bind to the LDAP server.
+
+
+|connectionTimeout
+|integer
+|False
+a|LDAP connection timeout, in milliseconds.
+
+
+|connectionUrl
+|string
+|False
+a|LDAP connection URL.
+
+
+|importUsers
+|boolean
+|False
+a|Indicates whether to import users from LDAP.
+
+
+|pagination
+|boolean
+|False
+a|Indicates whether to use LDAP pagination for user searches.
+
+
+|rdnLdapAttribute
+|string
+|False
+a|LDAP attribute used as Relative Distinguished Name (RDN).
+
+
+|searchScope
+|string
+|False
+a|LDAP search scope.
+
+
+|syncRegistrations
+|boolean
+|False
+a|Indicates whether to synchronize user registrations from LDAP.
+
+
+|userObjectClasses
+|string
+|False
+a|LDAP object class for users.
+
+
+|usernameLdapAttribute
+|string
+|False
+a|LDAP attribute used as username.
+
+
+|usersDn
+|string
+|False
+a|Base DN for user searches.
+
+
+|uuidLdapAttribute
+|string
+|False
+a|LDAP attribute used as universally unique identifier (UUID).
+
+
+|===
+
+
+[#type_bxp_label]
+[.api-collapsible-fifth-title]
+type_bxp_label
+
+Name/value pair.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the label.
+
+
+|value
+|string
+|True
+a|Value of the label.
+
+
+|===
+
+
+[#type_bxp_metadata]
+[.api-collapsible-fifth-title]
+type_bxp_metadata
+
+Metadata associated with the resource.
+
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|createdBy
+|string
+|False
+a|UUID of the user who created the resource.
+
+
+|creationTimestamp
+|string
+|False
+a|Resource creation date.
+
+
+|labels
+|array[link:#type_bxp_label[type_bxp_label]]
+|False
+a|Array of name/value pairs representing additional information for the resource.
+
+
+|modificationTimestamp
+|string
+|False
+a|Resource modification date.
+
+
+|modifiedBy
+|string
+|False
+a|UUID of the user who modified the resource.
+
+
+|===
+
+
+[#invalidParams]
+[.api-collapsible-fifth-title]
+invalidParams
+
+[cols=4*,options=header]
+|===
+|Name
+|Type
+|Required
+|Description
+
+|name
+|string
+|True
+a|Name of the invalid parameter.
+
+
+|reason
+|string
+|True
+a|Reason why the parameter is invalid.
+
+
+|===
+
+
+//end collapsible .Definitions block
+====
