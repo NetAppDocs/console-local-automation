@@ -1,0 +1,145 @@
+---
+overview: Alert API in NetApp Console local deployment
+permalink: overview.html
+paths:
+  "/alerts/{alert_id}":
+    get:
+      x-doc:
+        title: Retrieve an alert in NetApp Console local deployment
+        category: 
+        filename: get-alerts-.html
+        sidebar_title: Retrieve an alert
+        subcategory: 
+        explorer: false
+  "/alerts/agents":
+    get:
+      x-doc:
+        title: Retrieve the status of the alert agents in NetApp Console local deployment
+        category: 
+        filename: get-alerts-agents.html
+        sidebar_title: Retrieves the status of the alert agents
+        subcategory: 
+        explorer: false
+    patch:
+      x-doc:
+        title: Create or replace an agent status in NetApp Console local deployment
+        category: 
+        filename: patch-alerts-agents.html
+        sidebar_title: Create or replace an agent status
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/alert-control":
+    get:
+      x-doc:
+        title: Retrieve the alert control configuration for an organization in NetApp Console local deployment
+        category:
+        filename: get-organizations-alert-control.html
+        sidebar_title: Retrieve the alert control configuration for an organization
+        subcategory: 
+        explorer: false
+    patch:
+      x-doc:
+        title: Update alert rule states for an organization in NetApp Console local deployment
+        category: 
+        filename: patch-organizations-alert-control.html
+        sidebar_title: Update alert rule states for an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/alert-control/bulk":
+    post:
+      x-doc:
+        title: Bulk enable or disable all alert rules for an organization in NetApp Console local deployment
+        category:
+        filename: post-organizations-alert-control-bulk.html
+        sidebar_title: Bulk enable or disable all alert rules for an organization 
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/alerts":
+    get:
+      x-doc:
+        title: List all alerts for an organization in NetApp Console local deployment
+        category: 
+        filename: get-organizations-alerts.html
+        sidebar_title: List all alerts for an organization
+        subcategory: 
+        explorer: false
+    patch:
+      x-doc:
+        title: Create or replace alerts for an organization in NetApp Console local deployment
+        category: 
+        filename: patch-organizations-alerts.html
+        sidebar_title: Create or replace alerts for an organization 
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/alertsummary":
+    get:
+      x-doc:
+        title: Retrieve a summary of the alert counts for an organization in NetApp Console local deployment
+        category: 
+        filename: get-organizations-alertsummary.html
+        sidebar_title: Retrieve a summary of alert counts for an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/alerttrends":
+    get:
+      x-doc:
+        title: Retrieve a time-series trend of alert counts for an organization in NetApp Console local deployment
+        category: 
+        filename: get-organizations-alerttrends.html
+        sidebar_title: Retrieve a time-series trend of alert counts for an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/alerts":
+    get:
+      x-doc:
+        title: List all alerts for a fleet in NetApp Console local deployment
+        category: 
+        filename: get-organizations-fleets-alerts.html
+        sidebar_title: List all alerts for a fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/alertsummary":
+    get:
+      x-doc:
+        title: Retrieve a summary of the alert counts for a fleet in NetApp Console local deployment
+        category: 
+        filename: get-organizations-fleets-alertsummary.html
+        sidebar_title:  Retrieve a summary of the alert counts for a fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/alerttrends":
+    get:
+      x-doc:
+        title: Retrieve a time-series trend of alert counts for a fleet in NetApp Console local deployment
+        category: 
+        filename: get-organizations-fleets-alerttrends.html
+        sidebar_title: Retrieve a time-series trend of alert counts for a fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/systems/{system_id}/alerts":
+    get:
+      x-doc:
+        title: List all alerts for a system in NetApp Console local deployment
+        category: 
+        filename: get-organizations-systems-alerts.html
+        sidebar_title: List all alerts for a system
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/systems/{system_id}/alertsummary":
+    get:
+      x-doc:
+        title: Retrieve a summary of the alert counts for a system in NetApp Console local deployment
+        category: 
+        filename: get-organizations-systems-alertsummary.html
+        sidebar_title: Retrieve a summary of the alert counts for a system
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/systems/{system_id}/alerttrends":
+    get:
+      x-doc:
+        title: Retrieve a time-series trend of alert counts for a system in NetApp Console local deployment
+        category: 
+        filename: get-organizations-systems-alerttrends.html
+        sidebar_title: Retrieve a time-series trend of alert counts for a system
+        subcategory: 
+        explorer: false

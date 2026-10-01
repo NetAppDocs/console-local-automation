@@ -69,12 +69,6 @@ Status: 200, Returns the stored federation in the JSON response body.
 |Required
 |Description
 
-|adfsOptions
-|link:#federation_1_0_adfs_response_options[federation_1.0_adfs_response_options]
-|False
-a|Active Directory Federation Services (AD FS) configuration options when `providerType=ADFS`.
-
-
 |auth0Id
 |string
 |False
@@ -105,12 +99,6 @@ a|Whether first-time users should be automatically added to the organization whe
 a|Array of email domain names that are associated with the federation.
 
 
-|entraIdOptions
-|link:#federation_1_0_entraid_response_options[federation_1.0_entraid_response_options]
-|False
-a|Microsoft Entra ID (formerly Azure Active Directory) configuration options when `providerType=ENTRAID`.
-
-
 |expirationNotificationPeriod
 |string
 |False
@@ -136,25 +124,13 @@ a|Globally unique identifier of the resource conforming to the UUIDv4 schema.
 |keycloakComponentId
 |string
 |False
-a|Keycloak component identifier for LDAP provider. For multi-OU federations,
-populated with the primary (first, priority 0) component for backward
-compatibility; see keycloakComponents for the full list.
+a|Keycloak component identifier for LDAP provider.
 
 
 |keycloakComponentName
 |string
 |False
-a|Keycloak component name for LDAP provider. For multi-OU federations,
-populated with the primary (first, priority 0) component for backward
-compatibility; see keycloakComponents for the full list.
-
-
-|keycloakComponents
-|array[link:#federation_1_0_keycloak_component[federation_1.0_keycloak_component]]
-|False
-a|One entry per Keycloak LDAP UserStorageProvider component backing this
-federation. Multi-OU federations have one component per OU; single-OU
-federations have exactly one entry.
+a|Keycloak component name for LDAP provider.
 
 
 |ldapOptions
@@ -181,21 +157,11 @@ a|The name of the federation.
 a|Identifier for an organization.
 
 
-|pingFederateOptions
-|link:#federation_1_0_pingfederate_response_options[federation_1.0_pingfederate_response_options]
-|False
-a|PingFederate configuration options when `providerType=PINGFEDERATE`.
-
-
 |providerType
 |string
 |False
 a|The type of the identity provider. Defined values are:
 
-* "ADFS" - Active Directory Federation Services
-* "ENTRAID" - Microsoft Entra ID (formerly Azure Active Directory)
-* "PINGFEDERATE" - PingFederate
-* "SAML" - Security Assertion Markup Language 2.0
 * "LDAP" - Lightweight Directory Access Protocol
 
 
@@ -203,12 +169,6 @@ a|The type of the identity provider. Defined values are:
 |string
 |False
 a|Identifier for the resource.
-
-
-|samlOptions
-|link:#federation_1_0_saml_response_options[federation_1.0_saml_response_options]
-|False
-a|SAML configuration options when `providerType=SAML`.
 
 
 |state
@@ -243,27 +203,32 @@ a|Version of the resource.
 ====
 [source,json,subs=+macros]
 {
-  "adfsOptions": {
-    "signingCertificateFingerprint": "33:0E:66:6A:D0:89:EA:78:10:7D:5A:35:FF:C5:51:E9:3A:CB:47:A8"
+  "id": "845eae30-ea32-4542-af58-1d9012fed81a",
+  "keycloakComponentId": "b3f7c2e2-1b3b-4e2a-9c8e-123456789abc",
+  "keycloakComponentName": "Active Directory",
+  "ldapOptions": {
+    "bindDn": "cn=admin,dc=example,dc=com",
+    "connectionTimeout": 5000,
+    "connectionUrl": "ldap://ldap.example.com:389",
+    "importUsers": false,
+    "pagination": true,
+    "rdnLdapAttribute": "cn",
+    "searchScope": "SUBTREE",
+    "syncRegistrations": false,
+    "userObjectClasses": "person",
+    "usernameLdapAttribute": "sAMAccountName",
+    "usersDn": "ou=users,dc=example,dc=com",
+    "uuidLdapAttribute": "objectGUID"
   },
-  "auth0Id": "con_jxQFVfPHKSdiwoxs",
-  "auth0Name": "fed-example-com-adfs",
-  "domains": [
-    "example.com",
-    "example2.com"
-  ],
-  "expirationNotificationPeriod": "P30D",
-  "expirationTimestamp": "2024-11-18T20:58:16.305662Z",
-  "id": "645eae30-ea32-4542-af58-1d9012fed81a",
   "metadata": {
     "createdBy": "666a3f38-d4fa-5b62-a391-a69029758d32",
     "creationTimestamp": "2022-10-06T20:58:16.305662Z",
     "modificationTimestamp": "2022-10-06T20:58:16.305662Z",
     "modifiedBy": "666a3f38-d4fa-5b62-a391-a69029758d32"
   },
-  "name": "AD FS Federation",
+  "name": "LDAP Federation",
   "organizationId": "9b0ee210-70a0-4158-b025-0decde66e4de",
-  "providerType": "ADFS",
+  "providerType": "LDAP",
   "resourceId": "862b6f03-58ac-479b-9ca5-5cb4429d8996",
   "state": "ENABLED",
   "type": "application/vnd.netapp.bxp.federation",
@@ -538,125 +503,6 @@ a|Content-type of the object.
 [%collapsible%closed]
 //Start collapsible Definitions block
 ====                
-[#federation_1_0_adfs_response_options]
-[.api-collapsible-fifth-title]
-federation_1.0_adfs_response_options
-
-Active Directory Federation Services (AD FS) configuration options when `providerType=ADFS`.
-
-
-[cols=4*,options=header]
-|===
-|Name
-|Type
-|Required
-|Description
-
-|metadataUrl
-|string
-|False
-a|AD FS server URL for the Federation metadata XML file.
-
-
-|signingCertificateFingerprint
-|string
-|False
-a|The SHA-1 fingerprint of the X.509 signing certificate if the metadata XML file is provided.
-
-
-|===
-
-
-[#federation_1_0_entraid_response_options]
-[.api-collapsible-fifth-title]
-federation_1.0_entraid_response_options
-
-Microsoft Entra ID (formerly Azure Active Directory) configuration options when `providerType=ENTRAID`.
-
-
-[cols=4*,options=header]
-|===
-|Name
-|Type
-|Required
-|Description
-
-|clientId
-|string
-|False
-a|Entra ID client ID.
-
-
-|clientSecretMasked
-|string
-|False
-a|Partially masked Entra ID client secret.
-
-
-|groupsEnabled
-|boolean
-|False
-a|Indicates whether federation groups are enabled for Microsoft Entra ID.
-
-
-|maxGroupCount
-|integer
-|False
-a|Maximum number of groups to retrieve from Entra ID.
-
-
-|tenantDomain
-|string
-|False
-a|Entra ID domain.
-
-
-|===
-
-
-[#federation_1_0_keycloak_component]
-[.api-collapsible-fifth-title]
-federation_1.0_keycloak_component
-
-A single Keycloak LDAP UserStorageProvider component backing one OU of a
-federation. Entries are ordered ascending by priority (index 0 is priority
-0, the highest lookup priority).
-
-
-[cols=4*,options=header]
-|===
-|Name
-|Type
-|Required
-|Description
-
-|keycloakComponentId
-|string
-|False
-a|Keycloak component identifier for this usersDn.
-
-
-|keycloakComponentName
-|string
-|False
-a|Keycloak component name for this usersDn.
-
-
-|priority
-|integer
-|False
-a|Lookup priority among sibling components (0 is highest / searched first).
-
-
-|usersDn
-|string
-|False
-a|Maps this Keycloak component to its usersDn in ldapOptions.usersDns for multi-OU federations.
-
-
-|===
-
-
 [#federation_1_0_ldap_response_options]
 [.api-collapsible-fifth-title]
 federation_1.0_ldap_response_options
@@ -686,7 +532,7 @@ a|Distinguished Name (DN) or UPN to bind to the LDAP server.
 |connectionTimeout
 |integer
 |False
-a|LDAP connection timeout, in seconds.
+a|LDAP connection timeout, in milliseconds.
 
 
 |connectionUrl
@@ -740,16 +586,7 @@ a|LDAP attribute used as username.
 |usersDn
 |string
 |False
-a|Base DN for user searches (single usersDn federations). Populated with the
-first/primary OU for backward compatibility when the federation has
-multiple OUs; see usersDns for the full list.
-
-
-|usersDns
-|array[string]
-|False
-a|List of base DNs for user searches, one entry per Organizational Unit (OU),
-for multi-OU federations. Not present for single-OU federations.
+a|Base DN for user searches.
 
 
 |uuidLdapAttribute
@@ -832,70 +669,6 @@ a|Resource modification date.
 |string
 |False
 a|UUID of the user who modified the resource.
-
-
-|===
-
-
-[#federation_1_0_pingfederate_response_options]
-[.api-collapsible-fifth-title]
-federation_1.0_pingfederate_response_options
-
-PingFederate configuration options when `providerType=PINGFEDERATE`.
-
-
-[cols=4*,options=header]
-|===
-|Name
-|Type
-|Required
-|Description
-
-|serverUrl
-|string
-|False
-a|PingFederate server URL.
-
-
-|signingCertificateFingerprint
-|string
-|False
-a|The SHA-1 fingerprint of the X.509 Signing certificate.
-
-
-|===
-
-
-[#federation_1_0_saml_response_options]
-[.api-collapsible-fifth-title]
-federation_1.0_saml_response_options
-
-SAML configuration options when `providerType=SAML`.
-
-
-[cols=4*,options=header]
-|===
-|Name
-|Type
-|Required
-|Description
-
-|signInUrl
-|string
-|False
-a|SAML single login URL.
-
-
-|signOutUrl
-|string
-|False
-a|SAML single logout URL.
-
-
-|signingCertificateFingerprint
-|string
-|False
-a|The SHA-1 fingerprint of the X.509 Signing certificate.
 
 
 |===
