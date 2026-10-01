@@ -60,7 +60,7 @@ The following request headers are used in NetApp Console local deployment REST A
 
 Query parameters filter and control the results returned by a REST API call. 
 
-The following query parameters can be used where supported in NetApp Console local deployment REST APIs.
+The following table shows some example query parameters that can be used where supported in NetApp Console local deployment REST APIs.
 
 NOTE: Not all query parameters are available at every endpoint. Refer to the reference documentation for the specific API you are using.
 
