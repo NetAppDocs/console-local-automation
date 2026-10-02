@@ -21,6 +21,7 @@ sidebar:
     - section: agentic
     - section: alerts
     - section: asset
+    - section: federation
     - section: tenancyv4
     - section: storage-management
     - title: Legal notices
