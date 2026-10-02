@@ -1,0 +1,2209 @@
+openapi: 3.0.3
+components:
+    parameters:
+        continue:
+            description: |-
+                Indicates the token to resume from when listing a collection.
+
+
+                URL examples: "continue=[Continue Token from Collection Metadata]"
+
+
+                OpenAPI examples: "[Continue Token from Collection Metadata]"
+            in: query
+            name: continue
+            schema:
+                $ref: '#/components/schemas/query_continue'
+        count:
+            description: |-
+                Indicates if the total number of resources should be returned in the response object.
+
+
+                URL examples: "count=true"
+
+
+                OpenAPI examples: "true"
+            in: query
+            name: count
+            schema:
+                $ref: '#/components/schemas/query_count'
+        filter:
+            description: |-
+                Specifies which fields should be matched in order to return a resource when listing a collection.
+
+
+                Supported operators:
+                * eq - Equality
+                * lt/gt - Less than/greater than
+                * lte/gte - Less than or equal to/greater than or equal to
+
+
+                URL example: "filter=field%20eq%20%27value%27"
+
+
+                OpenAPI examples: "field eq 'value'"
+            in: query
+            name: filter
+            schema:
+                $ref: '#/components/schemas/query_filter'
+        fleet_id:
+            description: Unique identifier of the fleet.
+            example: 123e4567-e89b-12d3-a456-426614174000
+            in: path
+            name: fleet_id
+            required: true
+            schema:
+                type: string
+        include:
+            description: |-
+                Specifies which fields should be returned when listing a collection.
+
+
+                URL examples: "include=id", "include=id,name"
+
+
+                OpenAPI examples: "id"
+            in: query
+            name: include
+            schema:
+                $ref: '#/components/schemas/query_include'
+        limit:
+            description: |-
+                Specifies the maximum number of resources to return when listing a collection.
+
+
+                URL examples: "limit=2"
+
+
+                OpenAPI examples: "2"
+            in: query
+            name: limit
+            schema:
+                $ref: '#/components/schemas/query_limit'
+        metadata:
+            description: |-
+                Indicates if the metadata should be returned in the response object.
+
+
+                URL examples: "metadata=true"
+
+                OpenAPI examples: "true"
+            in: query
+            name: metadata
+            schema:
+                $ref: '#/components/schemas/query_metadata'
+        order_by:
+            description: |-
+                Indicates the sort order of resources when listing a collection.
+
+
+                URL examples: "orderBy=name", "orderBy=name%20desc"
+
+
+                OpenAPI examples: "name desc"
+            in: query
+            name: orderBy
+            schema:
+                $ref: '#/components/schemas/query_order_by'
+        organization_id:
+            description: Unique identifier of the organization to which the user belongs.
+            example: 3b44d359-d125-4665-b605-49d72c2dd7be
+            in: path
+            name: organization_id
+            required: true
+            schema:
+                type: string
+        skip:
+            description: |-
+                Specifies the number of resources to skip when listing a collection.
+
+
+                URL examples: "skip=1"
+
+
+                OpenAPI examples: "1"
+            in: query
+            name: skip
+            schema:
+                $ref: '#/components/schemas/query_skip'
+        system_id:
+            description: Unique identifier of the system.
+            example: 123e4567-e89b-12d3-a456-426614174001
+            in: path
+            name: system_id
+            required: true
+            schema:
+                type: string
+    responses:
+        400BadRequest:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The supplied query parameters are invalid.
+                        status: "400"
+                        title: Invalid query parameters
+                        type: https://bluexp.netapp.io/problems/1
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Bad Request
+        401Unauthorized:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The request is missing the required bearer token.
+                        status: "401"
+                        title: Missing bearer token
+                        type: https://bluexp.netapp.io/problems/1
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Unauthorized
+        403Forbidden:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The requested operation isn't permitted.
+                        status: "403"
+                        title: Operation not permitted
+                        type: https://bluexp.netapp.io/problems/11
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Forbidden
+        404NotFound:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The collection specified in the request URI wasn't found.
+                        status: "404"
+                        title: Collection not found
+                        type: https://bluexp.netapp.io/problems/2
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Not Found
+        409Conflict:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The request body JSON contains a field that conflicts with an idempotent value.
+                        status: "409"
+                        title: JSON resource conflict
+                        type: https://bluexp.netapp.io/problems/10
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Conflict
+        413RequestEntityTooLarge:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The request entity is too large.
+                        status: "413"
+                        title: Request entity too large
+                        type: https://bluexp.netapp.io/problems/17
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Request Entity Too Large
+        429TooManyRequests:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: Too many requests have been made. Please retry later.
+                        status: "429"
+                        title: Too many requests
+                        type: https://bluexp.netapp.io/problems/1
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Too Many Requests
+        503ServiceNotReady:
+            content:
+                application/vnd.netapp.bxp.problem+json:
+                    example:
+                        detail: The service is not ready to handle requests.
+                        status: "503"
+                        title: Service not ready
+                        type: https://bluexp.netapp.io/problems/15
+                    schema:
+                        $ref: '#/components/schemas/type_bxp_problem_detail'
+            description: Service Not Ready
+    schemas:
+        alert_1.0_alert_agent_get_response_body:
+            additionalProperties: false
+            properties:
+                agentId:
+                    description: |-
+                        Globally unique identifier of the agent (Connector) that is reporting this
+                        data.
+                    example: 333a3f38-a4fa-4e32-a371-a37027748a32
+                    type: string
+                errorCode:
+                    description: A code to help identify the cause of the problem.
+                    enum:
+                        - AGENT_OVER_PROVISIONED
+                    example: AGENT_OVER_PROVISIONED
+                    type: string
+                organizationId:
+                    description: Unique identifier of the organization to which the alerts belongs.
+                    example: 3b44d359-d125-4665-b605-49d72c2dd7be
+                    type: string
+                state:
+                    description: State of the agent.
+                    enum:
+                        - MONITORING_ALL_CLUSTERS
+                        - MONITORING_SUBSET_OF_CLUSTERS
+                    example: MONITORING_ALL_CLUSTERS
+                    type: string
+                systemConfiguration:
+                    properties:
+                        cpuCores:
+                            description: Number of CPU cores available on this agent.
+                            example: 8
+                            type: int
+                        memoryInGB:
+                            description: Available memory on this agent, in GB.
+                            example: 32
+                            type: int
+                    required:
+                        - cpuCores
+                        - memoryInGB
+                    type: object
+            required:
+                - organizationId
+                - agentId
+                - systemConfiguration
+                - state
+            type: object
+        alert_1.0_alert_agent_list_response_body:
+            properties:
+                activeAgentsWithErrors:
+                    description: Number of agents with problems related to Harvest pollers.
+                    example: 1
+                    format: int64
+                    minimum: 0
+                    type: integer
+                items:
+                    items:
+                        $ref: '#/components/schemas/alert_1.0_alert_agent_get_response_body'
+                    type: array
+                    uniqueItems: true
+                metadata:
+                    $ref: '#/components/schemas/type_bxp_metadata_list'
+            required:
+                - items
+                - metadata
+            type: object
+        alert_1.0_alert_agent_patch_list_request_body:
+            properties:
+                items:
+                    items:
+                        $ref: '#/components/schemas/alert_1.0_alert_agent_patch_request_body'
+                    type: array
+                    uniqueItems: true
+            required:
+                - items
+            type: object
+        alert_1.0_alert_agent_patch_request_body:
+            properties:
+                agentId:
+                    description: |-
+                        Globally unique identifier of the agent (Connector) that is reporting this
+                        data.
+                    example: 333a3f38-a4fa-4e32-a371-a37027748a32
+                    type: string
+                errorCode:
+                    description: A code to help identify the cause of the problem.
+                    enum:
+                        - AGENT_OVER_PROVISIONED
+                    example: AGENT_OVER_PROVISIONED
+                    type: string
+                organizationId:
+                    description: Unique identifier of the organization to which the alerts belongs.
+                    example: 3b44d359-d125-4665-b605-49d72c2dd7be
+                    type: string
+                state:
+                    description: State of the agent.
+                    enum:
+                        - MONITORING_ALL_CLUSTERS
+                        - MONITORING_SUBSET_OF_CLUSTERS
+                    example: MONITORING_ALL_CLUSTERS
+                    type: string
+                systemConfiguration:
+                    properties:
+                        cpuCores:
+                            description: Number of CPU cores available on this agent.
+                            example: 8
+                            type: int
+                        memoryInGB:
+                            description: Available memory on this agent, in GB.
+                            example: 32
+                            type: int
+                    required:
+                        - cpuCores
+                        - memoryInGB
+                    type: object
+            required:
+                - organizationId
+                - agentId
+                - systemConfiguration
+                - state
+            type: object
+        alert_1.0_get_response_body:
+            additionalProperties: false
+            properties:
+                alertDetails:
+                    description: Details about the condition or situation that triggered this alert.
+                    example: Volume Vol1 is 90% used
+                    type: string
+                alertId:
+                    description: Globally unique identifier of the resource, generated and assigned by the client service.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    type: string
+                alertObjectId:
+                    description: Unique identifier of the resource for which this alert is raised.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    type: string
+                alertObjectName:
+                    description: The name of the object on which the alert is raised.
+                    example: Volume1
+                    type: string
+                alertObjectType:
+                    description: |-
+                        Type of the object on which the alert is raised. Defined values are:
+                        * CLUSTER
+                        * NODE
+                        * AGGREGATE
+                        * SVM
+                        * VOLUME
+                        * LUN
+                        * DISK
+                        * QTREE
+                        * NVME_NAMESPACE
+                        * SNAPMIRROR
+                        * CIFS_SHARE
+                        * NFS_SHARE
+                        * CONNECTOR
+                        * CONNECTOR_CONTAINER
+                        * MSSQL_HOST
+                        * ORACLE_HOST
+                    enum:
+                        - CLUSTER
+                        - NODE
+                        - AGGREGATE
+                        - SVM
+                        - VOLUME
+                        - LUN
+                        - DISK
+                        - QTREE
+                        - NVME_NAMESPACE
+                        - SNAPMIRROR
+                        - CIFS_SHARE
+                        - NFS_SHARE
+                        - CONNECTOR
+                        - CONNECTOR_CONTAINER
+                        - MSSQL_HOST
+                        - ORACLE_HOST
+                    example: CLUSTER
+                    type: string
+                associatedObjects:
+                    description: |-
+                        JSON array of one or multiple contextual parent objects that might require remediation.
+                        For example, an alert on a volume for an issue with junction path should populate this field with the SVM details because remediation has to be performed on the SVM.
+                        Conversely, an alert on volume for low capacity should populate this field with the node details because remediation has to be performed on the node.
+                    items:
+                        properties:
+                            objectId:
+                                description: Unique identifier of the resource for which this alert is raised.
+                                example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                type: string
+                            objectName:
+                                description: The name of the object that is associated with the object on which the alert is raised.
+                                type: string
+                            objectType:
+                                description: |-
+                                    Type of the object on which the alert is raised. Defined values are:
+
+                                     * CLUSTER
+
+                                     * NODE
+
+                                     * AGGREGATE
+
+                                     * SVM
+
+                                     * VOLUME
+
+                                     * LUN
+
+                                     * DISK
+
+                                     * QTREE
+
+                                     * NVME_NAMESPACE
+
+                                     * SNAPMIRROR
+
+                                     * CIFS_SHARE
+
+                                     * NFS_SHARE
+
+                                     * CONNECTOR
+
+                                     * CONNECTOR_CONTAINER
+
+                                     * MSSQL_HOST
+
+                                     * ORACLE_HOST
+                                enum:
+                                    - CLUSTER
+                                    - NODE
+                                    - AGGREGATE
+                                    - SVM
+                                    - VOLUME
+                                    - LUN
+                                    - DISK
+                                    - QTREE
+                                    - NVME_NAMESPACE
+                                    - SNAPMIRROR
+                                    - CIFS_SHARE
+                                    - NFS_SHARE
+                                    - CONNECTOR
+                                    - CONNECTOR_CONTAINER
+                                    - MSSQL_HOST
+                                    - ORACLE_HOST
+                                type: string
+                        type: object
+                    type: array
+                    uniqueItems: true
+                closedOn:
+                    description: The time that the alert was closed.
+                    example: "2022-10-09T20:58:16.305Z"
+                    format: date-time
+                    type: string
+                description:
+                    description: JSON string explaining the alert condition in detail.
+                    example: AutoSupport supports HTTPS, HTTP, and SMTP for transport protocols. Because of the sensitive nature of AutoSupport messages, NetApp strongly recommends using HTTPS as the default transport protocol for sending AutoSupport messages to NetApp support.
+                    type: string
+                driftAlert:
+                    description: Indicates whether this alert was raised due to a configuration drift condition.
+                    example: false
+                    type: boolean
+                duration:
+                    description: Duration that this alert is active, in milliseconds.
+                    example: "86400"
+                    type: string
+                hasRemediation:
+                    description: Indicates whether this alert has an associated remediation workflow.
+                    example: true
+                    type: boolean
+                impactArea:
+                    description: |-
+                        Broad classification category to which this alert belongs. Examples of categories are:
+                        * AVAILABILITY
+                        * CAPACITY
+                        * CONFIGURATION
+                        * PERFORMANCE
+                        * PROTECTION
+                        * SECURITY
+                    enum:
+                        - AVAILABILITY
+                        - CAPACITY
+                        - CONFIGURATION
+                        - PERFORMANCE
+                        - PROTECTION
+                        - SECURITY
+                    type: string
+                lastTrueOccurrence:
+                    description: The time that the condition described by this alert was last found to be true. This value is a timestamp in ISO 8601 format in UTC.
+                    example: "2022-10-06T20:58:16.305Z"
+                    format: date-time
+                    type: string
+                links:
+                    $ref: '#/components/schemas/type_bxp_links'
+                metadata:
+                    $ref: '#/components/schemas/type_bxp_metadata'
+                name:
+                    description: Short name of the alert
+                    example: AutoSupport HTTPS Transport Disabled
+                    type: string
+                origin:
+                    description: |-
+                        Specifies the entity that raised this alert. Defined values are:
+
+                        * HARVEST
+
+                        * AIQ
+
+                        * CONNECTOR
+
+                        * ONTAP_MANAGEMENT
+
+                        * BACKUP_AND_RECOVERY
+                    enum:
+                        - HARVEST
+                        - AIQ
+                        - CONNECTOR
+                        - ONTAP_MANAGEMENT
+                        - BACKUP_AND_RECOVERY
+                    example: HARVEST
+                    type: string
+                originId:
+                    description: |-
+                        Globally unique identifier of alert source that is reporting this
+                        alert. This originId along with the alertId is used to uniquely
+                        identify the alert resource.
+                    example: 333a3f38-a4fa-4e32-a371-a37027748a32
+                    type: string
+                owner:
+                    description: Action owner in the tenant organization
+                    example: John.Doe@akme.com
+                    type: string
+                raisedOn:
+                    description: The time that the alert was raised.
+                    example: "2022-10-06T20:58:16.305Z"
+                    format: date-time
+                    type: string
+                remediation:
+                    description: |-
+                        JSON object containing text that describes corrective actions about how to fix the issue
+                        and an optional URL to navigate to the remedial workflow.
+                    properties:
+                        redirectURL:
+                            description: URL that can be invoked to initiate the remediation.
+                            example: https://www.xyz.com/
+                            type: string
+                        text:
+                            example: 'To set HTTPS as the transport protocol for AutoSupport messages, run the following ONTAP command: system node autosupport modify -transport https'
+                            type: string
+                    type: object
+                resourceId:
+                    description: Identifier of the working environment/resource associated with this alert.
+                    example: OnPremWorkingEnvironment-382602e4-6d35-4eaf-93cc-8b62b1b594c8
+                    type: string
+                severity:
+                    description: |-
+                        Severity of the condition associated with this alert. Defined values are:
+                        * CRITICAL
+                        * WARNING
+                        * INFORMATIONAL
+                    enum:
+                        - CRITICAL
+                        - WARNING
+                        - INFORMATIONAL
+                    type: string
+                status:
+                    description: |-
+                        Status of the alert that shows whether the condition still exists. Defined values are:
+                        * ACTIVE
+                        * CLOSED
+                    enum:
+                        - ACTIVE
+                        - CLOSED
+                    type: string
+                statusHistory:
+                    description: JSON array of JSON objects representing the chronological order of how this alert has progressed in its life cycle.
+                    items:
+                        properties:
+                            newStatus:
+                                description: |-
+                                    JSON string representing the old status of this alert. It can be:
+                                    * CLOSED
+                                enum:
+                                    - CLOSED
+                                type: string
+                            oldStatus:
+                                description: |-
+                                    JSON string representing the old status of this alert. It can be:
+                                    * ACTIVE
+                                enum:
+                                    - ACTIVE
+                                type: string
+                            timestamp:
+                                description: Status change date
+                                example: "2022-10-06T20:58:16.305Z"
+                                format: date-time
+                                type: string
+                        type: object
+                    type: array
+                    uniqueItems: true
+                storageClassId:
+                    description: Identifier of the storage class associated with this alert.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    type: string
+                storageClassName:
+                    description: Name of the storage class associated with this alert.
+                    example: standard
+                    type: string
+                tag:
+                    additionalProperties: true
+                    description: Key-value pairs providing additional context about the alert, such as metric name, threshold value, and unit.
+                    example:
+                        metric_name: volume_size_used_percent
+                        metric_threshold: "90"
+                        metric_unit: '%'
+                    type: object
+            required:
+                - alertId
+                - originId
+                - name
+                - origin
+                - alertObjectId
+                - alertObjectType
+                - associatedObjects
+                - severity
+                - status
+                - owner
+                - remediation
+                - description
+                - raisedOn
+                - closedOn
+                - duration
+                - statusHistory
+                - lastTrueOccurrence
+                - impactArea
+                - metadata
+            type: object
+        alert_1.0_list_response_body:
+            properties:
+                count:
+                    description: Total number of resources in the collection that match the query.
+                    example: 1
+                    format: int64
+                    minimum: 0
+                    type: integer
+                items:
+                    items:
+                        $ref: '#/components/schemas/alert_1.0_get_response_body'
+                    type: array
+                    uniqueItems: true
+                metadata:
+                    $ref: '#/components/schemas/type_bxp_metadata_list'
+            required:
+                - items
+                - metadata
+            type: object
+        alert_1.0_patch_bulk_id_request_body:
+            additionalProperties: false
+            properties:
+                items:
+                    items:
+                        properties:
+                            alertDetails:
+                                description: Details about the condition or situation that triggered this alert.
+                                example: Volume Vol1 is 90% used
+                                type: string
+                            alertId:
+                                description: Globally unique identifier of the resource generated and assigned by the client service.
+                                example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                type: string
+                            alertObjectId:
+                                description: Unique identifier of the resource for which this alert is raised.
+                                example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                type: string
+                            alertObjectName:
+                                description: Name of the object on which the alert is raised
+                                example: cl001
+                                type: string
+                            alertObjectType:
+                                description: |-
+                                    Type of the object on which the alert is raised. Defined values are:
+                                    * CLUSTER
+                                    * NODE
+                                    * AGGREGATE
+                                    * SVM
+                                    * VOLUME
+                                    * LUN
+                                    * DISK
+                                    * QTREE
+                                    * NVME_NAMESPACE
+                                    * SNAPMIRROR
+                                    * CIFS_SHARE
+                                    * NFS_SHARE
+                                    * CONNECTOR
+                                    * CONNECTOR_CONTAINER
+                                    * MSSQL_HOST
+                                    * ORACLE_HOST
+                                enum:
+                                    - CLUSTER
+                                    - NODE
+                                    - AGGREGATE
+                                    - SVM
+                                    - VOLUME
+                                    - LUN
+                                    - DISK
+                                    - QTREE
+                                    - NVME_NAMESPACE
+                                    - SNAPMIRROR
+                                    - CIFS_SHARE
+                                    - NFS_SHARE
+                                    - CONNECTOR
+                                    - CONNECTOR_CONTAINER
+                                    - MSSQL_HOST
+                                    - ORACLE_HOST
+                                example: CLUSTER
+                                type: string
+                            associatedObjects:
+                                description: |-
+                                    JSON array of one or multiple contextual parent objects that might require remediation.
+                                    For example, an alert on a volume for an issue with junction path should populate this field with the SVM details since remediation has to be performed on the SVM
+                                    Conversely, an alert on a volume for low capacity should populate this field with the node details because remediation has to be performed on the node
+                                items:
+                                    properties:
+                                        objectId:
+                                            description: Unique identifier of the resource for which this alert is raised.
+                                            example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                            type: string
+                                        objectName:
+                                            description: The name of the object that is associated with the object on which the alert is raised.
+                                            type: string
+                                        objectType:
+                                            description: |-
+                                                Type of the object on which the alert is raised. Defined values are:
+
+                                                 * CLUSTER
+
+                                                 * NODE
+
+                                                 * AGGREGATE
+
+                                                 * SVM
+
+                                                 * VOLUME
+
+                                                 * LUN
+
+                                                 * DISK
+
+                                                 * QTREE
+
+                                                 * NVME_NAMESPACE
+
+                                                 * SNAPMIRROR
+
+                                                 * CIFS_SHARE
+
+                                                 * NFS_SHARE
+
+                                                 * CONNECTOR
+
+                                                 * CONNECTOR_CONTAINER
+
+                                                 * MSSQL_HOST
+
+                                                 * ORACLE_HOST
+                                            enum:
+                                                - CLUSTER
+                                                - NODE
+                                                - AGGREGATE
+                                                - SVM
+                                                - VOLUME
+                                                - LUN
+                                                - DISK
+                                                - QTREE
+                                                - NVME_NAMESPACE
+                                                - SNAPMIRROR
+                                                - CIFS_SHARE
+                                                - NFS_SHARE
+                                                - CONNECTOR
+                                                - CONNECTOR_CONTAINER
+                                                - MSSQL_HOST
+                                                - ORACLE_HOST
+                                            type: string
+                                    type: object
+                                type: array
+                                uniqueItems: true
+                            description:
+                                description: JSON string explaining the alert condition in details.
+                                example: AutoSupport supports HTTPS, HTTP, and SMTP for transport protocols. Because of the sensitive nature of AutoSupport messages, NetApp strongly recommends using HTTPS as the default transport protocol for sending AutoSupport messages to NetApp support.
+                                type: string
+                            driftAlert:
+                                description: Indicates whether this alert was raised due to a configuration drift condition.
+                                example: false
+                                type: boolean
+                            hasRemediation:
+                                description: Indicates whether this alert has an associated remediation workflow.
+                                example: true
+                                type: boolean
+                            impactArea:
+                                description: |-
+                                    Broad classification category to which this alert belongs to. Examples of categories are:
+                                    * AVAILABILITY
+                                    * CAPACITY
+                                    * CONFIGURATION
+                                    * PERFORMANCE
+                                    * PROTECTION
+                                    * SECURITY
+                                enum:
+                                    - AVAILABILITY
+                                    - CAPACITY
+                                    - CONFIGURATION
+                                    - PERFORMANCE
+                                    - PROTECTION
+                                    - SECURITY
+                                type: string
+                            lastTrueOccurrence:
+                                description: The time when the condition described by this alert was last found to be true. This value is a timestamp in ISO 8601 format in UTC.
+                                example: "2022-10-06T20:58:16.305Z"
+                                format: date-time
+                                type: string
+                            name:
+                                description: Short name of the alert
+                                example: AutoSupport HTTPS Transport Disabled
+                                type: string
+                            origin:
+                                description: |-
+                                    Which entity raised this alert. Defined values are:
+
+                                    * HARVEST
+
+                                    * AIQ
+
+                                    * CONNECTOR
+
+                                    * ONTAP_MANAGEMENT
+
+                                    * BACKUP_AND_RECOVERY
+                                enum:
+                                    - HARVEST
+                                    - AIQ
+                                    - CONNECTOR
+                                    - ONTAP_MANAGEMENT
+                                    - BACKUP_AND_RECOVERY
+                                example: HARVEST
+                                type: string
+                            originId:
+                                description: |-
+                                    Globally unique identifier of the alert source that is reporting this
+                                    alert. This originId along with the alertId will be used to uniquely
+                                    identify the alert resource.
+                                example: 333a3f38-a4fa-4e32-a371-a37027748a32
+                                type: string
+                            owner:
+                                description: Action owner in the tenant organization.
+                                example: John.Doe@akme.com
+                                type: string
+                            raisedOn:
+                                description: Time when the alert was raised
+                                example: "2022-10-06T20:58:16.305Z"
+                                format: date-time
+                                type: string
+                            remediation:
+                                description: |-
+                                    JSON object containing text that describes corrective actions about how to fix the issue
+                                    and an optional URL to navigate to the remedial workflow.
+                                properties:
+                                    redirectURL:
+                                        description: URL that can be invoked to initiate the remediation
+                                        example: https://www.xyz.com/
+                                        type: string
+                                    text:
+                                        example: 'To set HTTPS as the transport protocol for AutoSupport messages, run the following ONTAP command: system node autosupport modify -transport https'
+                                        type: string
+                                type: object
+                            resourceId:
+                                description: Identifier of the resource associated with this alert.
+                                example: OnPremWorkingEnvironment-382602e4-6d35-4eaf-93cc-8b62b1b594c8
+                                type: string
+                            severity:
+                                description: |-
+                                    Severity of the condition associated with this alert. Defined values are:
+                                    * CRITICAL
+                                    * WARNING
+                                    * INFORMATIONAL
+                                enum:
+                                    - CRITICAL
+                                    - WARNING
+                                    - INFORMATIONAL
+                                type: string
+                            status:
+                                description: |-
+                                    Status of this alert showing whether the condition still exists. Defined values are:
+                                    * ACTIVE
+                                    * CLOSED
+                                enum:
+                                    - ACTIVE
+                                    - CLOSED
+                                type: string
+                            storageClassId:
+                                description: Identifier of the storage class associated with this alert.
+                                example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                type: string
+                            storageClassName:
+                                description: Name of the storage class associated with this alert.
+                                example: standard
+                                type: string
+                            tag:
+                                additionalProperties: true
+                                description: Key-value pairs providing additional context about the alert such as metric name, threshold value, and unit.
+                                example:
+                                    metric_name: volume_size_used_percent
+                                    metric_threshold: "90"
+                                    metric_unit: '%'
+                                type: object
+                        required:
+                            - alertId
+                            - originId
+                            - name
+                            - origin
+                            - alertObjectId
+                            - alertObjectType
+                            - alertObjectName
+                            - associatedObjects
+                            - severity
+                            - status
+                            - owner
+                            - description
+                            - raisedOn
+                            - lastTrueOccurrence
+                            - alertDetails
+                            - impactArea
+                            - resourceId
+                        type: object
+                    links:
+                        $ref: '#/components/schemas/type_bxp_links'
+                    minItems: 1
+                    type: array
+                    uniqueItems: true
+                metadata:
+                    $ref: '#/components/schemas/type_bxp_metadata'
+                organizationId:
+                    description: Unique identifier of the organization to which the alerts belongs.
+                    example: 3b44d359-d125-4665-b605-49d72c2dd7be
+                    type: string
+            required:
+                - organizationId
+                - items
+            type: object
+        alertcontrol_1.0_bulk_request_body:
+            properties:
+                enabled:
+                    description: When true, enables all configured alert rules. When false, disables all configured alert rules.
+                    example: true
+                    type: boolean
+            required:
+                - enabled
+            type: object
+        alertcontrol_1.0_get_response_body:
+            properties:
+                organizationId:
+                    description: Unique identifier of the organization.
+                    example: 3b44d359-d125-4665-b605-49d72c2dd7be
+                    type: string
+                rules:
+                    description: List of alert rules and their enabled/disabled state for this organization.
+                    items:
+                        $ref: '#/components/schemas/alertcontrol_1.0_rule'
+                    type: array
+                    uniqueItems: true
+                updatedAt:
+                    description: Timestamp when the alert control was last updated.
+                    example: "2024-01-15T10:00:00Z"
+                    format: date-time
+                    type: string
+                updatedBy:
+                    description: User ID of the user who last updated the alert control.
+                    example: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                    type: string
+            required:
+                - organizationId
+                - rules
+            type: object
+        alertcontrol_1.0_patch_request_body:
+            properties:
+                rules:
+                    description: |-
+                        List of alert rules to enable or disable. Each entry specifies an alertType
+                        and its desired enabled state. Duplicate alertType values are not allowed.
+                    items:
+                        $ref: '#/components/schemas/alertcontrol_1.0_rule'
+                    minItems: 1
+                    type: array
+                    uniqueItems: true
+            required:
+                - rules
+            type: object
+        alertcontrol_1.0_rule:
+            properties:
+                alertType:
+                    description: The name/type of the alert rule.
+                    example: LUN destroyed
+                    type: string
+                enabled:
+                    description: Whether this alert rule is enabled for the organization.
+                    example: true
+                    type: boolean
+            required:
+                - alertType
+                - enabled
+            type: object
+        alertsummary_1.0_get_response_body:
+            properties:
+                criticalImpactArea:
+                    additionalProperties:
+                        type: integer
+                    description: Distribution of all critical alerts by impact area.
+                    example:
+                        capacity: 1
+                        performance: 2
+                        protection: 2
+                        security: 1
+                    type: object
+                impactArea:
+                    additionalProperties:
+                        type: integer
+                    description: Distribution of all alerts by impact area.
+                    example:
+                        capacity: 1
+                        performance: 3
+                        protection: 5
+                        security: 1
+                    type: object
+                severity:
+                    additionalProperties:
+                        type: integer
+                    description: Distribution of all alerts by severity.
+                    example:
+                        critical: 6
+                        error: 7
+                        informational: 15
+                        warning: 8
+                    type: object
+            required:
+                - severity
+                - impactArea
+                - criticalImpactArea
+            type: object
+        alerttrends_1.0_get_response_body:
+            example:
+                buckets:
+                    - count: 4
+                      endTime: "2024-05-10T11:00:00Z"
+                      startTime: "2024-05-10T10:00:00Z"
+                    - count: 2
+                      endTime: "2024-05-10T12:00:00Z"
+                      startTime: "2024-05-10T11:00:00Z"
+            properties:
+                buckets:
+                    description: A list of time buckets in the trend.
+                    items:
+                        properties:
+                            count:
+                                description: Number of alerts in this time bucket.
+                                type: integer
+                            endTime:
+                                description: End of the time bucket (ISO 8601).
+                                format: date-time
+                                type: string
+                            startTime:
+                                description: Start of the time bucket (ISO 8601).
+                                format: date-time
+                                type: string
+                        type: object
+                    type: array
+            required:
+                - buckets
+            type: object
+        query_continue:
+            description: Format of the continue query parameter.
+            pattern: ^([A-Za-z0-9+/]{4})*(([A-Za-z0-9+/]{2})==|([A-Za-z0-9+/]{3})=)?$
+            type: string
+            x-common: true
+        query_count:
+            description: Format of the count query parameter.
+            pattern: ^true$
+            type: string
+            x-common: true
+        query_filter:
+            description: Format of the filter query parameter.
+            pattern: ^(([0-9a-zA-Z]+(\[\*\])?)((\.[0-9a-zA-Z]+(\[\*\])?)+)? (eq|lt|gt|lte|gte|in) '([0-9a-zA-Z.,-_:@ {}\"])+')(,(\1))*$
+            type: string
+            x-common: true
+        query_include:
+            description: Format of the include query parameter.
+            pattern: ^([0-9a-zA-Z]+)(,[0-9a-zA-Z]+)*$
+            type: string
+            x-common: true
+        query_limit:
+            description: Format of the limit query parameter.
+            pattern: ^([1-9][0-9]*)$
+            type: string
+            x-common: true
+        query_metadata:
+            description: Format of the metadata query parameter.
+            pattern: ^(true|false)$
+            type: string
+        query_order_by:
+            description: Format of the order_by query parameter.
+            pattern: ^(([0-9a-zA-Z]+)( desc)?)$
+            type: string
+            x-common: true
+        query_skip:
+            description: Format of the skip query parameter.
+            pattern: ^([1-9][0-9]*)$
+            type: string
+            x-common: true
+        type_bxp_api_relative_uri:
+            description: String describing a relative URI.
+            pattern: ^(\/([-0-9a-zA-Z])+)+$
+            type: string
+            x-common: true
+        type_bxp_identifier:
+            description: |-
+                JSON string containing a Resource ID.
+                Defined values are: * Conforms to the UUIDv4 Schema
+            example: 666a3f38-d4fa-5b62-a391-a69029758d32
+            format: uuid
+            type: string
+            x-common: true
+        type_bxp_invalid_reason:
+            properties:
+                details:
+                    description: |
+                        The description of the invalid reasons. The possible values are:
+                        1. CERT_NOT_YET_VALID: The certificate is not yet valid.
+                        2. CERT_HOST_MISMATCH: The host name does not match the CN or subject alt name.
+                        3. CERT_WEAK_ENCRYPTION_KEY_SIZE: The certificate has weak encryption key size.
+                        4. CERT_CHAIN_BROKEN: The certificate chain is broken.
+                        5. CERT_INVALID_SIGNATURE: The certificate has an invalid signature.
+                        6. OTHER: Any other invalid reason.
+                    example: Host name is not matching with CN or subject alt name
+                    type: string
+                error:
+                    description: The error enum value for the invalid certificate.
+                    enum:
+                        - CERT_NOT_YET_VALID
+                        - CERT_HOST_MISMATCH
+                        - CERT_WEAK_ENCRYPTION_KEY_SIZE
+                        - CERT_CHAIN_BROKEN
+                        - CERT_INVALID_SIGNATURE
+                        - OTHER
+                    example: CERT_HOST_MISMATCH
+                    type: string
+            type: object
+            x-common: true
+        type_bxp_label:
+            description: Name/value pair.
+            example:
+                name: secure
+                value: "true"
+            properties:
+                name:
+                    description: Name of the label.
+                    type: string
+                value:
+                    description: Value of the label.
+                    type: string
+            required:
+                - name
+                - value
+            type: object
+            x-common: true
+        type_bxp_labels:
+            description: JSON Array of Name/value pairs.
+            example:
+                - name: secure
+                  value: "true"
+            items:
+                $ref: '#/components/schemas/type_bxp_label'
+            type: array
+            uniqueItems: true
+            x-common: true
+        type_bxp_link:
+            description: Link relationship
+            properties:
+                hints:
+                    properties:
+                        accept-post:
+                            description: Provides details about which media types are accepted when creating a resource.
+                            type: object
+                        accept-put:
+                            description: Indicates details about what media types are accepted when updating a resource.
+                            type: object
+                        allow:
+                            description: |-
+                                An array of methods that can be used to interact with the link target.
+
+                                Defined values for collections:
+
+                                "POST" - Indicates if new resources can be created in the collection.
+                                Defined values for resources:
+
+                                "PUT" - Indicates if the resource can be modified
+                                "DELETE" - Indicates if the resource can be deleted
+                            items:
+                                enum:
+                                    - POST
+                                    - GET
+                                    - PUT
+                                    - DELETE
+                                type: string
+                            type: array
+                        permissions:
+                            description: List of the permissions required to use the link.
+                            items:
+                                pattern: ^([a-z]([a-zA-Z])*)(-[a-z]([a-zA-Z])*){1,2}$
+                                type: string
+                            type: array
+                        status:
+                            description: |-
+                                Indicates if the target of the link is deprecated.
+
+                                Defined values are:
+
+                                "deprecated"
+                            enum:
+                                - deprecated
+                            type: string
+                    type: object
+                href:
+                    $ref: '#/components/schemas/type_bxp_api_relative_uri'
+                rel:
+                    description: The type of relationship for the link. Values are defined in the IANA Link Relationships registry, or an extension relationship type as specified in section 2.1.2 of RFC 8288.
+                    enum:
+                        - self
+                        - canonical
+                        - collection
+                        - up
+                        - related
+                        - service-doc
+                        - service-desc
+                    type: string
+                targetSchema:
+                    description: |-
+                        Link to a JSON schema that can be used to validate the target of the link (response body).
+
+                        The preferred format is a $ref link to an external schema.
+
+                        This field is optional and should only be included when there is a known schema for the target of the href.
+
+                        See https://json-schema.org/draft/2019-09/json-schema-hypermedia.html#rfc.section.9.2 for more details.
+                    type: object
+                title:
+                    description: |-
+                        Label of a link such that it can be used as a human-readable identifier (e.g., a menu entry).
+
+                        Minimum length: 0
+                        Maximum length: 1023
+                    maxLength: 1023
+                    minLength: 1
+                    type: string
+                type:
+                    description: |-
+                        The media type of the target of the href.
+
+                        This field is optional and should be included when there is a known media type for the target of the href.
+
+                        See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link for more details.
+                    pattern: ^((application\/vnd\.netapp(\.(([a-z])([a-zA-Z0-9]){0,30})){1,3})(-v(([0-9]){1,3}))?)$
+                    type: string
+            required:
+                - rel
+                - href
+            type: object
+            x-common: true
+        type_bxp_links:
+            description: Array of link relationships associated with the resource or ID.
+            items:
+                $ref: '#/components/schemas/type_bxp_link'
+            type: array
+            uniqueItems: true
+            x-common: true
+        type_bxp_metadata:
+            description: Metadata associated with the resource.
+            properties:
+                createdBy:
+                    description: UUID of the user who created the resource.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    format: uuid
+                    type: string
+                creationTimestamp:
+                    description: Resource creation date.
+                    example: "2022-10-06T20:58:16.305662Z"
+                    format: date-time
+                    type: string
+                labels:
+                    description: Array of name/value pairs representing additional information for the resource.
+                    items:
+                        $ref: '#/components/schemas/type_bxp_label'
+                    type: array
+                    uniqueItems: true
+                modificationTimestamp:
+                    description: Resource modification date.
+                    example: "2022-10-06T20:58:16.305662Z"
+                    format: date-time
+                    type: string
+                modifiedBy:
+                    description: UUID of the user who modified the resource.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    format: uuid
+                    type: string
+            type: object
+            x-common: true
+        type_bxp_metadata_list:
+            description: Metadata associated with a list of resources.
+            properties:
+                count:
+                    type: number
+                createdBy:
+                    description: UUID of the user who created the resource.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    format: uuid
+                    type: string
+                creationTimestamp:
+                    description: Resource creation date.
+                    example: "2022-10-06T20:58:16.305662Z"
+                    format: date-time
+                    type: string
+                labels:
+                    description: Array of name/value pairs representing additional information for the resource.
+                    items:
+                        $ref: '#/components/schemas/type_bxp_label'
+                    type: array
+                    uniqueItems: true
+                modificationTimestamp:
+                    description: Resource modification date.
+                    example: "2022-10-06T20:58:16.305662Z"
+                    format: date-time
+                    type: string
+                modifiedBy:
+                    description: UUID of the user who modified the resource.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    format: uuid
+                    type: string
+            type: object
+            x-common: true
+        type_bxp_metadata_update:
+            description: Metadata associated to an updated resource.
+            properties:
+                createdBy:
+                    description: UUID of the user who created the resource.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    format: uuid
+                    type: string
+                creationTimestamp:
+                    description: Resource creation date.
+                    example: "2022-10-06T20:58:16.305662Z"
+                    format: date-time
+                    type: string
+                labels:
+                    description: Array of name/value pairs representing additional information for the resource.
+                    items:
+                        $ref: '#/components/schemas/type_bxp_label'
+                    type: array
+                    uniqueItems: true
+                modificationTimestamp:
+                    description: Resource modification date.
+                    example: "2022-10-06T20:58:16.305662Z"
+                    format: date-time
+                    type: string
+                modifiedBy:
+                    description: UUID of the user who modified the resource.
+                    example: 666a3f38-d4fa-5b62-a391-a69029758d32
+                    format: uuid
+                    type: string
+            type: object
+            x-common: true
+        type_bxp_problem_detail:
+            additionalProperties: true
+            description: Represents a problem detail returned by an API in case of error.
+            properties:
+                correlationId:
+                    description: Internal UUID representing the request or trace ID related.
+                    format: uuid
+                    type: string
+                detail:
+                    description: Details about the problem.
+                    enum:
+                        - The resource specified in the request URI wasn't found.
+                    type: string
+                invalidParams:
+                    description: List of invalid parameters.
+                    items:
+                        properties:
+                            name:
+                                description: Name of the invalid parameter.
+                                type: string
+                            reason:
+                                description: Reason why the parameter is invalid.
+                                type: string
+                        required:
+                            - name
+                            - reason
+                        type: object
+                    minItems: 1
+                    type: array
+                    uniqueItems: true
+                status:
+                    description: HTTP error code related to the problem.
+                    enum:
+                        - "404"
+                    type: string
+                title:
+                    description: Title description of the problem.
+                    enum:
+                        - Resource not found
+                    type: string
+                type:
+                    description: Content-type of the object.
+                    enum:
+                        - https://bluexp.netapp.io/problems/1
+                    type: string
+            required:
+                - type
+                - title
+                - description
+                - status
+            type: object
+            x-common: true
+        type_bxp_state_details:
+            description: Array of all possible states and their detailed description.
+            items:
+                properties:
+                    detail:
+                        description: Detailed description for the state.
+                        maxLength: 511
+                        minLength: 1
+                        type: string
+                    title:
+                        description: Name of the state.
+                        maxLength: 40
+                        minLength: 1
+                        type: string
+                    type:
+                        description: Represents a state detail.
+                        type: string
+                required:
+                    - type
+                    - title
+                    - detail
+                type: object
+            type: array
+            uniqueItems: true
+            x-common: true
+        type_bxp_state_transitions:
+            description: Array representing the state machine associated with the object.
+            items:
+                properties:
+                    from:
+                        type: string
+                    to:
+                        items:
+                            type: string
+                        type: array
+                        uniqueItems: true
+                required:
+                    - from
+                    - to
+                type: object
+            type: array
+            uniqueItems: true
+            x-common: true
+        type_dns_1123:
+            description: Represents a Domain Name as defined in RFC 1123.
+            maxLength: 63
+            minLength: 1
+            pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
+            type: string
+            x-common: true
+        type_json:
+            description: JSON Representation.
+            type: object
+            x-common: true
+        type_json_schema:
+            description: Represents a JSON Schema.
+            properties:
+                $schema:
+                    enum:
+                        - http://json-schema.org/draft-07/schema#
+                    type: string
+                additionalProperties:
+                    enum:
+                        - false
+                    type: boolean
+                properties:
+                    type: object
+                required:
+                    items:
+                        type: string
+                    type: array
+                    uniqueItems: true
+                type:
+                    enum:
+                        - object
+                    type: string
+            required:
+                - $schema
+                - type
+                - properties
+                - additionalProperties
+                - required
+            type: object
+            x-common: true
+        type_swver:
+            description: Represents a software version in the format Major.Minor.Patch .
+            pattern: ^([0-9]+)\.([0-9]+)\.([0-9]+)(\-[a-zA-Z0-9-]+)*$
+            type: string
+            x-common: true
+    securitySchemes:
+        bxp_api_token:
+            in: header
+            name: X-API-BXP
+            type: apiKey
+        bxp_bearer_auth:
+            scheme: bearer
+            type: http
+info:
+    description: The common Alerts service is available in NetApp Console as a centralized point to insert, query and manage alerts
+    license:
+        name: BlueXP License
+    termsOfService: https://www.netapp.com/media/10784-cloud-data-services-terms.pdf
+    title: (ncl) Alert API
+    version: "1.0"
+paths:
+    /alerts/{alert_id}:
+        get:
+            description: Retrieve information about the specified alert.
+            parameters:
+                - description: Globally unique identifier of the alert source that is reporting this alert.
+                  example: 333a3f38-a4fa-4e32-a371-a37027748a32
+                  in: query
+                  name: originId
+                  required: true
+                  schema:
+                    type: string
+                - description: Unique identifier of the organization to which the user belongs.
+                  example: 3b44d359-d125-4665-b605-49d72c2dd7be
+                  in: query
+                  name: organizationId
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.alert+json:
+                            example:
+                                alertDetails: AutoSupport HTTPS Transport Disabled
+                                alertId: 666a3f38-d4fa-5b62-a391-a69029758d32
+                                alertObjectId: 666a3f38-d4fa-5b62-a391-a69029758e56
+                                alertObjectName: NB-001
+                                alertObjectType: CLUSTER
+                                associatedObjects:
+                                    - objectId: 666a3f38-d4fa-5b62-a391-a69029758e56
+                                      objectName: NB-001
+                                      objectType: CLUSTER
+                                closedOn: "2022-10-09T20:58:16.305662Z"
+                                description: AutoSupport supports HTTPS, HTTP, and SMTP for transport protocols. Because of the sensitive nature of AutoSupport messages, NetApp strongly recommends using HTTPS as the default transport protocol for sending AutoSupport messages to NetApp support.
+                                duration: "86500"
+                                impactArea: SECURITY
+                                lastTrueOccurrence: "2022-10-07T19:58:16.305662Z"
+                                metadata:
+                                    createdBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                    creationTimestamp: "2022-10-05T20:58:16.305662Z"
+                                    labels: []
+                                    modificationTimestamp: "2022-10-09T20:58:16.305662Z"
+                                    modifiedBy: 8f84cf09-8036-51e4-b579-bd30cb07b269
+                                name: AutoSupport HTTPS Transport Disabled
+                                origin: HARVEST
+                                originId: 333a3f38-a4fa-4e32-a371-a37027748a32
+                                owner: John.Doe@akme.com
+                                raisedOn: "2022-10-05T20:58:16.305662Z"
+                                remediation:
+                                    redirectURL: https://www.xyz.com
+                                    text: 'To set HTTPS as the transport protocol for AutoSupport messages, run the following ONTAP command: system node autosupport modify -transport https'
+                                severity: CRITICAL
+                                status: CLOSED
+                                statusHistory:
+                                    - newStatus: CLOSED
+                                      oldStatus: ACTIVE
+                                      timestamp: "2022-10-09T20:58:16.305662Z"
+                                tag:
+                                    metric_name: volume_size_used_percent
+                                    metric_threshold: "90"
+                                    metric_unit: '%'
+                                type: application/vnd.netapp.bxp.alert
+                                version: "1.0"
+                            schema:
+                                $ref: '#/components/schemas/alert_1.0_get_response_body'
+                    description: Returns the stored Alert API resource in the JSON response body.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Retrieves a specific alert resource
+            tags:
+                - Alerts
+            x-permission: bxp:alert-read
+            x-persistence: false
+            x-scope: public,private,nco,ncl
+        parameters:
+            - description: |-
+                Uniquely identifies the alert.
+
+                Identifier generated by the client service to uniquely identify the alert. The Alert service
+                doesn't assign any identifier to alert object.
+              example: 666a3f38-d4fa-5b62-a391-a69029758d32
+              in: path
+              name: alert_id
+              required: true
+              schema:
+                type: string
+    /organizations/{organization_id}/alerts:
+        get:
+            description: Lists all alerts for the specified organization.
+            parameters:
+                - $ref: '#/components/parameters/filter'
+                - $ref: '#/components/parameters/skip'
+                - $ref: '#/components/parameters/include'
+                - $ref: '#/components/parameters/limit'
+                - $ref: '#/components/parameters/order_by'
+                - $ref: '#/components/parameters/count'
+                - $ref: '#/components/parameters/continue'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.alerts+json:
+                            schema:
+                                $ref: '#/components/schemas/alert_1.0_list_response_body'
+                    description: List of all alerts for the organization
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+            summary: Lists all alerts for a specified organization
+            tags:
+                - Alerts
+            x-permission: bxp:alert-read
+            x-persistence: false
+            x-scope: public,private,ncl
+        parameters:
+            - $ref: '#/components/parameters/organization_id'
+    /organizations/{organization_id}/alertsummary:
+        get:
+            description: Retrieves an alert count summary for the specified organization, grouped by impactArea and severity.
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.alertsummary+json:
+                            example:
+                                criticalImpactArea:
+                                    capacity: 1
+                                    performance: 2
+                                    protection: 2
+                                    security: 1
+                                impactArea:
+                                    capacity: 1
+                                    performance: 3
+                                    protection: 5
+                                    security: 1
+                                severity:
+                                    critical: 6
+                                    error: 7
+                                    informational: 15
+                                    warning: 8
+                            schema:
+                                $ref: '#/components/schemas/alertsummary_1.0_get_response_body'
+                    description: Summary of the alerts counts grouped by impactArea and severity.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+            summary: Returns a summary of the alert counts grouped by impactArea and severity.
+            tags:
+                - Alerts
+            x-permission: bxp:alert-read
+            x-persistence: false
+            x-scope: public,private,nco,ncl
+        parameters:
+            - $ref: '#/components/parameters/organization_id'
+    /organizations/{organization_id}/alerttrends:
+        get:
+            description: Retrieves a time-series trend of alert counts for the specified organization, with flexible filtering and grouping.
+            parameters:
+                - description: Start of the time interval (ISO 8601).
+                  in: query
+                  name: startTime
+                  required: true
+                  schema:
+                    format: date-time
+                    type: string
+                - description: End of the time interval (ISO 8601).
+                  in: query
+                  name: endTime
+                  required: true
+                  schema:
+                    format: date-time
+                    type: string
+                - description: Time bucket size (for example, hourly, daily).
+                  in: query
+                  name: granularity
+                  required: true
+                  schema:
+                    enum:
+                        - HOURLY
+                        - DAILY
+                    type: string
+                - description: Filter by alert severity. Repeatable.
+                  in: query
+                  name: severity
+                  schema:
+                    collectionFormat: multi
+                    items:
+                        enum:
+                            - CRITICAL
+                            - WARNING
+                            - INFORMATIONAL
+                        type: string
+                    type: array
+                - description: Filter by impact area. Repeatable.
+                  in: query
+                  name: impactArea
+                  schema:
+                    collectionFormat: multi
+                    items:
+                        enum:
+                            - AVAILABILITY
+                            - CAPACITY
+                            - CONFIGURATION
+                            - PERFORMANCE
+                            - PROTECTION
+                            - SECURITY
+                        type: string
+                    type: array
+                - description: Filter by alert status. Repeatable.
+                  in: query
+                  name: status
+                  schema:
+                    collectionFormat: multi
+                    items:
+                        enum:
+                            - ACTIVE
+                            - CLOSED
+                        type: string
+                    type: array
+                - description: Grouping attributes (for example, severity, impactArea, status). Repeatable.
+                  in: query
+                  name: groupBy
+                  schema:
+                    collectionFormat: multi
+                    items:
+                        enum:
+                            - SEVERITY
+                            - IMPACT_AREA
+                            - STATUS
+                        type: string
+                    type: array
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            example:
+                                buckets:
+                                    - count: 4
+                                      endTime: "2024-05-10T11:00:00Z"
+                                      startTime: "2024-05-10T10:00:00Z"
+                                    - count: 2
+                                      endTime: "2024-05-10T12:00:00Z"
+                                      startTime: "2024-05-10T11:00:00Z"
+                            schema:
+                                $ref: '#/components/schemas/alerttrends_1.0_get_response_body'
+                    description: Time-series trend of alert counts.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Returns a time-series trend of alert counts.
+            tags:
+                - Alerts
+            x-permission: bxp:alert-read
+            x-persistence: false
+            x-scope: public,private,ncl
+        parameters:
+            - $ref: '#/components/parameters/organization_id'
+    /organizations/{organization_id}/fleets/{fleet_id}/alerts:
+        get:
+            description: Lists all alerts for the specified fleet.
+            parameters:
+                - $ref: '#/components/parameters/filter'
+                - $ref: '#/components/parameters/skip'
+                - $ref: '#/components/parameters/include'
+                - $ref: '#/components/parameters/limit'
+                - $ref: '#/components/parameters/order_by'
+                - $ref: '#/components/parameters/count'
+                - $ref: '#/components/parameters/continue'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.alerts+json:
+                            schema:
+                                $ref: '#/components/schemas/alert_1.0_list_response_body'
+                    description: List of all alerts for the fleet
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Lists all alerts for a specified fleet
+            tags:
+                - Alerts
+            x-permission: bxp:alert-read
+            x-persistence: false
+            x-scope: public,private,ncl
+        parameters:
+            - $ref: '#/components/parameters/organization_id'
+            - $ref: '#/components/parameters/fleet_id'
+    /organizations/{organization_id}/fleets/{fleet_id}/alertsummary:
+        get:
+            description: Retrieve an alert count summary for the specified fleet, grouped by impactArea and severity.
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.alertsummary+json:
+                            example:
+                                criticalImpactArea:
+                                    capacity: 1
+                                    performance: 2
+                                    protection: 2
+                                    security: 1
+                                impactArea:
+                                    capacity: 1
+                                    performance: 3
+                                    protection: 5
+                                    security: 1
+                                severity:
+                                    critical: 6
+                                    error: 7
+                                    informational: 15
+                                    warning: 8
+                            schema:
+                                $ref: '#/components/schemas/alertsummary_1.0_get_response_body'
+                    description: Summary of the alert counts for the fleet, grouped by impactArea and severity.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Returns a summary of the alert counts for a fleet, grouped by impactArea and severity.
+            tags:
+                - Alerts
+            x-permission: bxp:alert-read
+            x-persistence: false
+            x-scope: public,private,ncl
+        parameters:
+            - $ref: '#/components/parameters/organization_id'
+            - $ref: '#/components/parameters/fleet_id'
+    /organizations/{organization_id}/fleets/{fleet_id}/alerttrends:
+        get:
+            description: Returns a time-series trend of alert counts for the specified fleet, with flexible filtering and grouping.
+            parameters:
+                - description: Start of the time interval (ISO 8601).
+                  in: query
+                  name: startTime
+                  required: true
+                  schema:
+                    format: date-time
+                    type: string
+                - description: End of the time interval (ISO 8601).
+                  in: query
+                  name: endTime
+                  required: true
+                  schema:
+                    format: date-time
+                    type: string
+                - description: Time bucket size (for example, hourly, daily).
+                  in: query
+                  name: granularity
+                  required: true
+                  schema:
+                    enum:
+                        - HOURLY
+                        - DAILY
+                    type: string
+                - description: Filter by alert severity. Repeatable.
+                  in: query
+                  name: severity
+                  schema:
+                    collectionFormat: multi
+                    items:
+                        enum:
+                            - CRITICAL
+                            - WARNING
+                            - INFORMATIONAL
+                        type: string
+                    type: array
+                - description: Filter by impact area. Repeatable.
+                  in: query
+                  name: impactArea
+                  schema:
+                    collectionFormat: multi
+                    items:
+                        enum:
+                            - AVAILABILITY
+                            - CAPACITY
+                            - CONFIGURATION
+                            - PERFORMANCE
+                            - PROTECTION
+                            - SECURITY
+                        type: string
+                    type: array
+                - description: Filter by alert status. Repeatable.
+                  in: query
+                  name: status
+                  schema:
+                    collectionFormat: multi
+                    items:
+                        enum:
+                            - ACTIVE
+                            - CLOSED
+                        type: string
+                    type: array
+                - description: Grouping attributes (for example, severity, impactArea, status).
+                  in: query
+                  name: groupBy
+                  schema:
+                    collectionFormat: multi
+                    items:
+                        enum:
+                            - SEVERITY
+                            - IMPACT_AREA
+                            - STATUS
+                        type: string
+                    type: array
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            example:
+                                buckets:
+                                    - count: 4
+                                      endTime: "2024-05-10T11:00:00Z"
+                                      startTime: "2024-05-10T10:00:00Z"
+                                    - count: 2
+                                      endTime: "2024-05-10T12:00:00Z"
+                                      startTime: "2024-05-10T11:00:00Z"
+                            schema:
+                                $ref: '#/components/schemas/alerttrends_1.0_get_response_body'
+                    description: Time-series trend of alert counts for the fleet.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Returns a time-series trend of alert counts for a fleet.
+            tags:
+                - Alerts
+            x-permission: bxp:alert-read
+            x-persistence: false
+            x-scope: public,private,ncl
+        parameters:
+            - $ref: '#/components/parameters/organization_id'
+            - $ref: '#/components/parameters/fleet_id'
+    /organizations/{organization_id}/systems/{system_id}/alerts:
+        get:
+            description: Lists all alerts for the specified system.
+            parameters:
+                - $ref: '#/components/parameters/filter'
+                - $ref: '#/components/parameters/skip'
+                - $ref: '#/components/parameters/include'
+                - $ref: '#/components/parameters/limit'
+                - $ref: '#/components/parameters/order_by'
+                - $ref: '#/components/parameters/count'
+                - $ref: '#/components/parameters/continue'
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.alerts+json:
+                            schema:
+                                $ref: '#/components/schemas/alert_1.0_list_response_body'
+                    description: List of all alerts for the system
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Lists all alerts for a specified system
+            tags:
+                - Alerts
+            x-permission: bxp:alert-read
+            x-persistence: false
+            x-scope: public,private,ncl
+        parameters:
+            - $ref: '#/components/parameters/organization_id'
+            - $ref: '#/components/parameters/system_id'
+    /organizations/{organization_id}/systems/{system_id}/alertsummary:
+        get:
+            description: Retrieves an alert count summary for the specified system, grouped by impactArea and severity.
+            responses:
+                "200":
+                    content:
+                        application/vnd.netapp.bxp.alertsummary+json:
+                            example:
+                                criticalImpactArea:
+                                    capacity: 1
+                                    performance: 2
+                                    protection: 2
+                                    security: 1
+                                impactArea:
+                                    capacity: 1
+                                    performance: 3
+                                    protection: 5
+                                    security: 1
+                                severity:
+                                    critical: 6
+                                    error: 7
+                                    informational: 15
+                                    warning: 8
+                            schema:
+                                $ref: '#/components/schemas/alertsummary_1.0_get_response_body'
+                    description: Summary of the alert counts for the system, grouped by impactArea and severity.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Returns a summary of the alert counts for a system, grouped by impactArea and severity.
+            tags:
+                - Alerts
+            x-permission: bxp:alert-read
+            x-persistence: false
+            x-scope: public,private,ncl
+        parameters:
+            - $ref: '#/components/parameters/organization_id'
+            - $ref: '#/components/parameters/system_id'
+    /organizations/{organization_id}/systems/{system_id}/alerttrends:
+        get:
+            description: Retrieves a time-series trend of alert counts for the specified system, with flexible filtering and grouping.
+            parameters:
+                - description: Start of the time interval (ISO 8601).
+                  in: query
+                  name: startTime
+                  required: true
+                  schema:
+                    format: date-time
+                    type: string
+                - description: End of the time interval (ISO 8601).
+                  in: query
+                  name: endTime
+                  required: true
+                  schema:
+                    format: date-time
+                    type: string
+                - description: Time bucket size (for example, hourly, daily).
+                  in: query
+                  name: granularity
+                  required: true
+                  schema:
+                    enum:
+                        - HOURLY
+                        - DAILY
+                    type: string
+                - description: Filter by alert severity. Repeatable.
+                  in: query
+                  name: severity
+                  schema:
+                    collectionFormat: multi
+                    items:
+                        enum:
+                            - CRITICAL
+                            - WARNING
+                            - INFORMATIONAL
+                        type: string
+                    type: array
+                - description: Filter by impact area. Repeatable.
+                  in: query
+                  name: impactArea
+                  schema:
+                    collectionFormat: multi
+                    items:
+                        enum:
+                            - AVAILABILITY
+                            - CAPACITY
+                            - CONFIGURATION
+                            - PERFORMANCE
+                            - PROTECTION
+                            - SECURITY
+                        type: string
+                    type: array
+                - description: Filter by alert status. Repeatable.
+                  in: query
+                  name: status
+                  schema:
+                    collectionFormat: multi
+                    items:
+                        enum:
+                            - ACTIVE
+                            - CLOSED
+                        type: string
+                    type: array
+                - description: Grouping attributes (for example, severity, impactArea, and status).
+                  in: query
+                  name: groupBy
+                  schema:
+                    collectionFormat: multi
+                    items:
+                        enum:
+                            - SEVERITY
+                            - IMPACT_AREA
+                            - STATUS
+                        type: string
+                    type: array
+            responses:
+                "200":
+                    content:
+                        application/json:
+                            example:
+                                buckets:
+                                    - count: 4
+                                      endTime: "2024-05-10T11:00:00Z"
+                                      startTime: "2024-05-10T10:00:00Z"
+                                    - count: 2
+                                      endTime: "2024-05-10T12:00:00Z"
+                                      startTime: "2024-05-10T11:00:00Z"
+                            schema:
+                                $ref: '#/components/schemas/alerttrends_1.0_get_response_body'
+                    description: Time-series trend of alert counts for the system.
+                "400":
+                    $ref: '#/components/responses/400BadRequest'
+                "401":
+                    $ref: '#/components/responses/401Unauthorized'
+                "403":
+                    $ref: '#/components/responses/403Forbidden'
+                "404":
+                    $ref: '#/components/responses/404NotFound'
+            summary: Returns a time-series trend of alert counts for a system.
+            tags:
+                - Alerts
+            x-permission: bxp:alert-read
+            x-persistence: false
+            x-scope: public,private,ncl
+        parameters:
+            - $ref: '#/components/parameters/organization_id'
+            - $ref: '#/components/parameters/system_id'
+security:
+    - bxp_api_token: []
+    - bxp_bearer_auth: []
+servers:
+    - url: '{{.Server}}'
