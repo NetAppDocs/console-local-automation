@@ -54,7 +54,7 @@ link:../asset/get-organizations-aggregates.html[Assets REST API reference]
 
 You can use the Federation endpoints to manage identity federation between the Console local deployment and customer identity providers. Identity federation enables single sign-on with the Console local deployment so that your corporate users can log in using their credentials.
 
-link:../federation/get-organizations-federations-.html[Federation REST API reference]
+link:../federation/get-organizations-federations.html[Federation REST API reference]
 
 == Identity and access management
 
