@@ -1,0 +1,45 @@
+---
+paths:
+  "/organizations/{organization_id}/federations":
+    get:
+      x-doc:
+        title: List federations in NetApp Console local deployment
+        category: 
+        filename: get-organizations-federations.html
+        sidebar_title: List federations
+        subcategory: 
+        explorer: false
+    post:
+      x-doc:
+        title: Create a new federation in NetApp Console local deployment
+        category: 
+        filename: post-organizations-federations.html
+        sidebar_title: Create a new federation
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/federations/{federation_id}":
+    delete:
+      x-doc:
+        title: Delete a federation in NetApp Console local deployment
+        category: 
+        filename: delete-organizations-federations-.html
+        sidebar_title: Delete a federation
+        subcategory: 
+        explorer: false
+    get:
+      x-doc:
+        title: Retrieve a federation in NetApp Console local deployment
+        category: 
+        filename: get-organizations-federations-.html
+        sidebar_title: Retrieve a federation
+        subcategory: 
+        explorer: false
+    patch:
+      x-doc:
+        title: Update a federation in NetApp Console local deployment
+        category: 
+        filename: patch-organizations-federations-.html
+        sidebar_title: Update a federation
+        subcategory: 
+        explorer: false
+

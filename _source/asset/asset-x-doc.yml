@@ -1,0 +1,333 @@
+---
+overview: Assets REST API for NetApp Console local deployment
+permalink: overview.html
+paths:
+  "/organizations/{organization_id}/aggregates":
+    get:
+      x-doc:
+        title: List aggregates in an organization in NetApp Console local deployment
+        category: Aggregate
+        filename: get-organizations-aggregates.html
+        sidebar_title: List aggregates in an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/clusters":
+    get:
+      x-doc:
+        title: List clusters in an organization in NetApp Console local deployment
+        category: Cluster
+        filename: get-organizations-clusters.html
+        sidebar_title: List clusters in an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets":
+    get:
+      x-doc:
+        title: List fleets in NetApp Console local deployment
+        category: Fleet
+        filename: get-organizations-fleets.html
+        sidebar_title: List fleets
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/aggregates":
+    get:
+      x-doc:
+        title: List aggregates in a fleet in NetApp Console local deployment
+        category: Aggregate
+        filename: get-organizations-fleets-aggregates.html
+        sidebar_title: List aggregates in a fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/clusters":
+    get:
+      x-doc:
+        title: List clusters in a fleet in NetApp Console local deployment
+        category: Cluster
+        filename: get-organizations-fleets-clusters.html
+        sidebar_title: List clusters in a fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/luns":
+    get:
+      x-doc:
+        title: List LUNs in NetApp Console local deployment
+        category: Lun
+        filename: get-organizations-fleets-luns.html
+        sidebar_title: List LUNs
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/metricsql":
+    post:
+      x-doc:
+        title: Run a MetricsQL query for systems in the specified fleet in NetApp Console local deployment
+        category: Timeseries
+        filename: post-organizations-fleets-metricsql.html
+        sidebar_title: Run a MetricsQL query for systems in the specified fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/namespaces":
+    get:
+      x-doc:
+        title: List NVMe namespaces in a fleet in NetApp Console local deployment
+        category: Namespace
+        filename: get-organizations-fleets-namespaces.html
+        sidebar_title: List NVMe namespaces in a fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/networkinterfaces":
+    get:
+      x-doc:
+        title: List interfaces in a fleet in NetApp Console local deployment
+        category: Network interface
+        filename: get-organizations-fleets-networkinterfaces.html
+        sidebar_title: List interfaces in a fleet 
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/nodes":
+    get:
+      x-doc:
+        title: List nodes in a fleet in NetApp Console local deployment
+        category: Node
+        filename: get-organizations-fleets-nodes.html
+        sidebar_title: List nodes in a fleet 
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/ports":
+    get:
+      x-doc:
+        title: List ports in a fleet in NetApp Console local deployment
+        category: Port
+        filename: get-organizations-fleets-ports.html
+        sidebar_title: List ports in a fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/qospolicygroups":
+    get:
+      x-doc:
+        title: List QoS policy groups in a fleet in NetApp Console local deployment
+        category: Qos policy group
+        filename: get-organizations-fleets-qospolicygroups.html
+        sidebar_title: List QoS policy groups in a fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/qtrees":
+    get:
+      x-doc:
+        title: List qtrees in a fleet in NetApp Console local deployment
+        category: Qtree
+        filename: get-organizations-fleets-qtrees.html
+        sidebar_title: List qtrees in a fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/smbshares":
+    get:
+      x-doc:
+        title: List SMB shares in a fleet in NetApp Console local deployment
+        category: Smb share
+        filename: get-organizations-fleets-smbshares.html
+        sidebar_title: List SMB shares in a fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/svms":
+    get:
+      x-doc:
+        title: List SVMs in a fleet in NetApp Console local deployment
+        category: Storage virtual machine
+        filename: get-organizations-fleets-svms.html
+        sidebar_title: List SVMs in a fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/timeseries":
+    post:
+      x-doc:
+        title: Retrieve time series data for systems in a fleet in NetApp Console local deployment
+        category: Timeseries
+        filename: post-organizations-fleets-timeseries.html
+        sidebar_title: Retrieve time series data for systems in a fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/fleets/{fleet_id}/volumes":
+    get:
+      x-doc:
+        title: List volumes in a fleet in NetApp Console local deployment
+        category: Volume
+        filename: get-organizations-fleets-volumes.html
+        sidebar_title: List volumes in a fleet
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/folders/{folder_id}/clusters":
+    get:
+      x-doc:
+        title: List clusters in a folder in NetApp Console local deployment
+        category: Cluster
+        filename: get-organizations-folders-clusters.html
+        sidebar_title: List clusters in a folder
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/luns":
+    get:
+      x-doc:
+        title: List LUNs in an organization in NetApp Console local deployment
+        category: Lun
+        filename: get-organizations-luns.html
+        sidebar_title: List LUNs in an organization
+        subcategory: 
+        explorer: false
+    patch:
+      x-doc:
+        title: Create or update multiple LUNs for an organization in NetApp Console local deployment
+        category: Lun
+        filename: patch-organizations-luns.html
+        sidebar_title: Create or update multiple LUNs for an organization 
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/metricsql":
+    post:
+      x-doc:
+        title: Run a MetricsQL query for systems in an organization in NetApp Console local deployment
+        category: Timeseries
+        filename: post-organizations-metricsql.html
+        sidebar_title: Run a MetricsQL query for systems in an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/namespaces":
+    get:
+      x-doc:
+        title: List NVMe namespaces in an organization in NetApp Console local deployment
+        category: Namespace
+        filename: get-organizations-namespaces.html
+        sidebar_title: List NVMe namespaces in an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/networkinterfaces":
+    get:
+      x-doc:
+        title: List interfaces in an organization in NetApp Console local deployment
+        category: Network interface
+        filename: get-organizations-networkinterfaces.html
+        sidebar_title: List interfaces in an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/nodes":
+    get:
+      x-doc:
+        title: List nodes in an organization in NetApp Console local deployment
+        category: Node
+        filename: get-organizations-nodes.html
+        sidebar_title: List nodes in an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/ports":
+    get:
+      x-doc:
+        title: List ports in an organization in NetApp Console local deployment
+        category: Port
+        filename: get-organizations-ports.html
+        sidebar_title: List ports in an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/qospolicygroups":
+    get:
+      x-doc:
+        title: List QoS policy groups in an organization in NetApp Console local deployment
+        category: Qos policy group
+        filename: get-organizations-qospolicygroups.html
+        sidebar_title: List QoS policy groups in an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/qtrees":
+    get:
+      x-doc:
+        title: List qtrees in an organization in NetApp Console local deployment
+        category: Qtree
+        filename: get-organizations-qtrees.html
+        sidebar_title: List qtrees in an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/smbshares":
+    get:
+      x-doc:
+        title: List SMB shares in an organization in NetApp Console local deployment
+        category: Smb share
+        filename: get-organizations-smbshares.html
+        sidebar_title: List SMB shares in an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/svms":
+    get:
+      x-doc:
+        title: List SVMs in an organization in NetApp Console local deployment
+        category: Storage virtual machine
+        filename: get-organizations-svms.html
+        sidebar_title: List SVMs in an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/timeseries":
+    post:
+      x-doc:
+        title: Retrieve time series data for systems in an organization in NetApp Console local deployment
+        category: Timeseries
+        filename: post-organizations-timeseries.html
+        sidebar_title: Retrieve time series data for systems in an organization
+        subcategory: 
+        explorer: false
+  "/organizations/{organization_id}/volumes":
+    get:
+      x-doc:
+        title: List volumes in an organization in NetApp Console local deployment
+        category: Volume
+        filename: get-organizations-volumes.html
+        sidebar_title: List volumes in an organization
+        subcategory: 
+        explorer: false
+    patch:
+      x-doc:
+        title: Create or update multiple volumes for an organization in NetApp Console local deployment
+        category: Volume
+        filename: patch-organizations-volumes.html
+        sidebar_title: Create or update multiple volumes for an organization
+        subcategory: 
+        explorer: false
+categories:
+- id: aggregate
+  title: "Assets API aggregate endpoints"
+  permalink: aggregate_endpoints.html
+- id: cluster
+  title: "Assets API cluster endpoints"
+  permalink: cluster_endpoints.html
+- id: fleet
+  title: "Assets API fleet endpoints"
+  permalink: fleet_endpoints.html
+- id: lun
+  title: "Assets API lun endpoints"
+  permalink: lun_endpoints.html
+- id: namespace
+  title: "Assets API namespace endpoints"
+  permalink: namespace_endpoints.html
+- id: network interface
+  title: "Assets API network interface endpoints"
+  permalink: network_interface_endpoints.html
+- id: node
+  title: "Assets API node endpoints"
+  permalink: node_endpoints.html
+- id: port
+  title: "Assets API port endpoints"
+  permalink: port_endpoints.html
+- id: qos policy group
+  title: "Assets API Qos policy group endpoints"
+  permalink: qos_policy_group_endpoints.html
+- id: qtree
+  title: "Assets API qtree endpoints"
+  permalink: qtree_endpoints.html
+- id: smb share
+  title: "Assets API SMB share endpoints"
+  permalink: smb_share_endpoints.html
+- id: storage virtual machine
+  title: "Assets API storage virtual machine endpoints"
+  permalink: storage_virtual_machine_endpoints.html
+- id: timeseries
+  title: "Assets API timeseries endpoints"
+  permalink: timeseries_endpoints.html
+- id: volume
+  title: "Assets API volume endpoints"
+  permalink: volume_endpoints.html

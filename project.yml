@@ -51,24 +51,24 @@ sidebar:
     entries:
     - title: Retrieve an alert
       url: "/alerts/get-alerts-.html"
-    - title: Retrieve a time-series trend of alert counts for an organization
-      url: "/alerts/get-organizations-alerttrends.html"
-    - title: Retrieve a time-series trend of alert counts for a system
-      url: "/alerts/get-organizations-systems-alerttrends.html"
-    - title: Retrieve a time-series trend of alert counts for a fleet
-      url: "/alerts/get-organizations-fleets-alerttrends.html"
-    - title: Retrieve a summary of the alert counts for a system
-      url: "/alerts/get-organizations-systems-alertsummary.html"
-    - title: Retrieve a summary of the alert counts for a fleet
-      url: "/alerts/get-organizations-fleets-alertsummary.html"
-    - title: Retrieve a summary of alert counts for an organization
-      url: "/alerts/get-organizations-alertsummary.html"
     - title: List all alerts for an organization
       url: "/alerts/get-organizations-alerts.html"
-    - title: List all alerts for a system
-      url: "/alerts/get-organizations-systems-alerts.html"
+    - title: Retrieve a summary of alert counts for an organization
+      url: "/alerts/get-organizations-alertsummary.html"
+    - title: Retrieve a time-series trend of alert counts for an organization
+      url: "/alerts/get-organizations-alerttrends.html"
     - title: List all alerts for a fleet
       url: "/alerts/get-organizations-fleets-alerts.html"
+    - title: Retrieve a summary of the alert counts for a fleet
+      url: "/alerts/get-organizations-fleets-alertsummary.html"
+    - title: Retrieve a time-series trend of alert counts for a fleet
+      url: "/alerts/get-organizations-fleets-alerttrends.html"
+    - title: List all alerts for a system
+      url: "/alerts/get-organizations-systems-alerts.html"
+    - title: Retrieve a summary of the alert counts for a system
+      url: "/alerts/get-organizations-systems-alertsummary.html"
+    - title: Retrieve a time-series trend of alert counts for a system
+      url: "/alerts/get-organizations-systems-alerttrends.html"
   - title: Assets
     entries:
     - title: Aggregate
@@ -159,6 +159,18 @@ sidebar:
         url: "/asset/get-organizations-fleets-volumes.html"
       - title: List volumes in an organization
         url: "/asset/get-organizations-volumes.html"
+  - title: Federation
+    entries:
+    - title: List federations
+      url: "/federation/get-organizations-federations.html"
+    - title: Create a new federation
+      url: "/federation/post-organizations-federations.html"
+    - title: Delete a federation
+      url: "/federation/delete-organizations-federations-.html"
+    - title: Retrieve a federation
+      url: "/federation/get-organizations-federations-.html"
+    - title: Update a federation
+      url: "/federation/patch-organizations-federations-.html"
   - title: Identity and access management
     entries:
     - title: Hierarchy

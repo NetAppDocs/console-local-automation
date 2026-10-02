@@ -50,6 +50,12 @@ Assets include fleets, LUNs, namespaces, network interfaces, nodes, ports, QoS p
 
 link:../asset/get-organizations-aggregates.html[Assets REST API reference]
 
+== Federation
+
+You can use the Federation endpoints to manage identity federation between the Console local deployment and customer identity providers. Identity federation enables single sign-on with the Console local deployment so that your corporate users can log in using their credentials.
+
+link:../federation/get-organizations-federations.html[Federation REST API reference]
+
 == Identity and access management
 
 You can use the identity and access management (IAM) API endpoints to manage and control access to the Console resources.
