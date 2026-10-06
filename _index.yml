@@ -4,6 +4,16 @@ indexpage:
   summary: NetApp Console local deployment is a self-hosted deployment option that lets you run the NetApp Console local deployment control plane in your on-premises environment. NetApp Console local deployment delivers the unified storage management and automation capabilities such as provisioning, policy enforcement, drift detection, and remediation in an isolated deployment that keeps your data, metadata, and management traffic entirely within your own infrastructure.
   keywords: automation, automating, bluexp, netapp, console, local, deployment
   tiles:
+    - title: Get started
+      links:
+        - title: Learn about the NetApp Console local deployment REST APIs
+          url: /platform/learn-about.html
+        - title: Base URL and endpoint paths
+          url: /platform/endpoint-paths.html
+        - title: Authentication and authorization
+          url: /platform/authentication-and-authorization.html
+        - title: Your first API call
+          url: /platform/perform-api-call.html
     - title: Platform services
       links:
         - title: Agentic Platform
