@@ -12,6 +12,8 @@ indexpage:
           url: /alerts/get-alerts-.html
         - title: Assets
           url: /asset/get-organizations-aggregates.html
+        - title: Federation
+          url: /federation/get-organizations-federations.html
         - title: Identity and access management
           url: /tenancyv4/get-fleets.html
         - title: Storage management
