@@ -8,7 +8,7 @@ indexpage:
     links:
     - title: Learn about the NetApp Console local deployment REST APIs
       url: "/platform/learn-about.html"
-    - title: REST Implementation
+    - title: REST implementation
       url: "/platform/rest-implementation.html"
     - title: Base URL and endpoint paths
       url: "/platform/endpoint-paths.html"
