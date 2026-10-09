@@ -4,6 +4,18 @@ sidebar: sidebar
 layout: landing-page
 indexpage:
   tiles:
+  - title: Get started
+    links:
+    - title: Learn about the NetApp Console local deployment REST APIs
+      url: "/platform/learn-about.html"
+    - title: REST implementation
+      url: "/platform/rest-implementation.html"
+    - title: Base URL and endpoint paths
+      url: "/platform/endpoint-paths.html"
+    - title: Authentication and authorization
+      url: "/platform/authentication.html"
+    - title: Your first API call
+      url: "/platform/perform-api-call.html"
   - title: Platform services
     links:
     - title: Agentic Platform
@@ -12,6 +24,8 @@ indexpage:
       url: "/alerts/get-alerts-.html"
     - title: Assets
       url: "/asset/get-organizations-aggregates.html"
+    - title: Federation
+      url: "/federation/get-organizations-federations.html"
     - title: Identity and access management
       url: "/tenancyv4/get-fleets.html"
     - title: Storage management

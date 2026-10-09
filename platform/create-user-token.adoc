@@ -12,7 +12,7 @@ summary: Workflow for obtaining a user access token from the local identity prov
 :imagesdir: ../media/
 
 [.lead]
-You need a user access token to authenticate REST API calls on behalf of a local user in the NetApp Console local deployment. The token is obtained directly from the local identity provider on the Console local deployment instance. 
+You need a user access token to authenticate REST API calls on behalf of a local user in the NetApp Console local deployment. The token is obtained directly from the local identity provider on the Console local deployment instance.  
 
 .Before you begin
 
