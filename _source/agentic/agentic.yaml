@@ -800,7 +800,7 @@ components:
             type: object
         provider_credentials_commonOpenAI_config:
             additionalProperties: false
-            description: Generic OpenAI-compatible API configuration (for custom/self-hosted LLM proxies).  Duplicate models with equivalent dot/dash notation are merged; the first occurrence is returned. `commonOpenAI` is an alias for the OpenAI provider with a custom baseUrl. Both map to the same AgentGateway backend type.
+            description: Generic OpenAI-compatible LLM proxy configuration
             properties:
                 apiKey:
                     description: API key for the OpenAI-compatible service

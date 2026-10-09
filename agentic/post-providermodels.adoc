@@ -46,7 +46,7 @@ a|Anthropic Claude provider-specific configuration
 |commonOpenAI
 |link:#provider_credentials_commonOpenAI_config[provider_credentials_commonOpenAI_config]
 |False
-a|Generic OpenAI-compatible API configuration (for custom/self-hosted LLM proxies).  Duplicate models with equivalent dot/dash notation are merged; the first occurrence is returned. `commonOpenAI` is an alias for the OpenAI provider with a custom baseUrl. Both map to the same AgentGateway backend type.
+a|Generic OpenAI-compatible LLM proxy configuration
 
 
 |openai
@@ -475,7 +475,7 @@ Hash mapping strings to string
 [.api-collapsible-fifth-title]
 provider_credentials_commonOpenAI_config
 
-Generic OpenAI-compatible API configuration (for custom/self-hosted LLM proxies).  Duplicate models with equivalent dot/dash notation are merged; the first occurrence is returned. `commonOpenAI` is an alias for the OpenAI provider with a custom baseUrl. Both map to the same AgentGateway backend type.
+Generic OpenAI-compatible LLM proxy configuration
 
 
 [cols=4*,options=header]
