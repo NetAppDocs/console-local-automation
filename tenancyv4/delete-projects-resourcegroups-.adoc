@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-projects-resourcegroups-.html'
+keywords: 'remove resource group,remove resource group association,project resource management,remove from project,resource management'
 summary: 'Remove a resource group from a project in NetApp Console local deployment'
 ---
 
 = Remove a resource group from a project in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/projects/{project_id}/resourcegroups/{resourcegroup_id}`#
-
-
-
+[.lead]
 Removes a resource group from the specified project.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/projects/{project_id}/resourcegroups/{resourcegroup_id}`#
 
 == Parameters
 

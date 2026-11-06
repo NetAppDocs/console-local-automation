@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-roles-permissions.html'
+keywords: 'role permissions,add permissions,role management,access control,modify role'
 summary: 'Add a list of permissions to a role in NetApp Console local deployment'
 ---
 
 = Add a list of permissions to a role in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/roles/{role_id}/permissions`#
-
-
-
+[.lead]
 Adds a list of permissions to the specified role.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/roles/{role_id}/permissions`#
 
 == Parameters
 

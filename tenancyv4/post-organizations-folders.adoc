@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-organizations-folders.html'
+keywords: 'create folder,organization folder,folder management,new organization folder,netapp console'
 summary: 'Create a new folder under an organization in NetApp Console local deployment'
 ---
 
 = Create a new folder under an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/folders`#
-
-
-
+[.lead]
 Creates a new folder under the specified organization.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/folders`#
 
 == Request Body
 

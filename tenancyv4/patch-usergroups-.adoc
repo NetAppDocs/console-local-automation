@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/patch-usergroups-.html'
+keywords: 'user group update,modify user group,user group patch,edit user group,update user group,partial user group update'
 summary: 'Update a user group partially in NetApp Console local deployment'
 ---
 
 = Update a user group partially in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/usergroups/{usergroup_id}`#
-
-
-
+[.lead]
 Updates the specified user group with partial information.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/usergroups/{usergroup_id}`#
 
 == Parameters
 

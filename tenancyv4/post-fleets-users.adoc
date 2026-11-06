@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-fleets-users.html'
+keywords: 'associate user,fleet users,user association,fleet management,fleet id'
 summary: 'Create a new user association under a fleet in NetApp Console local deployment'
 ---
 
 = Create a new user association under a fleet in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/fleets/{fleet_id}/users`#
-
-
-
+[.lead]
 Creates a user association under the specified fleet.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/fleets/{fleet_id}/users`#
 
 == Parameters
 

@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-folders-fleets.html'
+keywords: 'create fleet,folder fleet,folder management,fleet creation,fleet under folder'
 summary: 'Create a new fleet under a folder in NetApp Console local deployment'
 ---
 
 = Create a new fleet under a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/folders/{folder_id}/fleets`#
-
-
-
+[.lead]
 Creates a fleet under the specified folder.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/folders/{folder_id}/fleets`#
 
 == Parameters
 

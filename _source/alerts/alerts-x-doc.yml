@@ -11,6 +11,10 @@ paths:
         sidebar_title: Retrieve an alert
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: alert information,alert retrieval,alert details,alert source,organization
+            alert
+          lead: Retrieves the specified alert in a NetApp Console local deployment.
   "/alerts/agents":
     get:
       x-doc:
@@ -63,6 +67,11 @@ paths:
         sidebar_title: List all alerts for an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization alerts,alerts list,organization id,alerts retrieval,alerts
+            management
+          lead: Retrieves all alerts for the specified organization in a NetApp Console
+            local deployment.
     patch:
       x-doc:
         title: Create or replace alerts for an organization in NetApp Console local deployment
@@ -80,6 +89,11 @@ paths:
         sidebar_title: Retrieve a summary of alert counts for an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization alert,alert summary,impact area,severity count,alert
+            count
+          lead: Retrieves a summary of alert counts for the specified organization,
+            grouped by impact area and severity.
   "/organizations/{organization_id}/alerttrends":
     get:
       x-doc:
@@ -89,6 +103,11 @@ paths:
         sidebar_title: Retrieve a time-series trend of alert counts for an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: trend analysis,alert trends,time series,alert counts,organization
+            alerts,severity filter
+          lead: Retrieves a time-series trend of alert counts for the specified organization,
+            with options for filtering and grouping the data.
   "/organizations/{organization_id}/fleets/{fleet_id}/alerts":
     get:
       x-doc:
@@ -98,6 +117,10 @@ paths:
         sidebar_title: List all alerts for a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization alerts,fleet alerts,alerts list,alerts retrieval,fleet
+            monitoring
+          lead: Retrieves all alerts for the specified fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/alertsummary":
     get:
       x-doc:
@@ -107,6 +130,11 @@ paths:
         sidebar_title:  Retrieve a summary of the alert counts for a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization fleet,impact area,severity summary,alert count,fleet
+            alerts
+          lead: Retrieves a summary of alert counts for the specified fleet, grouped
+            by impact area and severity.
   "/organizations/{organization_id}/fleets/{fleet_id}/alerttrends":
     get:
       x-doc:
@@ -116,6 +144,11 @@ paths:
         sidebar_title: Retrieve a time-series trend of alert counts for a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: fleet alert trends,time series alerts,alert count trends,alert
+            severity filter,alert impact area
+          lead: Retrieves a time-series trend of alert counts for the specified fleet,
+            with options for filtering and grouping the data.
   "/organizations/{organization_id}/systems/{system_id}/alerts":
     get:
       x-doc:
@@ -125,6 +158,11 @@ paths:
         sidebar_title: List all alerts for a system
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: alerts,system alerts,organization alerts,alert list,system monitoring,network
+            alerts
+          lead: Retrieves all alerts for the specified system in a NetApp Console local
+            deployment.
   "/organizations/{organization_id}/systems/{system_id}/alertsummary":
     get:
       x-doc:
@@ -134,6 +172,11 @@ paths:
         sidebar_title: Retrieve a summary of the alert counts for a system
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: alert summary,impact area,severity count,system alerts,organization
+            system
+          lead: Retrieves a summary of alert counts for the specified system, grouped
+            by impact area and severity.
   "/organizations/{organization_id}/systems/{system_id}/alerttrends":
     get:
       x-doc:
@@ -143,3 +186,8 @@ paths:
         sidebar_title: Retrieve a time-series trend of alert counts for a system
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: alert trends,alert counts,time series,severity filter,impact
+            area
+          lead: Retrieves a time-series trend of alert counts for the specified system,
+            with options for filtering and grouping the data.

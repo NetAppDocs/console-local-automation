@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/patch-permissions-.html'
+keywords: 'update permission,permission id,partial update,modify permission,edit permission'
 summary: 'Update a permission partially in NetApp Console local deployment'
 ---
 
 = Update a permission partially in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Updates a permission with partial information to modify specific aspects of the permission without altering its entire configuration.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/permissions/{permission_id}`#
-
-
-
-Updates a permission with partial information.
-
 
 == Parameters
 

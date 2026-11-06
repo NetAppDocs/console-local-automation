@@ -3,17 +3,23 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/patch-v1-organizations-securitypolicies-.html'
+keywords: 'modify security policy,update security policy,security policy management,organization security policy,user-defined security policy'
 summary: 'Update a security policy in NetApp Console local deployment'
 ---
 
 = Update a security policy in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Modifies an existing security policy that has no associated workloads and is not system-defined.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/v1/organizations/{organizationId}/securitypolicies/{securityPolicyId}`#
 
+== Usage notes
 
-
-Modifies an existing security policy. Include only the fields you want to update in the request.
+Include only the fields you want to update in the request.
 The security policy can only be modified if there is no workload associated with it and if it is not system-defined.
 
 

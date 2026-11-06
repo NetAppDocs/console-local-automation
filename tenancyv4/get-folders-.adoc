@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-folders-.html'
+keywords: 'retrieve folder,folder details,folder id,specified folder,folder information'
 summary: 'Retrieve a folder in NetApp Console local deployment'
 ---
 
 = Retrieve a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves the specified folder in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/folders/{folder_id}`#
-
-
-
-Retrieves the specified folder.
-
 
 == Parameters
 

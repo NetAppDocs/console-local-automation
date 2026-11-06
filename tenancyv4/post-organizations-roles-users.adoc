@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-organizations-roles-users.html'
+keywords: 'associate users,role association,user role,organization role,role management'
 summary: 'Associate users in an organization with a role in NetApp Console local deployment'
 ---
 
 = Associate users in an organization with a role in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Associates users with a role in a specified organization.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/roles/{role_id}/users`#
 
-
+== Usage notes
 
 Associates users with a role under the specified organization.
 

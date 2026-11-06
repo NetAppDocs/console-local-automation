@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-fleets-.html'
+keywords: 'delete fleet,fleet removal,fleet management,fleet id,fleet operations'
 summary: 'Delete a fleet in NetApp Console local deployment'
 ---
 
 = Delete a fleet in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Deletes the specified fleet in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/fleets/{fleet_id}`#
-
-
-
-Deletes the specified fleet.
-
 
 == Parameters
 

@@ -3,17 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-projects.html'
+keywords: 'project list,backward compatibility,project endpoint,deprecation notice,netapp console'
 summary: 'List all projects in NetApp Console local deployment'
 ---
 
 = List all projects in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Lists all projects. This endpoint is deprecated in a NetApp Console local deployment; use the corresponding fleet endpoint instead.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/projects`#
 
-
-
-Lists all projects.
+== Usage notes
 
 NOTE: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available https://docs.netapp.com/us-en/console-local-automation/tenancyv4/get-fleets.html[here].
 

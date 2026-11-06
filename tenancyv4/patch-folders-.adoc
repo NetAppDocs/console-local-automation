@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/patch-folders-.html'
+keywords: 'update folder,folder management,folder patch,partial update,folder id'
 summary: 'Update a folder partially in NetApp Console local deployment'
 ---
 
 = Update a folder partially in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/folders/{folder_id}`#
-
-
-
+[.lead]
 Updates the specified folder with partial information.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/folders/{folder_id}`#
 
 == Parameters
 

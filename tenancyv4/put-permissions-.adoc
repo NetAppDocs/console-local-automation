@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/put-permissions-.html'
+keywords: 'replace permission,update permission,permission id,modify permission,permissions endpoint'
 summary: 'Modify a permission in NetApp Console local deployment'
 ---
 
 = Modify a permission in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Replaces the specified permission with new information in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-put]#PUT# [.api-doc-code-block]#`/permissions/{permission_id}`#
-
-
-
-Replaces the specified permission with new information.
-
 
 == Parameters
 

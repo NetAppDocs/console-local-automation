@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/patch-fleets-.html'
+keywords: 'update fleet,fleet management,fleet patch,fleet modification,fleet update'
 summary: 'Partially update a fleet in NetApp Console local deployment'
 ---
 
 = Partially update a fleet in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Updates a fleet with partial information in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/fleets/{fleet_id}`#
 
-
+== Usage notes
 
 Updates the specified fleet with partial information.
 

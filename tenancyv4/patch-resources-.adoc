@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/patch-resources-.html'
+keywords: 'update resource,resource update,resource patch,partial resource update,resource id,resource modification'
 summary: 'Update a resource in NetApp Console local deployment'
 ---
 
 = Update a resource in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Updates the specified resource with partial information to modify aspects of the resource without needing to provide complete data.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/resources/{resource_id}`#
-
-
-
-Updates the specified resource with partial information.
-
 
 == Parameters
 

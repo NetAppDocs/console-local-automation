@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-folders.html'
+keywords: 'list folders,folder collection,resource organization,IAM folders,folder hierarchy'
 summary: 'List all folders in NetApp Console local deployment'
 ---
 
 = List all folders in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all folders in the collection for a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/folders`#
 
-
+== Usage notes
 
 Lists all folders in the collection.
 

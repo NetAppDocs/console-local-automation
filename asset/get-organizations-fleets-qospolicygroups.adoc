@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'asset/get-organizations-fleets-qospolicygroups.html'
+keywords: 'qos policy,policy groups,fleet qos,qos policy group list,organization fleet,qos groups'
 summary: 'List QoS policy groups in a fleet in NetApp Console local deployment'
 ---
 
 = List QoS policy groups in a fleet in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves QoS policy groups in the specified fleet.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/qospolicygroups`#
 
-
+== Usage notes
 
 Lists all QoS policy groups in the specified fleet.
 

@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'asset/post-organizations-metricsql.html'
+keywords: 'metricsql query,organization systems,time series data,run query,raw metricsql'
 summary: 'Run a MetricsQL query for systems in an organization in NetApp Console local deployment'
 ---
 
 = Run a MetricsQL query for systems in an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Runs a raw MetricsQL query against time series data for systems in an organization.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/metricsql`#
 
-
+== Usage notes
 
 Run a raw MetricsQL query against time series data for systems in an organization.
 

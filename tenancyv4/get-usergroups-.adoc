@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-usergroups-.html'
+keywords: 'user group,retrieve usergroup,usergroup id,usergroup details,usergroup information'
 summary: 'Retrieve a user group in NetApp Console local deployment'
 ---
 
 = Retrieve a user group in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a user group in a NetApp Console local deployment, providing access to specific user group configurations.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/usergroups/{usergroup_id}`#
 
-
+== Usage notes
 
 Retrieves the specified user group.
 

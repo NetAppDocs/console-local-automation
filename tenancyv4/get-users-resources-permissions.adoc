@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-users-resources-permissions.html'
+keywords: 'user permissions,resource permissions,resource access,user access,user rights,resource rights'
 summary: 'List all permissions a user has for a resource in NetApp Console local deployment'
 ---
 
 = List all permissions a user has for a resource in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all permissions a user has for a specified resource.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/users/{user_id}/resources/{resource_id}/permissions`#
 
-
+== Usage notes
 
 Lists all permissions a user has for the specified resource.
 

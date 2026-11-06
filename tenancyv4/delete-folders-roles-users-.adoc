@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-folders-roles-users-.html'
+keywords: 'remove user,folder management,role assignment removal,user access,folder permissions'
 summary: 'Remove a user from a folder in NetApp Console local deployment'
 ---
 
 = Remove a user from a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/folders/{folder_id}/roles/{role_id}/users/{user_id}`#
-
-
-
+[.lead]
 Removes a user from the specified folder.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/folders/{folder_id}/roles/{role_id}/users/{user_id}`#
 
 == Parameters
 

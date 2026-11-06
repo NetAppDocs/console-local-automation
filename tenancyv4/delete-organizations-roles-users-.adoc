@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-organizations-roles-users-.html'
+keywords: 'remove user,organization roles,user removal,organization management,role management'
 summary: 'Remove a user from an organization in NetApp Console local deployment'
 ---
 
 = Remove a user from an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/organizations/{organization_id}/roles/{role_id}/users/{user_id}`#
-
-
-
+[.lead]
 Removes a user from the specified organization.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/organizations/{organization_id}/roles/{role_id}/users/{user_id}`#
 
 == Parameters
 

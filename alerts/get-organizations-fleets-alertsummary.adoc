@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'alerts/get-organizations-fleets-alertsummary.html'
+keywords: 'organization fleet,impact area,severity summary,alert count,fleet alerts'
 summary: 'Retrieve a summary of the alert counts for a fleet in NetApp Console local deployment'
 ---
 
 = Retrieve a summary of the alert counts for a fleet in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a summary of alert counts for the specified fleet, grouped by impact area and severity.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/alertsummary`#
 
-
+== Usage notes
 
 Retrieve an alert count summary for the specified fleet, grouped by impactArea and severity.
 

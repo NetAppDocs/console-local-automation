@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-organizations-fleets.html'
+keywords: 'organization fleet,create fleet,new fleet,fleet creation,organization fleet creation'
 summary: 'Create a new fleet under an organization in NetApp Console local deployment'
 ---
 
 = Create a new fleet under an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Creates a new fleet under an organization in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/fleets`#
 
-
+== Usage notes
 
 Creates a new fleet under the specified organization.
 

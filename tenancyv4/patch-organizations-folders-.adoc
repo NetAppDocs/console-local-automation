@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/patch-organizations-folders-.html'
+keywords: 'update folder,organization folder,folder management,partial update,organization id'
 summary: 'Update a folder under an organization partially in NetApp Console local deployment'
 ---
 
 = Update a folder under an organization partially in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Updates a folder under the specified organization, allowing partial modifications to its information.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/organizations/{organization_id}/folders/{folder_id}`#
 
-
+== Usage notes
 
 Updates a folder under the specified organization with partial information.
 

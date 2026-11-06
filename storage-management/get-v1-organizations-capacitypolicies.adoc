@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/get-v1-organizations-capacitypolicies.html'
+keywords: 'organization capacity,capacity policies,organization policies,list policies,capacity management'
 summary: 'List all capacity policies for an organization in NetApp Console local deployment'
 ---
 
 = List all capacity policies for an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all capacity policies for an organization in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/v1/organizations/{organizationId}/capacitypolicies`#
 
-
+== Usage notes
 
 Lists all capacity policies in the specified organization.
 

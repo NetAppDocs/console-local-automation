@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/put-organizations-folders-.html'
+keywords: 'organization folder,replace folder,folder update,organization management,folder management'
 summary: 'Update a folder under an organization in NetApp Console local deployment'
 ---
 
 = Update a folder under an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Updates a folder under an organization by replacing it with new information.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-put]#PUT# [.api-doc-code-block]#`/organizations/{organization_id}/folders/{folder_id}`#
 
-
+== Usage notes
 
 Replaces a folder under the specified organization with new information.
 

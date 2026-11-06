@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'asset/get-organizations-folders-clusters.html'
+keywords: 'organization clusters,folder clusters,list clusters,folder id,organization id'
 summary: 'List clusters in a folder in NetApp Console local deployment'
 ---
 
 = List clusters in a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves clusters within the specified folder in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/folders/{folder_id}/clusters`#
 
-
+== Usage notes
 
 Lists all clusters in the specified folder.
 

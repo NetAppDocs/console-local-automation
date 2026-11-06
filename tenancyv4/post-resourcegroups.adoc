@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-resourcegroups.html'
+keywords: 'create resource group,resource group creation,new resource group,resource management,group setup'
 summary: 'Create a new resource group in NetApp Console local deployment'
 ---
 
 = Create a new resource group in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Creates a new resource group in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/resourcegroups`#
-
-
-
-Creates a new resource group.
-
 
 == Request Body
 

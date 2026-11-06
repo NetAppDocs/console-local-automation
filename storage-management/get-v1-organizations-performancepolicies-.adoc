@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/get-v1-organizations-performancepolicies-.html'
+keywords: 'performance policy,organization identifier,performance policy identifier,performance policy retrieval,performance policy details'
 summary: 'Retrieve a performance policy in NetApp Console local deployment'
 ---
 
 = Retrieve a performance policy in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a performance policy within the specified organization using its unique identifier.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/v1/organizations/{organizationId}/performancepolicies/{performancePolicyId}`#
 
-
+== Usage notes
 
 Retrieves a performance policy by using its unique identifer within the specified organization.
 

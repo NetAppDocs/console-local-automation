@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/patch-v1-organizations-capacitypolicies-.html'
+keywords: 'organization capacity,capacity policy,update capacity policy,capacity policy management,policy update'
 summary: 'Update a capacity policy in NetApp Console local deployment'
 ---
 
 = Update a capacity policy in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/v1/organizations/{organizationId}/capacitypolicies/{capacityPolicyId}`#
-
-
-
+[.lead]
 Updates the specified capacity policy.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/v1/organizations/{organizationId}/capacitypolicies/{capacityPolicyId}`#
 
 == Parameters
 

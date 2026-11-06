@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-resourcetypes.html'
+keywords: 'resource type,resource class,legacy resource,create resource type,resource description'
 summary: 'Create a new resource type in NetApp Console local deployment'
 ---
 
 = Create a new resource type in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Creates a new resource type in a NetApp Console local deployment. Specify the resource class, type, and description to define the desired values for the ResourceType API resource.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/resourcetypes`#
 
-
+== Usage notes
 
 Indicates the desired values for the ResourceType API resource to be created. You need to specify at least resourceClass, resourceType and description. If this Resource Class/Type is a translation for a legacy Class/Type, the legacyResourceClass and legacyResourceType fields should contain the associated legacy values.
 

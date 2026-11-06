@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-resourcetypes.html'
+keywords: 'resource types,matching resource types,json array,resource type collection,data retrieval'
 summary: 'List all resource types in NetApp Console local deployment'
 ---
 
 = List all resource types in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all resource types in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/resourcetypes`#
 
-
+== Usage notes
 
 Returns a JSON array of all matching resources in the collection.
 

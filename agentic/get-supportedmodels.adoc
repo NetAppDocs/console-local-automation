@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'agentic/get-supportedmodels.html'
+keywords: 'large language models,supported models,agentic platform,llm models,model provider,model type'
 summary: 'List all available LLM models supported by the Agentic Platform in NetApp Console local deployment'
 ---
 
 = List all available LLM models supported by the Agentic Platform in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a list of large language models (LLMs) supported by the Agentic Platform.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/supportedModels`#
 
-
+== Usage notes
 
 Returns a list of all available Large Language Model (LLM) models that can be used with the Agentic Platform.
 

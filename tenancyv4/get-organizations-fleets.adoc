@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-organizations-fleets.html'
+keywords: 'organization fleets,fleet list,fleet management,organization resources,fleet overview'
 summary: 'List all fleets under an organization in NetApp Console local deployment'
 ---
 
 = List all fleets under an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets`#
-
-
-
+[.lead]
 Lists all fleets under the specified organization.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets`#
 
 == Parameters
 

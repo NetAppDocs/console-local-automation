@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/patch-users-.html'
+keywords: 'user update,user modification,partial user update,user information,user changes'
 summary: 'Update a user partially in NetApp Console local deployment'
 ---
 
 = Update a user partially in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Updates the specified user with partial information in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/users/{user_id}`#
-
-
-
-Updates the specified user with partial information.
-
 
 == Parameters
 

@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-organizations-fleets-.html'
+keywords: 'organization management,fleet removal,remove fleet association,fleet management,remove fleet'
 summary: 'Remove a fleet from an organization in NetApp Console local deployment'
 ---
 
 = Remove a fleet from an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}`#
-
-
-
+[.lead]
 Removes a fleet from the specified organization.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}`#
 
 == Parameters
 

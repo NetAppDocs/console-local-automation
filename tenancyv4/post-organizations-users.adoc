@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-organizations-users.html'
+keywords: 'add users,organization users,user association,organization management,user addition,organization id'
 summary: 'Add users to an organization in NetApp Console local deployment'
 ---
 
 = Add users to an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Adds users to an organization.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/users`#
 
-
+== Usage notes
 
 Adds users to the specified organization.
 

@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/put-organizations-.html'
+keywords: 'organizations update,organization replace,organization modify,organization management,organization id'
 summary: 'Modify an organization in NetApp Console local deployment'
 ---
 
 = Modify an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-put]#PUT# [.api-doc-code-block]#`/organizations/{organization_id}`#
-
-
-
+[.lead]
 Replaces the specified organization with new information.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-put]#PUT# [.api-doc-code-block]#`/organizations/{organization_id}`#
 
 == Parameters
 

@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/delete-v1-organizations-securitypolicies-.html'
+keywords: 'security policy,security policy id,delete security policy,organization security,workload association,user-defined security policy'
 summary: 'Delete a security policy in NetApp Console local deployment'
 ---
 
 = Delete a security policy in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Deletes a security policy that is not associated with any workload and is not system-defined.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/v1/organizations/{organizationId}/securitypolicies/{securityPolicyId}`#
 
-
+== Usage notes
 
 Deletes an existing security policy.
 The security policy can only be deleted if there is no workload associated with it and it is not system-defined.

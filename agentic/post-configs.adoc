@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'agentic/post-configs.html'
+keywords: 'configuration record,draft state,hot reload,draft configuration,provider credentials'
 summary: 'Create a new draft Agentic Platform configuration in NetApp Console local deployment'
 ---
 
 = Create a new draft Agentic Platform configuration in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Creates a draft configuration for the Agentic Platform in a NetApp Console local deployment. Use PATCH /configs/{config_id} to apply the configuration and trigger a hot reload.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/configs`#
 
-
+== Usage notes
 
 Creates a configuration record in DRAFT state. No AgentGateway resources are created. Use `+PATCH /configs/{id}+` to apply the configuration and trigger a hot reload.
 

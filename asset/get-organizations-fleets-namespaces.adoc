@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'asset/get-organizations-fleets-namespaces.html'
+keywords: 'nvme namespaces,fleet namespaces,organization namespaces,namespace list,nvme fleet,nvme organization'
 summary: 'List NVMe namespaces in a fleet in NetApp Console local deployment'
 ---
 
 = List NVMe namespaces in a fleet in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/namespaces`#
-
-
-
+[.lead]
 Lists all NVMe namespaces in the specified fleet.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/namespaces`#
 
 == Parameters
 

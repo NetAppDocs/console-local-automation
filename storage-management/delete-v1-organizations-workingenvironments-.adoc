@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/delete-v1-organizations-workingenvironments-.html'
+keywords: 'remove system,delete system,on-premises removal,organization system,delete working environment'
 summary: 'Delete a system in NetApp Console local deployment'
 ---
 
 = Delete a system in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Removes the specified on-premises system from an organization in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}`#
-
-
-
-Removes the specified on-premises system from an organization.
-
 
 == Parameters
 

@@ -11,6 +11,10 @@ paths:
         sidebar_title: List aggregates in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization aggregates,aggregate list,organization storage,aggregate
+            details,storage aggregates
+          lead: Retrieves aggregates in the specified organization.
   "/organizations/{organization_id}/clusters":
     get:
       x-doc:
@@ -20,6 +24,10 @@ paths:
         sidebar_title: List clusters in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization clusters,organization cluster list,cluster listing,cluster
+            inventory,organization cluster overview
+          lead: Retrieves clusters within the specified organization.
   "/organizations/{organization_id}/fleets":
     get:
       x-doc:
@@ -29,6 +37,10 @@ paths:
         sidebar_title: List fleets
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization fleets,fleet list,fleet details,fleet inventory,fleet
+            overview
+          lead: Retrieves a list of fleets within the specified organization.
   "/organizations/{organization_id}/fleets/{fleet_id}/aggregates":
     get:
       x-doc:
@@ -38,6 +50,10 @@ paths:
         sidebar_title: List aggregates in a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization aggregates,fleet aggregates,list aggregates,storage
+            aggregates,data aggregates
+          lead: Retrieves all aggregates in the specified fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/clusters":
     get:
       x-doc:
@@ -47,6 +63,10 @@ paths:
         sidebar_title: List clusters in a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization clusters,fleet clusters,list clusters,organization
+            fleet,cluster list,fleet details
+          lead: Retrieves clusters in the specified fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/luns":
     get:
       x-doc:
@@ -56,6 +76,10 @@ paths:
         sidebar_title: List LUNs
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization luns,fleet luns,storage luns,organization fleet,fleet
+            storage
+          lead: Retrieves a list of LUNs in the specified fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/metricsql":
     post:
       x-doc:
@@ -65,6 +89,11 @@ paths:
         sidebar_title: Run a MetricsQL query for systems in the specified fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: metricsql query,time series data,fleet systems,organization fleet,metrics
+            data
+          lead: Runs a raw MetricsQL query against time series data for systems in
+            the specified fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/namespaces":
     get:
       x-doc:
@@ -74,6 +103,10 @@ paths:
         sidebar_title: List NVMe namespaces in a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: nvme namespaces,fleet namespaces,organization namespaces,namespace
+            list,nvme fleet,nvme organization
+          lead: Lists all NVMe namespaces in the specified fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/networkinterfaces":
     get:
       x-doc:
@@ -83,6 +116,10 @@ paths:
         sidebar_title: List interfaces in a fleet 
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization interfaces,fleet network,network interfaces,list
+            interfaces,fleet details
+          lead: Retrieves a list of interfaces in the specified fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/nodes":
     get:
       x-doc:
@@ -92,6 +129,9 @@ paths:
         sidebar_title: List nodes in a fleet 
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization nodes,list nodes,node fleet,fleet details,node details
+          lead: Retrieves nodes in the specified fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/ports":
     get:
       x-doc:
@@ -101,6 +141,9 @@ paths:
         sidebar_title: List ports in a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization ports,fleet ports,network ports,port list,port inventory
+          lead: Retrieves all ports in the specified fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/qospolicygroups":
     get:
       x-doc:
@@ -110,6 +153,10 @@ paths:
         sidebar_title: List QoS policy groups in a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: qos policy,policy groups,fleet qos,qos policy group list,organization
+            fleet,qos groups
+          lead: Retrieves QoS policy groups in the specified fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/qtrees":
     get:
       x-doc:
@@ -119,6 +166,10 @@ paths:
         sidebar_title: List qtrees in a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: qtrees,fleet qtrees,organization fleets,list qtrees,storage inventory,qtree
+            details
+          lead: Retrieves all qtrees in the specified fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/smbshares":
     get:
       x-doc:
@@ -128,6 +179,10 @@ paths:
         sidebar_title: List SMB shares in a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization smb shares,fleet smb shares,smb share list,smb shares,organization
+            fleet shares
+          lead: Retrieves all SMB shares in the specified fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/svms":
     get:
       x-doc:
@@ -137,6 +192,9 @@ paths:
         sidebar_title: List SVMs in a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization svms,fleet svms,list svms,fleet details,svm inventory
+          lead: Retrieves all storage virtual machines (SVMs) in the specified fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/timeseries":
     post:
       x-doc:
@@ -146,6 +204,10 @@ paths:
         sidebar_title: Retrieve time series data for systems in a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organizations,fleets,time series,data retrieval,systems,fleet
+            analysis
+          lead: Retrieves time series data for systems in a fleet.
   "/organizations/{organization_id}/fleets/{fleet_id}/volumes":
     get:
       x-doc:
@@ -155,6 +217,10 @@ paths:
         sidebar_title: List volumes in a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization volumes,fleet volumes,list volumes,volume listing,organization
+            fleet volumes
+          lead: Retrieves all volumes in the specified fleet.
   "/organizations/{organization_id}/folders/{folder_id}/clusters":
     get:
       x-doc:
@@ -164,6 +230,11 @@ paths:
         sidebar_title: List clusters in a folder
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization clusters,folder clusters,list clusters,folder id,organization
+            id
+          lead: Retrieves clusters within the specified folder in a NetApp Console local
+            deployment.
   "/organizations/{organization_id}/luns":
     get:
       x-doc:
@@ -173,6 +244,10 @@ paths:
         sidebar_title: List LUNs in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization luns,list luns,storage organization,find luns,lun
+            inventory
+          lead: Retrieves all LUNs in the specified organization.
     patch:
       x-doc:
         title: Create or update multiple LUNs for an organization in NetApp Console local deployment
@@ -190,6 +265,11 @@ paths:
         sidebar_title: Run a MetricsQL query for systems in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: metricsql query,organization systems,time series data,run query,raw
+            metricsql
+          lead: Runs a raw MetricsQL query against time series data for systems in
+            an organization.
   "/organizations/{organization_id}/namespaces":
     get:
       x-doc:
@@ -199,6 +279,10 @@ paths:
         sidebar_title: List NVMe namespaces in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: nvme namespaces,organization namespaces,nvme list,storage organization,nvme
+            storage
+          lead: Retrieves all NVMe namespaces within the specified organization.
   "/organizations/{organization_id}/networkinterfaces":
     get:
       x-doc:
@@ -208,6 +292,10 @@ paths:
         sidebar_title: List interfaces in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization interfaces,network interfaces,interface list,organization
+            network,interface details
+          lead: Retrieves all interfaces within the specified organization.
   "/organizations/{organization_id}/nodes":
     get:
       x-doc:
@@ -217,6 +305,10 @@ paths:
         sidebar_title: List nodes in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization nodes,list nodes,organization id,node inventory,netapp
+            ontap
+          lead: Retrieves nodes in the specified organization.
   "/organizations/{organization_id}/ports":
     get:
       x-doc:
@@ -226,6 +318,10 @@ paths:
         sidebar_title: List ports in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization ports,list ports,network ports,organization network,port
+            details
+          lead: Retrieves ports within the specified organization.
   "/organizations/{organization_id}/qospolicygroups":
     get:
       x-doc:
@@ -235,6 +331,10 @@ paths:
         sidebar_title: List QoS policy groups in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization qos,policy groups,qos policy,quality of service,organization
+            id
+          lead: Retrieves a list of QoS policy groups in the specified organization.
   "/organizations/{organization_id}/qtrees":
     get:
       x-doc:
@@ -244,6 +344,10 @@ paths:
         sidebar_title: List qtrees in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization qtrees,list qtrees,qtree inventory,organization
+            storage,qtree overview
+          lead: Retrieves all qtrees in the specified organization.
   "/organizations/{organization_id}/smbshares":
     get:
       x-doc:
@@ -253,6 +357,10 @@ paths:
         sidebar_title: List SMB shares in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization smb shares,list smb shares,smb shares organization,organization
+            file shares,file shares list
+          lead: Retrieves all SMB shares in the specified organization.
   "/organizations/{organization_id}/svms":
     get:
       x-doc:
@@ -262,6 +370,11 @@ paths:
         sidebar_title: List SVMs in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organizations,svm list,organization svms,storage virtual machine,organization
+            storage
+          lead: Retrieves a list of storage virtual machines (SVMs) in the specified
+            organization.
   "/organizations/{organization_id}/timeseries":
     post:
       x-doc:
@@ -271,6 +384,10 @@ paths:
         sidebar_title: Retrieve time series data for systems in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization timeseries,timeseries data,organization systems,data
+            retrieval,systems timeseries,organization data
+          lead: Retrieves time series data for systems in an organization.
   "/organizations/{organization_id}/volumes":
     get:
       x-doc:
@@ -280,6 +397,10 @@ paths:
         sidebar_title: List volumes in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization volumes,volume list,organization storage,volume inventory,data
+            storage
+          lead: Retrieves volumes in the specified organization.
     patch:
       x-doc:
         title: Create or update multiple volumes for an organization in NetApp Console local deployment

@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-folders-fleets-.html'
+keywords: 'fleet retrieval,fleet access,specified folder,specified fleet,folder fleet,fleet data'
 summary: 'Retrieve a fleet under a folder in NetApp Console local deployment'
 ---
 
 = Retrieve a fleet under a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/folders/{folder_id}/fleets/{fleet_id}`#
-
-
-
+[.lead]
 Retrieves a fleet under the specified folder.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/folders/{folder_id}/fleets/{fleet_id}`#
 
 == Parameters
 

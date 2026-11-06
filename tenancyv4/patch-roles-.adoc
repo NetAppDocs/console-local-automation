@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/patch-roles-.html'
+keywords: 'role update,role patch,role modification,role management,role id,role endpoint'
 summary: 'Update a role resource partially in NetApp Console local deployment'
 ---
 
 = Update a role resource partially in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Updates a role resource partially in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/roles/{role_id}`#
 
-
+== Usage notes
 
 Updates the specified role with partial information.
 

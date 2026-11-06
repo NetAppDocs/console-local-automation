@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-organizations-folders-.html'
+keywords: 'organization folder,folder retrieval,organization lookup,folder access,folder details'
 summary: 'Retrieve a folder under an organization in NetApp Console local deployment'
 ---
 
 = Retrieve a folder under an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/folders/{folder_id}`#
-
-
-
+[.lead]
 Retrieves a folder under the specified organization.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/folders/{folder_id}`#
 
 == Parameters
 

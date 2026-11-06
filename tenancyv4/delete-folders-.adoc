@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-folders-.html'
+keywords: 'folder delete,remove folder,folder management,delete folder,folder id,folder removal'
 summary: 'Delete a folder in NetApp Console local deployment'
 ---
 
 = Delete a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Deletes a folder in a NetApp Console local deployment, removing the specified folder from the system.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/folders/{folder_id}`#
 
-
+== Usage notes
 
 Deletes the specified folder.
 

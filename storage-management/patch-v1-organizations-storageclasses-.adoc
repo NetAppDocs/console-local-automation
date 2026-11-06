@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/patch-v1-organizations-storageclasses-.html'
+keywords: 'update storage class,organization storage,storage class identifier,storage class type,user defined storage'
 summary: 'Update an existing storage class in NetApp Console local deployment'
 ---
 
 = Update an existing storage class in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Updates a user-defined storage class that has no associated workloads, using its unique identifier within the specified organization.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/v1/organizations/{organizationId}/storageclasses/{storageClassId}`#
 
-
+== Usage notes
 
 Updates a storage class by using its unique identifier within the specified organization.
 

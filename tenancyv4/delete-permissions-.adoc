@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-permissions-.html'
+keywords: 'remove permission,delete permission,permission removal,permission id,permission management'
 summary: 'Delete a permission in NetApp Console local deployment'
 ---
 
 = Delete a permission in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Deletes a permission, removing access rights as specified within the system.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/permissions/{permission_id}`#
 
-
+== Usage notes
 
 Removes the specified permission.
 

@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-folders-usergroups.html'
+keywords: 'folder management,user groups,add user group,folder permissions,folder access,user group assignment'
 summary: 'Add user groups to a folder in NetApp Console local deployment'
 ---
 
 = Add user groups to a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Adds user groups to a specified folder.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/folders/{folder_id}/usergroups`#
-
-
-
-Adds user groups to the specified folder.
-
 
 == Parameters
 

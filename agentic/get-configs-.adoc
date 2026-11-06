@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'agentic/get-configs-.html'
+keywords: 'agentgateway configuration,retrieve configuration,specific configuration,config id,configs endpoint'
 summary: 'Retrieve an Agentic Platform configuration in NetApp Console local deployment'
 ---
 
 = Retrieve an Agentic Platform configuration in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves the specified AgentGateway configuration using the configuration ID.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/configs/{config_id}`#
 
-
+== Usage notes
 
 Retrieves a specific AgentGateway configuration using the configuration ID.
 

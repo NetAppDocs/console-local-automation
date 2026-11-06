@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/post-v1-organizations-capacitypolicies.html'
+keywords: 'capacity policy,create policy,organization capacity,organization policy,new capacity policy,capacity management'
 summary: 'Create a new capacity policy in NetApp Console local deployment'
 ---
 
 = Create a new capacity policy in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/capacitypolicies`#
-
-
-
+[.lead]
 Creates a new capacity policy.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/capacitypolicies`#
 
 == Parameters
 

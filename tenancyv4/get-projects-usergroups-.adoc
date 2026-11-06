@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-projects-usergroups-.html'
+keywords: 'user group,usergroup retrieval,usergroup access,project user management,user group details'
 summary: 'Retrieve a user group under a project in NetApp Console local deployment'
 ---
 
 = Retrieve a user group under a project in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/projects/{project_id}/usergroups/{usergroup_id}`#
-
-
-
+[.lead]
 Retrieves a user group under the specified project.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/projects/{project_id}/usergroups/{usergroup_id}`#
 
 == Parameters
 

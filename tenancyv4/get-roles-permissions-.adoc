@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-roles-permissions-.html'
+keywords: 'role permission,retrieve permission,specified role,role id,permission id'
 summary: 'Retrieve a permission for a role in NetApp Console local deployment'
 ---
 
 = Retrieve a permission for a role in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a permission for the specified role in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/roles/{role_id}/permissions/{permission_id}`#
-
-
-
-Retrieves a permission for the specified role.
-
 
 == Parameters
 

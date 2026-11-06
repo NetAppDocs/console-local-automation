@@ -9,6 +9,11 @@ paths:
         sidebar_title: List federations
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organizations,federations,list federations,organization federations,federation
+            details
+          lead: Retrieves a list of federations for the specified organization in a
+            NetApp Console local deployment.
     post:
       x-doc:
         title: Create a new federation in NetApp Console local deployment
@@ -17,6 +22,11 @@ paths:
         sidebar_title: Create a new federation
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization federation,new federation,create federation,identity
+            federation,single sign-on
+          lead: Creates a new federation for the specified organization in a NetApp
+            Console local deployment.
   "/organizations/{organization_id}/federations/{federation_id}":
     delete:
       x-doc:
@@ -26,6 +36,10 @@ paths:
         sidebar_title: Delete a federation
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization,federation,federation delete,federation removal,organization
+            management
+          lead: Deletes the specified federation in a NetApp Console local deployment.
     get:
       x-doc:
         title: Retrieve a federation in NetApp Console local deployment
@@ -34,6 +48,10 @@ paths:
         sidebar_title: Retrieve a federation
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization federation,federation retrieval,federation id,federation
+            details,organization id
+          lead: Retrieves the specified federation in a NetApp Console local deployment.
     patch:
       x-doc:
         title: Update a federation in NetApp Console local deployment
@@ -43,3 +61,7 @@ paths:
         subcategory: 
         explorer: false
 
+        ai-gen:
+          keywords: update federation,federation id,organization federation,modify
+            federation,organization id
+          lead: Updates the specified federation in a NetApp Console local deployment.

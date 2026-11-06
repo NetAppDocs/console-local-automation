@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-fleets-.html'
+keywords: 'retrieve fleet,fleet retrieval,fleet id,fleet details,fleet information'
 summary: 'Retrieve a fleet in NetApp Console local deployment'
 ---
 
 = Retrieve a fleet in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves the specified fleet in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/fleets/{fleet_id}`#
-
-
-
-Retrieves the specified fleet.
-
 
 == Parameters
 

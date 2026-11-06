@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-projects-users-.html'
+keywords: 'project user,project user retrieval,user information,project id lookup,user id lookup,user access'
 summary: 'Retrieve a user under a project in NetApp Console local deployment'
 ---
 
 = Retrieve a user under a project in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a user under a project in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/projects/{project_id}/users/{user_id}`#
 
-
+== Usage notes
 
 Retrieves a user under the specified project.
 

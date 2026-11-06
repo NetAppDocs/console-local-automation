@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-folders-fleets.html'
+keywords: 'folder fleets,folder id,fleet list,fleet management,folder hierarchy'
 summary: 'List all fleets under a folder in NetApp Console local deployment'
 ---
 
 = List all fleets under a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all fleets under the specified folder.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/folders/{folder_id}/fleets`#
 
-
+== Usage notes
 
 Lists all fleets under the specified folder.
 

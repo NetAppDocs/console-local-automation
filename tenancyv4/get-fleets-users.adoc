@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-fleets-users.html'
+keywords: 'fleet users,list users,user directory,fleet id,user management'
 summary: 'List all users under a fleet in NetApp Console local deployment'
 ---
 
 = List all users under a fleet in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all users under the specified fleet.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/fleets/{fleet_id}/users`#
 
-
+== Usage notes
 
 Lists all users under the specified fleet.
 

@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-resourcegroups-resources-.html'
+keywords: 'resource group,retrieve resource,specific resource,specified resource,resource id,resourcegroup id'
 summary: 'Retrieve a resource in a resource group in NetApp Console local deployment'
 ---
 
 = Retrieve a resource in a resource group in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/resourcegroups/{resourcegroup_id}/resources/{resource_id}`#
-
-
-
+[.lead]
 Retrieves a resource in the specified resource group.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/resourcegroups/{resourcegroup_id}/resources/{resource_id}`#
 
 == Parameters
 

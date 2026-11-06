@@ -3,17 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-organizations-projects-.html'
+keywords: 'organization project,retrieve project,backward compatibility,project endpoints,deprecated endpoint'
 summary: 'Retrieve a project under an organization in NetApp Console local deployment'
 ---
 
 = Retrieve a project under an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a project under the specified organization. This endpoint is deprecated in a NetApp Console local deployment; use the corresponding fleet endpoint instead.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/projects/{project_id}`#
 
-
-
-Retrieves a project under the specified organization.
+== Usage notes
 
 NOTE: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available https://docs.netapp.com/us-en/console-local-automation/tenancyv4/get-organizations-fleets-.html[here].
 

@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/put-folders-fleets-.html'
+keywords: 'replace fleet,folder management,fleet update,fleet replacement,folder fleet,fleet information'
 summary: 'Modify a fleet under a folder in NetApp Console local deployment'
 ---
 
 = Modify a fleet under a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Replaces a fleet in the specified folder with new information in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-put]#PUT# [.api-doc-code-block]#`/folders/{folder_id}/fleets/{fleet_id}`#
-
-
-
-Replaces a fleet in the specified folder with new information.
-
 
 == Parameters
 

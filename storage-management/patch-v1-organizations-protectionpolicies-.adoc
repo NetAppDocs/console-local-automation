@@ -3,17 +3,23 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/patch-v1-organizations-protectionpolicies-.html'
+keywords: 'modify protection policy,protection policy update,organization protection,user-defined protection policy,workload-free policy'
 summary: 'Update a protection policy in NetApp Console local deployment'
 ---
 
 = Update a protection policy in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Modifies an existing protection policy that has no associated workloads and is not system-defined.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/v1/organizations/{organizationId}/protectionpolicies/{protectionPolicyId}`#
 
+== Usage notes
 
-
-Modifies an existing protection policy. Include only the fields you want to update in the request.
+Include only the fields you want to update in the request.
 The protection policy can only be modified if there is no workload associated with it and it is not system-defined.
 
 

@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-organizations-folders-.html'
+keywords: 'remove folder,organization folder,remove folder association,folder removal,organization management'
 summary: 'Remove a folder from an organization in NetApp Console local deployment'
 ---
 
 = Remove a folder from an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/organizations/{organization_id}/folders/{folder_id}`#
-
-
-
+[.lead]
 Removes a folder from the specified organization.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/organizations/{organization_id}/folders/{folder_id}`#
 
 == Parameters
 

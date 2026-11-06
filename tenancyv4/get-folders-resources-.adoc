@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-folders-resources-.html'
+keywords: 'folder resource,resource retrieval,specified folder,specified resource,resource access'
 summary: 'Retrieve a resource under a folder in NetApp Console local deployment'
 ---
 
 = Retrieve a resource under a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a resource under the specified folder in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/folders/{folder_id}/resources/{resource_id}`#
-
-
-
-Retrieves a resource under the specified folder.
-
 
 == Parameters
 

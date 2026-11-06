@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'federation/patch-organizations-federations-.html'
+keywords: 'update federation,federation id,organization federation,modify federation,organization id'
 summary: 'Update a federation in NetApp Console local deployment'
 ---
 
 = Update a federation in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Updates the specified federation in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/organizations/{organization_id}/federations/{federation_id}`#
-
-
-
-Updates the specified federation.
-
 
 == Parameters
 

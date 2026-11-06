@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-folders-roles-usergroups-.html'
+keywords: 'remove role association,user group association,remove folder role association,role usergroup association removal,folder usergroup,role management'
 summary: 'Remove a role associated with a user group from a folder in NetApp Console local deployment'
 ---
 
 = Remove a role associated with a user group from a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Removes the association between a role and a user group from the specified folder.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/folders/{folder_id}/roles/{role_id}/usergroups/{usergroup_id}`#
-
-
-
-Removes association between role and user group from the specified folder.
-
 
 == Parameters
 

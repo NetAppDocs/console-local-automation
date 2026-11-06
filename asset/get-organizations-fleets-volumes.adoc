@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'asset/get-organizations-fleets-volumes.html'
+keywords: 'organization volumes,fleet volumes,list volumes,volume listing,organization fleet volumes'
 summary: 'List volumes in a fleet in NetApp Console local deployment'
 ---
 
 = List volumes in a fleet in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all volumes in the specified fleet.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/volumes`#
 
-
+== Usage notes
 
 Lists all volumes in the specified fleet.
 

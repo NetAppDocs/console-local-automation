@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-projects-resourcegroups-.html'
+keywords: 'project resource group,resource group,retrieve resource group,resource group retrieval,resource management'
 summary: 'Retrieve a resource group under a project in NetApp Console local deployment'
 ---
 
 = Retrieve a resource group under a project in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/projects/{project_id}/resourcegroups/{resourcegroup_id}`#
-
-
-
+[.lead]
 Retrieves a resource group under the specified project.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/projects/{project_id}/resourcegroups/{resourcegroup_id}`#
 
 == Parameters
 

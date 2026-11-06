@@ -3,17 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-projects-.html'
+keywords: 'delete project,project removal,project deprecation,legacy project,project endpoint'
 summary: 'Delete a project in NetApp Console local deployment'
 ---
 
 = Delete a project in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Deletes the specified project. This endpoint is deprecated in a NetApp Console local deployment; use the corresponding fleet endpoint instead.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/projects/{project_id}`#
 
-
-
-Deletes the specified project.
+== Usage notes
 
 NOTE: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available https://docs.netapp.com/us-en/console-local-automation/tenancyv4/delete-fleets-.html[here].
 

@@ -3,17 +3,22 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/post-v1-organizations-fleets-workingenvironments.html'
+keywords: 'storage device,system registration,organization fleet,device validation,discover storage'
 summary: 'Discover and register a storage device as a system in NetApp Console local deployment'
 ---
 
 = Discover and register a storage device as a system in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Discovers and registers a storage device as a system in the specified organization and fleet. Supports validation without registration.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/fleets/{fleetId}/workingenvironments`#
 
+== Usage notes
 
-
-Discovers and registers a storage device as a system in the specified organization and fleet.
 Use stateDesired to control the behavior:
 
 * VALIDATED: Only validates the storage device without registration. Returns 204 with no content.

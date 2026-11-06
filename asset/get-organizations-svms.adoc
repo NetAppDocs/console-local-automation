@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'asset/get-organizations-svms.html'
+keywords: 'organizations,svm list,organization svms,storage virtual machine,organization storage'
 summary: 'List SVMs in an organization in NetApp Console local deployment'
 ---
 
 = List SVMs in an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a list of storage virtual machines (SVMs) in the specified organization.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/svms`#
 
-
+== Usage notes
 
 Lists all SVMs in the specified organization.
 

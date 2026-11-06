@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/get-v1-organizations-performancepolicies.html'
+keywords: 'organization performance,performance policies,organization policies,performance policy retrieval,policy retrieval'
 summary: 'List all performance policies in NetApp Console local deployment'
 ---
 
 = List all performance policies in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/v1/organizations/{organizationId}/performancepolicies`#
-
-
-
+[.lead]
 Retrieves all performance policies within the specified organization.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/v1/organizations/{organizationId}/performancepolicies`#
 
 == Parameters
 

@@ -3,17 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/patch-organizations-projects-.html'
+keywords: 'update project,organization projects,project partial update,deprecated endpoint,netapp console local deployment,backward compatibility'
 summary: 'Update a project under an organization partially in NetApp Console local deployment'
 ---
 
 = Update a project under an organization partially in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Updates a project under the specified organization with partial information. This endpoint is deprecated in a NetApp Console local deployment; use the corresponding fleet endpoint instead.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/organizations/{organization_id}/projects/{project_id}`#
 
-
-
-Updates a project under the specified organization with partial information.
+== Usage notes
 
 NOTE: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available https://docs.netapp.com/us-en/console-local-automation/tenancyv4/patch-organizations-fleets-.html[here].
 

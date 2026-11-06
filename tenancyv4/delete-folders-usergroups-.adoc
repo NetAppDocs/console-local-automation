@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-folders-usergroups-.html'
+keywords: 'remove user group,remove user group association,folder management,user group removal,folder access'
 summary: 'Remove a user group from a folder in NetApp Console local deployment'
 ---
 
 = Remove a user group from a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Removes a user group from a specified folder.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/folders/{folder_id}/usergroups/{usergroup_id}`#
-
-
-
-Removes a user group from the specified folder.
-
 
 == Parameters
 

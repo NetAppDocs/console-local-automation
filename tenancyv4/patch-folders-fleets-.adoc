@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/patch-folders-fleets-.html'
+keywords: 'update fleet,fleet update,partial fleet update,specified folder,fleet management'
 summary: 'Partially update a fleet under a folder in NetApp Console local deployment'
 ---
 
 = Partially update a fleet under a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/folders/{folder_id}/fleets/{fleet_id}`#
-
-
-
+[.lead]
 Updates a fleet under the specified folder with partial information.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/folders/{folder_id}/fleets/{fleet_id}`#
 
 == Parameters
 
