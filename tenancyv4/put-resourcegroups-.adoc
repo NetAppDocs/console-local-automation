@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/put-resourcegroups-.html'
+keywords: 'resource group,replace resource group,resource management,update resource group,modify resource group'
 summary: 'Modify a resource group in NetApp Console local deployment'
 ---
 
 = Modify a resource group in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Replaces the specified resource group with new information in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-put]#PUT# [.api-doc-code-block]#`/resourcegroups/{resourcegroup_id}`#
-
-
-
-Replaces the specified resource group with new information.
-
 
 == Parameters
 

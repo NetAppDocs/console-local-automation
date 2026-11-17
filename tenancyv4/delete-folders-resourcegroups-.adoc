@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-folders-resourcegroups-.html'
+keywords: 'remove resource group,folder association removal,resource group association removal,folder management,remove resource group association'
 summary: 'Remove a resource group from a folder in NetApp Console local deployment'
 ---
 
 = Remove a resource group from a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/folders/{folder_id}/resourcegroups/{resourcegroup_id}`#
-
-
-
+[.lead]
 Removes a resource group from the specified folder.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/folders/{folder_id}/resourcegroups/{resourcegroup_id}`#
 
 == Parameters
 

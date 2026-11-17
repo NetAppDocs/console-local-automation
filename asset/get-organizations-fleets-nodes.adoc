@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'asset/get-organizations-fleets-nodes.html'
+keywords: 'organization nodes,list nodes,node fleet,fleet details,node details'
 summary: 'List nodes in a fleet in NetApp Console local deployment'
 ---
 
 = List nodes in a fleet in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves nodes in the specified fleet.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/nodes`#
 
-
+== Usage notes
 
 Lists all nodes.
 

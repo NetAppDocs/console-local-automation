@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-usergroups.html'
+keywords: 'create user group,user group creation,new user group,user group management,user group setup'
 summary: 'Create a new user group in NetApp Console local deployment'
 ---
 
 = Create a new user group in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Creates a new user group in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/usergroups`#
-
-
-
-Creates a new user group.
-
 
 == Request Body
 

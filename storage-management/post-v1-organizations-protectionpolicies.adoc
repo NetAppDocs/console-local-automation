@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/post-v1-organizations-protectionpolicies.html'
+keywords: 'organization protection,protection policy,create protection policy,new protection policy,organization policy,policy creation'
 summary: 'Create a protection policy in NetApp Console local deployment'
 ---
 
 = Create a protection policy in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Creates a protection policy.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/protectionpolicies`#
 
-
+== Usage notes
 
 Creates a new protection policy.
 

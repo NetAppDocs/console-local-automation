@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/patch-organizations-.html'
+keywords: 'update organization,organization settings,organization state change,organization deactivation,partial update'
 summary: 'Update an organization partially in NetApp Console local deployment'
 ---
 
 = Update an organization partially in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Updates an organization with partial information to modify specific attributes or settings based on the provided content type.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/organizations/{organization_id}`#
 
-
+== Usage notes
 
 Updates the specified organization with partial information. With content-type "application/vnd.netapp.bxp.resource+json", replaces the specified attributes in the request body with the values provided. With content-type "application/vnd.netapp.bxp.organization+json", allows the changing of specific settings for this organization. With content-type "application/vnd.netapp.bxp.organization+deactivation+json", performs an organization state change (deactivation or reactivation). The stateDesired field determines the action.
 

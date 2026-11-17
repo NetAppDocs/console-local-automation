@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-users-resources.html'
+keywords: 'resources,add resources,user resources,user id,agent resources'
 summary: 'Add resources to an agent in NetApp Console local deployment'
 ---
 
 = Add resources to an agent in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Adds resources to the specified agent.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/users/{user_id}/resources`#
 
-
+== Usage notes
 
 Adds resources to the specified agent (user).
 

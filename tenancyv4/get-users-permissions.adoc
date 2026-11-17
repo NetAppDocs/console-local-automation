@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-users-permissions.html'
+keywords: 'user permissions,user access,permission list,user roles,user rights,user id'
 summary: 'List all permissions for a user in NetApp Console local deployment'
 ---
 
 = List all permissions for a user in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all permissions for a specified user in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/users/{user_id}/permissions`#
 
-
+== Usage notes
 
 Lists all permissions for the specified user.
 

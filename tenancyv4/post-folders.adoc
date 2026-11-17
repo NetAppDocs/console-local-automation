@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-folders.html'
+keywords: 'create folder,folder creation,new folder,resource management,data organization,folder setup'
 summary: 'Create a new folder in NetApp Console local deployment'
 ---
 
 = Create a new folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Creates a new folder in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/folders`#
-
-
-
-Creates a new folder.
-
 
 == Request Body
 

@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/delete-v1-organizations-protectionpolicies-.html'
+keywords: 'delete protection policy,remove protection policy,organization protection policy,workload free policy,user-defined protection policy'
 summary: 'Delete a protection policy in NetApp Console local deployment'
 ---
 
 = Delete a protection policy in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Deletes a protection policy that is not associated with any workload and is not system-defined.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/v1/organizations/{organizationId}/protectionpolicies/{protectionPolicyId}`#
 
-
+== Usage notes
 
 Deletes an existing protection policy.
 The protection policy can only be deleted if there is no workload associated with it and it is not system-defined.

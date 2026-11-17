@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-organizations-resourcegroups.html'
+keywords: 'organization resource,add resource group,resource group association,organization management,resource groups,organization id'
 summary: 'Add resource groups to an organization in NetApp Console local deployment'
 ---
 
 = Add resource groups to an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/resourcegroups`#
-
-
-
+[.lead]
 Adds resource groups to the specified organization.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/resourcegroups`#
 
 == Parameters
 

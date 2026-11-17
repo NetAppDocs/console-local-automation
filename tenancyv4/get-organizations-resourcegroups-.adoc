@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-organizations-resourcegroups-.html'
+keywords: 'organization resource group,resource group,resource group retrieval,organization resource groups,group details'
 summary: 'Retrieve a resource group under an organization in NetApp Console local deployment'
 ---
 
 = Retrieve a resource group under an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/resourcegroups/{resourcegroup_id}`#
-
-
-
+[.lead]
 Retrieves a resource group under the specified organization.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/resourcegroups/{resourcegroup_id}`#
 
 == Parameters
 

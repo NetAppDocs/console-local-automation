@@ -3,17 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-organizations-projects-.html'
+keywords: 'remove project,organization management,project association removal,legacy endpoint,deprecated endpoint'
 summary: 'Remove a project from an organization in NetApp Console local deployment'
 ---
 
 = Remove a project from an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Removes a project from the specified organization. This endpoint is deprecated in a NetApp Console local deployment; use the corresponding fleet endpoint instead.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/organizations/{organization_id}/projects/{project_id}`#
 
-
-
-Removes a project from the specified organization.
+== Usage notes
 
 NOTE: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available https://docs.netapp.com/us-en/console-local-automation/tenancyv4/delete-organizations-fleets-.html[here].
 

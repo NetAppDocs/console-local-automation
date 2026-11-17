@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-projects-resources.html'
+keywords: 'project resources,add resources,project management,resource allocation,project id'
 summary: 'Add resources to a project in NetApp Console local deployment'
 ---
 
 = Add resources to a project in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/projects/{project_id}/resources`#
-
-
-
+[.lead]
 Adds resources to the specified project.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/projects/{project_id}/resources`#
 
 == Parameters
 

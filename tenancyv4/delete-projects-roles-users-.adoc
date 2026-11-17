@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-projects-roles-users-.html'
+keywords: 'remove user,project role,role assignment removal,user removal,project management,role management'
 summary: 'Remove a user from a project in NetApp Console local deployment'
 ---
 
 = Remove a user from a project in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Removes a user from a project in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/projects/{project_id}/roles/{role_id}/users/{user_id}`#
 
-
+== Usage notes
 
 Removes a user from the specified project.
 

@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-folders-usergroups-.html'
+keywords: 'folder usergroup,user group retrieval,folder access,user group access,user group details'
 summary: 'Retrieve a user group in a folder in NetApp Console local deployment'
 ---
 
 = Retrieve a user group in a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/folders/{folder_id}/usergroups/{usergroup_id}`#
-
-
-
+[.lead]
 Retrieves a user group under the specified folder.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/folders/{folder_id}/usergroups/{usergroup_id}`#
 
 == Parameters
 

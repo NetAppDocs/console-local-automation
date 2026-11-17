@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-organizations-users-.html'
+keywords: 'organization user,organization users,organization id,user id,retrieve user,organization details'
 summary: 'Retrieve a user under an organization in NetApp Console local deployment'
 ---
 
 = Retrieve a user under an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/users/{user_id}`#
-
-
-
+[.lead]
 Retrieves a user under the specified organization.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/users/{user_id}`#
 
 == Parameters
 

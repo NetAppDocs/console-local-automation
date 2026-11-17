@@ -61,6 +61,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all folders
+        ai-gen:
+          keywords: list folders,folder collection,resource organization,IAM
+            folders,folder hierarchy
+          lead: Retrieves all folders in the collection for a NetApp Console local
+            deployment.
     post:
       x-doc:
         title: Create a new folder in NetApp Console local deployment
@@ -69,6 +74,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new folder
+        ai-gen:
+          keywords: create folder,folder creation,new folder,resource management,data
+            organization,folder setup
+          lead: Creates a new folder in a NetApp Console local deployment.
   "/folders/{folder_id}":
     delete:
       x-doc:
@@ -78,6 +87,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Delete a folder
+        ai-gen:
+          keywords: folder delete,remove folder,folder management,delete folder,folder
+            id,folder removal
+          lead: Deletes a folder in a NetApp Console local deployment, removing the
+            specified folder from the system.
     get:
       x-doc:
         title: Retrieve a folder in NetApp Console local deployment
@@ -86,6 +100,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a folder
+        ai-gen:
+          keywords: retrieve folder,folder details,folder id,specified folder,folder
+            information
+          lead: Retrieves the specified folder in a NetApp Console local deployment.
     patch:
       x-doc:
         title: Update a folder partially in NetApp Console local deployment
@@ -94,6 +112,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a folder partially
+        ai-gen:
+          keywords: update folder,folder management,folder patch,partial update,folder
+            id
+          lead: Updates the specified folder with partial information.
     put:
       x-doc:
         title: Update a folder in NetApp Console local deployment
@@ -102,6 +124,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a folder
+        ai-gen:
+          keywords: replace folder,folder update,change folder info,folder modification,update
+            folder
+          lead: Replaces the specified folder with new information in a NetApp Console
+            local deployment.
   "/folders/{folder_id}/folders":
     get:
       x-doc:
@@ -111,6 +138,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all folders under a parent folder
+        ai-gen:
+          keywords: parent folder,folder list,folder hierarchy,nested folders,folder
+            structure
+          lead: Retrieves all folders under the specified parent folder, providing
+            the folder structure within a NetApp Console local deployment.
     post:
       x-doc:
         title: Create a child folder under a parent folder in NetApp Console local deployment
@@ -119,6 +151,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a child folder under a parent folder
+        ai-gen:
+          keywords: create folder,folder id,parent folder,new folder,folder structure,subfolder
+            creation
+          lead: Creates a child folder under a parent folder in a NetApp Console local
+            deployment, organizing your resources within a structured hierarchy.
   "/folders/{folder_id}/folders/{childfolder_id}":
     delete:
       x-doc:
@@ -128,6 +165,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a child folder from a parent folder
+        ai-gen:
+          keywords: remove folder,child folder,parent folder,folder hierarchy,folder
+            association removal
+          lead: Removes a child folder from a parent folder.
     get:
       x-doc:
         title: Retrieve a child folder under a parent folder in NetApp Console local deployment
@@ -136,6 +177,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a child folder under a parent folder
+        ai-gen:
+          keywords: child folder retrieval,parent folder access,folder hierarchy,folder
+            navigation,folder id
+          lead: Retrieves a child folder under the specified parent folder.
   "/folders/{folder_id}/projects":
     get:
       x-doc:
@@ -145,6 +190,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all projects under a folder
+        ai-gen:
+          keywords: folder projects,project listing,folder contents,legacy endpoint,project
+            management
+          lead: Lists all projects under the specified folder. This endpoint is
+            deprecated in a NetApp Console local deployment; use the corresponding
+            fleet endpoint instead.
     post:
       x-doc:
         title: Create a new project under a folder in NetApp Console local deployment
@@ -153,6 +204,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new project under a folder
+        ai-gen:
+          keywords: create project,folder project,folder management,project creation,deprecated
+            endpoint
+          lead: Creates a project under the specified folder. This endpoint is
+            deprecated in a NetApp Console local deployment; use the corresponding
+            fleet endpoint instead.
   "/folders/{folder_id}/projects/{project_id}":
     delete:
       x-doc:
@@ -162,6 +219,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a project from a folder
+        ai-gen:
+          keywords: remove project,deprecated endpoint,folder project association
+            removal,backward compatibility,netapp console
+          lead: Removes a project from the specified folder. This endpoint is
+            deprecated in a NetApp Console local deployment; use the corresponding
+            fleet endpoint instead.
     get:
       x-doc:
         title: Retrieve a project under a folder in NetApp Console local deployment
@@ -170,6 +233,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a project under a folder
+        ai-gen:
+          keywords: folder projects,retrieve project,legacy endpoint,folder id,project
+            id,netapp console
+          lead: Retrieves a project under the specified folder. This endpoint is
+            deprecated in a NetApp Console local deployment; use the corresponding
+            fleet endpoint instead.
     patch:
       x-doc:
         title: Update a project under a folder partially in NetApp Console local deployment
@@ -178,6 +247,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a project under a folder partially
+        ai-gen:
+          keywords: update project,project partial update,backward
+            compatibility,project endpoint,deprecation
+          lead: Updates a project under the specified folder with partial information.
+            This endpoint is deprecated in a NetApp Console local deployment; use the
+            corresponding fleet endpoint instead.
     put:
       x-doc:
         title: Modify a project under a folder in NetApp Console local deployment
@@ -186,6 +261,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Modify a project under a folder
+        ai-gen:
+          keywords: replace project,project update,folder project,project
+            management,legacy endpoint,netapp console
+          lead: Replaces a project in the specified folder with new information. This
+            endpoint is deprecated in a NetApp Console local deployment; use the
+            corresponding fleet endpoint instead.
   "/folders/{folder_id}/resourcegroups":
     get:
       x-doc:
@@ -203,6 +284,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add resource groups to a folder
+        ai-gen:
+          keywords: folder resource,folder management,resource group addition,add
+            resource group,resource groups
+          lead: Adds resource groups to a specified folder.
   "/folders/{folder_id}/resourcegroups/{resourcegroup_id}":
     delete:
       x-doc:
@@ -212,6 +297,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a resource group from a folder
+        ai-gen:
+          keywords: remove resource group,folder association removal,resource group
+            association removal,folder management,remove resource group association
+          lead: Removes a resource group from the specified folder.
     get:
       x-doc:
         title: Retrieve a resource group in a folder in NetApp Console local deployment
@@ -220,6 +309,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a resource group in a folder
+        ai-gen:
+          keywords: resource group retrieval,resource group,folder
+            resourcegroup,folder id,resourcegroup id
+          lead: Retrieves a resource group within a specified folder.
   "/folders/{folder_id}/resources":
     get:
       x-doc:
@@ -229,6 +322,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all resources under a folder
+        ai-gen:
+          keywords: folder resources,list resources,folder contents,resource listing,folder
+            id
+          lead: Retrieves all resources under the specified folder in a NetApp Console
+            local deployment.
     post:
       x-doc:
         title: Add resources to a folder in NetApp Console local deployment
@@ -237,6 +335,9 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add resources to a folder
+        ai-gen:
+          keywords: resources,add resources,folder,folder resources,folder id
+          lead: Adds resources to a folder.
   "/folders/{folder_id}/resources/{resource_id}":
     delete:
       x-doc:
@@ -246,6 +347,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a resource from a folder
+        ai-gen:
+          keywords: remove resource,folder management,resource association
+            removal,folder resource,remove resource association
+          lead: Removes a resource from the specified folder.
     get:
       x-doc:
         title: Retrieve a resource under a folder in NetApp Console local deployment
@@ -254,6 +359,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a resource under a folder
+        ai-gen:
+          keywords: folder resource,resource retrieval,specified folder,specified
+            resource,resource access
+          lead: Retrieves a resource under the specified folder in a NetApp Console
+            local deployment.
   "/folders/{folder_id}/usergroups":
     get:
       x-doc:
@@ -271,6 +381,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add user groups to a folder
+        ai-gen:
+          keywords: folder management,user groups,add user group,folder permissions,folder
+            access,user group assignment
+          lead: Adds user groups to a specified folder.
   "/folders/{folder_id}/usergroups/{usergroup_id}":
     delete:
       x-doc:
@@ -280,6 +394,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a user group from a folder
+        ai-gen:
+          keywords: remove user group,remove user group association,folder
+            management,user group removal,folder access
+          lead: Removes a user group from a specified folder.
     get:
       x-doc:
         title: Retrieve a user group in a folder in NetApp Console local deployment
@@ -288,6 +406,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a user group in a folder
+        ai-gen:
+          keywords: folder usergroup,user group retrieval,folder access,user group
+            access,user group details
+          lead: Retrieves a user group under the specified folder.
   "/folders/{folder_id}/users":
     get:
       x-doc:
@@ -297,6 +419,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all users for a folder
+        ai-gen:
+          keywords: folder users,folder access,user list,folder association,user management
+          lead: Retrieves all users associated with a specified folder in a NetApp
+            Console local deployment.
     post:
       x-doc:
         title: Add users to a folder in NetApp Console local deployment
@@ -305,6 +431,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add users to a folder
+        ai-gen:
+          keywords: add users,folder management,user access,folder id,user addition,folder
+            users
+          lead: Adds users to a folder in a NetApp Console local deployment.
   "/folders/{folder_id}/users/{user_id}":
     delete:
       x-doc:
@@ -314,6 +444,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a user from a folder
+        ai-gen:
+          keywords: remove user,remove user association,folder management,user
+            access,folder access,user removal
+          lead: Removes a user from a folder in a NetApp Console local deployment.
     get:
       x-doc:
         title: Retrieve a user associated with a folder in NetApp Console local deployment
@@ -322,6 +456,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a user associated with a folder
+        ai-gen:
+          keywords: folder user,folder association,user retrieval,user folder,folder
+            details
+          lead: Retrieves a user associated with a folder.
   "/organizations":
     get:
       x-doc:
@@ -331,6 +469,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all organizations
+        ai-gen:
+          keywords: organizations list,organization overview,organization details,organization
+            information,organization management
+          lead: Retrieves a list of organizations in a NetApp Console local
+            deployment.
     post:
       x-doc:
         title: Create a new organization in NetApp Console local deployment
@@ -339,6 +482,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new organization
+        ai-gen:
+          keywords: create organization,new organization,organization creation,organization
+            setup,organization management
+          lead: Creates a new organization in a NetApp Console local deployment.
   "/organizations/{organization_id}":
     delete:
       x-doc:
@@ -356,6 +503,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve an organization
+        ai-gen:
+          keywords: organization retrieve,organization details,organization information,organization
+            id,organization lookup
+          lead: Retrieves an organization in a NetApp Console local deployment.
     patch:
       x-doc:
         title: Update an organization partially in NetApp Console local deployment
@@ -364,6 +515,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update an organization partially
+        ai-gen:
+          keywords: update organization,organization settings,organization state change,organization
+            deactivation,partial update
+          lead: Updates an organization with partial information to modify specific attributes or settings based on the provided content type.
     put:
       x-doc:
         title: Modify an organization in NetApp Console local deployment
@@ -372,6 +527,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Modify an organization
+        ai-gen:
+          keywords: organizations update,organization replace,organization modify,organization
+            management,organization id
+          lead: Replaces the specified organization with new information.
   "/organizations/{organization_id}/folders":
     get:
       x-doc:
@@ -381,6 +540,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all folders under an organization
+        ai-gen:
+          keywords: organization folders,folder list,organization structure,data organization,folder
+            management
+          lead: Retrieves all folders under the specified organization.
     post:
       x-doc:
         title: Create a new folder under an organization in NetApp Console local deployment
@@ -389,6 +552,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new folder under an organization
+        ai-gen:
+          keywords: create folder,organization folder,folder management,new
+            organization folder,netapp console
+          lead: Creates a new folder under the specified organization.
   "/organizations/{organization_id}/folders/{folder_id}":
     delete:
       x-doc:
@@ -398,6 +565,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a folder from an organization
+        ai-gen:
+          keywords: remove folder,organization folder,remove folder association,folder
+            removal,organization management
+          lead: Removes a folder from the specified organization.
     get:
       x-doc:
         title: Retrieve a folder under an organization in NetApp Console local deployment
@@ -406,6 +577,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a folder under an organization
+        ai-gen:
+          keywords: organization folder,folder retrieval,organization lookup,folder
+            access,folder details
+          lead: Retrieves a folder under the specified organization.
     patch:
       x-doc:
         title: Update a folder under an organization partially in NetApp Console local deployment
@@ -414,6 +589,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a folder under an organization partially
+        ai-gen:
+          keywords: update folder,organization folder,folder management,partial update,organization
+            id
+          lead: Updates a folder under the specified organization, allowing partial
+            modifications to its information.
     put:
       x-doc:
         title: Update a folder under an organization in NetApp Console local deployment
@@ -422,6 +602,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a folder under an organization
+        ai-gen:
+          keywords: organization folder,replace folder,folder update,organization
+            management,folder management
+          lead: Updates a folder under an organization by replacing it with new
+            information.
   "/organizations/{organization_id}/partnership-with":
     get:
       x-doc:
@@ -466,6 +651,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all projects under an organization
+        ai-gen:
+          keywords: organization projects,project listing,deprecated endpoint,backward
+            compatibility,organization project,organization hierarchy
+          lead: Lists all projects under the specified organization. This endpoint is
+            deprecated in a NetApp Console local deployment; use the corresponding
+            fleet endpoint instead.
     post:
       x-doc:
         title: Create a new project under an organization in NetApp Console local deployment
@@ -474,6 +665,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new project under an organization
+        ai-gen:
+          keywords: create project,organization project,new project creation,project
+            under organization,project endpoint
+          lead: Creates a new project under the specified organization. This endpoint
+            is deprecated in a NetApp Console local deployment; use the corresponding
+            fleet endpoint instead.
   "/organizations/{organization_id}/projects/{project_id}":
     delete:
       x-doc:
@@ -483,6 +680,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a project from an organization
+        ai-gen:
+          keywords: remove project,organization management,project association
+            removal,legacy endpoint,deprecated endpoint
+          lead: Removes a project from the specified organization. This endpoint is
+            deprecated in a NetApp Console local deployment; use the corresponding
+            fleet endpoint instead.
     get:
       x-doc:
         title: Retrieve a project under an organization in NetApp Console local deployment
@@ -491,6 +694,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a project under an organization
+        ai-gen:
+          keywords: organization project,retrieve project,backward
+            compatibility,project endpoints,deprecated endpoint
+          lead: Retrieves a project under the specified organization. This endpoint is
+            deprecated in a NetApp Console local deployment; use the corresponding
+            fleet endpoint instead.
     patch:
       x-doc:
         title: Update a project under an organization partially in NetApp Console local deployment
@@ -499,6 +708,13 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a project under an organization partially
+        ai-gen:
+          keywords: update project,organization projects,project partial
+            update,deprecated endpoint,netapp console local deployment,backward
+            compatibility
+          lead: Updates a project under the specified organization with partial
+            information. This endpoint is deprecated in a NetApp Console local
+            deployment; use the corresponding fleet endpoint instead.
     put:
       x-doc:
         title: Modify a project under an organization in NetApp Console local deployment
@@ -507,6 +723,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Modify a project under an organization
+        ai-gen:
+          keywords: organization project,project replace,project update,legacy
+            endpoint,project information
+          lead: Replaces a project under the specified organization with new
+            information. This endpoint is deprecated in a NetApp Console local
+            deployment; use the corresponding fleet endpoint instead.
   "/organizations/{organization_id}/resourcegroups":
     get:
       x-doc:
@@ -516,6 +738,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all resource groups under an organization
+        ai-gen:
+          keywords: organization resource groups,organization resources,resource group
+            list,organization data,resource management
+          lead: Retrieves all resource groups under the specified organization.
     post:
       x-doc:
         title: Add resource groups to an organization in NetApp Console local deployment
@@ -524,6 +750,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add resource groups to an organization
+        ai-gen:
+          keywords: organization resource,add resource group,resource group
+            association,organization management,resource groups,organization id
+          lead: Adds resource groups to the specified organization.
   "/organizations/{organization_id}/resourcegroups/{resourcegroup_id}":
     delete:
       x-doc:
@@ -533,6 +763,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a resource group from an organization
+        ai-gen:
+          keywords: organization resource group association,resource group association
+            removal,remove resource group,organization resource management,resource
+            group management
+          lead: Removes a resource group from the specified organization.
     get:
       x-doc:
         title: Retrieve a resource group under an organization in NetApp Console local deployment
@@ -541,6 +776,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a resource group under an organization
+        ai-gen:
+          keywords: organization resource group,resource group,resource group
+            retrieval,organization resource groups,group details
+          lead: Retrieves a resource group under the specified organization.
   "/organizations/{organization_id}/resources":
     get:
       x-doc:
@@ -550,6 +789,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all resources under an organization
+        ai-gen:
+          keywords: organization resources,resource list,resource
+            overview,organization management,resource display
+          lead: Retrieves all resources under the specified organization, providing an
+            overview of the resources available within a NetApp Console local
+            deployment.
     post:
       x-doc:
         title: Add resources to an organization in NetApp Console local deployment
@@ -558,6 +803,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add resources to an organization
+        ai-gen:
+          keywords: add resources,organization resources,resource management,organization
+            id,resource addition
+          lead: Adds resources to the specified organization.
   "/organizations/{organization_id}/resources/{resource_id}":
     delete:
       x-doc:
@@ -567,6 +816,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a resource from an organization
+        ai-gen:
+          keywords: organization resource removal,remove resource,resource association
+            removal,organization management,remove organization resource association
+          lead: Removes a resource from the specified organization.
     get:
       x-doc:
         title: Retrieve a resource under an organization in NetApp Console local deployment
@@ -575,6 +828,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a resource under an organization
+        ai-gen:
+          keywords: organization resources,resource retrieval,organization resource,resource
+            details,organization details
+          lead: Retrieves a resource under the specified organization, providing access
+            to the details and configurations of that resource.
   "/organizations/{organization_id}/roles/{role_id}/users":
     post:
       x-doc:
@@ -584,6 +842,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Associate users in an organization with a role
+        ai-gen:
+          keywords: associate users,role association,user role,organization role,role
+            management
+          lead: Associates users with a role in a specified organization.
   "/organizations/{organization_id}/serviceAccounts":
     get:
       x-doc:
@@ -601,6 +863,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new service account
+        ai-gen:
+          keywords: create service account,organization,service account,account creation,organization
+            id,service management
+          lead: Creates a new service account under an organization.
   "/organizations/{organization_id}/serviceAccounts/{serviceaccount_id}":
     delete:
       x-doc:
@@ -610,6 +876,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Delete a service account
+        ai-gen:
+          keywords: delete service account,service account removal,service account
+            delete,organization service account,delete endpoint
+          lead: Deletes a service account under an organization.
     get:
       x-doc:
         title: Retrieve a service account in NetApp Console local deployment
@@ -618,6 +888,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a service account
+        ai-gen:
+          keywords: organization service account,service account retrieval,organization
+            service account id,service account under organization,service account
+            details
+          lead: Retrieves a service account under an organization, providing access
+            to account details for management and configuration tasks.
     patch:
       x-doc:
         title: Update a service account partially in NetApp Console local deployment
@@ -626,6 +902,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a service account partially
+        ai-gen:
+          keywords: partial service account update,service account update,service
+            account modify,organization service account,partial update
+          lead: Updates a service account with partial information within an
+            organization.
     put:
       x-doc:
         title: Modify a service account in NetApp Console local deployment
@@ -634,6 +915,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Modify a service account
+        ai-gen:
+          keywords: update service account,organization service account,service
+            account management,organization account update,account update
+          lead: Updates a service account under an organization.
   "/organizations/{organization_id}/serviceAccounts/{serviceaccount_id}/clientSecret":
     post:
       x-doc:
@@ -643,6 +928,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new client secret for a service account
+        ai-gen:
+          keywords: client secret,organization id,service account,create secret,new
+            client secret,client secret creation
+          lead: Creates a new client secret for a service account in a NetApp Console
+            local deployment, providing secure credentials for authenticating the
+            service account.
   "/organizations/{organization_id}/usergroups":
     get:
       x-doc:
@@ -652,6 +943,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all user groups under an organization
+        ai-gen:
+          keywords: organization usergroups,organization groups,user groups list,organization
+            id,user management
+          lead: Retrieves all user groups under an organization in a NetApp Console
+            local deployment.
     post:
       x-doc:
         title: Add user groups to an organization in NetApp Console local deployment
@@ -660,6 +956,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add user groups to an organization
+        ai-gen:
+          keywords: add user groups,organization management,user group
+            association,organization id,user group addition
+          lead: Adds user groups to the specified organization.
   "/organizations/{organization_id}/usergroups/{usergroup_id}":
     delete:
       x-doc:
@@ -669,6 +969,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a user group from an organization
+        ai-gen:
+          keywords: remove user group,organization user group,remove user group
+            association,organization management,user group removal
+          lead: Removes a user group from the specified organization.
     get:
       x-doc:
         title: Retrieve a user group under an organization in NetApp Console local deployment
@@ -677,6 +981,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a user group under an organization
+        ai-gen:
+          keywords: organization usergroup,usergroup retrieval,organization user group,user
+            group under organization,retrieve user group
+          lead: Retrieves a user group under the specified organization.
   "/organizations/{organization_id}/users":
     get:
       x-doc:
@@ -686,6 +994,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all users under an organization
+        ai-gen:
+          keywords: organization users,list users,organization id,user management,user
+            list
+          lead: Retrieves all users under the specified organization.
     post:
       x-doc:
         title: Add users to an organization in NetApp Console local deployment
@@ -694,6 +1006,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add users to an organization
+        ai-gen:
+          keywords: add users,organization users,user association,organization
+            management,user addition,organization id
+          lead: Adds users to an organization.
   "/organizations/{organization_id}/users/{user_id}":
     delete:
       x-doc:
@@ -703,6 +1019,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a user from an organization
+        ai-gen:
+          keywords: remove user,remove user association,user management,organization
+            user,remove organization user
+          lead: Removes a user from the specified organization.
     get:
       x-doc:
         title: Retrieve a user under an organization in NetApp Console local deployment
@@ -711,6 +1031,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a user under an organization
+        ai-gen:
+          keywords: organization user,organization users,organization id,user id,retrieve
+            user,organization details
+          lead: Retrieves a user under the specified organization.
     patch:
       x-doc:
         title: Modify a user in NetApp Console local deployment
@@ -719,6 +1043,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Modify a user
+        ai-gen:
+          keywords: role elevation,role downscope,user role management,organization
+            user roles,user permissions
+          lead: Modifies a user in a NetApp Console local deployment, adjusting the
+            user's roles within the specified organization.
   "/partnerships":
     get:
       x-doc:
@@ -828,6 +1157,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all permissions
+        ai-gen:
+          keywords: permissions list,access rights,user permissions,access control,permission
+            details
+          lead: Retrieves all permissions in a NetApp Console local deployment.
     post:
       x-doc:
         title: Create a new permission in NetApp Console local deployment
@@ -836,6 +1169,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new permission
+        ai-gen:
+          keywords: permission creation,user permissions,new permission,access control,create
+            permission
+          lead: Creates a new permission in a NetApp Console local deployment.
   "/permissions/{permission_id}":
     delete:
       x-doc:
@@ -845,6 +1182,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Delete a permission
+        ai-gen:
+          keywords: remove permission,delete permission,permission removal,permission
+            id,permission management
+          lead: Deletes a permission, removing access rights as specified within the
+            system.
     get:
       x-doc:
         title: Retrieve a permission in NetApp Console local deployment
@@ -853,6 +1195,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a permission
+        ai-gen:
+          keywords: permission retrieve,permission id,access control,permission details,endpoint
+            details
+          lead: Retrieves a permission in a NetApp Console local deployment, providing
+            details about the specified access rights within the local environment.
     patch:
       x-doc:
         title: Update a permission partially in NetApp Console local deployment
@@ -861,6 +1208,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a permission partially
+        ai-gen:
+          keywords: update permission,permission id,partial update,modify permission,edit
+            permission
+          lead: Updates a permission with partial information to modify specific aspects of the permission without altering its entire configuration.
     put:
       x-doc:
         title: Modify a permission in NetApp Console local deployment
@@ -869,6 +1220,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Modify a permission
+        ai-gen:
+          keywords: replace permission,update permission,permission id,modify permission,permissions
+            endpoint
+          lead: Replaces the specified permission with new information in a NetApp
+            Console local deployment.
   "/permissions/{permission_id}/bindings":
     get:
       x-doc:
@@ -887,6 +1243,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all projects
+        ai-gen:
+          keywords: project list,backward compatibility,project endpoint,deprecation
+            notice,netapp console
+          lead: Lists all projects. This endpoint is deprecated in a NetApp Console
+            local deployment; use the corresponding fleet endpoint instead.
     post:
       x-doc:
         title: Create a new project in NetApp Console local deployment
@@ -895,6 +1256,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new project
+        ai-gen:
+          keywords: create project,project creation,new project,backward
+            compatibility,deprecated endpoint,netapp project
+          lead: Creates a new project. This endpoint is deprecated in a NetApp Console
+            local deployment; use the corresponding fleet endpoint instead.
   "/projects/{project_id}":
     delete:
       x-doc:
@@ -904,6 +1270,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Delete a project
+        ai-gen:
+          keywords: delete project,project removal,project deprecation,legacy project,project
+            endpoint
+          lead: Deletes the specified project. This endpoint is deprecated in a NetApp
+            Console local deployment; use the corresponding fleet endpoint instead.
     get:
       x-doc:
         title: Retrieve a project in NetApp Console local deployment
@@ -912,6 +1283,13 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a project
+        ai-gen:
+          keywords: project retrieval,deprecated project,backward
+            compatibility,project id,project endpoint,netapp console local
+            deployment
+          lead: Retrieves the specified project. This endpoint is deprecated in a
+            NetApp Console local deployment; use the corresponding fleet endpoint
+            instead.
     patch:
       x-doc:
         title: Update a project partially in NetApp Console local deployment
@@ -920,6 +1298,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a project partially
+        ai-gen:
+          keywords: update project,project modification,backward
+            compatibility,deprecated endpoint,partial information
+          lead: Updates the specified project with partial information. This endpoint
+            is deprecated in a NetApp Console local deployment; use the corresponding
+            fleet endpoint instead.
     put:
       x-doc:
         title: Modify a project in NetApp Console local deployment
@@ -928,6 +1312,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Modify a project
+        ai-gen:
+          keywords: project update,replace project,project management,legacy project,deprecated
+            endpoint
+          lead: Replaces the specified project with new information. This endpoint is
+            deprecated in a NetApp Console local deployment; use the corresponding
+            fleet endpoint instead.
   "/projects/{project_id}/resourcegroups":
     get:
       x-doc:
@@ -945,6 +1335,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add resource groups to a project
+        ai-gen:
+          keywords: project resource groups,resource groups,add resource group,project
+            management,resource allocation
+          lead: Adds resource groups to a specified project.
   "/projects/{project_id}/resourcegroups/{resourcegroup_id}":
     delete:
       x-doc:
@@ -954,6 +1348,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a resource group from a project
+        ai-gen:
+          keywords: remove resource group,remove resource group association,project
+            resource management,remove from project,resource management
+          lead: Removes a resource group from the specified project.
     get:
       x-doc:
         title: Retrieve a resource group under a project in NetApp Console local deployment
@@ -962,6 +1360,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a resource group under a project
+        ai-gen:
+          keywords: project resource group,resource group,retrieve resource
+            group,resource group retrieval,resource management
+          lead: Retrieves a resource group under the specified project.
   "/projects/{project_id}/resources":
     get:
       x-doc:
@@ -971,6 +1373,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all resources in a project
+        ai-gen:
+          keywords: project resources,project id,resource list,list resources,specified
+            project
+          lead: Retrieves all resources within a specified project.
     post:
       x-doc:
         title: Add resources to a project in NetApp Console local deployment
@@ -979,6 +1385,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add resources to a project
+        ai-gen:
+          keywords: project resources,add resources,project management,resource allocation,project
+            id
+          lead: Adds resources to the specified project.
   "/projects/{project_id}/resources/{resource_id}":
     delete:
       x-doc:
@@ -988,6 +1398,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a resource from a project
+        ai-gen:
+          keywords: remove resource,project management,resource association
+            removal,project resource,project cleanup
+          lead: Removes a resource from the specified project.
     get:
       x-doc:
         title: Retrieve a resource in a project in NetApp Console local deployment
@@ -996,6 +1410,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a resource in a project
+        ai-gen:
+          keywords: project resource,retrieve resource,specified project,project id,resource
+            id
+          lead: Retrieves a resource in a specified project.
   "/projects/{project_id}/usergroups":
     get:
       x-doc:
@@ -1013,6 +1431,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add user groups to a project
+        ai-gen:
+          keywords: project usergroups,add usergroups,user group addition,project
+            management,user groups
+          lead: Adds user groups to a project in a NetApp Console local deployment,
+            associating them with the specified project for role-based access
+            management.
   "/projects/{project_id}/usergroups/{usergroup_id}":
     delete:
       x-doc:
@@ -1022,6 +1446,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a user group from a project
+        ai-gen:
+          keywords: project management,user groups,remove usergroup,remove usergroup
+            association,project usergroup,remove group
+          lead: Removes a user group from the specified project.
     get:
       x-doc:
         title: Retrieve a user group under a project in NetApp Console local deployment
@@ -1030,6 +1458,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a user group under a project
+        ai-gen:
+          keywords: user group,usergroup retrieval,usergroup access,project user
+            management,user group details
+          lead: Retrieves a user group under the specified project.
   "/projects/{project_id}/users":
     get:
       x-doc:
@@ -1039,6 +1471,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all users for a project
+        ai-gen:
+          keywords: project users,user list,legacy endpoint,deprecation notice,project
+            management
+          lead: Lists all users in the specified project. This endpoint is deprecated
+            in a NetApp Console local deployment; use the corresponding fleet endpoint
+            instead.
     post:
       x-doc:
         title: Add users to a project in NetApp Console local deployment
@@ -1047,6 +1485,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add users to a project
+        ai-gen:
+          keywords: add users,project users,project management,user addition,user
+            project integration
+          lead: Adds users to the specified project. This endpoint is deprecated in a
+            NetApp Console local deployment; use the corresponding fleet endpoint
+            instead.
   "/projects/{project_id}/users/{user_id}":
     delete:
       x-doc:
@@ -1056,6 +1500,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a user from a project
+        ai-gen:
+          keywords: remove user,project user,remove user association,project
+            management,user removal
+          lead: Removes a user from the specified project.
     get:
       x-doc:
         title: Retrieve a user under a project in NetApp Console local deployment
@@ -1064,6 +1512,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a user under a project
+        ai-gen:
+          keywords: project user,project user retrieval,user information,project id
+            lookup,user id lookup,user access
+          lead: Retrieves a user under a project in a NetApp Console local deployment.
   "/resourcegroups":
     get:
       x-doc:
@@ -1073,6 +1525,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all resource groups
+        ai-gen:
+          keywords: resource groups,list resource groups,resource management,group
+            listing,data grouping
+          lead: Retrieves a list of resource groups in a NetApp Console local
+            deployment.
     post:
       x-doc:
         title: Create a new resource group in NetApp Console local deployment
@@ -1081,6 +1538,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new resource group
+        ai-gen:
+          keywords: create resource group,resource group creation,new resource group,resource
+            management,group setup
+          lead: Creates a new resource group in a NetApp Console local deployment.
   "/resourcegroups/{resourcegroup_id}":
     delete:
       x-doc:
@@ -1090,6 +1551,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Delete a resource group
+        ai-gen:
+          keywords: resource group,resource group deletion,resource management,group
+            removal,resource group cleanup
+          lead: Deletes a resource group in a NetApp Console local deployment.
     get:
       x-doc:
         title: Retrieve a resource group in NetApp Console local deployment
@@ -1098,6 +1563,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a resource group
+        ai-gen:
+          keywords: resource group,retrieve resource group,resourcegroup id,specified
+            resource group,resource management,group id
+          lead: Retrieves a resource group in a NetApp Console local deployment,
+            providing details about the specified group configuration.
     patch:
       x-doc:
         title: Update a resource group in NetApp Console local deployment
@@ -1106,6 +1576,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a resource group
+        ai-gen:
+          keywords: resource group,update resource group,partial update,resource management,resource
+            group id
+          lead: Updates a resource group with partial information.
     put:
       x-doc:
         title: Modify a resource group in NetApp Console local deployment
@@ -1114,6 +1588,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Modify a resource group
+        ai-gen:
+          keywords: resource group,replace resource group,resource management,update
+            resource group,modify resource group
+          lead: Replaces the specified resource group with new information in a NetApp
+            Console local deployment.
   "/resourcegroups/{resourcegroup_id}/bindings":
     get:
       x-doc:
@@ -1132,6 +1611,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all resources for a resource group
+        ai-gen:
+          keywords: resource group,resource list,resource association,resource management,group
+            id
+          lead: Retrieves all resources associated with a resource group.
     post:
       x-doc:
         title: Add resources to a resource group in NetApp Console local deployment
@@ -1140,6 +1623,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add resources to a resource group
+        ai-gen:
+          keywords: resource group,add resource,resource management,group resources,resourcegroup
+            id
+          lead: Adds resources to the specified resource group.
   "/resourcegroups/{resourcegroup_id}/resources/{resource_id}":
     delete:
       x-doc:
@@ -1149,6 +1636,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a resource from a resource group
+        ai-gen:
+          keywords: remove resource association,resource group,resource id,remove
+            resource,manage resources
+          lead: Removes a resource from the specified resource group.
     get:
       x-doc:
         title: Retrieve a resource in a resource group in NetApp Console local deployment
@@ -1157,6 +1648,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a resource in a resource group
+        ai-gen:
+          keywords: resource group,retrieve resource,specific resource,specified resource,resource
+            id,resourcegroup id
+          lead: Retrieves a resource in the specified resource group.
   "/resources":
     get:
       x-doc:
@@ -1166,6 +1661,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all resources
+        ai-gen:
+          keywords: list resources,resource management,data retrieval,resource overview,resource
+            listing
+          lead: Retrieves all resources in a NetApp Console local deployment.
     post:
       x-doc:
         title: Create a new resource in NetApp Console local deployment
@@ -1174,6 +1673,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new resource
+        ai-gen:
+          keywords: create resource,new resource,resource creation,resource management,resource
+            endpoint
+          lead: Creates a new resource record for identity and access management in a
+            NetApp Console local deployment.
   "/resources/{resource_id}":
     delete:
       x-doc:
@@ -1183,6 +1687,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Delete a resource
+        ai-gen:
+          keywords: resource deletion,resource management,remove resource,resource
+            id,deletion operation
+          lead: Deletes a resource in a NetApp Console local deployment.
     get:
       x-doc:
         title: Retrieve a resource in NetApp Console local deployment
@@ -1191,6 +1699,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a resource
+        ai-gen:
+          keywords: retrieve resource,resource details,specified resource,resource
+            information,resource id
+          lead: Retrieves the specified resource record in a NetApp Console local
+            deployment.
     patch:
       x-doc:
         title: Update a resource in NetApp Console local deployment
@@ -1199,6 +1712,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a resource
+        ai-gen:
+          keywords: update resource,resource update,resource patch,partial resource
+            update,resource id,resource modification
+          lead: Updates the specified resource with partial information to modify aspects of the resource without needing to provide complete data.
     put:
       x-doc:
         title: Modify a resource in NetApp Console local deployment
@@ -1207,6 +1724,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Modify a resource
+        ai-gen:
+          keywords: replace resource,resource update,resource management,resource
+            modification,resource replacement
+          lead: Modifies a resource in a NetApp Console local deployment, replacing
+            the specified resource with new information.
   "/resources/{resource_id}/bindings":
     get:
       x-doc:
@@ -1225,6 +1747,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all permissions for a resource
+        ai-gen:
+          keywords: resource permissions,resource access,permission list,access rights,resource
+            id
+          lead: Retrieves all permissions for a specified resource.
   "/resources/{resource_id}/users":
     get:
       x-doc:
@@ -1234,6 +1760,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all users with permissions for a resource
+        ai-gen:
+          keywords: resource users,resource permissions,user list,user permissions,resource
+            id,permissions list
+          lead: Lists all users with permissions for the specified resource.
   "/resources/{resource_id}/permissions/{permission_id}/users":
     get:
       x-doc:
@@ -1243,6 +1773,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all users with a specific permission for a resource
+        ai-gen:
+          keywords: resource permissions,resource users,user list,user access,access
+            control,resource access
+          lead: Retrieves all users with a specific permission for a resource in a
+            NetApp Console local deployment.
   "/resourcetypes":
     get:
       x-doc:
@@ -1252,6 +1787,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all resource types
+        ai-gen:
+          keywords: resource types,matching resource types,json array,resource type
+            collection,data retrieval
+          lead: Retrieves all resource types in a NetApp Console local deployment.
     post:
       x-doc:
         title: Create a new resource type in NetApp Console local deployment
@@ -1260,6 +1799,12 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new resource type
+        ai-gen:
+          keywords: resource type,resource class,legacy resource,create resource
+            type,resource description
+          lead: Creates a new resource type in a NetApp Console local deployment.
+            Specify the resource class, type, and description to define the desired
+            values for the ResourceType API resource.
   "/resourcetypes/{resourcetype_id}":
     get:
       x-doc:
@@ -1269,6 +1814,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a resource type
+        ai-gen:
+          keywords: resourcetype information,resource class,resource type,legacy resource,legacy
+            values,retrieve resourcetype
+          lead: Retrieves information about a given resource type, including details
+            about its associated legacy values if applicable.
   "/roles":
     get:
       x-doc:
@@ -1278,6 +1828,9 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all roles
+        ai-gen:
+          keywords: roles,role list,user roles,access roles,role management
+          lead: Retrieves a list of roles in a NetApp Console local deployment.
     post:
       x-doc:
         title: Create a new role in NetApp Console local deployment
@@ -1286,6 +1839,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new role
+        ai-gen:
+          keywords: role creation,new role,create role,user roles,authorization roles
+          lead: Creates a new role in a NetApp Console local deployment to define
+            specific permissions and access levels within your tenancy.
   "/roles/{role_id}":
     delete:
       x-doc:
@@ -1295,6 +1852,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Delete a role
+        ai-gen:
+          keywords: role deletion,role removal,delete role,remove role,role management
+          lead: Deletes the specified role, removing it from a NetApp Console local
+            deployment.
     get:
       x-doc:
         title: Retrieve a role in NetApp Console local deployment
@@ -1303,6 +1864,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a role
+        ai-gen:
+          keywords: role retrieval,role details,role information,role id,role access
+          lead: Retrieves the specified role in a NetApp Console local deployment,
+            providing details about the role's configuration and permissions.
     patch:
       x-doc:
         title: Update a role resource partially in NetApp Console local deployment
@@ -1311,6 +1876,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a role resource partially
+        ai-gen:
+          keywords: role update,role patch,role modification,role management,role
+            id,role endpoint
+          lead: Updates a role resource partially in a NetApp Console local
+            deployment.
     put:
       x-doc:
         title: Modify a role resource in NetApp Console local deployment
@@ -1319,6 +1889,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Modify a role resource
+        ai-gen:
+          keywords: role update,role management,role replacement,user roles,modify
+            role
+          lead: Replaces the specified role with new information in a NetApp Console
+            local deployment.
   "/roles/{role_id}/bindings":
     get:
       x-doc:
@@ -1337,6 +1912,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all permissions for a role
+        ai-gen:
+          keywords: role permissions,role id,permissions list,specified role,permissions
+            endpoint
+          lead: Retrieves all permissions for a specified role.
     post:
       x-doc:
         title: Add a list of permissions to a role in NetApp Console local deployment
@@ -1345,6 +1924,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add a list of permissions to a role
+        ai-gen:
+          keywords: role permissions,add permissions,role management,access control,modify
+            role
+          lead: Adds a list of permissions to the specified role.
   "/roles/{role_id}/permissions/{permission_id}":
     delete:
       x-doc:
@@ -1354,6 +1937,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Delete a permission for a role
+        ai-gen:
+          keywords: remove permission,role permission,remove role permission,role
+            id,permission management
+          lead: Removes the specified permission from a role in a NetApp Console local
+            deployment.
     get:
       x-doc:
         title: Retrieve a permission for a role in NetApp Console local deployment
@@ -1362,6 +1950,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a permission for a role
+        ai-gen:
+          keywords: role permission,retrieve permission,specified role,role id,permission
+            id
+          lead: Retrieves a permission for the specified role in a NetApp Console
+            local deployment.
   "/tags":
     get:
       x-doc:
@@ -1421,6 +2014,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all user groups
+        ai-gen:
+          keywords: user groups,list user groups,group collection,user group list,user
+            group details,group management
+          lead: Retrieves all user groups in a NetApp Console local deployment.
     post:
       x-doc:
         title: Create a new user group in NetApp Console local deployment
@@ -1429,6 +2026,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new user group
+        ai-gen:
+          keywords: create user group,user group creation,new user group,user group
+            management,user group setup
+          lead: Creates a new user group in a NetApp Console local deployment.
   "/usergroups/{usergroup_id}":
     delete:
       x-doc:
@@ -1438,6 +2039,9 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Delete a user group
+        ai-gen:
+          keywords: user group,delete usergroup,usergroup id,remove group,group management
+          lead: Deletes the specified user group in a NetApp Console local deployment.
     get:
       x-doc:
         title: Retrieve a user group in NetApp Console local deployment
@@ -1446,6 +2050,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a user group
+        ai-gen:
+          keywords: user group,retrieve usergroup,usergroup id,usergroup details,usergroup
+            information
+          lead: Retrieves a user group in a NetApp Console local deployment, providing
+            access to specific user group configurations.
     patch:
       x-doc:
         title: Update a user group partially in NetApp Console local deployment
@@ -1454,6 +2063,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a user group partially
+        ai-gen:
+          keywords: user group update,modify user group,user group patch,edit user
+            group,update user group,partial user group update
+          lead: Updates the specified user group with partial information.
     put:
       x-doc:
         title: Modify a user group in NetApp Console local deployment
@@ -1462,6 +2075,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Modify a user group
+        ai-gen:
+          keywords: user group,replace usergroup,update usergroup,modify usergroup,change
+            user group
+          lead: Modifies a user group with new information.
   "/usergroups/{usergroup_id}/bindings":
     get:
       x-doc:
@@ -1480,6 +2097,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all users for a user group
+        ai-gen:
+          keywords: user groups,users list,usergroup users,group members,user details
+          lead: Retrieves all users for a specified user group in a NetApp Console
+            local deployment.
     post:
       x-doc:
         title: Add users to a user group in NetApp Console local deployment
@@ -1488,6 +2109,9 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Add users to a user group
+        ai-gen:
+          keywords: usergroup users,add users,usergroup id,user management,user group
+          lead: Adds users to the specified user group.
   "/usergroups/{usergroup_id}/users/{user_id}":
     delete:
       x-doc:
@@ -1497,6 +2121,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a user from a user group
+        ai-gen:
+          keywords: remove user,remove user association,user management,user
+            group,group user removal
+          lead: Removes a user from the specified user group.
     get:
       x-doc:
         title: Retrieve a user in a user group in NetApp Console local deployment
@@ -1505,6 +2133,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a user in a user group
+        ai-gen:
+          keywords: usergroup,user id,retrieve user,user details,group member,group
+            id
+          lead: Retrieves a user in the specified user group, providing details about
+            the user's membership and attributes within the group.
   "/users":
     get:
       x-doc:
@@ -1514,6 +2147,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all users
+        ai-gen:
+          keywords: list users,user collection,user directory,user management,user
+            list
+          lead: Retrieves all users in a NetApp Console local deployment.
     post:
       x-doc:
         title: Create a new user in NetApp Console local deployment
@@ -1522,6 +2159,9 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new user
+        ai-gen:
+          keywords: create user,user creation,new user,user values,user endpoint
+          lead: Creates a new user in a NetApp Console local deployment.
   "/users/{user_id}":
     delete:
       x-doc:
@@ -1531,6 +2171,9 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Delete a user
+        ai-gen:
+          keywords: delete user,user removal,user management,user id,user deletion
+          lead: Deletes a user in a NetApp Console local deployment.
     get:
       x-doc:
         title: Retrieve a user in NetApp Console local deployment
@@ -1539,6 +2182,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a user
+        ai-gen:
+          keywords: user details,user profile,specified user,user information,user
+            retrieval,user id
+          lead: Retrieves a user in a NetApp Console local deployment.
     patch:
       x-doc:
         title: Update a user partially in NetApp Console local deployment
@@ -1547,6 +2194,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Update a user partially
+        ai-gen:
+          keywords: user update,user modification,partial user update,user information,user
+            changes
+          lead: Updates the specified user with partial information in a NetApp
+            Console local deployment.
     put:
       x-doc:
         title: Modify a user in NetApp Console local deployment
@@ -1555,6 +2207,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Modify a user
+        ai-gen:
+          keywords: replace user,update user,user information,user details,user id
+          lead: Modifies a user in a NetApp Console local deployment, replacing the
+            specified user with new information.
   "/users/{user_id}/bindings":
     get:
       x-doc:
@@ -1573,6 +2229,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all permissions for a user
+        ai-gen:
+          keywords: user permissions,user access,permission list,user roles,user rights,user
+            id
+          lead: Retrieves all permissions for a specified user in a NetApp Console
+            local deployment.
   "/users/{user_id}/permissions/{permission_id}/resources":
     get:
       x-doc:
@@ -1582,6 +2243,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all resources for a user with a permission
+        ai-gen:
+          keywords: user permissions,resource list,user resources,permission resources,access
+            rights,resource access
+          lead: Retrieves all resources for a user with a specified permission.
   "/users/{user_id}/resources":
     get:
       x-doc:
@@ -1591,6 +2256,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all resources for a user
+        ai-gen:
+          keywords: user resources,list resources,user data,resource management,user
+            id
+          lead: Retrieves all resources for the specified user in a NetApp Console
+            local deployment.
     post:
       x-doc:
         title: Add resources to an agent in NetApp Console local deployment
@@ -1599,6 +2269,9 @@ paths:
         sidebar_title: Add resources to an agent 
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: resources,add resources,user resources,user id,agent resources
+          lead: Adds resources to the specified agent.
   "/users/{user_id}/resources/{resource_id}":
     get:
       x-doc:
@@ -1608,6 +2281,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Check if a user has permission for a resource
+        ai-gen:
+          keywords: user permission,resource check,access validation,permission check,user
+            resource,resource validation
+          lead: Checks if a user has permission for a specified resource.
     delete:
       x-doc:
         title: Remove a resource from an agent in NetApp Console local deployment
@@ -1616,6 +2293,11 @@ paths:
         sidebar_title: Remove a resource from an agent 
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: remove resource,user resource,remove resource association,user
+            agent,resource removal,user id
+          lead: Removes a resource from a specified agent in a NetApp Console local
+            deployment.
   "/users/{user_id}/resources/{resource_id}/permissions":
     get:
       x-doc:
@@ -1625,6 +2307,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all permissions a user has for a resource
+        ai-gen:
+          keywords: user permissions,resource permissions,resource access,user access,user
+            rights,resource rights
+          lead: Retrieves all permissions a user has for a specified resource.
   "/users/{user_id}/resources/{resource_id}/permissions/{permission_id}":
     get:
       x-doc:
@@ -1634,6 +2320,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a permission on a resource for a user
+        ai-gen:
+          keywords: user permissions,resource access,resource permissions,user resource
+            access,user permission retrieve,user resource retrieve
+          lead: Retrieves a permission on a resource for a user in a NetApp Console
+            local deployment.
   "/users/{user_id}/roles":
     get:
       x-doc:
@@ -1643,6 +2334,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all the roles for a user
+        ai-gen:
+          keywords: user roles,list roles,user access,role management,user permissions,roles
+            endpoint
+          lead: Retrieves all roles for a user in a NetApp Console local deployment.
   "/folders/{folder_id}/roles/{role_id}/users":
     post:
       x-doc:
@@ -1652,6 +2347,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Associate a set of users for a folder with a role
+        ai-gen:
+          keywords: add users,folder roles,role assignment,user role,folder access,role
+            management
+          lead: Associates a set of users with a role for a folder in a NetApp Console
+            local deployment.
   "/folders/{folder_id}/roles/{role_id}/users/{user_id}":
     delete:
       x-doc:
@@ -1661,6 +2361,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a user from a folder
+        ai-gen:
+          keywords: remove user,folder management,role assignment removal,user
+            access,folder permissions
+          lead: Removes a user from the specified folder.
   "/organizations/{organization_id}/roles/{role_id}/users/{user_id}":
     delete:
       x-doc:
@@ -1670,6 +2374,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a user from an organization
+        ai-gen:
+          keywords: remove user,organization roles,user removal,organization management,role
+            management
+          lead: Removes a user from the specified organization.
   "/projects/{project_id}/roles/{role_id}/users":
     post:
       x-doc:
@@ -1679,6 +2387,9 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Associate a set of users to a project with a role
+        ai-gen:
+          keywords: project users,project roles,add users,assign role,project management
+          lead: Adds a set of users to the specified project with a specific role.
   "/projects/{project_id}/roles/{role_id}/users/{user_id}":
     delete:
       x-doc:
@@ -1688,6 +2399,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a user from a project
+        ai-gen:
+          keywords: remove user,project role,role assignment removal,user
+            removal,project management,role management
+          lead: Removes a user from a project in a NetApp Console local deployment.
   "/ui/organizations/{organization_id}/uihierarchy":
     get:
       x-doc:
@@ -1733,6 +2448,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Remove a child organization from a parent organization
+        ai-gen:
+          keywords: remove child,remove organization association,organization
+            management,parent organization,child organization
+          lead: Removes a child organization from a parent organization.
   "/folders/{folder_id}/roles/{role_id}/usergroups":
     post:
       x-doc:
@@ -1742,6 +2461,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new user group in a folder
+        ai-gen:
+          keywords: folders,roles,user groups,create user group,new user group,folder
+            role
+          lead: Creates a new user group within a folder in a NetApp Console local
+            deployment.
   "/organizations/{organization_id}/roles/{role_id}/usergroups":
     post:
       x-doc:
@@ -1751,6 +2475,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new user group in an organization
+        ai-gen:
+          keywords: new user group,create user group,organization roles,user group
+            creation,user roles
+          lead: Creates a new user group within an organization in a NetApp Console
+            local deployment.
   "/organizations/{organization_id}/serviceaccounts/{serviceaccount_id}/publickeys":
     get:
       x-doc:
@@ -1760,6 +2489,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: List all the public keys for a service account
+        ai-gen:
+          keywords: organization public keys,service account keys,public key list,organization
+            keys,service account public keys
+          lead: Retrieves all public keys for the specified service account.
     post:
       x-doc:
         title: Create a public key for a service account in NetApp Console local deployment
@@ -1768,6 +2501,10 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a public key for a service account
+        ai-gen:
+          keywords: organization id,service account,public key,create public key,service
+            account id,organization
+          lead: Creates a public key for the specified service account.
   "/organizations/{organization_id}/serviceaccounts/{serviceaccount_id}/publickeys/{publickey_id}":
     delete:
       x-doc:
@@ -1777,6 +2514,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Delete a public key for a service account
+        ai-gen:
+          keywords: delete public key,service account,organization id,key removal,public
+            key management
+          lead: Deletes a public key for a service account, removing the specified key
+            from the account's configuration.
     patch:
       x-doc:
         title: Partially update a public key for a service account in NetApp Console local deployment
@@ -1785,6 +2527,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Partially update a public key for a service account
+        ai-gen:
+          keywords: service account,public key,update public key,organization id,serviceaccount
+            id
+          lead: Updates a public key for the specified service account with partial
+            information.
   "/partnerships/{partnership_id}/grants":
     get:
       x-doc:
@@ -1998,6 +2745,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Create a new user group in a project
+        ai-gen:
+          keywords: create user group,user group creation,project role management,assign
+            role,usergroups endpoint
+          lead: Creates a new user group in a project within a NetApp Console local
+            deployment.
   "/resources/{resource_id}/permissions/{permission_id}/users/{user_id}":
     get:
       x-doc:
@@ -2007,6 +2759,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a user with a permission for a resource
+        ai-gen:
+          keywords: resource permissions,user permissions,resource access,permission
+            rule,user access
+          lead: Retrieves a user with a permission for a resource in a NetApp Console
+            local deployment.
   "/users/{user_id}/partnerOrganizations":
     get:
       x-doc:
@@ -2025,6 +2782,11 @@ paths:
         subcategory: 
         explorer: false
         sidebar_title: Retrieve a resource for a user with a permission
+        ai-gen:
+          keywords: user permissions,resource access,user resource,user permission
+            id,resource retrieval,permission resources
+          lead: Retrieves a resource for which the specified user holds the specified
+            permission.
   "/fleets":
     get:
       x-doc:
@@ -2034,6 +2796,9 @@ paths:
         sidebar_title: List all fleets
         explorer: false
         subcategory: 
+        ai-gen:
+          keywords: fleets,list fleets,IAM fleets,data management,netapp console
+          lead: Retrieves all fleets in a NetApp Console local deployment.
     post:
       x-doc:
         title: Create a new fleet in NetApp Console local deployment
@@ -2042,6 +2807,10 @@ paths:
         sidebar_title: Create a new fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: create fleet,fleet creation,new fleet,fleet management,console
+            fleet
+          lead: Creates a new fleet in a NetApp Console local deployment.
   "/fleets/{fleet_id}":
     delete:
       x-doc:
@@ -2051,6 +2820,9 @@ paths:
         sidebar_title: Delete a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: delete fleet,fleet removal,fleet management,fleet id,fleet operations
+          lead: Deletes the specified fleet in a NetApp Console local deployment.
     get:
       x-doc:
         title: Retrieve a fleet in NetApp Console local deployment
@@ -2059,6 +2831,9 @@ paths:
         sidebar_title: Retrieve a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: retrieve fleet,fleet retrieval,fleet id,fleet details,fleet information
+          lead: Retrieves the specified fleet in a NetApp Console local deployment.
     patch:
       x-doc:
         title: Partially update a fleet in NetApp Console local deployment
@@ -2067,6 +2842,11 @@ paths:
         sidebar_title: Partially update a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: update fleet,fleet management,fleet patch,fleet modification,fleet
+            update
+          lead: Updates a fleet with partial information in a NetApp Console local
+            deployment.
     put:
       x-doc:
         title: Modify a fleet in NetApp Console local deployment
@@ -2075,6 +2855,11 @@ paths:
         sidebar_title: Modify a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: fleet management,update fleet,fleet replacement,fleet information,fleet
+            id
+          lead: Replaces the specified fleet with new information in a NetApp Console
+            local deployment.
   "/fleets/{fleet_id}/users":
     get:
       x-doc:
@@ -2084,6 +2869,9 @@ paths:
         sidebar_title: List all users under a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: fleet users,list users,user directory,fleet id,user management
+          lead: Retrieves all users under the specified fleet.
     post:
       x-doc:
         title: Create a new user association under a fleet in NetApp Console local deployment
@@ -2092,6 +2880,10 @@ paths:
         sidebar_title: Create a new user association under a fleet
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: associate user,fleet users,user association,fleet management,fleet
+            id
+          lead: Creates a user association under the specified fleet.
   "/folders/{folder_id}/fleets":
     get:
       x-doc:
@@ -2101,6 +2893,9 @@ paths:
         sidebar_title: List all fleets under a folder
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: folder fleets,folder id,fleet list,fleet management,folder hierarchy
+          lead: Retrieves all fleets under the specified folder.
     post:
       x-doc:
         title: Create a new fleet under a folder in NetApp Console local deployment
@@ -2109,6 +2904,10 @@ paths:
         sidebar_title: Create a new fleet under a folder
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: create fleet,folder fleet,folder management,fleet creation,fleet
+            under folder
+          lead: Creates a fleet under the specified folder.
   "/folders/{folder_id}/fleets/{fleet_id}":
     delete:
       x-doc:
@@ -2118,6 +2917,11 @@ paths:
         sidebar_title: Remove a fleet from a folder
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: remove fleet,remove fleet association,folder management,fleet
+            removal,folder fleet,remove folder fleet
+          lead: Removes a fleet from a specified folder in a NetApp Console local
+            deployment.
     get:
       x-doc:
         title: Retrieve a fleet under a folder in NetApp Console local deployment
@@ -2126,6 +2930,10 @@ paths:
         sidebar_title: Retrieve a fleet under a folder
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: fleet retrieval,fleet access,specified folder,specified
+            fleet,folder fleet,fleet data
+          lead: Retrieves a fleet under the specified folder.
     patch:
       x-doc:
         title: Partially update a fleet under a folder in NetApp Console local deployment
@@ -2134,6 +2942,10 @@ paths:
         sidebar_title: Partially update a fleet under a folder
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: update fleet,fleet update,partial fleet update,specified
+            folder,fleet management
+          lead: Updates a fleet under the specified folder with partial information.
     put:
       x-doc:
         title: Modify a fleet under a folder in NetApp Console local deployment
@@ -2142,6 +2954,11 @@ paths:
         sidebar_title: Modify a fleet under a folder
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: replace fleet,folder management,fleet update,fleet replacement,folder
+            fleet,fleet information
+          lead: Replaces a fleet in the specified folder with new information in a
+            NetApp Console local deployment.
   "/organizations/{organization_id}/fleets":
     get:
       x-doc:
@@ -2151,6 +2968,10 @@ paths:
         sidebar_title: List all fleets under an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization fleets,fleet list,fleet management,organization
+            resources,fleet overview
+          lead: Lists all fleets under the specified organization.
     post:
       x-doc:
         title: Create a new fleet under an organization in NetApp Console local deployment
@@ -2159,6 +2980,11 @@ paths:
         sidebar_title: Create a new fleet resource under an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization fleet,create fleet,new fleet,fleet creation,organization
+            fleet creation
+          lead: Creates a new fleet under an organization in a NetApp Console local
+            deployment.
   "/organizations/{organization_id}/fleets/{fleet_id}":
     delete:
       x-doc:
@@ -2168,6 +2994,10 @@ paths:
         sidebar_title: Remove a fleet from an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization management,fleet removal,remove fleet
+            association,fleet management,remove fleet
+          lead: Removes a fleet from the specified organization.
     get:
       x-doc:
         title: Retrieve a fleet under an organization in NetApp Console local deployment
@@ -2176,6 +3006,11 @@ paths:
         sidebar_title: Retrieve a fleet under an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization fleet,retrieve fleet,fleet details,organization information,fleet
+            id
+          lead: Retrieves a fleet under the specified organization in a NetApp Console
+            local deployment.
     patch:
       x-doc:
         title: Partially update a fleet under an organization in NetApp Console local deployment
@@ -2184,6 +3019,11 @@ paths:
         sidebar_title: Partially update a fleet under an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization fleet,update fleet,fleet management,partial fleet
+            update,fleet modify
+          lead: Updates a fleet under the specified organization with partial
+            information.
     put:
       x-doc:
         title: Modify a fleet under an organization in NetApp Console local deployment
@@ -2193,6 +3033,11 @@ paths:
         subcategory: 
         explorer: false
 
+        ai-gen:
+          keywords: organization fleet,replace fleet,fleet update,new fleet info,fleet
+            management
+          lead: Replaces a fleet under the specified organization with new
+            information.
   "/folders/{folder_id}/roles/{role_id}/usergroups/{usergroup_id}":
     delete:
       x-doc:
@@ -2202,6 +3047,12 @@ paths:
         sidebar_title: Remove a role associated with a user group from a folder
         explorer: false
         subcategory: 
+        ai-gen:
+          keywords: remove role association,user group association,remove folder role
+            association,role usergroup association removal,folder usergroup,role
+            management
+          lead: Removes the association between a role and a user group from the
+            specified folder.
   "/organizations/{organization_id}/roles/{role_id}/usergroups/{usergroup_id}":
     delete:
       x-doc:
@@ -2211,6 +3062,11 @@ paths:
         sidebar_title: Remove a role associated with a user group from an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: remove association,role association removal,user group
+            management,organization roles,user group roles
+          lead: Removes the association between a role and a user group from the
+            specified organization.
   "/projects/{project_id}/roles/{role_id}/usergroups/{usergroup_id}":
     delete:
       x-doc:
@@ -2220,6 +3076,11 @@ paths:
         sidebar_title: Remove a role associated with a user group from a project 
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: remove association,role management,user group,project roles,user
+            group roles,role association removal
+          lead: Removes the association between a role and a user group from the
+            specified project.
 categories:
 - id: resource and resourcegroup
   title: Resource and resourcegroup endpoints in the identity and access management

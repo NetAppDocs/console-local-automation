@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'alerts/get-organizations-alertsummary.html'
+keywords: 'organization alert,alert summary,impact area,severity count,alert count'
 summary: 'Retrieve a summary of the alert counts for an organization in NetApp Console local deployment'
 ---
 
 = Retrieve a summary of the alert counts for an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a summary of alert counts for the specified organization, grouped by impact area and severity.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/alertsummary`#
 
-
+== Usage notes
 
 Retrieves an alert count summary for the specified organization, grouped by impactArea and severity.
 

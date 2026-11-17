@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-folders-folders-.html'
+keywords: 'remove folder,child folder,parent folder,folder hierarchy,folder association removal'
 summary: 'Remove a child folder from a parent folder in NetApp Console local deployment'
 ---
 
 = Remove a child folder from a parent folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Removes a child folder from a parent folder.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/folders/{folder_id}/folders/{childfolder_id}`#
 
-
+== Usage notes
 
 Removes the specified child folder from a parent folder.
 

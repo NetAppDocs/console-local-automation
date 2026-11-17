@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'agentic/get-health.html'
+keywords: 'health status,configuration manager,service health,system status,configuration status'
 summary: 'Retrieve the configuration manager health status in NetApp Console local deployment'
 ---
 
 = Retrieve the configuration manager health status in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves the health status of the configuration manager service.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/health`#
 
-
+== Usage notes
 
 Returns the health status of the configuration manager service.
 

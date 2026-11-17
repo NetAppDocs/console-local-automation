@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-folders-users-.html'
+keywords: 'folder user,folder association,user retrieval,user folder,folder details'
 summary: 'Retrieve a user associated with a folder in NetApp Console local deployment'
 ---
 
 = Retrieve a user associated with a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a user associated with a folder.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/folders/{folder_id}/users/{user_id}`#
 
-
+== Usage notes
 
 Retrieves a user associated with the specified folder.
 

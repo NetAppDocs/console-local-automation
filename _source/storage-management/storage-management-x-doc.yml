@@ -11,6 +11,11 @@ paths:
         sidebar_title: List all capacity policies in an organization
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization capacity,capacity policies,organization policies,list
+            policies,capacity management
+          lead: Retrieves all capacity policies for an organization in a NetApp Console
+            local deployment.
     post:
       x-doc:
         title: Create a new capacity policy in NetApp Console local deployment
@@ -19,6 +24,10 @@ paths:
         sidebar_title: Create a new capacity policy
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: capacity policy,create policy,organization capacity,organization
+            policy,new capacity policy,capacity management
+          lead: Creates a new capacity policy.
   "/v1/organizations/{organizationId}/capacitypolicies/{capacityPolicyId}":
     delete:
       x-doc:
@@ -28,6 +37,10 @@ paths:
         sidebar_title: Delete a capacity policy
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: capacity policy,delete capacity policy,organization id,policy removal,capacity
+            management
+          lead: Deletes the specified capacity policy in a NetApp Console local deployment.
     get:
       x-doc:
         title: Retrieve a capacity policy in NetApp Console local deployment
@@ -36,6 +49,10 @@ paths:
         sidebar_title: Retrieve a capacity policy 
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: capacity policy,organization capacity,storage capacity,policy
+            retrieval,capacity management
+          lead: Retrieves the details of the specified capacity policy.
     patch:
       x-doc:
         title: Update a capacity policy in NetApp Console local deployment
@@ -44,6 +61,10 @@ paths:
         sidebar_title: Update a capacity policy
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization capacity,capacity policy,update capacity policy,capacity
+            policy management,policy update
+          lead: Updates the specified capacity policy.
   "/v1/organizations/{organizationId}/fleets/{fleetId}/workingenvironments":
     post:
       x-doc:
@@ -53,6 +74,11 @@ paths:
         sidebar_title: Discover and register a storage device
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: storage device,system registration,organization fleet,device validation,discover
+            storage
+          lead: Discovers and registers a storage device as a system in the specified
+            organization and fleet. Supports validation without registration.
   "/v1/organizations/{organizationId}/performancepolicies":
     get:
       x-doc:
@@ -62,6 +88,10 @@ paths:
         sidebar_title: List all performance policies
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization performance,performance policies,organization policies,performance
+            policy retrieval,policy retrieval
+          lead: Retrieves all performance policies within the specified organization.
     post:
       x-doc:
         title: Create a new performance policy in NetApp Console local deployment
@@ -70,6 +100,10 @@ paths:
         sidebar_title: Create a new performance policy
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: performance policy,create performance policy,organization policy,performance
+            management,organization id
+          lead: Creates a new performance policy within the specified organization.
   "/v1/organizations/{organizationId}/performancepolicies/{performancePolicyId}":
     delete:
       x-doc:
@@ -79,6 +113,11 @@ paths:
         sidebar_title: Delete a performance policy
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: performance policy,organization identifier,delete performance
+            policy,storage class type,user defined
+          lead: Deletes a performance policy within the specified organization using
+            its unique identifier.
     get:
       x-doc:
         title: Retrieve a performance policy in NetApp Console local deployment
@@ -87,6 +126,11 @@ paths:
         sidebar_title: Retrieve a performance policy
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: performance policy,organization identifier,performance policy
+            identifier,performance policy retrieval,performance policy details
+          lead: Retrieves a performance policy within the specified organization using
+            its unique identifier.
     patch:
       x-doc:
         title: Update an existing performance policy in NetApp Console local deployment
@@ -95,6 +139,11 @@ paths:
         sidebar_title: Update an existing performance policy
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: update performance policy,organization performance policy,performance policy
+            management,performance policy update,organization policy
+          lead: Updates an existing performance policy using its unique identifier
+            within the specified organization.
   "/v1/organizations/{organizationId}/protectionpolicies":
     get:
       x-doc:
@@ -104,6 +153,10 @@ paths:
         sidebar_title: List protection policies
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization protection,protection policies,organization policies,protection
+            policy list,protection policy retrieval
+          lead: Retrieves the list of protection policies for the specified organization.
     post:
       x-doc:
         title: Create a protection policy in NetApp Console local deployment
@@ -112,6 +165,10 @@ paths:
         sidebar_title: Create a protection policy
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization protection,protection policy,create protection policy,new
+            protection policy,organization policy,policy creation
+          lead: Creates a protection policy.
   "/v1/organizations/{organizationId}/protectionpolicies/{protectionPolicyId}":
     delete:
       x-doc:
@@ -121,6 +178,11 @@ paths:
         sidebar_title: Delete a protection policy
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: delete protection policy,remove protection policy,organization
+            protection policy,workload free policy,user-defined protection policy
+          lead: Deletes a protection policy that is not associated with any workload
+            and is not system-defined.
     get:
       x-doc:
         title: Retrieve protection policy details in NetApp Console local deployment
@@ -129,6 +191,10 @@ paths:
         sidebar_title: Retrieve protection policy details 
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization protection,protection policy details,policy retrieval,organization
+            policy,protection policy
+          lead: Retrieves configuration details for the specified protection policy.
     patch:
       x-doc:
         title: Update a protection policy in NetApp Console local deployment
@@ -137,6 +203,11 @@ paths:
         sidebar_title: Update a protection policy
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: modify protection policy,protection policy update,organization
+            protection,user-defined protection policy,workload-free policy
+          lead: Modifies an existing protection policy that has no associated workloads
+            and is not system-defined.
   "/v1/organizations/{organizationId}/securitypolicies":
     get:
       x-doc:
@@ -146,6 +217,10 @@ paths:
         sidebar_title: List security policies
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization security,security policies,organization policies,list
+            security policies,retrieve policies,organizationId
+          lead: Retrieves a list of security policies for the specified organization.
     post:
       x-doc:
         title: Create a security policy in NetApp Console local deployment
@@ -154,6 +229,10 @@ paths:
         sidebar_title: Create a security policy
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: create security policy,new security policy,organization security,security
+            policies,security policy creation
+          lead: Creates a security policy in a NetApp Console local deployment.
   "/v1/organizations/{organizationId}/securitypolicies/{securityPolicyId}":
     delete:
       x-doc:
@@ -163,6 +242,11 @@ paths:
         sidebar_title: Delete a security policy
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: security policy,security policy id,delete security policy,organization
+            security,workload association,user-defined security policy
+          lead: Deletes a security policy that is not associated with any workload
+            and is not system-defined.
     get:
       x-doc:
         title: Retrieve security policy details in NetApp Console local deployment 
@@ -171,6 +255,10 @@ paths:
         sidebar_title: Retrieve security policy details 
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization security,security policy details,security policy
+            id,organization security policy,retrieve security policy
+          lead: Retrieves the details of the specified security policy.
     patch:
       x-doc:
         title: Update a security policy in NetApp Console local deployment 
@@ -179,6 +267,11 @@ paths:
         sidebar_title: Update a security policy
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: modify security policy,update security policy,security policy
+            management,organization security policy,user-defined security policy
+          lead: Modifies an existing security policy that has no associated workloads
+            and is not system-defined.
   "/v1/organizations/{organizationId}/storageclasses":
     get:
       x-doc:
@@ -188,6 +281,10 @@ paths:
         sidebar_title: List all storage classes
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organization storage,storage classes,organization storage classes,storage
+            class list,organization storage class list
+          lead: Retrieves a list of storage classes within the specified organization.
     post:
       x-doc:
         title: Create a new storage class in NetApp Console local deployment 
@@ -196,6 +293,10 @@ paths:
         sidebar_title: Create a new storage class
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: storage class,create storage class,new storage class,organization
+            storage,storage management
+          lead: Creates a new storage class within the specified organization.
   "/v1/organizations/{organizationId}/storageclasses/{storageClassId}":
     delete:
       x-doc:
@@ -205,6 +306,11 @@ paths:
         sidebar_title: Delete an existing storage class
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: storage class delete,organization storage,storage class removal,user
+            defined storage,workload association,storage class identifier
+          lead: Deletes a user-defined storage class that has no associated workloads,
+            using its unique identifier within the specified organization.
     get:
       x-doc:
         title: Retrieve a storage class in NetApp Console local deployment 
@@ -213,6 +319,11 @@ paths:
         sidebar_title: Retrieve a storage class 
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: storage class,organization identifier,storage class identifier,organization
+            storage,retrieve storage class
+          lead: Retrieves a storage class using its unique identifier within the specified
+            organization.
     patch:
       x-doc:
         title: Update an existing storage class in NetApp Console local deployment
@@ -221,6 +332,11 @@ paths:
         sidebar_title: Update an existing storage class
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: update storage class,organization storage,storage class identifier,storage
+            class type,user defined storage
+          lead: Updates a user-defined storage class that has no associated workloads,
+            using its unique identifier within the specified organization.
   "/v1/organizations/{organizationId}/systemrecommendations":
     post:
       x-doc:
@@ -230,6 +346,12 @@ paths:
         sidebar_title: Retrieve system recommendations for storage placement
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: organizations,system recommendations,storage placement,cluster
+            storage,svm storage,storage classes
+          lead: Retrieves system recommendations for storage placement in a NetApp Console
+            local deployment. Calculates cluster and SVM storage in the fleet based
+            on constraints and storage classes.
   "/v1/organizations/{organizationId}/workingenvironments":
     get:
       x-doc:
@@ -248,6 +370,11 @@ paths:
         sidebar_title: Delete a system
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: remove system,delete system,on-premises removal,organization system,delete
+            working environment
+          lead: Removes the specified on-premises system from an organization in a NetApp
+            Console local deployment.
     patch:
       x-doc:
         title: Update a system in NetApp Console local deployment
@@ -256,6 +383,10 @@ paths:
         sidebar_title: Update a system
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: update system,system update,working environment,update fields,organization
+            system
+          lead: Updates the specified fields of a system in a NetApp Console local deployment.
   "/v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}/luns":
     post:
       x-doc:
@@ -265,6 +396,10 @@ paths:
         sidebar_title: Create a new LUN
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: create lun,organization id,working environment id,system lun,lun
+            creation
+          lead: Creates a new LUN in the specified system.
   "/v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}/volumes":
     post:
       x-doc:
@@ -274,6 +409,10 @@ paths:
         sidebar_title: Create a new volume
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: create volume,volume creation,new volume,working environment,organization
+            volume,volume system
+          lead: Creates a new volume in the specified system.
 categories:
 - id: system discovery
   title: System discovery endpoints in the storage management REST API for NetApp Console local deployment

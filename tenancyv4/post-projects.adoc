@@ -3,17 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-projects.html'
+keywords: 'create project,project creation,new project,backward compatibility,deprecated endpoint,netapp project'
 summary: 'Create a new project in NetApp Console local deployment'
 ---
 
 = Create a new project in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Creates a new project. This endpoint is deprecated in a NetApp Console local deployment; use the corresponding fleet endpoint instead.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/projects`#
 
-
-
-Creates a new project.
+== Usage notes
 
 NOTE: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available https://docs.netapp.com/us-en/console-local-automation/tenancyv4/post-fleets.html[here].
 

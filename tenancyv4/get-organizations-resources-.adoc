@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-organizations-resources-.html'
+keywords: 'organization resources,resource retrieval,organization resource,resource details,organization details'
 summary: 'Retrieve a resource under an organization in NetApp Console local deployment'
 ---
 
 = Retrieve a resource under an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a resource under the specified organization, providing access to the details and configurations of that resource.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/resources/{resource_id}`#
-
-
-
-Retrieves a resource under the specified organization.
-
 
 == Parameters
 

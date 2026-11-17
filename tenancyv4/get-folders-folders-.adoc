@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-folders-folders-.html'
+keywords: 'child folder retrieval,parent folder access,folder hierarchy,folder navigation,folder id'
 summary: 'Retrieve a child folder under a parent folder in NetApp Console local deployment'
 ---
 
 = Retrieve a child folder under a parent folder in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/folders/{folder_id}/folders/{childfolder_id}`#
-
-
-
+[.lead]
 Retrieves a child folder under the specified parent folder.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/folders/{folder_id}/folders/{childfolder_id}`#
 
 == Parameters
 

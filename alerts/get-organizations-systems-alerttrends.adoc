@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'alerts/get-organizations-systems-alerttrends.html'
+keywords: 'alert trends,alert counts,time series,severity filter,impact area'
 summary: 'Retrieve a time-series trend of alert counts for a system in NetApp Console local deployment'
 ---
 
 = Retrieve a time-series trend of alert counts for a system in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a time-series trend of alert counts for the specified system, with options for filtering and grouping the data.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/systems/{system_id}/alerttrends`#
 
-
+== Usage notes
 
 Retrieves a time-series trend of alert counts for the specified system, with flexible filtering and grouping.
 

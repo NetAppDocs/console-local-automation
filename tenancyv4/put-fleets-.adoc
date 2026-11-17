@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/put-fleets-.html'
+keywords: 'fleet management,update fleet,fleet replacement,fleet information,fleet id'
 summary: 'Modify a fleet in NetApp Console local deployment'
 ---
 
 = Modify a fleet in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Replaces the specified fleet with new information in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-put]#PUT# [.api-doc-code-block]#`/fleets/{fleet_id}`#
-
-
-
-Replaces the specified fleet with new information.
-
 
 == Parameters
 

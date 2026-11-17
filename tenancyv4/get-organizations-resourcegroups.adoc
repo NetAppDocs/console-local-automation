@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-organizations-resourcegroups.html'
+keywords: 'organization resource groups,organization resources,resource group list,organization data,resource management'
 summary: 'List all resource groups under an organization in NetApp Console local deployment'
 ---
 
 = List all resource groups under an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all resource groups under the specified organization.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/resourcegroups`#
 
-
+== Usage notes
 
 Lists all resource groups under the specified organization.
 

@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-folders-roles-usergroups.html'
+keywords: 'folders,roles,user groups,create user group,new user group,folder role'
 summary: 'Create a new user group in a folder in NetApp Console local deployment'
 ---
 
 = Create a new user group in a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Creates a new user group within a folder in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/folders/{folder_id}/roles/{role_id}/usergroups`#
-
-
-
-Creates a new user group.
-
 
 == Request Body
 

@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/post-v1-organizations-securitypolicies.html'
+keywords: 'create security policy,new security policy,organization security,security policies,security policy creation'
 summary: 'Create a security policy in NetApp Console local deployment'
 ---
 
 = Create a security policy in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Creates a security policy in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/securitypolicies`#
 
-
+== Usage notes
 
 Creates a new security policy.
 

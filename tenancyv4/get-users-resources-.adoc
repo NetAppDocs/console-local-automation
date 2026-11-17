@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-users-resources-.html'
+keywords: 'user permission,resource check,access validation,permission check,user resource,resource validation'
 summary: 'Check if a user has permission for a resource in NetApp Console local deployment'
 ---
 
 = Check if a user has permission for a resource in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/users/{user_id}/resources/{resource_id}`#
-
-
-
+[.lead]
 Checks if a user has permission for a specified resource.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/users/{user_id}/resources/{resource_id}`#
 
 == Parameters
 

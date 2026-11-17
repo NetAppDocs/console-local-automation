@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/delete-v1-organizations-performancepolicies-.html'
+keywords: 'performance policy,organization identifier,delete performance policy,storage class type,user defined'
 summary: 'Delete a performance policy in NetApp Console local deployment'
 ---
 
 = Delete a performance policy in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Deletes a performance policy within the specified organization using its unique identifier.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/v1/organizations/{organizationId}/performancepolicies/{performancePolicyId}`#
 
-
+== Usage notes
 
 Deletes a performance policy by using its unique identifier within the specified organization.
 Delete is only allowed when:

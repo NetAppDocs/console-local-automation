@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-organizations-organizations-.html'
+keywords: 'remove child,remove organization association,organization management,parent organization,child organization'
 summary: 'Remove a child organization from a parent organization in NetApp Console local deployment'
 ---
 
 = Remove a child organization from a parent organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Removes a child organization from a parent organization.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/organizations/{organization_id}/organizations/{childorganization_id}`#
 
-
+== Usage notes
 
 Removes the specified child organization from a parent organization.
 

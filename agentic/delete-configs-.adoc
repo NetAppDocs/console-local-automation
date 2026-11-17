@@ -3,17 +3,22 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'agentic/delete-configs-.html'
+keywords: 'agentgateway,delete configuration,config id,remove settings,default reload'
 summary: 'Delete an Agentic Platform configuration in NetApp Console local deployment'
 ---
 
 = Delete an Agentic Platform configuration in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Deletes the specified AgentGateway configuration in a NetApp Console local deployment. The gateway automatically reloads with its default settings.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/configs/{config_id}`#
 
+== Usage notes
 
-
-Deletes the specified AgentGateway configuration.
 The AgentGateway automatically reloads with the default settings.
 
 

@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-folders-folders.html'
+keywords: 'create folder,folder id,parent folder,new folder,folder structure,subfolder creation'
 summary: 'Create a child folder under a parent folder in NetApp Console local deployment'
 ---
 
 = Create a child folder under a parent folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Creates a child folder under a parent folder in a NetApp Console local deployment, organizing your resources within a structured hierarchy.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/folders/{folder_id}/folders`#
 
-
+== Usage notes
 
 Creates a new folder under the specified parent folder.
 

@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'agentic/post-providermodels.html'
+keywords: 'large language model,model list,provider models,model information,llm provider'
 summary: 'List all models available from the specified LLM provider in NetApp Console local deployment'
 ---
 
 = List all models available from the specified LLM provider in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a list of models available from the specified large language model (LLM) provider using the supplied provider credentials.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/providerModels`#
 
-
+== Usage notes
 
 Returns a list of all models available from the specified Large Language Model (LLM) provider.
 This endpoint queries the provider's API directly using the provided

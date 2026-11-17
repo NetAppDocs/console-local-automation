@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/post-v1-organizations-storageclasses.html'
+keywords: 'storage class,create storage class,new storage class,organization storage,storage management'
 summary: 'Create a new storage class in NetApp Console local deployment'
 ---
 
 = Create a new storage class in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/storageclasses`#
-
-
-
+[.lead]
 Creates a new storage class within the specified organization.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/storageclasses`#
 
 == Parameters
 

@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-projects-users-.html'
+keywords: 'remove user,project user,remove user association,project management,user removal'
 summary: 'Remove a user from a project in NetApp Console local deployment'
 ---
 
 = Remove a user from a project in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/projects/{project_id}/users/{user_id}`#
-
-
-
+[.lead]
 Removes a user from the specified project.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/projects/{project_id}/users/{user_id}`#
 
 == Parameters
 

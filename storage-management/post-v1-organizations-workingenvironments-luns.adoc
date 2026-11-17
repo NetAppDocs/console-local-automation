@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/post-v1-organizations-workingenvironments-luns.html'
+keywords: 'create lun,organization id,working environment id,system lun,lun creation'
 summary: 'Create a new LUN in NetApp Console local deployment'
 ---
 
 = Create a new LUN in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}/luns`#
-
-
-
+[.lead]
 Creates a new LUN in the specified system.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}/luns`#
 
 == Parameters
 

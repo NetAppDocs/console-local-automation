@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-organizations-roles-usergroups-.html'
+keywords: 'remove association,role association removal,user group management,organization roles,user group roles'
 summary: 'Remove a role associated with a user group from an organization in NetApp Console local deployment'
 ---
 
 = Remove a role associated with a user group from an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Removes the association between a role and a user group from the specified organization.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/organizations/{organization_id}/roles/{role_id}/usergroups/{usergroup_id}`#
-
-
-
-Removes association between role and user group from the specified organization.
-
 
 == Parameters
 

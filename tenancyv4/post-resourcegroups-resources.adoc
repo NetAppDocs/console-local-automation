@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-resourcegroups-resources.html'
+keywords: 'resource group,add resource,resource management,group resources,resourcegroup id'
 summary: 'Add resources to a resource group in NetApp Console local deployment'
 ---
 
 = Add resources to a resource group in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/resourcegroups/{resourcegroup_id}/resources`#
-
-
-
+[.lead]
 Adds resources to the specified resource group.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/resourcegroups/{resourcegroup_id}/resources`#
 
 == Parameters
 

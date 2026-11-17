@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'asset/get-organizations-fleets-qtrees.html'
+keywords: 'qtrees,fleet qtrees,organization fleets,list qtrees,storage inventory,qtree details'
 summary: 'List qtrees in a fleet in NetApp Console local deployment'
 ---
 
 = List qtrees in a fleet in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all qtrees in the specified fleet.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/qtrees`#
 
-
+== Usage notes
 
 Lists all qtrees in the specified fleet.
 

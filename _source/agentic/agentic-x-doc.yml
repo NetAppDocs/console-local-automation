@@ -11,6 +11,11 @@ paths:
         sidebar_title: List all configurations
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: agentic platform,configurations list,filter configurations,platform
+            configurations,configurations retrieval
+          lead: Retrieves a list of Agentic Platform configurations in a NetApp Console
+            local deployment.
     post:
       x-doc:
         title: Create a new draft Agentic Platform configuration in NetApp Console local deployment
@@ -19,6 +24,12 @@ paths:
         sidebar_title: Create a new draft configuration
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: configuration record,draft state,hot reload,draft configuration,provider
+            credentials
+          lead: Creates a draft configuration for the Agentic Platform in a NetApp Console
+            local deployment. Use PATCH /configs/{config_id} to apply the configuration
+            and trigger a hot reload.
   "/configs/{config_id}":
     delete:
       x-doc:
@@ -28,6 +39,11 @@ paths:
         sidebar_title: Delete a configuration
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: agentgateway,delete configuration,config id,remove settings,default
+            reload
+          lead: Deletes the specified AgentGateway configuration in a NetApp Console
+            local deployment. The gateway automatically reloads with its default settings.
     get:
       x-doc:
         title: Retrieve an Agentic Platform configuration in NetApp Console local deployment
@@ -36,6 +52,11 @@ paths:
         sidebar_title: Retrieve a configuration 
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: agentgateway configuration,retrieve configuration,specific configuration,config
+            id,configs endpoint
+          lead: Retrieves the specified AgentGateway configuration using the configuration
+            ID.
     patch:
       x-doc:
         title: Apply an Agentic Platform configuration in NetApp Console local deployment
@@ -44,6 +65,12 @@ paths:
         sidebar_title: Apply a configuration
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: kubernetes creation,agentic configuration,apply pipeline,connection
+            test,provider update
+          lead: Applies the specified Agentic Platform configuration and creates Kubernetes
+            resources in a NetApp Console local deployment. The AgentGateway automatically
+            hot reloads the updated configuration.
   "/health":
     get:
       x-doc:
@@ -53,6 +80,10 @@ paths:
         sidebar_title: Retrieve the configuration manager health status
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: health status,configuration manager,service health,system status,configuration
+            status
+          lead: Retrieves the health status of the configuration manager service.
   "/providerModels":
     post:
       x-doc:
@@ -62,6 +93,11 @@ paths:
         sidebar_title: List models available from an LLM provider
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: large language model,model list,provider models,model information,llm
+            provider
+          lead: Retrieves a list of models available from the specified large language
+            model (LLM) provider using the supplied provider credentials.
   "/supportedModels":
     get:
       x-doc:
@@ -71,6 +107,11 @@ paths:
         sidebar_title: List all supported LLM models 
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: large language models,supported models,agentic platform,llm models,model
+            provider,model type
+          lead: Retrieves a list of large language models (LLMs) supported by the Agentic
+            Platform.
   "/supportedModels/{supported_model_id}":
     get:
       x-doc:
@@ -80,6 +121,11 @@ paths:
         sidebar_title: Retrieve an LLM model
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: large language model,model information,supported models,uuid model
+            id,model details
+          lead: Retrieves detailed information about the specified large language model
+            (LLM) in a NetApp Console local deployment.
   "/supportedProviders":
     get:
       x-doc:
@@ -89,6 +135,12 @@ paths:
         sidebar_title: List all available LLM supported providers
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: large language model,agentic platform,supported providers,provider
+            type,is enabled,is configured
+          lead: Retrieves a list of supported large language model (LLM) providers that
+            can be configured and used with the Agentic Platform in a NetApp Console
+            local deployment.
   "/supportedProviders/{supported_provider_id}":
     get:
       x-doc:
@@ -98,6 +150,11 @@ paths:
         sidebar_title: Retrieve an LLM supported provider
         subcategory: 
         explorer: false
+        ai-gen:
+          keywords: supported provider,large language model,provider information,provider
+            details,provider id,language model provider
+          lead: Retrieves detailed information about a supported large language model
+            (LLM) provider identified by its unique ID.
   "/configs/{config_id}/providerModels":
     get:
       x-doc:
@@ -107,6 +164,12 @@ paths:
         sidebar_title:  List models available from a LLM provider associated with a saved configuration 
         explorer: false
         subcategory: 
+        ai-gen:
+          keywords: config models,provider models,large language model,saved configuration,model
+            information
+          lead: Retrieves a list of models available from the large language model (LLM)
+            provider associated with the specified saved configuration, using its stored
+            provider credentials.
 categories:
 - id: health
   title: Health endpoints in the Agentic Platform configuration manager REST API for NetApp Console local deployment

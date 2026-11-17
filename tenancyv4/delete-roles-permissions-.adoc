@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-roles-permissions-.html'
+keywords: 'remove permission,role permission,remove role permission,role id,permission management'
 summary: 'Delete a permission for a role in NetApp Console local deployment'
 ---
 
 = Delete a permission for a role in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Removes the specified permission from a role in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/roles/{role_id}/permissions/{permission_id}`#
-
-
-
-Removes the specified permission.
-
 
 == Parameters
 

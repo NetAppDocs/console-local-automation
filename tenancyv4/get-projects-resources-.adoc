@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-projects-resources-.html'
+keywords: 'project resource,retrieve resource,specified project,project id,resource id'
 summary: 'Retrieve a resource in a project in NetApp Console local deployment'
 ---
 
 = Retrieve a resource in a project in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/projects/{project_id}/resources/{resource_id}`#
-
-
-
+[.lead]
 Retrieves a resource in a specified project.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/projects/{project_id}/resources/{resource_id}`#
 
 == Parameters
 

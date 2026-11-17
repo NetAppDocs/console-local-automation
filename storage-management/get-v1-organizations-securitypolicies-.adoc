@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/get-v1-organizations-securitypolicies-.html'
+keywords: 'organization security,security policy details,security policy id,organization security policy,retrieve security policy'
 summary: 'Retrieve security policy details in NetApp Console local deployment'
 ---
 
 = Retrieve security policy details in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/v1/organizations/{organizationId}/securitypolicies/{securityPolicyId}`#
-
-
-
+[.lead]
 Retrieves the details of the specified security policy.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/v1/organizations/{organizationId}/securitypolicies/{securityPolicyId}`#
 
 == Parameters
 

@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-roles-.html'
+keywords: 'role deletion,role removal,delete role,remove role,role management'
 summary: 'Delete a role in NetApp Console local deployment'
 ---
 
 = Delete a role in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Deletes the specified role, removing it from a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/roles/{role_id}`#
-
-
-
-Deletes the specified role.
-
 
 == Parameters
 

@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'asset/get-organizations-qtrees.html'
+keywords: 'organization qtrees,list qtrees,qtree inventory,organization storage,qtree overview'
 summary: 'List qtrees in an organization in NetApp Console local deployment'
 ---
 
 = List qtrees in an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all qtrees in the specified organization.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/qtrees`#
 
-
+== Usage notes
 
 Lists all qtrees in the specified organization.
 

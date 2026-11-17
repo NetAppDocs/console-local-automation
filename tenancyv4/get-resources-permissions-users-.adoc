@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-resources-permissions-users-.html'
+keywords: 'resource permissions,user permissions,resource access,permission rule,user access'
 summary: 'Retrieve a user with a permission for a resource in NetApp Console local deployment'
 ---
 
 = Retrieve a user with a permission for a resource in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a user with a permission for a resource in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/resources/{resource_id}/permissions/{permission_id}/users/{user_id}`#
-
-
-
-Retrieves a user with a permission for a resource.
-
 
 == Parameters
 

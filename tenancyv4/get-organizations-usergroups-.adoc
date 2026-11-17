@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-organizations-usergroups-.html'
+keywords: 'organization usergroup,usergroup retrieval,organization user group,user group under organization,retrieve user group'
 summary: 'Retrieve a user group under an organization in NetApp Console local deployment'
 ---
 
 = Retrieve a user group under an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/usergroups/{usergroup_id}`#
-
-
-
+[.lead]
 Retrieves a user group under the specified organization.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/usergroups/{usergroup_id}`#
 
 == Parameters
 

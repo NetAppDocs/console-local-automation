@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/put-folders-.html'
+keywords: 'replace folder,folder update,change folder info,folder modification,update folder'
 summary: 'Update a folder in NetApp Console local deployment'
 ---
 
 = Update a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Replaces the specified folder with new information in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-put]#PUT# [.api-doc-code-block]#`/folders/{folder_id}`#
-
-
-
-Replaces the specified folder with new information.
-
 
 == Parameters
 

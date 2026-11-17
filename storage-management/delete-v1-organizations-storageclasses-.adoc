@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/delete-v1-organizations-storageclasses-.html'
+keywords: 'storage class delete,organization storage,storage class removal,user defined storage,workload association,storage class identifier'
 summary: 'Delete an existing storage class in NetApp Console local deployment'
 ---
 
 = Delete an existing storage class in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Deletes a user-defined storage class that has no associated workloads, using its unique identifier within the specified organization.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/v1/organizations/{organizationId}/storageclasses/{storageClassId}`#
 
-
+== Usage notes
 
 Deletes a storage class by using its unique identifier within the specified organization.
 Delete is only allowed when:

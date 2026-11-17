@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-resources-users.html'
+keywords: 'resource users,resource permissions,user list,user permissions,resource id,permissions list'
 summary: 'List all users with permissions for a resource in NetApp Console local deployment'
 ---
 
 = List all users with permissions for a resource in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/resources/{resource_id}/users`#
-
-
-
+[.lead]
 Lists all users with permissions for the specified resource.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/resources/{resource_id}/users`#
 
 == Parameters
 

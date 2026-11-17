@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-usergroups-users-.html'
+keywords: 'remove user,remove user association,user management,user group,group user removal'
 summary: 'Remove a user from a user group in NetApp Console local deployment'
 ---
 
 = Remove a user from a user group in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/usergroups/{usergroup_id}/users/{user_id}`#
-
-
-
+[.lead]
 Removes a user from the specified user group.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/usergroups/{usergroup_id}/users/{user_id}`#
 
 == Parameters
 

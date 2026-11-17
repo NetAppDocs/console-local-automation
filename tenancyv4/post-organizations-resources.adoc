@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-organizations-resources.html'
+keywords: 'add resources,organization resources,resource management,organization id,resource addition'
 summary: 'Add resources to an organization in NetApp Console local deployment'
 ---
 
 = Add resources to an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/resources`#
-
-
-
+[.lead]
 Adds resources to the specified organization.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/resources`#
 
 == Parameters
 

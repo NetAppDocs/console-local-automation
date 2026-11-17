@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/get-v1-organizations-storageclasses-.html'
+keywords: 'storage class,organization identifier,storage class identifier,organization storage,retrieve storage class'
 summary: 'Retrieve a storage class in NetApp Console local deployment'
 ---
 
 = Retrieve a storage class in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a storage class using its unique identifier within the specified organization.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/v1/organizations/{organizationId}/storageclasses/{storageClassId}`#
 
-
+== Usage notes
 
 Retrieves the storage class by using its unique identifier within the specified organization.
 

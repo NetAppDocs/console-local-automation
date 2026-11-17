@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/delete-usergroups-.html'
+keywords: 'user group,delete usergroup,usergroup id,remove group,group management'
 summary: 'Delete a user group in NetApp Console local deployment'
 ---
 
 = Delete a user group in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Deletes the specified user group in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/usergroups/{usergroup_id}`#
-
-
-
-Deletes the specified user group.
-
 
 == Parameters
 

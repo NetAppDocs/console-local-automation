@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'asset/post-organizations-fleets-metricsql.html'
+keywords: 'metricsql query,time series data,fleet systems,organization fleet,metrics data'
 summary: 'Run a MetricsQL query for systems in the specified fleet in NetApp Console local deployment'
 ---
 
 = Run a MetricsQL query for systems in the specified fleet in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/metricsql`#
-
-
-
+[.lead]
 Runs a raw MetricsQL query against time series data for systems in the specified fleet.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/organizations/{organization_id}/fleets/{fleet_id}/metricsql`#
 
 == Parameters
 

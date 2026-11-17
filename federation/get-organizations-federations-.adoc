@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'federation/get-organizations-federations-.html'
+keywords: 'organization federation,federation retrieval,federation id,federation details,organization id'
 summary: 'Retrieve a federation in NetApp Console local deployment'
 ---
 
 = Retrieve a federation in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves the specified federation in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/federations/{federation_id}`#
-
-
-
-Retrieves the specified federation.
-
 
 == Parameters
 

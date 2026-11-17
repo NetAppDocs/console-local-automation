@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'federation/delete-organizations-federations-.html'
+keywords: 'organization,federation,federation delete,federation removal,organization management'
 summary: 'Delete a federation in NetApp Console local deployment'
 ---
 
 = Delete a federation in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Deletes the specified federation in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-delete]#DELETE# [.api-doc-code-block]#`/organizations/{organization_id}/federations/{federation_id}`#
-
-
-
-Deletes the specified federation.
-
 
 == Parameters
 

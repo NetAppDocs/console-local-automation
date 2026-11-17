@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-projects-roles-usergroups.html'
+keywords: 'create user group,user group creation,project role management,assign role,usergroups endpoint'
 summary: 'Create a new user group in a project in NetApp Console local deployment'
 ---
 
 = Create a new user group in a project in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Creates a new user group in a project within a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/projects/{project_id}/roles/{role_id}/usergroups`#
-
-
-
-Creates a new user group.
-
 
 == Request Body
 

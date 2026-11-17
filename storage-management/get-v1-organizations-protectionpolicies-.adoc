@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/get-v1-organizations-protectionpolicies-.html'
+keywords: 'organization protection,protection policy details,policy retrieval,organization policy,protection policy'
 summary: 'Retrieve protection policy details in NetApp Console local deployment'
 ---
 
 = Retrieve protection policy details in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves configuration details for the specified protection policy.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/v1/organizations/{organizationId}/protectionpolicies/{protectionPolicyId}`#
 
-
+== Usage notes
 
 Retrieves the details of the specified protection policy.
 

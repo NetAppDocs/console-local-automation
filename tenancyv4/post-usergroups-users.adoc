@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-usergroups-users.html'
+keywords: 'usergroup users,add users,usergroup id,user management,user group'
 summary: 'Add users to a user group in NetApp Console local deployment'
 ---
 
 = Add users to a user group in NetApp Console local deployment
 :imagesdir: ../media/
 
-[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/usergroups/{usergroup_id}/users`#
-
-
-
+[.lead]
 Adds users to the specified user group.
 
+== HTTP method and endpoint
+
+[.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/usergroups/{usergroup_id}/users`#
 
 == Parameters
 

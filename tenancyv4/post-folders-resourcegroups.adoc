@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-folders-resourcegroups.html'
+keywords: 'folder resource,folder management,resource group addition,add resource group,resource groups'
 summary: 'Add resource groups to a folder in NetApp Console local deployment'
 ---
 
 = Add resource groups to a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Adds resource groups to a specified folder.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/folders/{folder_id}/resourcegroups`#
-
-
-
-Adds resource groups to the specified folder.
-
 
 == Parameters
 

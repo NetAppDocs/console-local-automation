@@ -3,17 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-projects-users.html'
+keywords: 'add users,project users,project management,user addition,user project integration'
 summary: 'Add users to a project in NetApp Console local deployment'
 ---
 
 = Add users to a project in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Adds users to the specified project. This endpoint is deprecated in a NetApp Console local deployment; use the corresponding fleet endpoint instead.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/projects/{project_id}/users`#
 
-
-
-Adds users to the specified project.
+== Usage notes
 
 NOTE: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available https://docs.netapp.com/us-en/console-local-automation/tenancyv4/post-fleets-users.html[here].
 

@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-usergroups.html'
+keywords: 'user groups,list user groups,group collection,user group list,user group details,group management'
 summary: 'List all user groups in NetApp Console local deployment'
 ---
 
 = List all user groups in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all user groups in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/usergroups`#
 
-
+== Usage notes
 
 Lists all user groups in the collection.
 

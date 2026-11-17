@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-users-roles.html'
+keywords: 'user roles,list roles,user access,role management,user permissions,roles endpoint'
 summary: 'List all the roles for a user in NetApp Console local deployment'
 ---
 
 = List all the roles for a user in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all roles for a user in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/users/{user_id}/roles`#
 
-
+== Usage notes
 
 Lists all roles for the specified user.
 

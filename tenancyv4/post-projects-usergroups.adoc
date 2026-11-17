@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/post-projects-usergroups.html'
+keywords: 'project usergroups,add usergroups,user group addition,project management,user groups'
 summary: 'Add user groups to a project in NetApp Console local deployment'
 ---
 
 = Add user groups to a project in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Adds user groups to a project in a NetApp Console local deployment, associating them with the specified project for role-based access management.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-post]#POST# [.api-doc-code-block]#`/projects/{project_id}/usergroups`#
 
-
+== Usage notes
 
 Adds user groups to the specified project.
 

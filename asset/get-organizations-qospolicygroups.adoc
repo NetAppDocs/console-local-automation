@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'asset/get-organizations-qospolicygroups.html'
+keywords: 'organization qos,policy groups,qos policy,quality of service,organization id'
 summary: 'List QoS policy groups in an organization in NetApp Console local deployment'
 ---
 
 = List QoS policy groups in an organization in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves a list of QoS policy groups in the specified organization.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/organizations/{organization_id}/qospolicygroups`#
 
-
+== Usage notes
 
 Lists all QoS policy groups in the specified organization.
 

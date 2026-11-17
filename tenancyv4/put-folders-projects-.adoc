@@ -3,17 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/put-folders-projects-.html'
+keywords: 'replace project,project update,folder project,project management,legacy endpoint,netapp console'
 summary: 'Modify a project under a folder in NetApp Console local deployment'
 ---
 
 = Modify a project under a folder in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Replaces a project in the specified folder with new information. This endpoint is deprecated in a NetApp Console local deployment; use the corresponding fleet endpoint instead.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-put]#PUT# [.api-doc-code-block]#`/folders/{folder_id}/projects/{project_id}`#
 
-
-
-Replaces a project in the specified folder with new information.
+== Usage notes
 
 NOTE: In NetApp Console local deployment, the project endpoints are deprecated and should only be used for legacy compliance. A newer version of this deprecated endpoint is available https://docs.netapp.com/us-en/console-local-automation/tenancyv4/put-folders-fleets-.html[here].
 

@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'storage-management/patch-v1-organizations-workingenvironments-.html'
+keywords: 'update system,system update,working environment,update fields,organization system'
 summary: 'Update a system in NetApp Console local deployment'
 ---
 
 = Update a system in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Updates the specified fields of a system in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-patch]#PATCH# [.api-doc-code-block]#`/v1/organizations/{organizationId}/workingenvironments/{workingEnvironmentId}`#
 
-
+== Usage notes
 
 Updates the system. Include only the fields you want to update in the request.
 

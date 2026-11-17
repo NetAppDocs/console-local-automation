@@ -3,15 +3,21 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/get-users-resources.html'
+keywords: 'user resources,list resources,user data,resource management,user id'
 summary: 'List all resources for a user in NetApp Console local deployment'
 ---
 
 = List all resources for a user in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Retrieves all resources for the specified user in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-get]#GET# [.api-doc-code-block]#`/users/{user_id}/resources`#
 
-
+== Usage notes
 
 Lists all resources for the specified user.
 

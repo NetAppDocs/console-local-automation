@@ -3,18 +3,19 @@ sidebar: sidebar
 api: true
 explorer: false
 permalink: 'tenancyv4/put-roles-.html'
+keywords: 'role update,role management,role replacement,user roles,modify role'
 summary: 'Modify a role resource in NetApp Console local deployment'
 ---
 
 = Modify a role resource in NetApp Console local deployment
 :imagesdir: ../media/
 
+[.lead]
+Replaces the specified role with new information in a NetApp Console local deployment.
+
+== HTTP method and endpoint
+
 [.api-doc-operation .api-doc-operation-put]#PUT# [.api-doc-code-block]#`/roles/{role_id}`#
-
-
-
-Replaces the specified role with new information.
-
 
 == Parameters
 
